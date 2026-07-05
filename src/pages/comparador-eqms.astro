@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Comparador de herramientas eQMS"
+  description="Comparativa neutral de herramientas eQMS para MedTech: precio orientativo, público objetivo y módulos."
+>
+  <h1>Comparador de herramientas eQMS</h1>
+  <p>
+    Greenlight Guru, Qualio, MasterControl, Matrix Requirements, openRegulatory y más: precio
+    orientativo, público objetivo y módulos (control documental, CAPA, ISO 13485, 21 CFR Part 11…).
+  </p>
+  <p class="regla">
+    <strong>Regla de neutralidad:</strong> cada celda de la comparativa exige al menos dos fuentes
+    independientes, las estimaciones se etiquetan como estimaciones y toda celda lleva su fecha de
+    verificación visible. El blog de un fabricante que participa en la comparación puede ser
+    <em>una</em> fuente, nunca el árbitro.
+  </p>
+  <div class="proximamente">
+    <h2>Próximamente</h2>
+    <p>Versión inicial con 5 herramientas prevista para agosto de 2026.</p>
+  </div>
+</Base>
+
+<style>
+  .regla {
+    border-left: 4px solid var(--acento); background: var(--fondo-alt);
+    padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; max-width: 46rem;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const guias = (await getCollection('guias')).sort((a, b) =>
+  b.data.relevancia_ia - a.data.relevancia_ia
+);
+---
+
+<Base
+  title="Fichas de guías MDCG en español"
+  description="Resúmenes en español de las guías MDCG relevantes para productos sanitarios e IA clínica, con enlace a la fuente oficial."
+>
+  <h1>Fichas de guías MDCG en español</h1>
+  <p>
+    Casi todo el material original del MDCG existe solo en inglés. Aquí encontrarás una ficha por
+    guía relevante: resumen de ~300 palabras, a quién aplica y enlace al documento oficial.
+    Resumimos con enlace a la fuente; nunca republicamos textos íntegros.
+  </p>
+
+  <ul class="lista-guias">
+    {
+      guias.map((g) => (
+        <li class="guia">
+          <h2>{g.data.codigo}</h2>
+          <p class="guia-titulo">{g.data.titulo}</p>
+          <p class="guia-meta">
+            <span class="chip">Relevancia para IA: {'●'.repeat(g.data.relevancia_ia)}{'○'.repeat(5 - g.data.relevancia_ia)} ({g.data.relevancia_ia}/5)</span>
+            {g.data.temas.map((t) => (
+              <span class="chip">{t}</span>
+            ))}
+          </p>
+          {g.data.estado_ficha === 'proximamente' ? (
+            <p class="guia-estado">Ficha en preparación (julio-agosto 2026).</p>
+          ) : (
+            <p>{g.data.resumen_es}</p>
+          )}
+          <p>
+            <a href={g.data.enlace_oficial} rel="external noopener">Documento oficial (Comisión Europea)</a>
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="proximamente">
+    <p>
+      Objetivo del verano: 5 fichas completas en español. ¿Echas de menos una guía concreta?
+      <a href="/newsletter">Dímelo por aquí</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .lista-guias { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 1rem; }
+  .guia { border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.5rem; }
+  .guia h2 { margin: 0 0 0.25rem; font-size: 1.15rem; }
+  .guia-titulo { font-weight: 600; margin: 0 0 0.5rem; }
+  .guia-meta { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.5rem; }
+  .guia-estado { color: var(--texto-suave); font-style: italic; }
+</style>

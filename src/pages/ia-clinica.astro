@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="IA clínica: intersección MDR × AI Act"
+  description="Cuándo un SaMD con IA es alto riesgo según el AI Act: el criterio doble de la MDCG 2025-6 explicado en español."
+>
+  <h1>IA clínica: la intersección MDR × AI Act</h1>
+  <p>
+    Si desarrollas o comercializas software de producto sanitario (SaMD) con IA, te aplican
+    <em>dos</em> marcos a la vez. Esta página resume cuándo tu sistema es «alto riesgo» para el
+    AI Act y qué implica la doble evaluación de conformidad.
+  </p>
+
+  <h2>El criterio doble (MDCG 2025-6)</h2>
+  <p>Un sistema de IA en el ámbito sanitario es de alto riesgo bajo el Anexo I del AI Act cuando cumple <strong>las dos</strong> condiciones:</p>
+  <ol class="criterio">
+    <li>
+      <strong>Es un producto sanitario o un componente de seguridad</strong> de un producto
+      regulado por MDR/IVDR. Ojo al matiz post-Omnibus: la IA que solo asiste al usuario u
+      optimiza rendimiento sin crear riesgo para la salud o la seguridad queda fuera de la
+      definición de componente de seguridad.
+    </li>
+    <li>
+      <strong>Requiere la intervención de un organismo notificado</strong> en su evaluación de
+      conformidad: clases IIa, IIb y III en MDR, y clases B, C y D en IVDR. Un SaMD de clase I
+      sin intervención de ON no entra en el alto riesgo por esta vía.
+    </li>
+  </ol>
+
+  <h2>Principios que conviene tener a mano</h2>
+  <ul>
+    <li>
+      <strong>No escalamiento recíproco de riesgos:</strong> que un sistema sea alto riesgo para
+      el AI Act no eleva su clase MDR, ni al revés. Cada marco clasifica con sus propios criterios.
+    </li>
+    <li>
+      <strong>Grandfathering:</strong> los sistemas comercializados antes de las fechas de
+      aplicación evitan las obligaciones de alto riesgo salvo «modificación sustancial».
+    </li>
+    <li>
+      <strong>Fecha clave para MedTech con IA:</strong> 2 de agosto de 2028 — obligaciones de
+      alto riesgo para la IA embebida en productos del Anexo I (re-basada por el Omnibus).
+      Consulta la <a href="/">cronología completa</a>.
+    </li>
+  </ul>
+
+  <div class="proximamente">
+    <h2>En construcción (julio-agosto 2026)</h2>
+    <p>
+      Próximamente: flujos de doble evaluación de conformidad paso a paso, y las fichas en español
+      de las guías estrella — <a href="/guias">MDCG 2025-6 y MDCG 2025-4</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .criterio li { margin-bottom: 0.75rem; max-width: 46rem; }
+  ul li { margin-bottom: 0.75rem; max-width: 46rem; }
+</style>

@@ -1,0 +1,230 @@
+[
+  {
+    "id": "eur-lex-mdr",
+    "nombre": "Reglamento (UE) 2017/745 (MDR) — texto consolidado",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Puntual (consolidaciones)",
+    "tiene_rss": false,
+    "notas": "Columna vertebral de plazos y clases. Usar alertas de EUR-Lex."
+  },
+  {
+    "id": "eur-lex-ivdr",
+    "nombre": "Reglamento (UE) 2017/746 (IVDR) — texto consolidado",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Puntual (consolidaciones)",
+    "tiene_rss": false
+  },
+  {
+    "id": "eur-lex-ai-act",
+    "nombre": "Reglamento (UE) 2024/1689 (AI Act) — texto consolidado",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Puntual (consolidaciones)",
+    "tiene_rss": false,
+    "notas": "Añadir el Reglamento Omnibus en cuanto se publique en el DOUE (en vigor a los 3 días)."
+  },
+  {
+    "id": "eur-lex-reg-2023-607",
+    "nombre": "Reglamento (UE) 2023/607 — prórroga de transitorios MDR/IVDR",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Estático",
+    "tiene_rss": false,
+    "notas": "Fechas legacy por clase de producto."
+  },
+  {
+    "id": "boe-rd-192-2023",
+    "nombre": "RD 192/2023 de productos sanitarios (España)",
+    "tipo": "legal",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-7416",
+    "idioma": "ES",
+    "frecuencia_actualizacion": "Puntual (consolidaciones)",
+    "tiene_rss": false,
+    "notas": "Transposición nacional: autoridad competente, garantías sanitarias, requisitos lingüísticos, reprocesado."
+  },
+  {
+    "id": "fda-qmsr",
+    "nombre": "FDA QMSR / 21 CFR 820 — final rule",
+    "tipo": "legal",
+    "url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Estático (norma final)",
+    "tiene_rss": false,
+    "notas": "Comparativa UE-EE. UU.: contenido diferencial. En vigor desde el 2-feb-2026."
+  },
+  {
+    "id": "mdcg-indice-guias",
+    "nombre": "Índice de guías MDCG — Comisión Europea (Salud)",
+    "tipo": "guia",
+    "url": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Mensual (aprox.)",
+    "tiene_rss": false,
+    "notas": "La madre de la sección de fichas. Revisar en la pasada de vigilancia de los lunes."
+  },
+  {
+    "id": "mdcg-2025-6-y-2025-4",
+    "nombre": "MDCG 2025-6 (MDR/IVDR × AI Act) y MDCG 2025-4 (MDSW en plataformas)",
+    "tipo": "guia",
+    "url": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Estático (guías puntuales)",
+    "tiene_rss": false,
+    "notas": "Documentos estrella de las secciones IA clínica y fichas. Añadir MDCG 2025-10 (PMS, dic-2025)."
+  },
+  {
+    "id": "ai-office",
+    "nombre": "AI Office / página oficial del AI Act — Comisión Europea",
+    "tipo": "agencia",
+    "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Semanal",
+    "tiene_rss": false,
+    "notas": "Actos de ejecución y guidelines: seguir los actos que desactivan duplicidades con la normativa sectorial."
+  },
+  {
+    "id": "eudamed",
+    "nombre": "EUDAMED — portal oficial + Decisión (UE) 2025/2371",
+    "tipo": "agencia",
+    "url": "https://ec.europa.eu/tools/eudamed/",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Mensual",
+    "tiene_rss": false,
+    "notas": "4 módulos obligatorios desde el 28-may-2026; legacy antes de fin de nov-2026; carga de certificados por ONs antes del 28-may-2027."
+  },
+  {
+    "id": "nando",
+    "nombre": "NANDO — base de organismos notificados",
+    "tipo": "agencia",
+    "url": "https://ec.europa.eu/growth/tools-databases/nando/",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Continua",
+    "tiene_rss": false,
+    "notas": "Base de la sección Directorio de ONs: designados MDR/IVDR y, cuando llegue, AI Act."
+  },
+  {
+    "id": "team-nb",
+    "nombre": "Team-NB — asociación europea de organismos notificados",
+    "tipo": "industria",
+    "url": "https://www.team-nb.org/",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Mensual",
+    "tiene_rss": false,
+    "notas": "Position papers y encuestas de capacidad de ONs."
+  },
+  {
+    "id": "normas-armonizadas",
+    "nombre": "Normas armonizadas MDR/IVDR publicadas en el DOUE",
+    "tipo": "legal",
+    "url": "https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards/medical-devices_en",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Trimestral (aprox.)",
+    "tiene_rss": false
+  },
+  {
+    "id": "aemps",
+    "nombre": "AEMPS — productos sanitarios",
+    "tipo": "agencia",
+    "url": "https://www.aemps.gob.es/productos-sanitarios/",
+    "idioma": "ES",
+    "frecuencia_actualizacion": "Semanal",
+    "tiene_rss": true,
+    "notas": "Comunicaciones de comercialización, licencia previa de funcionamiento, notas informativas."
+  },
+  {
+    "id": "aesia",
+    "nombre": "AESIA — Agencia Española de Supervisión de la Inteligencia Artificial",
+    "tipo": "agencia",
+    "url": "https://aesia.digital.gob.es/",
+    "idioma": "ES",
+    "frecuencia_actualizacion": "Mensual",
+    "tiene_rss": false,
+    "notas": "Comunicaciones y régimen sancionador nacional del AI Act."
+  },
+  {
+    "id": "boe-alertas",
+    "nombre": "BOE — alertas temáticas por materia",
+    "tipo": "agencia",
+    "url": "https://www.boe.es/mi_boe/",
+    "idioma": "ES",
+    "frecuencia_actualizacion": "Diaria",
+    "tiene_rss": true,
+    "notas": "Suscripción gratuita a alertas por materia."
+  },
+  {
+    "id": "iso-une-catalogo",
+    "nombre": "Catálogos ISO/UNE: ISO 13485:2016, ISO 14971, IEC 62304, IEC 82304-1",
+    "tipo": "norma_tecnica",
+    "url": "https://www.iso.org/",
+    "idioma": "EN (fichas), ES (UNE)",
+    "frecuencia_actualizacion": "Puntual (revisiones de norma)",
+    "tiene_rss": false,
+    "notas": "Se citan, no se copian: son de pago. Fichas de catálogo únicamente."
+  },
+  {
+    "id": "medtech-europe",
+    "nombre": "MedTech Europe",
+    "tipo": "industria",
+    "url": "https://www.medtecheurope.org/",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Semanal",
+    "tiene_rss": false,
+    "notas": "Posiciones y encuestas de capacidad de organismos notificados."
+  },
+  {
+    "id": "cocir",
+    "nombre": "COCIR",
+    "tipo": "industria",
+    "url": "https://www.cocir.org/",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Mensual",
+    "tiene_rss": false,
+    "notas": "IA en imagen médica y salud digital."
+  },
+  {
+    "id": "raps-regulatory-focus",
+    "nombre": "RAPS Regulatory Focus",
+    "tipo": "industria",
+    "url": "https://www.raps.org/news-and-articles/news-articles",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Diaria",
+    "tiene_rss": true,
+    "notas": "Noticias regulatorias diarias."
+  },
+  {
+    "id": "imdrf",
+    "nombre": "IMDRF — International Medical Device Regulators Forum",
+    "tipo": "guia",
+    "url": "https://www.imdrf.org/",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Trimestral",
+    "tiene_rss": false,
+    "notas": "Documentos marco de SaMD."
+  },
+  {
+    "id": "fda-dhcoe",
+    "nombre": "FDA Digital Health Center of Excellence",
+    "tipo": "agencia",
+    "url": "https://www.fda.gov/medical-devices/digital-health-center-excellence",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Mensual",
+    "tiene_rss": false,
+    "notas": "IA/ML en dispositivos, PCCP."
+  },
+  {
+    "id": "openregulatory",
+    "nombre": "openRegulatory",
+    "tipo": "industria",
+    "url": "https://openregulatory.com/",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Semanal",
+    "tiene_rss": true,
+    "notas": "Plantillas open source; candidato al comparador eQMS. Complementar con blogs de BSI y TÜV SÜD como alerta temprana de interpretación."
+  }
+]

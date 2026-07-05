@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mdcg-2025-6",
+    "codigo": "MDCG 2025-6",
+    "titulo": "Interacción entre MDR/IVDR y el AI Act",
+    "emisor": "MDCG (Medical Device Coordination Group)",
+    "fecha": "2025",
+    "temas": ["IA clínica", "AI Act", "MDR", "IVDR", "clasificación de riesgo"],
+    "resumen_es": null,
+    "relevancia_ia": 5,
+    "enlace_oficial": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
+    "estado_ficha": "proximamente"
+  },
+  {
+    "id": "mdcg-2025-4",
+    "codigo": "MDCG 2025-4",
+    "titulo": "Software de producto sanitario (MDSW) en plataformas digitales y app stores",
+    "emisor": "MDCG (Medical Device Coordination Group)",
+    "fecha": "2025",
+    "temas": ["SaMD", "software", "plataformas digitales", "app stores"],
+    "resumen_es": null,
+    "relevancia_ia": 4,
+    "enlace_oficial": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
+    "estado_ficha": "proximamente"
+  },
+  {
+    "id": "mdcg-2025-10",
+    "codigo": "MDCG 2025-10",
+    "titulo": "Vigilancia poscomercialización (PMS)",
+    "emisor": "MDCG (Medical Device Coordination Group)",
+    "fecha": "2025-12",
+    "temas": ["PMS", "vigilancia poscomercialización", "MDR", "IVDR"],
+    "resumen_es": null,
+    "relevancia_ia": 3,
+    "enlace_oficial": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
+    "estado_ficha": "proximamente"
+  }
+]

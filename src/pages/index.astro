@@ -1,0 +1,282 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const plazos = (await getCollection('plazos')).sort((a, b) =>
+  a.data.fecha.localeCompare(b.data.fecha)
+);
+
+const formatoFecha = new Intl.DateTimeFormat('es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const tipoLabel: Record<string, string> = {
+  aplicacion: 'Entrada en aplicación',
+  fin_transitorio: 'Fin de transitorio',
+  registro: 'Hito de registro',
+  informe_periodico: 'Informe periódico',
+};
+
+const badgeClase: Record<string, string> = {
+  MDR: 'badge-mdr',
+  IVDR: 'badge-ivdr',
+  'MDR/IVDR': 'badge-mdr-ivdr',
+  'AI Act': 'badge-ai-act',
+  QMSR: 'badge-qmsr',
+};
+
+const normas = [...new Set(plazos.map((p) => p.data.norma))];
+const roles = [...new Set(plazos.flatMap((p) => p.data.roles_afectados))].sort();
+const clases = [...new Set(plazos.flatMap((p) => p.data.clases_producto))].sort();
+
+const matices = [
+  {
+    titulo: 'Definición estrechada de «componente de seguridad»',
+    texto:
+      'La IA que solo asiste al usuario u optimiza rendimiento sin crear riesgo para la salud o la seguridad queda fuera del alto riesgo. Crítico para clasificar SaMD.',
+  },
+  {
+    titulo: 'Grandfathering',
+    texto:
+      'Los sistemas comercializados antes de las fechas clave evitan las obligaciones de alto riesgo salvo «modificación sustancial». Qué cuenta como sustancial es la pregunta del millón.',
+  },
+  {
+    titulo: 'Mecanismo AI Act ↔ legislación sectorial',
+    texto:
+      'La Comisión podrá desactivar duplicidades con la normativa de productos sanitarios vía actos de ejecución. Seguir esos actos es una ventaja informativa permanente.',
+  },
+  {
+    titulo: 'Registro incluso para autoexcluidos',
+    texto:
+      'Quien se considere exento de la clasificación de alto riesgo debe registrarlo igualmente en la base de datos de la UE.',
+  },
+  {
+    titulo: 'Nueva categoría SMC (small mid-caps)',
+    texto:
+      'Las simplificaciones de documentación técnica se extienden más allá de las pymes, a las empresas medianas pequeñas.',
+  },
+  {
+    titulo: 'Vigilancia y PMS de EUDAMED llegan después',
+    texto:
+      'Previstos hacia finales de 2026. Hasta que se declaren funcionales, la notificación de incidentes sigue por las autoridades nacionales.',
+  },
+];
+---
+
+<Base title="Cronología viva post-Omnibus">
+  <h1>Cronología viva: MDR, IVDR, AI Act y QMSR después del Omnibus</h1>
+  <p class="intro">
+    El Digital Omnibus sobre IA ha movido las fechas que toda la industria tenía en sus planes.
+    Esta es la cronología completa re-baseada, en español, con fuente oficial y fecha de
+    verificación en cada plazo. Filtra por norma, por tu rol o por clase de producto.
+  </p>
+
+  <form class="filtros" aria-label="Filtros de la cronología">
+    <div class="filtro">
+      <label for="f-norma">Norma</label>
+      <select id="f-norma">
+        <option value="">Todas</option>
+        {normas.map((n) => <option value={n}>{n}</option>)}
+      </select>
+    </div>
+    <div class="filtro">
+      <label for="f-rol">Rol</label>
+      <select id="f-rol">
+        <option value="">Todos</option>
+        {roles.map((r) => <option value={r}>{r}</option>)}
+      </select>
+    </div>
+    <div class="filtro">
+      <label for="f-clase">Clase de producto</label>
+      <select id="f-clase">
+        <option value="">Todas</option>
+        {clases.map((c) => <option value={c}>{c}</option>)}
+      </select>
+    </div>
+    <button type="reset" id="f-reset">Quitar filtros</button>
+  </form>
+  <p id="resultado-filtros" role="status" aria-live="polite" class="resultado-filtros"></p>
+
+  <ol class="cronologia" id="cronologia">
+    {
+      plazos.map((p) => (
+        <li
+          class="plazo"
+          data-norma={p.data.norma}
+          data-roles={p.data.roles_afectados.join('|')}
+          data-clases={p.data.clases_producto.join('|')}
+        >
+          <div class="plazo-fecha">
+            <time datetime={p.data.fecha}>{formatoFecha.format(new Date(p.data.fecha + 'T00:00:00'))}</time>
+            <span class="chip-dias" data-fecha={p.data.fecha}></span>
+          </div>
+          <div class="plazo-cuerpo">
+            <p class="plazo-meta">
+              <span class={`badge ${badgeClase[p.data.norma]}`}>{p.data.norma}</span>
+              <span class="chip">{tipoLabel[p.data.tipo]}</span>
+              {p.data.estado === 'pendiente_confirmacion' && (
+                <span class="chip chip-aviso">Pendiente de confirmación</span>
+              )}
+              {p.data.estado === 'aplazado' && <span class="chip chip-aviso">Aplazado</span>}
+            </p>
+            <p class="plazo-desc">{p.data.descripcion_corta}</p>
+            <p class="plazo-chips">
+              {p.data.roles_afectados.map((r) => (
+                <span class="chip">{r}</span>
+              ))}
+              {p.data.clases_producto.map((c) => (
+                <span class="chip chip-clase">Clase: {c}</span>
+              ))}
+            </p>
+            {p.data.nota_cambio && <p class="plazo-nota">{p.data.nota_cambio}</p>}
+            <p class="plazo-fuente">
+              {p.data.referencia_legal} ·{' '}
+              <a href={p.data.fuente_url} rel="external noopener">Fuente oficial</a> · Verificado el{' '}
+              {formatoFecha.format(new Date(p.data.fecha_verificacion + 'T00:00:00'))}
+            </p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+  <p id="sin-resultados" hidden>
+    Ningún plazo coincide con esos filtros. <button type="button" id="f-reset-2">Quitar filtros</button>
+  </p>
+
+  <h2>Seis claves que el 90 % de los resúmenes se salta</h2>
+  <div class="matices">
+    {
+      matices.map((m) => (
+        <article class="matiz">
+          <h3>{m.titulo}</h3>
+          <p>{m.texto}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  <aside class="cta">
+    <h2>Radar quincenal</h2>
+    <p>
+      Cada dos semanas: cambios, guías nuevas y fechas que entran en la ventana de 90/30 días.
+      <a href="/newsletter">Suscríbete a la newsletter</a>.
+    </p>
+  </aside>
+</Base>
+
+<script>
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  document.querySelectorAll<HTMLElement>('.chip-dias').forEach((chip) => {
+    const fecha = new Date(chip.dataset.fecha + 'T00:00:00');
+    const dias = Math.round((fecha.getTime() - hoy.getTime()) / 86400000);
+    if (dias < 0) {
+      chip.textContent = 'Ya aplica';
+      chip.classList.add('dias-pasado');
+    } else if (dias === 0) {
+      chip.textContent = 'Hoy';
+      chip.classList.add('dias-urgente');
+    } else {
+      chip.textContent = `Quedan ${dias} días`;
+      if (dias <= 30) chip.classList.add('dias-urgente');
+      else if (dias <= 90) chip.classList.add('dias-pronto');
+    }
+  });
+
+  const selNorma = document.getElementById('f-norma') as HTMLSelectElement;
+  const selRol = document.getElementById('f-rol') as HTMLSelectElement;
+  const selClase = document.getElementById('f-clase') as HTMLSelectElement;
+  const estado = document.getElementById('resultado-filtros')!;
+  const sinResultados = document.getElementById('sin-resultados')!;
+  const plazos = [...document.querySelectorAll<HTMLElement>('.plazo')];
+
+  function filtrar() {
+    let visibles = 0;
+    for (const p of plazos) {
+      const okNorma = !selNorma.value || p.dataset.norma === selNorma.value;
+      const okRol = !selRol.value || (p.dataset.roles || '').split('|').includes(selRol.value);
+      const okClase =
+        !selClase.value || (p.dataset.clases || '').split('|').includes(selClase.value);
+      const visible = okNorma && okRol && okClase;
+      p.hidden = !visible;
+      if (visible) visibles++;
+    }
+    const hayFiltros = Boolean(selNorma.value || selRol.value || selClase.value);
+    estado.textContent = hayFiltros
+      ? `Mostrando ${visibles} de ${plazos.length} plazos.`
+      : '';
+    sinResultados.hidden = visibles > 0;
+  }
+
+  function reset() {
+    selNorma.value = '';
+    selRol.value = '';
+    selClase.value = '';
+    filtrar();
+  }
+
+  [selNorma, selRol, selClase].forEach((s) => s.addEventListener('change', filtrar));
+  document.getElementById('f-reset')!.addEventListener('click', (e) => {
+    e.preventDefault();
+    reset();
+  });
+  document.getElementById('f-reset-2')!.addEventListener('click', reset);
+</script>
+
+<style>
+  .intro { max-width: 46rem; font-size: 1.05rem; }
+
+  .filtros {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: end;
+    background: var(--fondo-alt); border: 1px solid var(--borde);
+    border-radius: 8px; padding: 1rem; margin-top: 1.5rem;
+  }
+  .filtro { display: flex; flex-direction: column; gap: 0.25rem; }
+  .filtro label { font-size: 0.85rem; font-weight: 600; }
+  .filtros select, .filtros button {
+    font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--texto-suave);
+    border-radius: 6px; background: #fff; color: var(--texto);
+  }
+  .filtros button { cursor: pointer; }
+  .resultado-filtros { min-height: 1.5rem; color: var(--texto-suave); }
+
+  .cronologia { list-style: none; margin: 1rem 0 0; padding: 0; }
+  .plazo {
+    display: grid; grid-template-columns: 11rem 1fr; gap: 1rem;
+    border-bottom: 1px solid var(--borde); padding: 1.25rem 0;
+  }
+  @media (max-width: 40rem) { .plazo { grid-template-columns: 1fr; gap: 0.25rem; } }
+
+  .plazo-fecha time { display: block; font-weight: 700; font-size: 1.05rem; }
+  .chip-dias {
+    display: inline-block; margin-top: 0.35rem; font-size: 0.8rem; font-weight: 600;
+    padding: 0.1rem 0.6rem; border-radius: 999px;
+    background: var(--fondo-alt); border: 1px solid var(--borde); color: var(--texto-suave);
+  }
+  .chip-dias:empty { display: none; }
+  .dias-pronto { background: var(--aviso-fondo); color: var(--aviso-texto); border-color: var(--aviso-texto); }
+  .dias-urgente { background: var(--urgente-fondo); color: var(--urgente-texto); border-color: var(--urgente-texto); }
+  .dias-pasado { background: var(--fondo-alt); }
+
+  .plazo-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: 0 0 0.4rem; }
+  .chip-aviso { background: var(--aviso-fondo); color: var(--aviso-texto); border-color: var(--aviso-texto); font-weight: 600; }
+  .plazo-desc { margin: 0 0 0.5rem; max-width: 44rem; }
+  .plazo-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.5rem; }
+  .chip-clase { background: #eef3fc; }
+  .plazo-nota {
+    background: var(--aviso-fondo); color: var(--aviso-texto);
+    border-left: 4px solid var(--aviso-texto); border-radius: 0 6px 6px 0;
+    padding: 0.5rem 0.75rem; font-size: 0.9rem; max-width: 44rem; margin: 0 0 0.5rem;
+  }
+  .plazo-fuente { font-size: 0.85rem; color: var(--texto-suave); margin: 0; }
+
+  .matices { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+  .matiz { border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.25rem; background: var(--fondo-alt); }
+  .matiz h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .matiz p { margin: 0; font-size: 0.95rem; }
+
+  .cta { border: 2px solid var(--acento); border-radius: 8px; padding: 1rem 1.5rem; margin-top: 2.5rem; }
+  .cta h2 { margin-top: 0; }
+</style>

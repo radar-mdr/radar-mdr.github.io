@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Radar quincenal — newsletter"
+  description="Newsletter quincenal en español sobre plazos y cambios regulatorios en MedTech e IA clínica: MDR, IVDR, AI Act y QMSR."
+>
+  <h1>Radar quincenal</h1>
+  <p>Cada dos semanas, directo al grano y en español:</p>
+  <ul>
+    <li>Cambios normativos y guías MDCG nuevas de la quincena.</li>
+    <li>Fechas de la cronología que entran en la ventana de 90 y 30 días.</li>
+    <li>Un matiz que el resto de los resúmenes se ha saltado.</li>
+  </ul>
+
+  <!--
+    TODO(S2): sustituir por el formulario embebido de Buttondown/Beehiiv cuando la cuenta
+    esté creada. Mientras tanto, alta manual por correo.
+  -->
+  <div class="alta">
+    <h2>Apúntate</h2>
+    <p>
+      El formulario de suscripción llega en unos días. Mientras tanto, escribe a
+      <a href="mailto:radar.mdr.aiact@gmail.com?subject=ALTA%20Radar%20quincenal">radar.mdr.aiact@gmail.com</a>
+      con el asunto «ALTA» y te añado a la lista fundacional.
+    </p>
+  </div>
+
+  <p class="privacidad">
+    Solo usaremos tu correo para enviarte la newsletter. Baja con un clic en cualquier número.
+  </p>
+</Base>
+
+<style>
+  .alta { border: 2px solid var(--acento); border-radius: 8px; padding: 1rem 1.5rem; max-width: 40rem; }
+  .alta h2 { margin-top: 0; }
+  .privacidad { color: var(--texto-suave); font-size: 0.9rem; }
+  ul li { margin-bottom: 0.5rem; }
+</style>

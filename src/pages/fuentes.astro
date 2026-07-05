@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const fuentes = await getCollection('fuentes');
+
+const tipoLabel: Record<string, string> = {
+  legal: 'Texto legal',
+  guia: 'Guía',
+  agencia: 'Agencia / institución',
+  industria: 'Industria y análisis',
+  norma_tecnica: 'Norma técnica',
+};
+
+const orden = ['legal', 'guia', 'agencia', 'industria', 'norma_tecnica'];
+const grupos = orden
+  .map((tipo) => ({
+    tipo,
+    label: tipoLabel[tipo],
+    items: fuentes.filter((f) => f.data.tipo === tipo),
+  }))
+  .filter((g) => g.items.length > 0);
+---
+
+<Base
+  title="Fuentes"
+  description="Las fuentes primarias y secundarias que vigila el Radar: textos legales, guías MDCG, agencias y análisis de industria."
+>
+  <h1>Fuentes que vigila el Radar</h1>
+  <p>
+    Todo dato del Radar enlaza a su fuente oficial. Esta es la lista completa de lo que vigilamos,
+    clasificado por tipo. Las primarias mandan; las secundarias solo orientan.
+  </p>
+
+  {
+    grupos.map((grupo) => (
+      <section>
+        <h2>{grupo.label}</h2>
+        <ul class="lista-fuentes">
+          {grupo.items.map((f) => (
+            <li>
+              <a href={f.data.url} rel="external noopener">{f.data.nombre}</a>
+              <span class="chip">{f.data.idioma}</span>
+              {f.data.tiene_rss && <span class="chip">RSS</span>}
+              {f.data.notas && <p class="fuente-nota">{f.data.notas}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .lista-fuentes { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+  .lista-fuentes li { border-bottom: 1px solid var(--borde); padding-bottom: 0.75rem; }
+  .lista-fuentes .chip { margin-left: 0.5rem; }
+  .fuente-nota { margin: 0.25rem 0 0; font-size: 0.9rem; color: var(--texto-suave); max-width: 44rem; }
+</style>
