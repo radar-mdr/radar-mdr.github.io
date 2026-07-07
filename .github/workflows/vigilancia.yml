@@ -1,0 +1,57 @@
+name: Vigilancia regulatoria
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # 06:00 UTC ≈ 08:00 Madrid en verano
+  workflow_dispatch: {} # permite lanzarlo a mano (primera vez: siembra snapshots)
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  vigilar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Detectar cambios en las fuentes
+        run: python scripts/vigilancia.py
+
+      - name: Borrador de alerta con IA (opcional)
+        if: ${{ hashFiles('vigilancia/pendiente_issue.md') != '' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/resumen_ia.py || true
+
+      - name: Abrir issue si hay cambios
+        if: ${{ hashFiles('vigilancia/pendiente_issue.md') != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "🛰️ Vigilancia: cambios detectados $(date -u +%F)" \
+            --body-file vigilancia/pendiente_issue.md
+
+      - name: Guardar snapshots
+        run: |
+          rm -f vigilancia/pendiente_issue.md
+          git config user.name "radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add vigilancia/
+          git diff --cached --quiet || git commit -m "vigilancia: snapshots $(date -u +%F)"
+          git push
+
+      - name: Redesplegar sitio (opcional — refresca las cuentas atrás)
+        if: ${{ always() }}
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$HOOK" ]; then curl -s -X POST "$HOOK" > /dev/null && echo "deploy hook enviado"; fi

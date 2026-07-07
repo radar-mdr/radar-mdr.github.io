@@ -1,0 +1,56 @@
+---
+// Página "fantasma": mide intención de pago real ANTES de construir nada.
+// No promete lo que no existe: dice claramente "lanzamiento 2027, acceso
+// anticipado". Los clics + registros del formulario son la métrica de corte.
+// TODO(S7): crear el formulario en tally.so (tamaño de empresa · clase de
+// producto · "¿qué precio mensual te parecería justo?") y descomentar el
+// iframe de abajo sustituyendo TALLY_ID.
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Radar Pro — alertas personalizadas (acceso anticipado)"
+  description="Alertas regulatorias personalizadas por clase de producto, calendario privado y API. Lanzamiento 2027 — apúntate al acceso anticipado."
+>
+  <h1>Radar Pro: que los plazos te encuentren a ti</h1>
+  <p>
+    El Radar público te da la cronología completa. Radar Pro vigilará por ti lo que afecta a
+    <strong>tu</strong> producto:
+  </p>
+  <ul>
+    <li><strong>Alertas por clase de producto</strong> a 90, 30 y 7 días (email), solo de las normas que te aplican.</li>
+    <li><strong>Calendario privado</strong> con los hitos de tu expediente (transitorios, EUDAMED, AI Act).</li>
+    <li><strong>Acceso API</strong> para integrar los plazos en tu QMS o tu Notion/Jira.</li>
+  </ul>
+  <p>
+    <em>Lanzamiento previsto: 2027. Precio orientativo de salida: 49-99 €/mes según tamaño de
+    empresa.</em> Los primeros registros tendrán precio de fundador y acceso anticipado gratuito
+    durante la beta.
+  </p>
+
+  <!--
+    Formulario Tally (S7): descomentar y sustituir TALLY_ID cuando exista.
+    <iframe
+      data-tally-src="https://tally.so/embed/TALLY_ID?alignLeft=1&hideTitle=1&transparentBackground=1"
+      loading="lazy" width="100%" height="380" frameborder="0"
+      title="Acceso anticipado a Radar Pro"></iframe>
+    <script is:inline src="https://tally.so/widgets/embed.js"></script>
+  -->
+  <div class="alta">
+    <h2>Lista de espera</h2>
+    <p>
+      Escribe a
+      <a href="mailto:radar.mdr.aiact@gmail.com?subject=RADAR%20PRO%20%E2%80%94%20acceso%20anticipado">radar.mdr.aiact@gmail.com</a>
+      con el asunto «RADAR PRO» contándome qué producto tienes y qué alerta te ahorraría más
+      tiempo. Formulario propio en camino.
+    </p>
+  </div>
+
+  <p><small>Sin spam: solo el boletín quincenal y el aviso de apertura de la beta.</small></p>
+</Base>
+
+<style>
+  ul li { margin-bottom: 0.5rem; max-width: 46rem; }
+  .alta { border: 2px solid var(--acento); border-radius: 8px; padding: 1rem 1.5rem; max-width: 40rem; }
+  .alta h2 { margin-top: 0; }
+</style>

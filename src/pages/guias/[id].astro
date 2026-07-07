@@ -1,0 +1,41 @@
+---
+// /guias/mdcg-2025-6/ (por ejemplo). El campo resumen_es admite Markdown.
+// Solo se genera página para las fichas con estado_ficha 'publicada':
+// publicar una ficha nueva = escribir el resumen en guias.json. Cero código.
+import { marked } from 'marked';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const guias = await getCollection('guias');
+  return guias
+    .filter((g) => g.data.estado_ficha === 'publicada' && g.data.resumen_es)
+    .map((g) => ({ params: { id: g.data.id }, props: { g: g.data } }));
+}
+
+const { g } = Astro.props;
+const html = marked.parse(g.resumen_es ?? '');
+---
+
+<Base title={`${g.codigo} — ${g.titulo}`} description={`Resumen en español de ${g.codigo}: ${g.titulo}. ${g.emisor}, ${g.fecha}.`}>
+  <p><a href="/guias/">← Todas las guías</a></p>
+  <h1>{g.codigo} · {g.titulo}</h1>
+  <p class="meta">
+    <em>{g.emisor} · {g.fecha}</em>
+    <span class="chip">Relevancia para IA: {g.relevancia_ia}/5</span>
+    {g.temas.map((t) => <span class="chip">{t}</span>)}
+  </p>
+  <article set:html={html} />
+  <p><a href={g.enlace_oficial} rel="external noopener">Documento oficial →</a></p>
+  <p>
+    <small>
+      Resumen divulgativo; no constituye asesoramiento legal ni regulatorio. Consulta el registro
+      de <a href="/cambios/">cambios</a>.
+    </small>
+  </p>
+</Base>
+
+<style>
+  .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+  article { max-width: 46rem; }
+</style>

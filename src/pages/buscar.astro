@@ -1,0 +1,19 @@
+---
+// Buscador estático con Pagefind. El índice se genera en el build
+// ("astro build && pagefind --site dist"), así que en `npm run dev` esta
+// página da 404 en los assets: probar con npm run build && npm run preview.
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Buscar" description="Busca en todos los plazos, guías y páginas del Radar MDR × AI Act.">
+  <h1>Buscar en el Radar</h1>
+  <div id="search"></div>
+</Base>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    new PagefindUI({ element: '#search', showSubResults: true });
+  });
+</script>

@@ -33,7 +33,7 @@ const guias = (await getCollection('guias')).sort((a, b) =>
           {g.data.estado_ficha === 'proximamente' ? (
             <p class="guia-estado">Ficha en preparación (julio-agosto 2026).</p>
           ) : (
-            <p>{g.data.resumen_es}</p>
+            <p><a href={`/guias/${g.data.id}/`}>Leer la ficha en español →</a></p>
           )}
           <p>
             <a href={g.data.enlace_oficial} rel="external noopener">Documento oficial (Comisión Europea)</a>

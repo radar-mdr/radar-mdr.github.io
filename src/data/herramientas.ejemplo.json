@@ -1,0 +1,16 @@
+[
+  {
+    "id": "formwork-openregulatory",
+    "nombre": "Formwork (Community)",
+    "empresa": "OpenRegulatory",
+    "precio_desde": "0 € (Community, hasta 5 usuarios) — EJEMPLO: confirmar en la página oficial de precios",
+    "publico": ["startup"],
+    "modulos": ["control documental", "ISO 13485"],
+    "especifica_ia": false,
+    "web": "https://openregulatory.com/",
+    "fuentes": ["https://openregulatory.com/pricing"],
+    "estimacion": true,
+    "fecha_verificacion": null,
+    "notas": "FILA DE EJEMPLO (este archivo no se publica; la colección lee herramientas.json). Aún no cumple la regla de neutralidad: solo tiene 1 fuente (el propio fabricante). Añade una segunda fuente independiente (G2/Capterra o consulta directa por email), pon fecha_verificacion y quita estimacion cuando el precio esté confirmado. Duplica este objeto en herramientas.json para cada herramienta nueva."
+  }
+]

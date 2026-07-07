@@ -86,9 +86,11 @@ const herramientas = defineCollection({
     modulos: z.array(z.string()),
     especifica_ia: z.boolean(),
     web: z.string().url(),
-    // Regla de neutralidad: cada celda necesita >=2 fuentes independientes
-    fuentes: z.array(z.string().url()).min(2).optional(),
-    fecha_verificacion: fechaISO.optional(),
+    // Regla de neutralidad: con <2 fuentes o sin fecha, la tabla muestra ⚠
+    fuentes: z.array(z.string().url()).default([]),
+    estimacion: z.boolean().default(false),
+    fecha_verificacion: fechaISO.nullable().optional(),
+    notas: z.string().optional(),
   }),
 });
 

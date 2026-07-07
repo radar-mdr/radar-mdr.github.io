@@ -1,0 +1,63 @@
+---
+// Comparador eQMS. Añadir una herramienta = añadir un objeto a
+// src/data/herramientas.json (plantilla en herramientas.ejemplo.json).
+// La regla de neutralidad va codificada: cada fila exige ≥2 fuentes
+// independientes y fecha de verificación; sin eso, muestra ⚠.
+interface Props {
+  filas: any[];
+}
+const { filas } = Astro.props;
+---
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Herramienta</th>
+      <th scope="col">Precio desde</th>
+      <th scope="col">Público</th>
+      <th scope="col">Módulos</th>
+      <th scope="col">IA</th>
+      <th scope="col">Verificación</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filas.map((h) => (
+      <tr>
+        <td>
+          <a href={h.web} rel="external noopener">{h.nombre}</a>
+          {h.estimacion && <sup title="Estimación pendiente de confirmar con el fabricante"> est.</sup>}
+        </td>
+        <td>{h.precio_desde}</td>
+        <td>{(h.publico ?? []).join(', ')}</td>
+        <td>{(h.modulos ?? []).join(', ')}</td>
+        <td>{h.especifica_ia ? 'Sí' : 'No'}</td>
+        <td>
+          {h.fecha_verificacion ?? '⚠ sin verificar'}
+          <br />
+          <small>
+            {(h.fuentes ?? []).length >= 2
+              ? (h.fuentes ?? []).map((u: string, i: number) => (
+                  <a href={u} rel="external noopener">[{i + 1}] </a>
+                ))
+              : '⚠ requiere ≥2 fuentes'}
+          </small>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<p>
+  <small>
+    <strong>Regla de neutralidad:</strong> cada fila exige al menos dos fuentes independientes
+    (página oficial de precios + G2/Capterra o consulta directa al fabricante). «est.» marca
+    estimaciones pendientes de confirmación. El blog de un fabricante que participa en la
+    comparación puede ser una fuente, nunca el árbitro.
+  </small>
+</p>
+
+<style>
+  table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+  th, td { text-align: left; border-bottom: 1px solid var(--borde); padding: 0.5rem 0.75rem; vertical-align: top; }
+  th { background: var(--fondo-alt); }
+</style>
