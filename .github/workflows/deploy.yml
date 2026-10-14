@@ -1,0 +1,43 @@
+name: Publicar web en GitHub Pages
+
+on:
+  # Cada vez que subes cambios a main
+  push:
+    branches: [main]
+  # Cada mañana, después de la vigilancia, para refrescar las cuentas atrás
+  schedule:
+    - cron: '47 6 * * *'
+  # Lanzamiento manual desde la pestaña Actions
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita dos despliegues a la vez
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v7
+
+      - name: Instalar, construir y empaquetar la web
+        uses: withastro/action@v6
+        # Ejecuta tu script "build" de package.json, incluido Pagefind si lo tienes en él.
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

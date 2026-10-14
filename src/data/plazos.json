@@ -9,8 +9,8 @@
     "clases_producto": ["todas"],
     "descripcion_corta": "La FDA QMSR entra en vigor: el 21 CFR 820 queda armonizado con la ISO 13485:2016. Afecta a todo fabricante que venda en EE. UU.",
     "estado": "vigente",
-    "fuente_url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
-    "fecha_verificacion": "2026-07-05"
+    "fuente_url": "https://www.fda.gov/medical-devices/postmarket-requirements-devices/quality-management-system-regulation-qmsr",
+    "fecha_verificacion": "2026-10-14"
   },
   {
     "id": "2026-05-26-mdr-fin-transitorio-implantables-a-medida",
@@ -35,9 +35,23 @@
     "clases_producto": ["todas"],
     "descripcion_corta": "Obligatorios los 4 primeros módulos de EUDAMED: actores/SRN, UDI-dispositivos, ON y certificados, y vigilancia de mercado. El registro es previo a comercializar dispositivos nuevos.",
     "estado": "vigente",
-    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fecha_verificacion": "2026-07-05",
-    "nota_cambio": "Los módulos de Vigilancia y PMS llegan después (previstos hacia finales de 2026): hasta que se declaren funcionales, la notificación de incidentes sigue por las autoridades nacionales."
+    "fuente_url": "https://health.ec.europa.eu/medical-devices-eudamed/overview_en",
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "Los módulos de vigilancia e investigaciones clínicas siguen en desarrollo, sin fecha publicada, y no tendrán fase de uso voluntario. Hasta que se declaren funcionales, la notificación de incidentes sigue por las autoridades nacionales."
+  },
+  {
+    "id": "2026-07-27-ai-omnibus-en-vigor",
+    "norma": "AI Act",
+    "referencia_legal": "Reglamento Omnibus de IA (modifica el Reg. (UE) 2024/1689)",
+    "fecha": "2026-07-27",
+    "tipo": "aplicacion",
+    "roles_afectados": ["proveedor de IA", "desplegador"],
+    "clases_producto": ["SaMD / IA"],
+    "descripcion_corta": "Entra en vigor el Omnibus de IA, que reordena los plazos del AI Act: alto riesgo del anexo III el 2-12-2027 y de los productos regulados del anexo I el 2-08-2028.",
+    "estado": "vigente",
+    "fuente_url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "Según la Comisión Europea, el acuerdo político se cerró el 7-05-2026 y el Reglamento entró en vigor el 27-07-2026. Hasta ahora la cronología lo daba como pendiente de publicación en el DOUE."
   },
   {
     "id": "2026-08-02-ai-act-art-50-transparencia",
@@ -49,9 +63,9 @@
     "clases_producto": ["SaMD / IA"],
     "descripcion_corta": "Obligaciones de transparencia del art. 50 del AI Act para IA generativa e interactiva. No fueron aplazadas por el Omnibus (salvo el art. 50(2) para sistemas legacy).",
     "estado": "vigente",
-    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
-    "fecha_verificacion": "2026-07-05",
-    "nota_cambio": "Ojo: muchos resúmenes asumen que el Omnibus aplazó el art. 50 entero. No es así — solo el 50(2) para legacy."
+    "fuente_url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "La Comisión confirma que el AI Act es aplicable desde el 2-08-2026, incluidas las reglas de transparencia. La excepción del art. 50(2) para sistemas legacy está pendiente de comprobar en el texto final del Omnibus."
   },
   {
     "id": "2026-11-27-eudamed-registro-legacy",
@@ -64,22 +78,36 @@
     "descripcion_corta": "Registro en EUDAMED de los dispositivos legacy (anteriores a mayo de 2026) que sigan comercializándose.",
     "estado": "pendiente_confirmacion",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fecha_verificacion": "2026-07-05",
-    "nota_cambio": "Las fuentes citan el 27 y el 28 de noviembre: confirmar el día exacto en el aviso oficial antes de darlo por definitivo."
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "Comprobado el 14-10-2026: la página oficial de EUDAMED no da el día exacto. Pista: la Comisión cuenta 6 meses desde la publicación del 27-11-2025 hasta el 28-05-2026; con el mismo cómputo, 12 meses darían el 28-11-2026. Se mantiene el 27 por prudencia hasta revisar el documento de plazos transitorios."
   },
   {
-    "id": "2026-12-02-ai-act-etiquetado-sintetico-y-prohibidas",
+    "id": "2026-12-02-ai-act-art-50-2-legacy",
     "norma": "AI Act",
-    "referencia_legal": "AI Act, arts. 50(2) y 5 (Omnibus)",
+    "referencia_legal": "AI Act, art. 50(2) (modificado por el Omnibus)",
     "fecha": "2026-12-02",
     "tipo": "aplicacion",
     "roles_afectados": ["proveedor de IA"],
-    "clases_producto": ["SaMD / IA"],
-    "descripcion_corta": "Etiquetado de contenido sintético (art. 50(2)) para sistemas legacy y nuevas prácticas prohibidas (NCII/CSAM, art. 5).",
-    "estado": "vigente",
+    "clases_producto": ["IA generativa"],
+    "descripcion_corta": "Marcado del contenido generado por IA (art. 50(2)) en sistemas que ya estaban en el mercado.",
+    "estado": "pendiente_confirmacion",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
-    "fecha_verificacion": "2026-07-05",
-    "nota_cambio": "Fecha introducida por el Reglamento Omnibus (acuerdo político cerrado; publicación en el DOUE inminente). Actualizar la referencia legal en cuanto se publique."
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "La página de la Comisión no menciona este plazo: hay que comprobarlo en el texto final del Omnibus antes de darlo por bueno."
+  },
+  {
+    "id": "2026-12-02-ai-act-prohibicion-contenido-sexual-ia",
+    "norma": "AI Act",
+    "referencia_legal": "AI Act, art. 5 (práctica prohibida añadida por el Omnibus)",
+    "fecha": "2026-12-02",
+    "tipo": "aplicacion",
+    "roles_afectados": ["proveedor de IA", "desplegador"],
+    "clases_producto": ["IA generativa"],
+    "descripcion_corta": "Nueva práctica prohibida: sistemas de IA que generan contenido sexual no consentido o material de abuso sexual infantil.",
+    "estado": "pendiente_confirmacion",
+    "fuente_url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "La Comisión confirma que la prohibición entra en vigor en diciembre de 2026; falta comprobar el día exacto en el texto final del Omnibus."
   },
   {
     "id": "2027-05-28-eudamed-carga-certificados-on",
@@ -106,7 +134,7 @@
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
     "fecha_verificacion": "2026-07-05",
-    "nota_cambio": "Fecha re-basada por el Omnibus. Actualizar la referencia legal cuando se publique en el DOUE."
+    "nota_cambio": "Fecha re-basada por el Omnibus, en vigor desde el 27-07-2026. Pendiente de contrastar con el texto final."
   },
   {
     "id": "2027-12-02-ai-act-alto-riesgo-anexo-iii",
@@ -118,9 +146,9 @@
     "clases_producto": ["SaMD / IA"],
     "descripcion_corta": "Obligaciones de alto riesgo para sistemas de IA independientes (Anexo III, HRAIS standalone).",
     "estado": "vigente",
-    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
-    "fecha_verificacion": "2026-07-05",
-    "nota_cambio": "Fecha re-basada por el Omnibus. Actualizar la referencia legal cuando se publique en el DOUE."
+    "fuente_url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "Confirmado por la Comisión tras la entrada en vigor del Omnibus el 27-07-2026."
   },
   {
     "id": "2027-12-31-mdr-fin-transitorio-alto-riesgo",
@@ -145,9 +173,9 @@
     "clases_producto": ["IIa", "IIb", "III", "IVD B", "IVD C", "IVD D"],
     "descripcion_corta": "Obligaciones de alto riesgo para la IA embebida en productos regulados (Anexo I), incluidos los productos sanitarios con IA que requieren organismo notificado.",
     "estado": "vigente",
-    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
-    "fecha_verificacion": "2026-07-05",
-    "nota_cambio": "La fecha clave para MedTech con IA. Re-basada por el Omnibus; actualizar la referencia legal cuando se publique en el DOUE."
+    "fuente_url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "fecha_verificacion": "2026-10-14",
+    "nota_cambio": "La fecha clave para MedTech con IA. Confirmada por la Comisión tras la entrada en vigor del Omnibus el 27-07-2026."
   },
   {
     "id": "2028-12-31-mdr-fin-transitorio-riesgo-medio-bajo",

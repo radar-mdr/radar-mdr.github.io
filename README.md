@@ -10,6 +10,8 @@ Observatorio en español de plazos y obligaciones regulatorias para tecnología 
 clínica: **MDR, IVDR, AI Act y FDA QMSR**. Cronología viva post-Omnibus con fuente oficial y
 fecha de verificación en cada dato.
 
+**Web:** https://alfonsoyewu-sketch.github.io
+
 > Información divulgativa; no constituye asesoramiento legal ni regulatorio.
 
 ## Desarrollo
@@ -21,7 +23,9 @@ npm run build    # valida esquemas Zod, genera el sitio en dist/ e indexa Pagefi
 npm run preview  # sirve dist/ (necesario para probar /buscar)
 ```
 
-Stack: [Astro](https://astro.build) (contenido en colecciones JSON validadas con Zod) + Vercel.
+Stack: [Astro](https://astro.build) (contenido en colecciones JSON validadas con Zod) + GitHub
+Pages ([.github/workflows/deploy.yml](.github/workflows/deploy.yml): publica en cada push y cada
+mañana, para que las cuentas atrás estén al día).
 El plan completo está en [docs/PLAN.md](docs/PLAN.md) y el guion del día de congelación en
 [docs/DIA-FINAL.md](docs/DIA-FINAL.md).
 
@@ -32,7 +36,7 @@ El valor del sitio está en los datos estructurados, no en los artículos. Seis 
 
 | Entidad | Archivo | Estado |
 |---|---|---|
-| Plazo | `plazos.json` | ✅ 12 plazos post-Omnibus cargados |
+| Plazo | `plazos.json` | ✅ 14 plazos post-Omnibus (6 confirmados el 14-10-2026, 3 pendientes) |
 | Fuente | `fuentes.json` | ✅ 23 fuentes cargadas |
 | Guía (MDCG) | `guias.json` | 🔶 3 fichas en preparación |
 | Obligación | `obligaciones.json` | ⬜ espera a las entrevistas |
@@ -44,8 +48,8 @@ El valor del sitio está en los datos estructurados, no en los artículos. Seis 
 - Todo dato lleva `fuente_url` oficial y `fecha_verificacion`.
 - `estado: pendiente_confirmacion` cuando las fuentes discrepan (p. ej., el registro legacy de
   EUDAMED: 27 vs. 28 de noviembre de 2026).
-- `nota_cambio` documenta qué movió el Omnibus y qué queda por actualizar cuando se publique en
-  el DOUE.
+- `nota_cambio` documenta qué movió el Omnibus (en vigor desde el 27 de julio de 2026) y qué
+  queda por confirmar.
 - Comparador eQMS: cada fila exige ≥2 fuentes independientes; las estimaciones se etiquetan
   (regla codificada en `TablaEQMS.astro`).
 - Copyright: resumir y enlazar, jamás republicar textos íntegros; las normas ISO/IEC se citan,
@@ -66,11 +70,12 @@ El valor del sitio está en los datos estructurados, no en los artículos. Seis 
 
 `.github/workflows/vigilancia.yml` corre a diario en GitHub Actions:
 [scripts/vigilancia.py](scripts/vigilancia.py) descarga 8 fuentes clave, extrae el texto
-principal y lo compara con los snapshots del repo; si algo cambió, **abre un issue con el
+principal y lo compara con la copia del día anterior; si algo cambió, **abre un issue con el
 diff** (backlog que se escribe solo) y, con el secreto `ANTHROPIC_API_KEY`, añade un borrador
 de alerta en español ([scripts/resumen_ia.py](scripts/resumen_ia.py) — siempre con revisión
-humana antes de publicar). El secreto opcional `VERCEL_DEPLOY_HOOK` redespliega el sitio cada
-mañana. Primera ejecución: lanzar a mano desde la pestaña Actions (siembra los snapshots).
+humana antes de publicar). Las copias de las páginas se guardan en la caché de GitHub Actions,
+no en el repo, para no republicar el texto íntegro de webs ajenas. Primera ejecución: lanzar a
+mano desde la pestaña Actions (guarda las copias iniciales).
 
 ## La regla de congelación
 
@@ -91,7 +96,7 @@ sitio es la excusa; las entrevistas son el producto.
 ## Hoja de ruta (8 semanas)
 
 - [x] **S1 (6-12 jul):** repo + esquema de datos + cronología online + fuentes + code freeze
-- [ ] S1: **comprar dominio y desplegar en Vercel** ← única tarea crítica pendiente
+- [x] **Publicación (14 oct):** web en GitHub Pages, https://alfonsoyewu-sketch.github.io
 - [ ] **S2 (13-19 jul):** Buttondown + primer post: «El Omnibus ha movido tus fechas»
 - [ ] **S3-S4 (20 jul-2 ago):** 5 fichas MDCG en `guias.json` + arranque de entrevistas
 - [ ] **S5-S6 (3-16 ago):** 5 entrevistas + rellenar `herramientas.json` (5 filas)

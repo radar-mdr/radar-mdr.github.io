@@ -5,3 +5,8 @@ dist/
 *.log
 .env
 .env.*
+
+# Copias de las páginas vigiladas: viven en la caché de GitHub Actions,
+# no en el repo (no se republica el texto íntegro de webs ajenas).
+vigilancia/snapshots/
+vigilancia/pendiente_issue.md

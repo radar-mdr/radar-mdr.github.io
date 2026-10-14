@@ -19,7 +19,7 @@ if not clave or not PENDIENTE.exists():
 diffs = PENDIENTE.read_text(encoding="utf-8")[:12000]
 
 peticion = {
-    "model": "claude-haiku-4-5-20251001",
+    "model": os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5"),
     "max_tokens": 500,
     "messages": [
         {

@@ -4,6 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com', // TODO: sustituir por el dominio real cuando se compre
+  site: 'https://alfonsoyewu-sketch.github.io', // GitHub Pages (sitio de usuario, en la raíz)
   integrations: [sitemap()],
 });

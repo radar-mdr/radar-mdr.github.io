@@ -1,23 +1,35 @@
 name: Vigilancia regulatoria
 
+# Versión para repositorio público: las copias de las páginas vigiladas se guardan
+# en la caché de GitHub Actions, no en el repositorio. Así no se republica el texto
+# íntegro de webs ajenas y el historial de commits queda limpio.
+
 on:
   schedule:
-    - cron: '0 6 * * *' # 06:00 UTC ≈ 08:00 Madrid en verano
-  workflow_dispatch: {} # permite lanzarlo a mano (primera vez: siembra snapshots)
+    - cron: '0 6 * * *' # 06:00 UTC ≈ 08:00 en Madrid en horario de verano
+  workflow_dispatch: {} # lanzamiento manual (la primera vez solo guarda las copias iniciales)
 
 permissions:
-  contents: write
+  contents: read
   issues: write
 
 jobs:
   vigilar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+
+      - name: Recuperar las copias del día anterior
+        uses: actions/cache/restore@v6
+        with:
+          path: vigilancia/snapshots
+          key: snapshots-${{ github.run_id }}
+          restore-keys: |
+            snapshots-
 
       - name: Instalar dependencias
         run: pip install requests beautifulsoup4 lxml
@@ -29,6 +41,7 @@ jobs:
         if: ${{ hashFiles('vigilancia/pendiente_issue.md') != '' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: claude-haiku-5-5
         run: python scripts/resumen_ia.py || true
 
       - name: Abrir issue si hay cambios
@@ -37,21 +50,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh issue create \
-            --title "🛰️ Vigilancia: cambios detectados $(date -u +%F)" \
+            --title "Vigilancia: cambios detectados $(date -u +%F)" \
             --body-file vigilancia/pendiente_issue.md
 
-      - name: Guardar snapshots
-        run: |
-          rm -f vigilancia/pendiente_issue.md
-          git config user.name "radar-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add vigilancia/
-          git diff --cached --quiet || git commit -m "vigilancia: snapshots $(date -u +%F)"
-          git push
-
-      - name: Redesplegar sitio (opcional — refresca las cuentas atrás)
-        if: ${{ always() }}
-        env:
-          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
-        run: |
-          if [ -n "$HOOK" ]; then curl -s -X POST "$HOOK" > /dev/null && echo "deploy hook enviado"; fi
+      - name: Guardar las copias de hoy
+        if: always()
+        uses: actions/cache/save@v6
+        with:
+          path: vigilancia/snapshots
+          key: snapshots-${{ github.run_id }}

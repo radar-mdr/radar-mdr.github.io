@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://TU-DOMINIO/sitemap-index.xml
+Sitemap: https://alfonsoyewu-sketch.github.io/sitemap-index.xml
