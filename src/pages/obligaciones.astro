@@ -3,6 +3,11 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 
 const todas = await getCollection('obligaciones');
+const fichas = new Map(
+  (await getCollection('guias'))
+    .filter((g) => g.data.estado_ficha === 'publicada')
+    .map((g) => [g.data.id, g.data.codigo])
+);
 const porNorma = (norma: string, ambito: string) =>
   todas.map((o) => o.data).filter((o) => o.norma === norma && o.ambito === ambito);
 
@@ -83,6 +88,9 @@ const anexos = [
             <th scope="row">
               {o.obligacion}
               <span class="ref"><a href={o.fuente_url} rel="external noopener">{o.articulo}</a></span>
+              {o.guia_relacionada && fichas.has(o.guia_relacionada) && (
+                <span class="ref">Guía: <a href={`/guias/${o.guia_relacionada}/`}>{fichas.get(o.guia_relacionada)}</a></span>
+              )}
             </th>
             {columnasMdr.map((c) => (
               <td class={o.por_clase?.[c]?.startsWith('No aplica') ? 'na' : undefined}>{o.por_clase?.[c] ?? '—'}</td>
@@ -123,6 +131,9 @@ const anexos = [
             <th scope="row">
               {o.obligacion}
               <span class="ref"><a href={o.fuente_url} rel="external noopener">{o.articulo}</a></span>
+              {o.guia_relacionada && fichas.has(o.guia_relacionada) && (
+                <span class="ref">Guía: <a href={`/guias/${o.guia_relacionada}/`}>{fichas.get(o.guia_relacionada)}</a></span>
+              )}
             </th>
             {columnasIvdr.map((c) => (
               <td class={o.por_clase?.[c]?.startsWith('No aplica') ? 'na' : undefined}>{o.por_clase?.[c] ?? '—'}</td>

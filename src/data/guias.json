@@ -5,7 +5,14 @@
     "titulo": "Interacción entre MDR/IVDR y el AI Act (preguntas frecuentes)",
     "emisor": "MDCG y Comité Europeo de IA (AIB), documento conjunto",
     "fecha": "Junio de 2025",
-    "temas": ["IA clínica", "AI Act", "MDR", "IVDR", "clasificación de riesgo", "evaluación de la conformidad"],
+    "temas": [
+      "IA clínica",
+      "AI Act",
+      "MDR",
+      "IVDR",
+      "clasificación de riesgo",
+      "evaluación de la conformidad"
+    ],
     "resumen_es": "**Qué es.** Un documento de 36 preguntas frecuentes firmado a la vez por el MDCG y el Comité Europeo de IA. Explica cómo se aplican juntos el MDR/IVDR y el AI Act al software sanitario con IA, que la guía llama MDAI. No es vinculante, pero es la referencia que usarán los organismos notificados.\n\n**La idea central.** Las dos normas se aplican a la vez y se complementan. El MDR/IVDR cubre los riesgos del software como producto sanitario; el AI Act añade los riesgos propios de la IA, como los datos, los sesgos, la supervisión humana o la robustez.\n\n**Cuándo es alto riesgo (pregunta 2).** Deben cumplirse dos condiciones: la IA es un componente de seguridad o es en sí un producto sanitario, y el producto pasa por un organismo notificado. Según su Tabla 1, entran las clases I estéril, de medición y quirúrgica reutilizable, IIa, IIb y III del MDR, y las clases A estéril, B, C y D del IVDR. Quedan fuera la clase I sin organismo notificado, la IVD A no estéril y los productos fabricados en el propio centro sanitario (art. 5.5).\n\n**Sin escalada de clase (pregunta 4).** Ser alto riesgo en el AI Act no sube la clase MDR ni la IVDR. Es al revés: la clase MDR decide si la IA es alto riesgo. Las prácticas prohibidas (art. 5) y la transparencia (art. 50) se aplican sea cual sea la clase.\n\n**Una sola evaluación (preguntas 27 y 28).** El procedimiento lo fija el MDR/IVDR. El organismo notificado comprueba en la misma evaluación los requisitos de los arts. 8 a 15 del AI Act, con los mismos criterios de muestreo de la documentación técnica.\n\n**Cambios previstos (preguntas 29 y 30).** La «modificación sustancial» del AI Act es un concepto propio (art. 3(23)). Los cambios predeterminados que se evaluaron en la evaluación inicial y constan en la documentación técnica no cuentan como modificación sustancial. Es el equivalente europeo del PCCP de la FDA.\n\n**Ojo, ya desfasado.** La guía es anterior al Omnibus y da el 2-8-2027 como fecha de las obligaciones de alto riesgo para productos sanitarios. Tras el Reglamento (UE) 2026/1744, esa fecha es el **2-8-2028**. El Omnibus también acota qué es un componente de seguridad (nuevo art. 6(1a)).",
     "relevancia_ia": 5,
     "enlace_oficial": "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en",
@@ -17,25 +24,38 @@
     "codigo": "MDCG 2019-11 rev.1",
     "titulo": "Cualificación y clasificación del software (MDR e IVDR)",
     "emisor": "MDCG (Medical Device Coordination Group)",
-    "fecha": "Junio de 2025",
-    "temas": ["SaMD", "software", "Regla 11", "clasificación"],
-    "resumen_es": null,
+    "fecha": "Octubre de 2019, rev.1 de junio de 2025",
+    "temas": [
+      "SaMD",
+      "software",
+      "Regla 11",
+      "clasificación",
+      "IMDRF"
+    ],
+    "resumen_es": "**Qué es.** La guía de referencia para decidir si un software es producto sanitario (MDSW) y en qué clase cae, tanto en el MDR como en el IVDR. La revisión de junio de 2025 añade cuatro cosas: insiste en redactar bien la finalidad prevista, desarrolla los módulos, suma ejemplos (incluido software que trata) y aclara la subregla 11a.\n\n**¿Es MDSW? Cinco pasos (figura 1).**\n\n1. ¿Es software?\n2. ¿Es un accesorio, un producto del anexo XVI o software que gobierna o influye en un producto? Entonces va con ese producto.\n3. ¿Hace algo más que almacenar, archivar, comunicar, buscar o comprimir sin pérdida?\n4. ¿Actúa en beneficio de pacientes concretos, y no solo con datos de población?\n5. ¿Tiene una finalidad médica de las que define el MDR o el IVDR?\n\nEl riesgo **no** sirve para decidir si algo es producto sanitario; la finalidad prevista, sí.\n\n**¿MDR o IVDR? (figura 2).** Si la información sale solo de productos IVD, aplica el IVDR. Si mezcla fuentes, aplica el reglamento de la fuente que más pesa en la finalidad prevista.\n\n**Regla 11, con letra pequeña.** La guía la divide en tres subreglas:\n\n- **11a:** información para decidir con fines diagnósticos o terapéuticos.\n- **11b:** vigilancia de procesos fisiológicos.\n- **11c:** todo lo demás, que es clase I.\n\nSegún la guía, la 11a describe cómo funciona casi todo el software médico, así que la clase I es la excepción. Su anexo III, basado en el marco del IMDRF, cruza qué hace la información (tratar o diagnosticar, impulsar el manejo clínico o informarlo) con la gravedad de la situación del paciente. Diagnosticar en una situación crítica da clase III. Impulsar el manejo en una situación crítica, o diagnosticar en una grave, da IIb. El resto, IIa.\n\nEjemplos de la guía:\n\n- Análisis de imagen para decidir el tratamiento de un ictus agudo: III.\n- App que detecta arritmias para orientar al médico: IIb.\n- App de fertilidad: I (11c).\n\nSi aplican varias reglas, gana la más estricta: un software de análisis de imagen de melanoma que además controla un escáner es clase III.\n\n**Módulos y cambios.** El fabricante debe delimitar qué módulos son producto sanitario. Un cambio o un módulo nuevo puede alterar la cualificación o la clase.",
     "relevancia_ia": 5,
-    "enlace_oficial": "https://health.ec.europa.eu/latest-updates/update-mdcg-2019-11-rev1-qualification-and-classification-software-regulation-eu-2017745-and-2025-06-17_en",
-    "estado_ficha": "proximamente",
-    "fecha_verificacion": "2026-10-14"
+    "enlace_oficial": "https://health.ec.europa.eu/document/download/b45335c5-1679-4c71-a91c-fc7a4d37f12b_en?filename=mdcg_2019_11_en.pdf",
+    "estado_ficha": "publicada",
+    "fecha_verificacion": "2026-10-17"
   },
   {
     "id": "mdcg-2025-4",
     "codigo": "MDCG 2025-4",
-    "titulo": "Software de producto sanitario (MDSW) en plataformas digitales y app stores",
+    "titulo": "Software de producto sanitario (MDSW) en tiendas de apps y plataformas online",
     "emisor": "MDCG (Medical Device Coordination Group)",
-    "fecha": "2025",
-    "temas": ["SaMD", "software", "plataformas digitales", "app stores"],
-    "resumen_es": null,
+    "fecha": "Junio de 2025",
+    "temas": [
+      "SaMD",
+      "apps",
+      "plataformas digitales",
+      "DSA",
+      "distribución"
+    ],
+    "resumen_es": "**Qué es.** La guía sobre qué papel tienen las tiendas de apps cuando distribuyen software de producto sanitario (MDSW) y qué información deben mostrar. Cruza el MDR/IVDR con el Reglamento de Servicios Digitales (DSA, Reglamento (UE) 2022/2065).\n\n**Para el MDR, subir la app a la tienda equivale a introducirla en el mercado.** Mientras está disponible, se está comercializando, aunque sea gratis.\n\n**La plataforma puede tener dos papeles:**\n\n- **Intermediaria (DSA).** Si solo aloja apps de terceros y es el fabricante quien las pone a disposición del usuario, la plataforma no es agente económico del MDR. Le aplica el DSA: un sistema para notificar y retirar contenido ilícito, las órdenes de las autoridades sanitarias para retirar apps no conformes, una interfaz que permita al fabricante dar la información obligatoria (art. 31 DSA) y esfuerzos razonables para comprobar los datos del comerciante (art. 30). Las plataformas de muy gran tamaño, además, evalúan riesgos sistémicos al menos una vez al año.\n- **Distribuidora o importadora (MDR/IVDR).** Si la plataforma ofrece su propio MDSW, o adquiere derechos sobre la app y es ella quien la pone a disposición, es distribuidora (art. 14). Si además el fabricante está fuera de la UE y la plataforma dentro, es importadora (art. 13). El fabricante sigue necesitando un representante autorizado.\n\n**Qué debe mostrar la ficha de la app.** La guía recomienda una categoría «Producto sanitario» separada de «Salud» o «Estilo de vida». Solo debería poder elegirse si el fabricante aporta, como mínimo:\n\n- el nombre del producto;\n- el fabricante, su dirección y su SRN;\n- el símbolo MD o IVD;\n- la descripción y la finalidad prevista;\n- las advertencias;\n- el enlace a las instrucciones electrónicas (eIFU);\n- el UDI-DI.\n\nCuando proceda, también el representante autorizado, el número del organismo notificado y del certificado, y los requisitos de hardware, configuración y seguridad.\n\n**Para qué te sirve.** Si vas a publicar un SaMD como app, esta es la lista de comprobación de tu ficha en la tienda.",
     "relevancia_ia": 4,
-    "enlace_oficial": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
-    "estado_ficha": "proximamente"
+    "enlace_oficial": "https://health.ec.europa.eu/document/download/ec9b0f40-7f82-43a7-b833-ebd45b772eae_en?filename=mdcg_2025-4_en.pdf",
+    "estado_ficha": "publicada",
+    "fecha_verificacion": "2026-10-17"
   },
   {
     "id": "mdcg-2020-1",
@@ -43,22 +63,37 @@
     "titulo": "Evaluación clínica (MDR) y del funcionamiento (IVDR) del software de producto sanitario",
     "emisor": "MDCG (Medical Device Coordination Group)",
     "fecha": "Marzo de 2020",
-    "temas": ["SaMD", "evaluación clínica", "validación"],
-    "resumen_es": null,
+    "temas": [
+      "SaMD",
+      "evaluación clínica",
+      "evaluación del funcionamiento",
+      "validación",
+      "IMDRF"
+    ],
+    "resumen_es": "**Qué es.** La guía sobre cuánta evidencia clínica necesita el software de producto sanitario (MDSW): evaluación clínica en el MDR y evaluación del funcionamiento en el IVDR. Adapta el marco internacional del IMDRF (documento N41) y se lee junto con la MDCG 2019-11.\n\n**Tres pilares.** No son pasos en orden, sino tres cosas que la evidencia debe cubrir:\n\n1. **Asociación clínica válida (validez científica en el IVDR).** ¿Se asocia la salida del software con la condición clínica que dice abordar? Se apoya en literatura, guías de sociedades científicas, normas técnicas o estudios propios. Ejemplo de la guía: un software que detecta arritmias a partir del sonido de un estetoscopio digital debe demostrar que esos sonidos anormales se asocian a la arritmia.\n2. **Rendimiento técnico (analítico en el IVDR).** ¿Genera la salida esperada de forma exacta, fiable y reproducible? Se demuestra con verificación y validación (pruebas unitarias, de integración y de sistema) o con bases de datos curadas y datos de pacientes ya recogidos. Incluye, por ejemplo, exactitud, sensibilidad y especificidad analíticas, generalizabilidad, ciberseguridad y factores humanos.\n3. **Rendimiento clínico.** ¿Da resultados clínicamente relevantes en la población, el uso y el entorno previstos, con todos los grupos de usuarios? Métricas típicas: sensibilidad y especificidad diagnósticas, valores predictivos, razones de verosimilitud, NNT, usabilidad e intervalos de confianza. Debe revisarse en cada versión nueva del software, o justificarse por qué no.\n\n**Cuándo hace falta un estudio.**\n\n- MDR: en clase III e implantables se exige investigación clínica, salvo las excepciones del art. 61(4) a (6).\n- IVDR: se exigen estudios del funcionamiento clínico en cualquier clase, salvo justificación.\n- Si el software predice un estado futuro o su salida cambia decisiones clínicas, puede hacer falta un estudio prospectivo. Si no afecta al manejo del paciente, puede bastar un análisis retrospectivo con datos suficientes de la población diana.\n\n**Continua.** La evaluación se actualiza durante toda la vida del producto con los datos del PMCF o del PMPF. Si se valida por módulos independientes, solo se reevalúan los que cambian.\n\n**Ojo:** es de 2020 y no contempla el AI Act. Para software con IA, combínala con la MDCG 2025-6.",
     "relevancia_ia": 4,
-    "enlace_oficial": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
-    "estado_ficha": "proximamente"
+    "enlace_oficial": "https://health.ec.europa.eu/document/download/19d9e24f-2808-4e00-bfeb-75892047407d_en?filename=md_mdcg_2020_1_guidance_clinic_eva_md_software_en.pdf",
+    "estado_ficha": "publicada",
+    "fecha_verificacion": "2026-10-17"
   },
   {
     "id": "mdcg-2025-10",
     "codigo": "MDCG 2025-10",
-    "titulo": "Vigilancia poscomercialización (PMS)",
+    "titulo": "Seguimiento poscomercialización (PMS) de productos sanitarios e IVD",
     "emisor": "MDCG (Medical Device Coordination Group)",
     "fecha": "Diciembre de 2025",
-    "temas": ["PMS", "vigilancia poscomercialización", "MDR", "IVDR"],
-    "resumen_es": null,
+    "temas": [
+      "PMS",
+      "seguimiento poscomercialización",
+      "PMCF",
+      "tendencias",
+      "MDR",
+      "IVDR"
+    ],
+    "resumen_es": "**Qué es.** La guía sobre cómo montar el sistema de seguimiento poscomercialización (PMS) de productos sanitarios e IVD. No explica cómo redactar el PSUR (para eso está la MDCG 2022-21) ni cubre los productos fabricados en el propio centro sanitario.\n\n**La idea central: un PMS proactivo.** No basta con esperar a que lleguen reclamaciones. El fabricante debe buscar información de forma activa: encuestas, experiencia clínica, literatura, registros, EUDAMED y estudios poscomercialización. Lo hace hasta el final de la vida útil del último producto comercializado y en proporción a la clase de riesgo. El PMS forma parte del SGC (art. 10(9) MDR) y alimenta la gestión de riesgos, la evaluación clínica o del funcionamiento, el SS(C)P, las instrucciones de uso y las CAPA.\n\n**El plan de PMS (anexo III).** Todo producto debe tener un plan; puede ser común para una familia de productos. Forma parte de la documentación técnica y se empieza a preparar durante el diseño. Debe fijar:\n\n- qué información se recoge y cómo, incluida la de productos similares para demostrar que el tuyo sigue al nivel del estado del arte;\n- métodos de análisis proporcionales al riesgo;\n- **indicadores y umbrales** definidos antes de comercializar, con los que se reevalúa la relación beneficio-riesgo;\n- métodos para investigar reclamaciones (por ejemplo, la terminología de eventos adversos del IMDRF);\n- método estadístico y periodo de observación para la notificación de tendencias;\n- criterios para decidir entre registrar una no conformidad, abrir una CAPA o lanzar una FSCA, y herramientas para rastrear los productos afectados;\n- el plan de PMCF o PMPF, o la justificación de por qué no aplica.\n\n**Calidad del dato.** Antes de analizar hay que comprobar que la información es fiable: los datos no verificables, como los de redes sociales, pueden llevar a reaccionar en exceso.\n\n**Qué produce.** Un informe de PMS en la clase I del MDR y en las clases A y B del IVDR; un PSUR en el resto. Los productos a medida tienen reglas propias: su plan no va en la documentación técnica y se gestiona por grupos de productos.",
     "relevancia_ia": 3,
-    "enlace_oficial": "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en",
-    "estado_ficha": "proximamente"
+    "enlace_oficial": "https://health.ec.europa.eu/document/download/a9ad86b7-1b8e-4bae-beb4-48b2b3ed2f05_en?filename=mdcg_2025-10_en.pdf",
+    "estado_ficha": "publicada",
+    "fecha_verificacion": "2026-10-17"
   }
 ]

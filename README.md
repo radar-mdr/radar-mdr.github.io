@@ -26,7 +26,7 @@ Los ajustes del sitio (dominio, email, LinkedIn, repositorio, Buttondown, GoatCo
 [src/config.ts](src/config.ts). Si un campo está vacío, la función correspondiente se desactiva
 en lugar de mostrar un enlace roto.
 
-Documentación: [plan](docs/PLAN.md) · [distribución y UTM](docs/DISTRIBUCION.md) ·
+Documentación: [puesta en marcha](docs/PUESTA-EN-MARCHA.md) · [plan](docs/PLAN.md) · [distribución y UTM](docs/DISTRIBUCION.md) ·
 [guion de entrevistas v2](docs/ENTREVISTAS.md) · [día de congelación](docs/DIA-FINAL.md).
 
 ## Datos
@@ -34,16 +34,16 @@ Documentación: [plan](docs/PLAN.md) · [distribución y UTM](docs/DISTRIBUCION.
 El valor está en los datos estructurados, no en los artículos. Colecciones en `src/data/*.json`,
 con esquemas en [src/content.config.ts](src/content.config.ts):
 
-| Entidad | Archivo | Estado (14-10-2026) |
+| Entidad | Archivo | Estado (17-10-2026) |
 |---|---|---|
 | Plazo | `plazos.json` | ✅ 23 plazos (MDR, IVDR, AI Act, EHDS, QMSR), todos reverificados, con historial |
 | Obligación | `obligaciones.json` | ✅ Matrices MDR e IVDR por clase + 4 fichas por agente económico |
 | Organismo notificado | `organismos.json` | ✅ 53 organismos (52 MDR, 19 IVDR) verificados en NANDO |
 | Glosario | `glosario.json` | ✅ 92 términos ES/EN |
 | Propuesta en tramitación | `propuestas.json` | ✅ Revisión MDR/IVDR, COM(2025) 1023 |
-| Fe de erratas | `erratas.json` | ✅ 3 erratas cerradas con CAPA |
+| Fe de erratas | `erratas.json` | ✅ 4 erratas cerradas con CAPA |
 | Requisitos eQMS | `requisitos-eqms.json` | ✅ 15 requisitos (ISO 13485, Part 11, MDR) |
-| Guía (MDCG) | `guias.json` | 🔶 1 ficha publicada (MDCG 2025-6), 4 en preparación |
+| Guía (MDCG) | `guias.json` | ✅ 5 fichas publicadas: MDCG 2025-6, 2019-11 rev.1, 2020-1, 2025-4 y 2025-10 |
 | Fuente | `fuentes.json` | ✅ 30 fuentes |
 | Herramienta eQMS | `herramientas.json` | ⬜ vacía hasta tener 2 fuentes por fila (plantilla: `herramientas.ejemplo.json`) |
 
@@ -86,18 +86,24 @@ El secreto opcional `VERCEL_DEPLOY_HOOK` redespliega el sitio cada mañana.
 
 ## Pendiente (solo lo puede hacer el autor)
 
-- [ ] Comprar el dominio y ponerlo en `src/config.ts` (`dominio`) y en `public/robots.txt`.
-      Hasta entonces, el `og:url` y los enlaces de suscripción al calendario no son correctos.
+Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md).
+
+- [ ] Fusionar la rama `mejoras-feedback-octubre` en `main`.
+- [ ] Comprar el dominio y ponerlo en `dominio` de `src/config.ts`: es la única línea que hay
+      que cambiar (el `robots.txt`, el sitemap, el `og:url` y el calendario salen de ahí).
 - [ ] Crear el repo en GitHub, `git push`, conectar Vercel y lanzar a mano la primera vigilancia.
 - [ ] Probar la vista previa en el Post Inspector de LinkedIn (ver [DISTRIBUCION.md](docs/DISTRIBUCION.md)).
 - [ ] Buttondown con correo del dominio → `buttondownUsuario` y `email` en `src/config.ts`.
 - [ ] GoatCounter (sin cookies) → `goatcounterCodigo` en `src/config.ts`.
-- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro) y añadir `repositorio`.
+- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro), elegir el correo público y añadir `repositorio`.
 - [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).
-- [ ] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (`guias.json`).
+- [x] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (17-10-2026).
 
 ## Historial de versiones
 
+- **v0.3.1 (17-10-2026):** cuatro fichas MDCG nuevas leídas de los PDF oficiales, tabla
+  IMDRF de la MDCG 2019-11 en IA clínica, escalera del lunar corregida (errata E-004),
+  `robots.txt` generado desde `config.ts` y guía de puesta en marcha.
 - **v0.3 (octubre de 2026):** se levanta la congelación de julio para incorporar el temario y la
   revisión externa: datos reverificados, IVDR y EHDS, matrices de obligaciones, directorio NANDO,
   IA clínica completa, «En tramitación», metodología, historial ALCOA+, fe de erratas, Open Graph y «Sobre mí».

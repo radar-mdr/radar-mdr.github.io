@@ -1,5 +1,17 @@
 [
   {
+    "id": "E-004",
+    "fecha_deteccion": "2026-10-17",
+    "fecha_correccion": "2026-10-17",
+    "paginas": ["/ia-clinica"],
+    "dato_erroneo": "Escalera del lunar: «medir» clase I o IIa, «avisar de cambios» IIa y «sospechoso o no sospechoso» IIb.",
+    "correccion": "Según la MDCG 2019-11 rev.1, la subregla 11a cubre casi todo el software médico, y el melanoma es una situación crítica. Con la tabla de su anexo III: medir, IIa (informa el manejo); avisar de cambios, IIb (impulsa el manejo); sospechoso o no sospechoso, III (diagnostica). La propia guía clasifica como III el software de análisis de imagen de melanoma.",
+    "causa_raiz": "Se aplicó el texto de la Regla 11 sin la tabla del anexo III ni los ejemplos del anexo IV de la MDCG 2019-11, y se infravaloró la gravedad de la situación clínica.",
+    "accion_correctiva": "Todo ejemplo de clasificación cita ahora la categoría IMDRF y el ejemplo de la guía más próximo. La tabla del anexo III se reproduce en /ia-clinica y la guía tiene ficha propia en español.",
+    "fuente_url": "https://health.ec.europa.eu/document/download/b45335c5-1679-4c71-a91c-fc7a4d37f12b_en?filename=mdcg_2019_11_en.pdf",
+    "estado": "cerrada"
+  },
+  {
     "id": "E-001",
     "fecha_deteccion": "2026-10-14",
     "fecha_correccion": "2026-10-14",

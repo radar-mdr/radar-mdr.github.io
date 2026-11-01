@@ -20,38 +20,45 @@ const escalera = [
   {
     paso: '1. Guardar fotos del lunar',
     funcion: 'Diario fotográfico con fecha, sin análisis.',
-    ps: 'No: sin finalidad médica, es almacenamiento.',
+    ps: 'No: solo almacena (paso 3 del árbol de la MDCG 2019-11).',
     clase: '—',
     aia: 'No es alto riesgo. Si usa IA generativa o conversa con el usuario, transparencia (art. 50).',
   },
   {
     paso: '2. Medir',
-    funcion: 'Calcula diámetro, asimetría o color del lunar.',
-    ps: 'Sí, si la medida tiene finalidad médica (seguimiento de una lesión).',
-    clase: 'I si solo mide sin informar decisiones («resto del software»); IIa si la medida se usa para decidir.',
-    aia: 'Alto riesgo solo si llega a IIa (interviene el organismo notificado).',
+    funcion: 'Calcula diámetro, asimetría o color del lunar para vigilarlo.',
+    ps: 'Sí: la medida sirve para vigilar una posible enfermedad.',
+    clase: 'IIa (11a): informa el manejo clínico de una situación crítica (IMDRF II.i). Solo sería clase I (11c) si no sirviera para ninguna decisión diagnóstica.',
+    aia: 'Alto riesgo si la función usa IA (interviene el organismo notificado).',
   },
   {
     paso: '3. Avisar de cambios',
-    funcion: 'Compara fotos y avisa si el lunar crece o cambia.',
+    funcion: 'Compara fotos y avisa de que conviene consultar si el lunar cambia.',
     ps: 'Sí.',
-    clase: 'IIa como mínimo: da información para decidir con fines diagnósticos.',
+    clase: 'IIb (11a): impulsa el manejo clínico en una situación crítica (IMDRF III.i).',
     aia: 'Alto riesgo (si la función usa IA).',
   },
   {
     paso: '4. Sospechoso o no sospechoso',
-    funcion: 'Clasifica la lesión para orientar si hay que consultar.',
+    funcion: 'Clasifica la lesión como sospechosa o no de melanoma.',
     ps: 'Sí.',
-    clase: 'IIb: un falso negativo puede retrasar el diagnóstico y causar un deterioro grave.',
-    aia: 'Alto riesgo. Pesan más los datos y sesgos (fototipos) y la supervisión humana.',
+    clase: 'III (11a): diagnostica en una situación crítica (IMDRF IV.i). La propia guía clasifica como III el software de análisis de imagen de melanoma.',
+    aia: 'Alto riesgo. Pesan más los datos y los sesgos (fototipos) y la supervisión humana.',
   },
   {
     paso: '5. Probabilidad y derivación urgente',
     funcion: 'Da la probabilidad de melanoma y recomienda derivación urgente.',
     ps: 'Sí.',
-    clase: 'III: la decisión puede causar la muerte o un deterioro irreversible si falla.',
+    clase: 'III (11a): un fallo puede causar la muerte o un deterioro irreversible.',
     aia: 'Alto riesgo, con investigación clínica en principio obligatoria (MDR art. 61.4).',
   },
+];
+
+// MDCG 2019-11 rev.1, anexo III: orientación para la subregla 11a (no cubre la clase I)
+const tablaImdrf = [
+  ['Crítica', 'III (IV.i)', 'IIb (III.i)', 'IIa (II.i)'],
+  ['Grave', 'IIb (III.ii)', 'IIa (II.ii)', 'IIa (I.ii)'],
+  ['No grave', 'IIa (II.iii)', 'IIa (I.iii)', 'IIa (I.i)'],
 ];
 
 const requisitos = [
@@ -90,7 +97,7 @@ const requisitos = [
     Lo decide la <a href="/glosario#finalidad-prevista">finalidad prevista</a> que declaras, no la
     tecnología. Un software es producto sanitario si tiene finalidad médica propia (diagnosticar,
     vigilar, predecir, tratar…). El árbol de decisión oficial está en la
-    <a href="/guias">MDCG 2019-11 rev.1</a> (junio de 2025).
+    <a href="/guias/mdcg-2019-11/">MDCG 2019-11 rev.1</a> (junio de 2025).
   </p>
 
   <h2>Paso 2. Regla 11: la clase del software</h2>
@@ -113,6 +120,40 @@ const requisitos = [
   <p class="fuente-dato">
     MDR anexo VIII, Regla 11 · <a href={`${MDR_ELI}#anx_VIII`} rel="external noopener">texto oficial</a>.
     La <a href="/en-tramitacion">propuesta de revisión</a> quiere que más software pueda ser clase I; hoy no aplica.
+  </p>
+
+  <p>
+    La Regla 11 se queda corta para decidir entre IIa, IIb y III. La MDCG 2019-11 rev.1 recuerda
+    que su primera parte (11a) cubre casi todo el software médico, y en su anexo III propone esta
+    orientación basada en el marco del IMDRF: se cruza lo que hace la información con la gravedad
+    de la situación del paciente.
+  </p>
+  <div class="tabla-scroll">
+    <table class="tabla imdrf">
+      <caption>Orientación para la subregla 11a (MDCG 2019-11 rev.1, anexo III)</caption>
+      <thead>
+        <tr>
+          <th scope="col">Situación del paciente \ La información sirve para…</th>
+          <th scope="col">Tratar o diagnosticar</th>
+          <th scope="col">Impulsar el manejo clínico</th>
+          <th scope="col">Informar el manejo clínico</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tablaImdrf.map(([situacion, ...clases]) => (
+          <tr>
+            <th scope="row">{situacion}</th>
+            {clases.map((c) => <td>{c}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="fuente-dato">
+    Entre paréntesis, la categoría de riesgo del IMDRF. La tabla no cubre el software de clase I
+    (subregla 11c). Ejemplos de la guía: análisis de imagen para tratar un ictus agudo, III; app
+    que detecta arritmias para orientar al médico, IIb; app de fertilidad, I.
+    <a href="/guias/mdcg-2019-11/">Ficha de la MDCG 2019-11</a>.
   </p>
 
   <h2>Paso 3. ¿Es alto riesgo en el AI Act?</h2>
@@ -148,8 +189,9 @@ const requisitos = [
   <h2>La escalera del lunar</h2>
   <p>
     Una misma app de dermatología cambia de clase MDR, y de obligaciones del AI Act, con cada
-    función que añades. Ejemplo didáctico: la clase real depende de cómo redactes la finalidad
-    prevista.
+    función que añades. El melanoma es una situación crítica, así que, aplicando la tabla
+    anterior, la clase sube en cada escalón. Ejemplo didáctico: la clase real depende de cómo
+    redactes la finalidad prevista.
   </p>
   <div class="tabla-scroll">
     <table class="tabla escalera">
@@ -158,7 +200,7 @@ const requisitos = [
         <tr>
           <th scope="col">Función</th>
           <th scope="col">¿Producto sanitario?</th>
-          <th scope="col">Clase MDR orientativa (Regla 11)</th>
+          <th scope="col">Clase MDR orientativa (Regla 11 + MDCG 2019-11)</th>
           <th scope="col">AI Act (si la función usa IA)</th>
         </tr>
       </thead>
@@ -174,6 +216,11 @@ const requisitos = [
       </tbody>
     </table>
   </div>
+
+  <p class="fuente-dato">
+    Clases revisadas el 17-10-2026 con el anexo III y los ejemplos de la MDCG 2019-11 rev.1:
+    <a href="/erratas#E-004">errata E-004</a>.
+  </p>
 
   <h2>Qué exige el alto riesgo</h2>
   <p>
