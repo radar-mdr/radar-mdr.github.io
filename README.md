@@ -95,24 +95,15 @@ El modelo se elige con la variable `CLAUDE_MODEL` (por defecto `claude-haiku-5-5
 
 ## Pendiente (solo lo puede hacer el autor)
 
-Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md).
+Paso a paso en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md).
 
-- [x] Repo en la organización `radar-mdr` y web en https://radar-mdr.github.io (noviembre de 2026).
-- [x] Vigilancia diaria funcionando en Actions.
-- [ ] `git remote set-url origin https://github.com/radar-mdr/radar-mdr.github.io.git` en tu carpeta local.
-- [ ] GitHub → Settings → Pages → Source: **GitHub Actions** (quita el check fallido de Jekyll).
-- [ ] Opcional: comprar `radar-mdr.es`, configurarlo en Pages y cambiar `dominio` en `src/config.ts`.
-- [ ] Probar la vista previa en el Post Inspector de LinkedIn (ver [DISTRIBUCION.md](docs/DISTRIBUCION.md)).
-- [ ] Buttondown con correo del dominio → `buttondownUsuario` y `email` en `src/config.ts`.
-- [ ] GoatCounter (sin cookies) → `goatcounterCodigo` en `src/config.ts`.
-- [x] Correo propio del proyecto (radar.mdr.aiact@gmail.com) y LinkedIn correcto.
-- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro).
-- [ ] Confirmar que la declaración de independencia de «Sobre mí» es exacta (sin pagos de fabricantes, consultoras, ON ni proveedores de eQMS).
-- [x] Archivado en Zenodo: DOI de todas las versiones 10.5281/zenodo.23860211 (release v0.4.1).
-- [x] GoatCounter activo (`alo04`).
-- [x] Formulario de Tally (`KpzMZM`) activo en /pro, con carga solo al pulsar el botón.
-- [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).
-- [x] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (17-10-2026).
+- [ ] Revisar las incidencias abiertas de la vigilancia y cerrar las que no cambien ningún dato.
+- [ ] Leer [/sobre-mi](src/pages/sobre-mi.astro) y confirmar que la declaración de independencia es exacta.
+- [ ] Probar la vista previa en el Post Inspector de LinkedIn antes del primer post.
+- [ ] GoatCounter: activar «no contar mis visitas» en el panel.
+- [ ] Newsletter con Buttondown → `buttondownUsuario` en `src/config.ts`.
+- [ ] Si conservas el proyecto de Vercel, bórralo: la web vive en GitHub Pages.
+- [ ] Opcional: comprar `radar-mdr.es`, configurarlo en Pages y cambiar `dominio` y `email` en `src/config.ts`.
 
 ## Historial de versiones
 
