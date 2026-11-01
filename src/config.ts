@@ -4,16 +4,17 @@
  */
 export const SITIO = {
   nombre: 'Radar MDR × AI Act',
-  // Dominio público sin barra final. Mientras sea example.com no se muestran
-  // los enlaces de suscripción webcal:// ni el og:url absoluto correcto.
-  dominio: 'https://example.com',
+  // Dominio público sin barra final. De aquí salen og:url, sitemap, robots.txt,
+  // RSS y calendario. Cámbialo a 'https://radar-mdr.es' solo cuando el dominio
+  // esté comprado y resuelva (hoy no existe en DNS).
+  dominio: 'https://alfonsoyewu-sketch.github.io',
 
   autor: 'Alfonso Obreja',
   // Pasa a contacto@<tu-dominio> en cuanto tengas dominio con correo.
   email: 'radar.mdr.aiact@gmail.com',
   linkedin: 'https://www.linkedin.com/in/alfonsoobreja-eastman',
   // URL pública del repositorio (vacío = no se enlaza).
-  repositorio: '',
+  repositorio: 'https://github.com/alfonsoyewu-sketch/alfonsoyewu-sketch.github.io',
 
   // Usuario de Buttondown (vacío = formulario de alta por correo).
   buttondownUsuario: '',

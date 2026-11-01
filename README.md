@@ -79,23 +79,31 @@ con esquemas en [src/content.config.ts](src/content.config.ts):
 
 `.github/workflows/vigilancia.yml` corre a diario en GitHub Actions:
 [scripts/vigilancia.py](scripts/vigilancia.py) descarga 8 fuentes clave, extrae el texto
-principal y lo compara con los snapshots del repo. Si algo cambió, **abre un issue con el
-diff**. Con el secreto `ANTHROPIC_API_KEY` añade un borrador de alerta en español
+principal y lo compara con la copia del día anterior, que se guarda en la caché de GitHub
+Actions y no en el repo (así no se republica el texto íntegro de webs ajenas). Si algo
+cambió, **abre un issue con el diff**. Con el secreto `ANTHROPIC_API_KEY` añade un borrador de alerta en español
 ([scripts/resumen_ia.py](scripts/resumen_ia.py)), siempre con revisión humana antes de publicar.
-El secreto opcional `VERCEL_DEPLOY_HOOK` redespliega el sitio cada mañana.
+El modelo se elige con la variable `CLAUDE_MODEL` (por defecto `claude-haiku-5-5`).
+
+## Publicación
+
+- **GitHub Pages:** `.github/workflows/deploy.yml` publica en cada push a `main` y cada
+  mañana, para que las cuentas atrás estén al día. Web: https://alfonsoyewu-sketch.github.io
+- **Vercel:** importado desde este mismo repo. Es donde irá el dominio propio cuando exista.
 
 ## Pendiente (solo lo puede hacer el autor)
 
 Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md).
 
-- [ ] Fusionar la rama `mejoras-feedback-octubre` en `main`.
-- [ ] Comprar el dominio y ponerlo en `dominio` de `src/config.ts`: es la única línea que hay
-      que cambiar (el `robots.txt`, el sitemap, el `og:url` y el calendario salen de ahí).
-- [ ] Crear el repo en GitHub, `git push`, conectar Vercel y lanzar a mano la primera vigilancia.
+- [x] Repo en GitHub y web publicada en GitHub Pages (noviembre de 2026).
+- [ ] GitHub → Settings → Pages → Source: **GitHub Actions** (quita el check fallido de Jekyll).
+- [ ] Comprar `radar-mdr.es` (hoy no existe en DNS), apuntar sus nameservers a Vercel y
+      cambiar `dominio` en `src/config.ts`: es la única línea que hay que tocar.
+- [ ] Lanzar a mano la primera vigilancia (Actions → Vigilancia regulatoria → Run workflow).
 - [ ] Probar la vista previa en el Post Inspector de LinkedIn (ver [DISTRIBUCION.md](docs/DISTRIBUCION.md)).
 - [ ] Buttondown con correo del dominio → `buttondownUsuario` y `email` en `src/config.ts`.
 - [ ] GoatCounter (sin cookies) → `goatcounterCodigo` en `src/config.ts`.
-- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro), elegir el correo público y añadir `repositorio`.
+- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro) y elegir el correo público.
 - [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).
 - [x] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (17-10-2026).
 
