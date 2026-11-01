@@ -28,6 +28,8 @@ const plazos = defineCollection({
     norma: normaEnum,
     referencia_legal: z.string(),
     fecha: fechaISO,
+    // Título corto para calendario, RSS y encabezados (sin la norma: se añade aparte)
+    titulo: z.string().max(70),
     tipo: z.enum(['aplicacion', 'fin_transitorio', 'registro', 'informe_periodico']),
     roles_afectados: z.array(z.string()).min(1),
     clases_producto: z.array(z.string()).min(1),

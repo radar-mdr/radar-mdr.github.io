@@ -89,17 +89,17 @@ El modelo se elige con la variable `CLAUDE_MODEL` (por defecto `claude-haiku-5-5
 
 - **GitHub Pages:** `.github/workflows/deploy.yml` publica en cada push a `main` y cada
   mañana, para que las cuentas atrás estén al día. Web: https://radar-mdr.github.io
-- **Vercel:** importado desde este mismo repo. Es donde irá el dominio propio cuando exista.
+- El dominio propio, cuando exista, se configura en GitHub → Settings → Pages → *Custom domain*.
 
 ## Pendiente (solo lo puede hacer el autor)
 
 Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md).
 
-- [x] Repo en GitHub y web publicada en GitHub Pages (noviembre de 2026).
+- [x] Repo en la organización `radar-mdr` y web en https://radar-mdr.github.io (noviembre de 2026).
+- [x] Vigilancia diaria funcionando en Actions.
+- [ ] `git remote set-url origin https://github.com/radar-mdr/radar-mdr.github.io.git` en tu carpeta local.
 - [ ] GitHub → Settings → Pages → Source: **GitHub Actions** (quita el check fallido de Jekyll).
-- [ ] Comprar `radar-mdr.es` (hoy no existe en DNS), apuntar sus nameservers a Vercel y
-      cambiar `dominio` en `src/config.ts`: es la única línea que hay que tocar.
-- [ ] Lanzar a mano la primera vigilancia (Actions → Vigilancia regulatoria → Run workflow).
+- [ ] Opcional: comprar `radar-mdr.es`, configurarlo en Pages y cambiar `dominio` en `src/config.ts`.
 - [ ] Probar la vista previa en el Post Inspector de LinkedIn (ver [DISTRIBUCION.md](docs/DISTRIBUCION.md)).
 - [ ] Buttondown con correo del dominio → `buttondownUsuario` y `email` en `src/config.ts`.
 - [ ] GoatCounter (sin cookies) → `goatcounterCodigo` en `src/config.ts`.

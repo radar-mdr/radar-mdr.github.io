@@ -6,14 +6,15 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="Buscar" description="Busca en todos los plazos, guías y páginas del Radar MDR × AI Act.">
+  <Fragment slot="head">
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <script src="/pagefind/pagefind-ui.js" is:inline></script>
+  </Fragment>
   <h1>Buscar en el Radar</h1>
   <div id="search"></div>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({ element: '#search', showSubResults: true, translations: { placeholder: 'Busca un plazo, una guía o un término' } });
+    });
+  </script>
 </Base>
-
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-<script src="/pagefind/pagefind-ui.js" is:inline></script>
-<script is:inline>
-  window.addEventListener('DOMContentLoaded', () => {
-    new PagefindUI({ element: '#search', showSubResults: true });
-  });
-</script>

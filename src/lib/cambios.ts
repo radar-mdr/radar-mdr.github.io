@@ -17,6 +17,7 @@ export interface EventoCambio {
   plazoId: string;
   plazoFecha: string;
   norma: string;
+  titulo: string;
   descripcion: string;
   campo: string;
   valor_anterior: string;
@@ -36,6 +37,7 @@ export async function eventosDeCambio(): Promise<EventoCambio[]> {
         plazoId: p.id,
         plazoFecha: p.fecha,
         norma: p.norma,
+        titulo: p.titulo,
         descripcion: p.descripcion_corta,
         campo: h.campo,
         valor_anterior: h.valor_anterior,

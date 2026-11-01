@@ -72,7 +72,8 @@ const categorias = [...new Set(terminos.map((t) => t.categoria))];
       it.hidden = !ok;
       if (ok) n++;
     }
-    estado.textContent = n === items.length ? '' : `${n} de ${items.length} términos.`;
+    estado.textContent =
+      n === items.length ? '' : n === 0 ? 'Ningún término coincide. Prueba con la sigla o el término en inglés.' : `${n} de ${items.length} términos.`;
   }
   texto.addEventListener('input', filtrar);
   cat.addEventListener('change', filtrar);

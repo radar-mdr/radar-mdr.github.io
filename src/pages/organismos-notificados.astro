@@ -108,9 +108,11 @@ const fmt = (iso: string) =>
   const texto = document.getElementById('o-texto') as HTMLInputElement;
   const estado = document.getElementById('o-estado')!;
   const filas = [...document.querySelectorAll<HTMLTableRowElement>('#tabla-on tbody tr')];
+  // Sin tildes ni diéresis: «tuv» encuentra «TÜV».
+  const normalizar = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
   function filtrar() {
-    const q = texto.value.trim().toLowerCase();
+    const q = normalizar(texto.value.trim());
     let n = 0;
     for (const f of filas) {
       const amb = (f.dataset.ambito || '').split('|');
@@ -118,11 +120,12 @@ const fmt = (iso: string) =>
       const okAmb =
         !ambito.value ||
         (ambito.value === 'ambos' ? amb.includes('MDR') && amb.includes('IVDR') : amb.includes(ambito.value));
-      const okTexto = !q || (f.dataset.texto || '').includes(q);
+      const okTexto = !q || normalizar(f.dataset.texto || '').includes(q);
       f.hidden = !(okPais && okAmb && okTexto);
       if (!f.hidden) n++;
     }
-    estado.textContent = n === filas.length ? '' : `Mostrando ${n} de ${filas.length} organismos.`;
+    estado.textContent =
+      n === filas.length ? '' : n === 0 ? 'Ningún organismo coincide con esos filtros.' : `Mostrando ${n} de ${filas.length} organismos.`;
   }
   [pais, ambito].forEach((s) => s.addEventListener('change', filtrar));
   texto.addEventListener('input', filtrar);

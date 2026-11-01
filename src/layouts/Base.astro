@@ -61,6 +61,8 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
     <meta property="og:image:alt" content="Radar MDR × AI Act: cronología de plazos regulatorios con fuente y fecha de verificación" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <slot name="head" />
+
     <link rel="alternate" type="application/rss+xml" title={`${SITIO.nombre}: cambios verificados`} href="/rss.xml" />
 
     {SITIO.goatcounterCodigo && (
@@ -91,7 +93,7 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
         </nav>
       </div>
     </header>
-    <main id="contenido" class="contenedor">
+    <main id="contenido" class="contenedor" data-pagefind-body>
       <slot />
     </main>
     <footer class="pie">
@@ -165,6 +167,9 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
   }
 
   * { box-sizing: border-box; }
+
+  /* Los filtros ocultan con el atributo hidden: debe ganar a cualquier display del componente. */
+  [hidden] { display: none !important; }
 
   body {
     margin: 0;

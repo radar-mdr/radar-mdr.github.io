@@ -4,17 +4,37 @@
     "norma": "QMSR",
     "referencia_legal": "FDA QMSR — 21 CFR 820 armonizado con ISO 13485:2016",
     "fecha": "2026-02-02",
+    "titulo": "Entra en vigor la QMSR (21 CFR 820 + ISO 13485)",
     "tipo": "aplicacion",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["todas"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "todas"
+    ],
     "descripcion_corta": "La FDA QMSR entra en vigor: el 21 CFR 820 queda armonizado con la ISO 13485:2016. Afecta a todo fabricante que venda en EE. UU.",
     "estado": "vigente",
     "fuente_url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments",
-    "fuentes_adicionales": ["https://www.fda.gov/medical-devices/postmarket-requirements-devices/quality-management-system-regulation-qmsr"],
+    "fuentes_adicionales": [
+      "https://www.fda.gov/medical-devices/postmarket-requirements-devices/quality-management-system-regulation-qmsr"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial del Radar." },
-      { "fecha": "2026-10-14", "campo": "fecha_verificacion", "valor_anterior": "2026-07-05", "valor_nuevo": "2026-10-14", "motivo": "Reverificado en la página oficial de la FDA sobre la QMSR.", "fuente_url": "https://www.fda.gov/medical-devices/postmarket-requirements-devices/quality-management-system-regulation-qmsr" }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial del Radar."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "fecha_verificacion",
+        "valor_anterior": "2026-07-05",
+        "valor_nuevo": "2026-10-14",
+        "motivo": "Reverificado en la página oficial de la FDA sobre la QMSR.",
+        "fuente_url": "https://www.fda.gov/medical-devices/postmarket-requirements-devices/quality-management-system-regulation-qmsr"
+      }
     ]
   },
   {
@@ -22,17 +42,36 @@
     "norma": "MDR",
     "referencia_legal": "MDR art. 120 / Reg. (UE) 2023/607",
     "fecha": "2026-05-26",
+    "titulo": "Fin del transitorio de implantables a medida de clase III",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["III a medida implantable"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "III a medida implantable"
+    ],
     "descripcion_corta": "Fin del periodo transitorio para productos a medida implantables de clase III: desde esta fecha requieren la intervención de un organismo notificado.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/mdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/mdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial del Radar." },
-      { "fecha": "2026-10-14", "campo": "fecha_verificacion", "valor_anterior": "2026-07-05", "valor_nuevo": "2026-10-14", "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la página de transitorios MDR de la HPRA." }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial del Radar."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "fecha_verificacion",
+        "valor_anterior": "2026-07-05",
+        "valor_nuevo": "2026-10-14",
+        "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la página de transitorios MDR de la HPRA."
+      }
     ]
   },
   {
@@ -40,9 +79,17 @@
     "norma": "MDR/IVDR",
     "referencia_legal": "Reg. (UE) 2024/1860 + Decisión (UE) 2025/2371 (DOUE 27-11-2025)",
     "fecha": "2026-05-28",
+    "titulo": "EUDAMED: cuatro módulos pasan a ser obligatorios",
     "tipo": "registro",
-    "roles_afectados": ["fabricante", "representante autorizado", "importador", "organismo notificado"],
-    "clases_producto": ["todas"],
+    "roles_afectados": [
+      "fabricante",
+      "representante autorizado",
+      "importador",
+      "organismo notificado"
+    ],
+    "clases_producto": [
+      "todas"
+    ],
     "descripcion_corta": "Obligatorios los 4 primeros módulos de EUDAMED: registro de agentes (SRN), UDI/registro de productos, organismos notificados y certificados, y vigilancia del mercado. Los productos nuevos se registran antes de comercializarse.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj",
@@ -53,9 +100,28 @@
     "fecha_verificacion": "2026-10-14",
     "nota_cambio": "La Decisión 2025/2371 solo cubre esos 4 módulos. Vigilancia/PMS e investigaciones clínicas siguen fuera: hasta que se declaren funcionales, los incidentes se notifican por las vías nacionales.",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial del Radar." },
-      { "fecha": "2026-10-14", "campo": "nota_cambio", "valor_anterior": "Módulos de Vigilancia y PMS «previstos hacia finales de 2026»", "valor_nuevo": "Sin fecha prevista publicada; solo se afirma que están fuera de la Decisión 2025/2371", "motivo": "La previsión de finales de 2026 no tenía fuente primaria. Se sustituye por lo que sí consta en la Decisión.", "fuente_url": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj" },
-      { "fecha": "2026-10-14", "campo": "fuente_url", "valor_anterior": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj", "valor_nuevo": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj", "motivo": "La fecha del 28-5-2026 se deriva de la Decisión publicada el 27-11-2025; se enlaza como fuente principal." }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial del Radar."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "nota_cambio",
+        "valor_anterior": "Módulos de Vigilancia y PMS «previstos hacia finales de 2026»",
+        "valor_nuevo": "Sin fecha prevista publicada; solo se afirma que están fuera de la Decisión 2025/2371",
+        "motivo": "La previsión de finales de 2026 no tenía fuente primaria. Se sustituye por lo que sí consta en la Decisión.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj"
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "fuente_url",
+        "valor_anterior": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
+        "valor_nuevo": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj",
+        "motivo": "La fecha del 28-5-2026 se deriva de la Decisión publicada el 27-11-2025; se enlaza como fuente principal."
+      }
     ]
   },
   {
@@ -63,15 +129,29 @@
     "norma": "AI Act",
     "referencia_legal": "Reg. (UE) 2026/1744 (Digital Omnibus sobre IA), art. 4",
     "fecha": "2026-07-27",
+    "titulo": "Entra en vigor el Omnibus de IA (Reg. 2026/1744)",
     "tipo": "aplicacion",
-    "roles_afectados": ["proveedor de IA", "desplegador", "fabricante"],
-    "clases_producto": ["SaMD / IA"],
+    "roles_afectados": [
+      "proveedor de IA",
+      "desplegador",
+      "fabricante"
+    ],
+    "clases_producto": [
+      "SaMD / IA"
+    ],
     "descripcion_corta": "Entra en vigor el Omnibus de IA (DOUE de 24-7-2026): reprograma las obligaciones de alto riesgo del AI Act y estrecha la definición de componente de seguridad.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Publicación del Reglamento (UE) 2026/1744 en el DOUE; en vigor al tercer día (art. 4).", "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj" }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Publicación del Reglamento (UE) 2026/1744 en el DOUE; en vigor al tercer día (art. 4).",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+      }
     ]
   },
   {
@@ -79,18 +159,39 @@
     "norma": "AI Act",
     "referencia_legal": "AI Act, art. 50",
     "fecha": "2026-08-02",
+    "titulo": "Obligaciones de transparencia del art. 50",
     "tipo": "aplicacion",
-    "roles_afectados": ["proveedor de IA", "desplegador"],
-    "clases_producto": ["SaMD / IA"],
+    "roles_afectados": [
+      "proveedor de IA",
+      "desplegador"
+    ],
+    "clases_producto": [
+      "SaMD / IA"
+    ],
     "descripcion_corta": "Obligaciones de transparencia del art. 50 del AI Act para IA generativa e interactiva. No fueron aplazadas por el Omnibus (salvo el art. 50(2) para sistemas ya comercializados).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
-    "fuentes_adicionales": ["https://eur-lex.europa.eu/eli/reg/2026/1744/oj"],
+    "fuentes_adicionales": [
+      "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+    ],
     "fecha_verificacion": "2026-10-14",
     "nota_cambio": "Ojo: muchos resúmenes asumen que el Omnibus aplazó el art. 50 entero. No es así: solo el 50(2) para sistemas comercializados antes del 2-8-2026 (art. 111(4)).",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial del Radar." },
-      { "fecha": "2026-10-14", "campo": "fecha_verificacion", "valor_anterior": "2026-07-05", "valor_nuevo": "2026-10-14", "motivo": "Reverificado contra el texto publicado del Reg. (UE) 2026/1744: no modifica la fecha del art. 50.", "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj" }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial del Radar."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "fecha_verificacion",
+        "valor_anterior": "2026-07-05",
+        "valor_nuevo": "2026-10-14",
+        "motivo": "Reverificado contra el texto publicado del Reg. (UE) 2026/1744: no modifica la fecha del art. 50.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+      }
     ]
   },
   {
@@ -98,16 +199,30 @@
     "norma": "IVDR",
     "referencia_legal": "IVDR art. 110 / Reg. (UE) 2024/1860",
     "fecha": "2026-09-26",
+    "titulo": "Clase C: último día para el acuerdo escrito con el ON",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["IVD C"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "IVD C"
+    ],
     "descripcion_corta": "Último día para tener firmado el acuerdo escrito con un organismo notificado y conservar el transitorio de un IVD legacy de clase C (la solicitud debía presentarse antes del 26-5-2026).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "La cronología no tenía ningún plazo IVDR. Se cargan los transitorios del Reg. (UE) 2024/1860.", "fuente_url": "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions" }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "La cronología no tenía ningún plazo IVDR. Se cargan los transitorios del Reg. (UE) 2024/1860.",
+        "fuente_url": "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+      }
     ]
   },
   {
@@ -115,9 +230,14 @@
     "norma": "MDR/IVDR",
     "referencia_legal": "Reg. (UE) 2024/1860 (transitorio de 12 meses tras el uso obligatorio)",
     "fecha": "2026-11-28",
+    "titulo": "EUDAMED: registro de productos legacy",
     "tipo": "registro",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["todas"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "todas"
+    ],
     "descripcion_corta": "Fecha límite para registrar en EUDAMED los productos legacy y los productos MDR/IVDR comercializados antes del 28-5-2026 que sigan en el mercado.",
     "estado": "vigente",
     "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
@@ -128,9 +248,28 @@
     "fecha_verificacion": "2026-10-14",
     "nota_cambio": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide.",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido como pendiente de confirmación", "motivo": "Las fuentes secundarias citaban el 27 y el 28 de noviembre." },
-      { "fecha": "2026-10-14", "campo": "fecha", "valor_anterior": "2026-11-27", "valor_nuevo": "2026-11-28", "motivo": "Confirmado por una autoridad competente (HPRA) y una segunda fuente independiente.", "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices" },
-      { "fecha": "2026-10-14", "campo": "estado", "valor_anterior": "pendiente_confirmacion", "valor_nuevo": "vigente", "motivo": "Cumple la regla de la metodología: confirmación en fuente oficial de nivel 2 más una fuente independiente." }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido como pendiente de confirmación",
+        "motivo": "Las fuentes secundarias citaban el 27 y el 28 de noviembre."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "fecha",
+        "valor_anterior": "2026-11-27",
+        "valor_nuevo": "2026-11-28",
+        "motivo": "Confirmado por una autoridad competente (HPRA) y una segunda fuente independiente.",
+        "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "estado",
+        "valor_anterior": "pendiente_confirmacion",
+        "valor_nuevo": "vigente",
+        "motivo": "Cumple la regla de la metodología: confirmación en fuente oficial de nivel 2 más una fuente independiente."
+      }
     ]
   },
   {
@@ -138,17 +277,36 @@
     "norma": "AI Act",
     "referencia_legal": "AI Act arts. 111(4) y 5(1)(ba)-(bb), según Reg. (UE) 2026/1744",
     "fecha": "2026-12-02",
+    "titulo": "Marcado de contenido sintético (legacy) y nuevas prohibiciones",
     "tipo": "aplicacion",
-    "roles_afectados": ["proveedor de IA", "desplegador"],
-    "clases_producto": ["SaMD / IA"],
+    "roles_afectados": [
+      "proveedor de IA",
+      "desplegador"
+    ],
+    "clases_producto": [
+      "SaMD / IA"
+    ],
     "descripcion_corta": "Los sistemas generativos comercializados antes del 2-8-2026 deben cumplir el marcado de contenido sintético (art. 50(2)). Empiezan a aplicarse las nuevas prácticas prohibidas sobre material íntimo no consentido y abuso sexual infantil (art. 5).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
     "fecha_verificacion": "2026-10-14",
     "nota_cambio": "Publicado en el DOUE como Reg. (UE) 2026/1744 (24-7-2026).",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial con el acuerdo político del Omnibus." },
-      { "fecha": "2026-10-14", "campo": "referencia_legal", "valor_anterior": "AI Act, arts. 50(2) y 5 (Omnibus)", "valor_nuevo": "AI Act arts. 111(4) y 5(1)(ba)-(bb), según Reg. (UE) 2026/1744", "motivo": "Publicación del Omnibus en el DOUE; se cita el artículo exacto.", "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj" }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "referencia_legal",
+        "valor_anterior": "AI Act, arts. 50(2) y 5 (Omnibus)",
+        "valor_nuevo": "AI Act arts. 111(4) y 5(1)(ba)-(bb), según Reg. (UE) 2026/1744",
+        "motivo": "Publicación del Omnibus en el DOUE; se cita el artículo exacto.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+      }
     ]
   },
   {
@@ -156,16 +314,32 @@
     "norma": "IVDR",
     "referencia_legal": "IVDR art. 110 / Reg. (UE) 2024/1860",
     "fecha": "2027-05-26",
+    "titulo": "Clases B y A estéril: último día para solicitar al ON",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante", "representante autorizado"],
-    "clases_producto": ["IVD B", "IVD A estéril"],
+    "roles_afectados": [
+      "fabricante",
+      "representante autorizado"
+    ],
+    "clases_producto": [
+      "IVD B",
+      "IVD A estéril"
+    ],
     "descripcion_corta": "Último día para presentar la solicitud formal de certificación IVDR ante un organismo notificado y conservar el transitorio de un IVD legacy de clase B o A estéril.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860.", "fuente_url": "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions" }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860.",
+        "fuente_url": "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+      }
     ]
   },
   {
@@ -173,15 +347,28 @@
     "norma": "MDR",
     "referencia_legal": "MDR art. 123(3)(g) en relación con el art. 27(4)",
     "fecha": "2027-05-26",
+    "titulo": "UDI marcado sobre el producto en reutilizables de clase I",
     "tipo": "aplicacion",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["I", "Is/Im/Ir"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir"
+    ],
     "descripcion_corta": "Los productos reutilizables de clase I deben llevar el soporte UDI marcado sobre el propio producto (dos años después de la obligación UDI general de la clase I).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_123",
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Último hito UDI del MDR aún pendiente.", "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_123" }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Último hito UDI del MDR aún pendiente.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_123"
+      }
     ]
   },
   {
@@ -189,17 +376,37 @@
     "norma": "MDR/IVDR",
     "referencia_legal": "Reg. (UE) 2024/1860 (transitorio de 18 meses para certificados)",
     "fecha": "2027-05-28",
+    "titulo": "EUDAMED: los ON registran los certificados anteriores",
     "tipo": "registro",
-    "roles_afectados": ["organismo notificado"],
-    "clases_producto": ["todas"],
+    "roles_afectados": [
+      "organismo notificado"
+    ],
+    "clases_producto": [
+      "todas"
+    ],
     "descripcion_corta": "Fecha límite para que los organismos notificados registren en EUDAMED los certificados MDR e IVDR emitidos antes del 28-5-2026.",
     "estado": "vigente",
     "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
-    "fuentes_adicionales": ["https://eur-lex.europa.eu/eli/reg/2024/1860/oj"],
+    "fuentes_adicionales": [
+      "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial del Radar." },
-      { "fecha": "2026-10-14", "campo": "fecha_verificacion", "valor_anterior": "2026-07-05", "valor_nuevo": "2026-10-14", "motivo": "Reverificado con la HPRA.", "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices" }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial del Radar."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "fecha_verificacion",
+        "valor_anterior": "2026-07-05",
+        "valor_nuevo": "2026-10-14",
+        "motivo": "Reverificado con la HPRA.",
+        "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
+      }
     ]
   },
   {
@@ -207,18 +414,39 @@
     "norma": "AI Act",
     "referencia_legal": "AI Act arts. 57(1), 2(13) y 111(3), según Reg. (UE) 2026/1744",
     "fecha": "2027-08-02",
+    "titulo": "Sandboxes nacionales, actos delegados y fin de la transición GPAI",
     "tipo": "aplicacion",
-    "roles_afectados": ["Estado miembro / Comisión", "proveedor de IA"],
-    "clases_producto": ["SaMD / IA"],
+    "roles_afectados": [
+      "Estado miembro / Comisión",
+      "proveedor de IA"
+    ],
+    "clases_producto": [
+      "SaMD / IA"
+    ],
     "descripcion_corta": "Cada Estado miembro debe tener operativo al menos un sandbox regulatorio de IA. La Comisión debe adoptar los actos delegados que limitan requisitos duplicados con la legislación del Anexo I (MDR/IVDR incluidos). Termina la transición de los modelos GPAI comercializados antes del 2-8-2025.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
-    "fuentes_adicionales": ["https://eur-lex.europa.eu/eli/reg/2024/1689/oj"],
+    "fuentes_adicionales": [
+      "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+    ],
     "fecha_verificacion": "2026-10-14",
     "nota_cambio": "Publicado en el DOUE como Reg. (UE) 2026/1744. Los actos para evitar duplicidades son actos delegados (nuevo art. 2(13)), no de ejecución.",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial con el acuerdo político del Omnibus." },
-      { "fecha": "2026-10-14", "campo": "referencia_legal", "valor_anterior": "AI Act (Omnibus)", "valor_nuevo": "AI Act arts. 57(1), 2(13) y 111(3), según Reg. (UE) 2026/1744", "motivo": "Publicación del Omnibus en el DOUE; se citan los artículos exactos.", "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj" }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "referencia_legal",
+        "valor_anterior": "AI Act (Omnibus)",
+        "valor_nuevo": "AI Act arts. 57(1), 2(13) y 111(3), según Reg. (UE) 2026/1744",
+        "motivo": "Publicación del Omnibus en el DOUE; se citan los artículos exactos.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+      }
     ]
   },
   {
@@ -226,16 +454,30 @@
     "norma": "IVDR",
     "referencia_legal": "IVDR art. 110 / Reg. (UE) 2024/1860",
     "fecha": "2027-09-26",
+    "titulo": "Clases B y A estéril: último día para el acuerdo escrito con el ON",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["IVD B", "IVD A estéril"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "IVD B",
+      "IVD A estéril"
+    ],
     "descripcion_corta": "Último día para firmar el acuerdo escrito con el organismo notificado y conservar el transitorio de un IVD legacy de clase B o A estéril.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860." }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+      }
     ]
   },
   {
@@ -243,16 +485,32 @@
     "norma": "EHDS",
     "referencia_legal": "Reg. (UE) 2025/327 (Espacio Europeo de Datos Sanitarios), art. 105",
     "fecha": "2027-03-26",
+    "titulo": "Aplicación general del Espacio Europeo de Datos Sanitarios",
     "tipo": "aplicacion",
-    "roles_afectados": ["fabricante de sistemas de HCE", "prestador sanitario", "Estado miembro / Comisión"],
-    "clases_producto": ["Sistemas de HCE / apps de bienestar"],
+    "roles_afectados": [
+      "fabricante de sistemas de HCE",
+      "prestador sanitario",
+      "Estado miembro / Comisión"
+    ],
+    "clases_producto": [
+      "Sistemas de HCE / apps de bienestar"
+    ],
     "descripcion_corta": "Aplicación general del Reglamento EHDS. Es sobre todo el plazo de la Comisión para los actos de ejecución: especificaciones técnicas y formato europeo de intercambio de historias clínicas.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2025/327/oj",
-    "fuentes_adicionales": ["https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en"],
+    "fuentes_adicionales": [
+      "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "El EHDS afecta a software sanitario e interoperabilidad con productos sanitarios.", "fuente_url": "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en" }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "El EHDS afecta a software sanitario e interoperabilidad con productos sanitarios.",
+        "fuente_url": "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en"
+      }
     ]
   },
   {
@@ -260,17 +518,36 @@
     "norma": "AI Act",
     "referencia_legal": "AI Act art. 113(c)(i), según Reg. (UE) 2026/1744",
     "fecha": "2027-12-02",
+    "titulo": "Alto riesgo para los sistemas del anexo III",
     "tipo": "aplicacion",
-    "roles_afectados": ["proveedor de IA", "desplegador"],
-    "clases_producto": ["SaMD / IA"],
+    "roles_afectados": [
+      "proveedor de IA",
+      "desplegador"
+    ],
+    "clases_producto": [
+      "SaMD / IA"
+    ],
     "descripcion_corta": "Obligaciones de alto riesgo (cap. III, secciones 1-3) para los sistemas del Anexo III, los que no van dentro de un producto regulado.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
     "fecha_verificacion": "2026-10-14",
     "nota_cambio": "Antes del Omnibus la fecha era el 2-8-2026. Publicado en el DOUE como Reg. (UE) 2026/1744.",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial con el acuerdo político del Omnibus." },
-      { "fecha": "2026-10-14", "campo": "referencia_legal", "valor_anterior": "AI Act, cap. III (Omnibus)", "valor_nuevo": "AI Act art. 113(c)(i), según Reg. (UE) 2026/1744", "motivo": "Publicación del Omnibus en el DOUE.", "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj" }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "referencia_legal",
+        "valor_anterior": "AI Act, cap. III (Omnibus)",
+        "valor_nuevo": "AI Act art. 113(c)(i), según Reg. (UE) 2026/1744",
+        "motivo": "Publicación del Omnibus en el DOUE.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+      }
     ]
   },
   {
@@ -278,16 +555,29 @@
     "norma": "IVDR",
     "referencia_legal": "IVDR art. 110(3) / Reg. (UE) 2024/1860",
     "fecha": "2027-12-31",
+    "titulo": "Fin del transitorio de la clase D",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["IVD D"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "IVD D"
+    ],
     "descripcion_corta": "Fin del transitorio IVDR para los productos legacy de clase D que cumplían las condiciones (SGC antes del 26-5-2025, solicitud al ON antes del 26-5-2025 y acuerdo escrito antes del 26-9-2025).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860." }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+      }
     ]
   },
   {
@@ -295,17 +585,37 @@
     "norma": "MDR",
     "referencia_legal": "MDR art. 120(3a) / Reg. (UE) 2023/607",
     "fecha": "2027-12-31",
+    "titulo": "Fin del transitorio de clase III y IIb implantables",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["III", "IIb implantable"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "III",
+      "IIb implantable"
+    ],
     "descripcion_corta": "Fin del transitorio MDR para certificados legacy de clase III y IIb implantables (salvo las exenciones listadas: suturas, grapas, empastes dentales, aparatos de ortodoncia, coronas dentales, tornillos, cuñas, placas, alambres, clavos, clips y conectores).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/mdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/mdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial del Radar." },
-      { "fecha": "2026-10-14", "campo": "fecha_verificacion", "valor_anterior": "2026-07-05", "valor_nuevo": "2026-10-14", "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la HPRA." }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial del Radar."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "fecha_verificacion",
+        "valor_anterior": "2026-07-05",
+        "valor_nuevo": "2026-10-14",
+        "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la HPRA."
+      }
     ]
   },
   {
@@ -313,19 +623,56 @@
     "norma": "AI Act",
     "referencia_legal": "AI Act art. 113(c)(ii), según Reg. (UE) 2026/1744",
     "fecha": "2028-08-02",
+    "titulo": "Alto riesgo para productos sanitarios con IA (anexo I)",
     "tipo": "aplicacion",
-    "roles_afectados": ["fabricante", "proveedor de IA"],
-    "clases_producto": ["Is/Im/Ir", "IIa", "IIb", "IIb implantable", "III", "IVD A estéril", "IVD B", "IVD C", "IVD D", "SaMD / IA"],
+    "roles_afectados": [
+      "fabricante",
+      "proveedor de IA"
+    ],
+    "clases_producto": [
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "IIb implantable",
+      "III",
+      "IVD A estéril",
+      "IVD B",
+      "IVD C",
+      "IVD D",
+      "SaMD / IA"
+    ],
     "descripcion_corta": "Obligaciones de alto riesgo para la IA de productos del Anexo I, incluidos los productos sanitarios con IA que pasan por organismo notificado.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
-    "fuentes_adicionales": ["https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en"],
+    "fuentes_adicionales": [
+      "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en"
+    ],
     "fecha_verificacion": "2026-10-14",
     "nota_cambio": "La fecha clave para MedTech con IA. Antes del Omnibus era el 2-8-2027 (la MDCG 2025-6, de junio de 2025, aún cita esa fecha).",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial con el acuerdo político del Omnibus." },
-      { "fecha": "2026-10-14", "campo": "referencia_legal", "valor_anterior": "AI Act, cap. III (Omnibus)", "valor_nuevo": "AI Act art. 113(c)(ii), según Reg. (UE) 2026/1744", "motivo": "Publicación del Omnibus en el DOUE.", "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj" },
-      { "fecha": "2026-10-14", "campo": "clases_producto", "valor_anterior": "IIa, IIb, III, IVD B, IVD C, IVD D", "valor_nuevo": "Se añaden Is/Im/Ir e IVD A estéril", "motivo": "Errata E-003: la Tabla 1 de la MDCG 2025-6 incluye todas las clases con organismo notificado.", "fuente_url": "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en" }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "referencia_legal",
+        "valor_anterior": "AI Act, cap. III (Omnibus)",
+        "valor_nuevo": "AI Act art. 113(c)(ii), según Reg. (UE) 2026/1744",
+        "motivo": "Publicación del Omnibus en el DOUE.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "clases_producto",
+        "valor_anterior": "IIa, IIb, III, IVD B, IVD C, IVD D",
+        "valor_nuevo": "Se añaden Is/Im/Ir e IVD A estéril",
+        "motivo": "Errata E-003: la Tabla 1 de la MDCG 2025-6 incluye todas las clases con organismo notificado.",
+        "fuente_url": "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en"
+      }
     ]
   },
   {
@@ -333,16 +680,29 @@
     "norma": "IVDR",
     "referencia_legal": "IVDR art. 110(3) / Reg. (UE) 2024/1860",
     "fecha": "2028-12-31",
+    "titulo": "Fin del transitorio de la clase C",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["IVD C"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "IVD C"
+    ],
     "descripcion_corta": "Fin del transitorio IVDR para los productos legacy de clase C que cumplían las condiciones (solicitud antes del 26-5-2026 y acuerdo escrito antes del 26-9-2026).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860." }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+      }
     ]
   },
   {
@@ -350,17 +710,38 @@
     "norma": "MDR",
     "referencia_legal": "MDR art. 120(3a) / Reg. (UE) 2023/607",
     "fecha": "2028-12-31",
+    "titulo": "Fin del transitorio de IIb, IIa y clase I con ON",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["IIb", "IIa", "Is/Im/Ir"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "IIb",
+      "IIa",
+      "Is/Im/Ir"
+    ],
     "descripcion_corta": "Fin del transitorio MDR para el resto de certificados legacy: IIb no implantables, IIa, clase I estéril o con función de medición y productos que requieren organismo notificado por primera vez con el MDR.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/mdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/mdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-07-05", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Carga inicial del Radar." },
-      { "fecha": "2026-10-14", "campo": "clases_producto", "valor_anterior": "IIb, IIa, I estéril, I con función de medición, I quirúrgico reutilizable", "valor_nuevo": "IIb, IIa, Is/Im/Ir", "motivo": "Se unifica el vocabulario de clases para que el filtro por clase funcione igual en toda la cronología." }
+      {
+        "fecha": "2026-07-05",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Carga inicial del Radar."
+      },
+      {
+        "fecha": "2026-10-14",
+        "campo": "clases_producto",
+        "valor_anterior": "IIb, IIa, I estéril, I con función de medición, I quirúrgico reutilizable",
+        "valor_nuevo": "IIb, IIa, Is/Im/Ir",
+        "motivo": "Se unifica el vocabulario de clases para que el filtro por clase funcione igual en toda la cronología."
+      }
     ]
   },
   {
@@ -368,16 +749,30 @@
     "norma": "EHDS",
     "referencia_legal": "Reg. (UE) 2025/327, art. 105",
     "fecha": "2029-03-26",
+    "titulo": "Intercambio de historia clínica resumida y receta electrónica",
     "tipo": "aplicacion",
-    "roles_afectados": ["fabricante de sistemas de HCE", "prestador sanitario"],
-    "clases_producto": ["Sistemas de HCE / apps de bienestar"],
+    "roles_afectados": [
+      "fabricante de sistemas de HCE",
+      "prestador sanitario"
+    ],
+    "clases_producto": [
+      "Sistemas de HCE / apps de bienestar"
+    ],
     "descripcion_corta": "Intercambio transfronterizo del primer grupo de datos prioritarios (historia clínica resumida, receta y dispensación electrónicas). Empiezan también las normas de uso secundario para la mayoría de categorías de datos.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2025/327/oj",
-    "fuentes_adicionales": ["https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en"],
+    "fuentes_adicionales": [
+      "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Calendario escalonado del EHDS." }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Calendario escalonado del EHDS."
+      }
     ]
   },
   {
@@ -385,16 +780,30 @@
     "norma": "IVDR",
     "referencia_legal": "IVDR art. 110(3) / Reg. (UE) 2024/1860",
     "fecha": "2029-12-31",
+    "titulo": "Fin del transitorio de las clases B y A estéril",
     "tipo": "fin_transitorio",
-    "roles_afectados": ["fabricante"],
-    "clases_producto": ["IVD B", "IVD A estéril"],
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "IVD B",
+      "IVD A estéril"
+    ],
     "descripcion_corta": "Fin del transitorio IVDR para los productos legacy de clase B y A estéril que cumplían las condiciones (solicitud antes del 26-5-2027 y acuerdo escrito antes del 26-9-2027).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-    "fuentes_adicionales": ["https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"],
+    "fuentes_adicionales": [
+      "https://www.hpra.ie/regulation/medical-devices/manufacturers-and-authorised-representatives/ivdr-transitional-provisions"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860." }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+      }
     ]
   },
   {
@@ -402,16 +811,30 @@
     "norma": "EHDS",
     "referencia_legal": "Reg. (UE) 2025/327, art. 105",
     "fecha": "2031-03-26",
+    "titulo": "Intercambio de imagen médica, pruebas e informes de alta",
     "tipo": "aplicacion",
-    "roles_afectados": ["fabricante de sistemas de HCE", "prestador sanitario"],
-    "clases_producto": ["Sistemas de HCE / apps de bienestar"],
+    "roles_afectados": [
+      "fabricante de sistemas de HCE",
+      "prestador sanitario"
+    ],
+    "clases_producto": [
+      "Sistemas de HCE / apps de bienestar"
+    ],
     "descripcion_corta": "Intercambio del segundo grupo de datos prioritarios (imagen médica, resultados de pruebas e informes de alta) y uso secundario de las categorías restantes, como los datos genómicos.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2025/327/oj",
-    "fuentes_adicionales": ["https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en"],
+    "fuentes_adicionales": [
+      "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en"
+    ],
     "fecha_verificacion": "2026-10-14",
     "historial": [
-      { "fecha": "2026-10-14", "campo": "alta", "valor_anterior": "—", "valor_nuevo": "Plazo añadido a la cronología", "motivo": "Calendario escalonado del EHDS." }
+      {
+        "fecha": "2026-10-14",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Calendario escalonado del EHDS."
+      }
     ]
   }
 ]

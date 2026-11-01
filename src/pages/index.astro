@@ -194,6 +194,7 @@ const matices = [
                 <span class="chip chip-aviso">En tramitación: aún no aplica</span>
               )}
             </p>
+            <h3 class="plazo-titulo">{p.data.titulo}</h3>
             <p class="plazo-desc">{p.data.descripcion_corta}</p>
             <p class="plazo-chips">
               {p.data.roles_afectados.map((r) => (
@@ -323,12 +324,17 @@ const matices = [
     chkPasados.checked = params.get('pasados') === 'no';
   }
 
+  // Solo toca sus propios parámetros: conserva los utm_* y el ancla (#id del plazo).
   function escribirURL() {
-    const params = new URLSearchParams();
-    for (const [clave, sel] of Object.entries(selects)) if (sel.value) params.set(clave, sel.value);
+    const params = new URLSearchParams(location.search);
+    for (const [clave, sel] of Object.entries(selects)) {
+      if (sel.value) params.set(clave, sel.value);
+      else params.delete(clave);
+    }
     if (chkPasados.checked) params.set('pasados', 'no');
+    else params.delete('pasados');
     const qs = params.toString();
-    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+    history.replaceState(null, '', (qs ? `?${qs}` : location.pathname) + location.hash);
   }
 
   function filtrar() {
@@ -373,6 +379,7 @@ const matices = [
 
   leerURL();
   filtrar();
+  escribirURL(); // descarta parámetros que no corresponden a ninguna opción
 </script>
 
 <style>
@@ -424,6 +431,7 @@ const matices = [
   .dias-urgente { background: var(--urgente-fondo); color: var(--urgente-texto); border-color: var(--urgente-texto); }
 
   .plazo-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: 0 0 0.4rem; }
+  .plazo-titulo { margin: 0 0 0.25rem; font-size: 1.1rem; line-height: 1.35; }
   .plazo-desc { margin: 0 0 0.5rem; max-width: 44rem; }
   .plazo-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.5rem; }
   .chip-clase { background: #eef3fc; }

@@ -12,11 +12,11 @@ export async function GET(context) {
   const items = eventos.map((e) => ({
     title:
       e.campo === 'alta'
-        ? `[${e.norma}] Nuevo plazo (${fmt.format(new Date(e.plazoFecha + 'T00:00:00'))}): ${e.descripcion}`
-        : `[${e.norma}] Plazo del ${fmt.format(new Date(e.plazoFecha + 'T00:00:00'))}, cambia ${(etiquetaCampo[e.campo] ?? e.campo).toLowerCase()}: ${e.valor_nuevo}`,
+        ? `[${e.norma}] Nuevo plazo (${fmt.format(new Date(e.plazoFecha + 'T00:00:00'))}): ${e.titulo}`
+        : `[${e.norma}] ${e.titulo} (${fmt.format(new Date(e.plazoFecha + 'T00:00:00'))}): cambia ${(etiquetaCampo[e.campo] ?? e.campo).toLowerCase()}`,
     description:
       e.campo === 'alta'
-        ? `${e.motivo} Fuente: ${e.fuente_url}`
+        ? `${e.descripcion} ${e.motivo} Fuente: ${e.fuente_url}`
         : `${e.descripcion} Antes: ${e.valor_anterior}. Ahora: ${e.valor_nuevo}. Motivo: ${e.motivo} Fuente: ${e.fuente_url}`,
     // @astrojs/rss usa el enlace como guid: la consulta lo hace único por cambio.
     link: `${context.site}cambios/?c=${encodeURIComponent(e.guid)}#${e.plazoId}`,

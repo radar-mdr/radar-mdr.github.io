@@ -43,9 +43,9 @@ const fechasConCambios = [...new Set(eventos.map((e) => e.fecha))];
             .map((e) => (
               <li>
                 <span class="chip">{etiquetaCampo[e.campo] ?? e.campo}</span>{' '}
-                <a href={`/#${e.plazoId}`}>[{e.norma}] {fmt(e.plazoFecha)}</a>:{' '}
+                <a href={`/#${e.plazoId}`}>[{e.norma}] {fmt(e.plazoFecha)} · {e.titulo}</a>{e.campo === 'alta' ? '' : ': '}
                 {e.campo === 'alta' ? (
-                  e.descripcion
+                  ''
                 ) : (
                   <>
                     <del>{e.valor_anterior}</del> → <strong>{e.valor_nuevo}</strong>
@@ -66,7 +66,7 @@ const fechasConCambios = [...new Set(eventos.map((e) => e.fecha))];
     plazos.map((p) => (
       <section class="plazo-historial" id={p.id}>
         <h3>
-          {fmt(p.fecha)} · [{p.norma}] <span class="desc">{p.descripcion_corta}</span>
+          {fmt(p.fecha)} · [{p.norma}] {p.titulo}
         </h3>
         <div class="tabla-scroll">
           <table class="tabla">
