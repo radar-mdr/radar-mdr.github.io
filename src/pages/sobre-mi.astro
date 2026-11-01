@@ -138,7 +138,8 @@ const jsonLd = {
       <h2>Cómo citar el Radar</h2>
       <p class="cita">
         {SITIO.autor.split(' ').at(-1)}, {SITIO.autor[0]}. (2026). <cite>Radar MDR × AI Act: plazos
-        regulatorios de productos sanitarios e IA</cite> [conjunto de datos]. {SITIO.dominio}.
+        regulatorios de productos sanitarios e IA</cite> [conjunto de datos].
+        {SITIO.doi ? <a href={`https://doi.org/${SITIO.doi}`}>https://doi.org/{SITIO.doi}</a> : SITIO.dominio}.
         Licencia CC BY 4.0.
       </p>
 

@@ -24,7 +24,12 @@ export const SITIO = {
   // ID del formulario de Tally de la lista de espera de Radar Pro: lo que va tras
   // tally.so/r/ en el enlace para compartir, p. ej. "mRoDv3" (vacío = alta por correo).
   // El formulario no se carga al abrir /pro: solo cuando la persona pulsa el botón.
+  // Pendiente: el formulario 'KpzMZM' daba «no encontrado» el 1-11-2026 (sin publicar en Tally).
+  // Pon aquí 'KpzMZM' cuando tally.so/r/KpzMZM cargue.
   tallyFormId: '',
+  // DOI de Zenodo («Cite all versions», el que no cambia entre versiones), p. ej.
+  // '10.5281/zenodo.1234567' (vacío = la cita sale sin DOI).
+  doi: '',
 };
 
 export const dominioConfigurado = !SITIO.dominio.includes('example.com');
