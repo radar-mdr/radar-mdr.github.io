@@ -1,84 +1,187 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { SITIO } from '../config';
+
+const plazos = await getCollection('plazos');
+const fuentes = await getCollection('fuentes');
+const erratas = (await getCollection('erratas')).filter((e) => e.data.estado === 'cerrada');
+const ultima = plazos.map((p) => p.data.fecha_verificacion).sort().at(-1)!;
+const fmt = (iso: string) =>
+  new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso + 'T00:00:00')
+  );
+
+const REVISADA = '2026-11-01';
+const url = new URL('/sobre-mi/', SITIO.dominio).href;
+const asuntoCharla = encodeURIComponent('Charla de 15 minutos sobre vigilancia regulatoria');
+
+const traduccion = [
+  ['Control de documentos', 'Sin fuente ni fecha de verificación, la web no compila', 'Repositorio', SITIO.repositorio],
+  ['ALCOA+', 'Historial de cada dato con valor anterior, motivo y fuente', 'Registro de cambios', '/cambios/'],
+  ['CAPA', 'Cada error con su corrección, causa raíz y acción correctiva', 'Fe de erratas', '/erratas/'],
+  ['Seguimiento poscomercialización', 'Un robot revisa cada día 8 fuentes clave y abre una incidencia si cambian', 'Fuentes vigiladas', '/fuentes/'],
+  ['Revisión humana', 'La IA puede redactar borradores; publica una persona', 'Metodología', '/metodologia/#uso-de-ia'],
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url,
+  dateModified: REVISADA,
+  mainEntity: {
+    '@type': 'Person',
+    name: SITIO.autor,
+    jobTitle: 'Ingeniero biomédico',
+    url,
+    email: `mailto:${SITIO.email}`,
+    sameAs: [SITIO.linkedin, SITIO.repositorio].filter(Boolean),
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Politécnica de Madrid' },
+    knowsAbout: ['MDR', 'IVDR', 'AI Act', 'ISO 13485', 'ISO 14971', 'IA clínica', 'Radiómica'],
+  },
+};
 ---
 
 <Base
-  title="Sobre mí"
-  description={`${SITIO.autor}, ingeniero biomédico y autor del Radar MDR × AI Act: por qué lo hago y cómo está construido.`}
+  title={`${SITIO.autor}, ingeniero biomédico`}
+  description={`${SITIO.autor}, ingeniero biomédico y autor del Radar MDR × AI Act: por qué lo hago, cómo está construido y cómo contactar.`}
+  imagen="/og-sobre-mi.png"
+  imagenAlt={`${SITIO.autor}, ingeniero biomédico y autor del Radar MDR × AI Act`}
 >
-  <h1>Sobre mí</h1>
-  <div class="perfil">
-    <div>
-      <p class="nombre">{SITIO.autor}</p>
-      <p class="rol">
-        Ingeniero biomédico (UPM, 2026). Cursando el Máster en Biomecánica y Desarrollo de
-        Dispositivos Médicos (UC3M).
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <div class="sobre">
+    <div class="principal">
+      <p class="antetitulo">Sobre mí</p>
+      <h1>{SITIO.autor}</h1>
+      <p class="entradilla">
+        Ingeniero biomédico. Hago el Radar para que los equipos de calidad y regulatorio de pymes
+        medtech sigan sus plazos en español, con fuente y fecha en cada dato.
       </p>
-      <ul class="enlaces">
+
+      <h2>Por qué hago el Radar</h2>
+      <p>
+        Vengo del lado técnico de la IA clínica. En mis prácticas de I+D en Oncología Radioterápica y
+        Radiofísica del Hospital Universitario 12 de Octubre (Instituto i+12) programé un sistema en
+        Python que convierte datos clínicos e imágenes DICOM en variables para modelos predictivos.
+        En mi TFG, sobre radiómica para distinguir radionecrosis de recurrencia tumoral, apliqué
+        TRIPOD+AI, la guía para publicar modelos predictivos clínicos con IA, y busqué sesgos por
+        dosis y volumen.
+      </p>
+      <p>
+        Ahí vi que un modelo que funciona está aún muy lejos de poder usarse con pacientes. Ese
+        camino pasa por el MDR, el IVDR y el AI Act, y en 2026 el Ómnibus digital sobre IA movió las
+        fechas del AI Act que afectan a los productos sanitarios con IA
+        (<a href="/cambios/">ver el registro de cambios</a>). La información estaba repartida entre
+        EUR-Lex, la Comisión, las guías MDCG y docenas de resúmenes en inglés que casi nunca citan
+        fuente ni fecha. El Radar es mi forma de ordenarla, en español y verificable dato a dato.
+      </p>
+      <p>
+        Me interesa el desarrollo de producto sanitario con IA, donde se cruzan ingeniería, software
+        y regulación.
+      </p>
+
+      <h2>Cómo está hecho</h2>
+      <p>Cada práctica de calidad tiene su equivalente en el Radar, y su evidencia es pública:</p>
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <caption class="visually-hidden">Prácticas de calidad aplicadas al Radar</caption>
+          <thead>
+            <tr><th scope="col">Concepto de calidad</th><th scope="col">En el Radar</th><th scope="col">Evidencia</th></tr>
+          </thead>
+          <tbody>
+            {traduccion.map(([concepto, radar, evidencia, enlace]) => (
+              <tr>
+                <th scope="row">{concepto}</th>
+                <td>{radar}</td>
+                <td>{enlace ? <a href={enlace} rel={enlace.startsWith('http') ? 'external noopener' : undefined}>{evidencia}</a> : evidencia}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Está construido con Astro, datos JSON validados con Zod, Python y GitHub Actions, y pensado
+        para cumplir WCAG 2.1 AA. Es abierto: código MIT y datos CC BY 4.0, con
+        <a href="/calendario.ics">calendario</a>, <a href="/rss.xml">RSS</a> y
+        <a href="/api/plazos.json">API JSON</a> para reutilizarlos citando la fuente.
+      </p>
+
+      <h2>Independencia</h2>
+      <p>
+        Es un proyecto personal: no habla en nombre de la UPM, la UC3M ni de ningún hospital. No
+        recibo dinero de fabricantes, consultoras, organismos notificados ni proveedores de eQMS.
+        El Radar público seguirá siendo gratuito; <a href="/pro/">Radar Pro</a> (2027, para
+        empresas) no cambia cómo se verifica ningún dato público.
+      </p>
+      <p>
+        No es una consultora ni da asesoramiento sobre casos concretos. Es un observatorio
+        divulgativo que construyo aprendiendo en abierto: por eso cada dato lleva su fuente y cada
+        error, su <a href="/erratas/">fe de erratas</a>.
+      </p>
+
+      <section class="caja cta" id="contacto" aria-labelledby="contacto-titulo">
+        <h2 id="contacto-titulo">¿Trabajas en calidad o regulatorio?</h2>
+        <p>
+          Quiero entender cómo vigiláis hoy los cambios normativos. Son 15 minutos y no hay venta.
+          A cambio, te envío el resumen anónimo de lo que aprenda y te doy acceso anticipado a
+          Radar Pro.
+        </p>
+        <p class="botones">
+          <a class="boton" href={`mailto:${SITIO.email}?subject=${asuntoCharla}`}>Escríbeme</a>
+          {SITIO.linkedin && <a class="boton-sec" href={SITIO.linkedin} rel="external noopener me">Hablamos por LinkedIn</a>}
+        </p>
+      </section>
+
+      <h2>Cómo citar el Radar</h2>
+      <p class="cita">
+        {SITIO.autor.split(' ').at(-1)}, {SITIO.autor[0]}. (2026). <cite>Radar MDR × AI Act: plazos
+        regulatorios de productos sanitarios e IA</cite> [conjunto de datos]. {SITIO.dominio}.
+        Licencia CC BY 4.0.
+      </p>
+
+      <p class="fuente-dato">Página revisada el {fmt(REVISADA)}.</p>
+    </div>
+
+    <aside class="ficha" aria-label="El Radar en cifras y contacto">
+      <h2>El Radar en cifras</h2>
+      <ul class="cifras">
+        <li><strong>{plazos.length}</strong> <a href="/">plazos</a></li>
+        <li><strong>{fuentes.length}</strong> <a href="/fuentes/">fuentes</a></li>
+        <li><strong>{erratas.length}</strong> <a href="/erratas/">erratas corregidas</a></li>
+        <li>verificado el <strong>{fmt(ultima)}</strong></li>
+      </ul>
+      <h2>Contacto</h2>
+      <ul class="contacto">
+        <li><a href={`mailto:${SITIO.email}`}>{SITIO.email}</a></li>
         {SITIO.linkedin && <li><a href={SITIO.linkedin} rel="external noopener me">LinkedIn</a></li>}
         {SITIO.repositorio && <li><a href={SITIO.repositorio} rel="external noopener">Código del Radar</a></li>}
-        <li><a href={`mailto:${SITIO.email}`}>{SITIO.email}</a></li>
       </ul>
-    </div>
+    </aside>
   </div>
-
-  <h2>Por qué hago el Radar</h2>
-  <p>
-    Vengo del lado técnico de la IA clínica. En mis prácticas de I+D en Oncología Radioterápica y
-    Radiofísica del Hospital Universitario 12 de Octubre (Instituto i+12) programé un sistema en
-    Python que convierte datos clínicos e imagen DICOM en variables para modelos predictivos. En mi
-    TFG, sobre radiómica para distinguir radionecrosis de recurrencia tumoral, apliqué la guía
-    TRIPOD+AI y busqué sesgos por dosis y volumen.
-  </p>
-  <p>
-    Ahí vi que un modelo que funciona está aún muy lejos de poder usarse con pacientes. Ese camino
-    pasa por el MDR, el IVDR y el AI Act, y en 2026 sus fechas se movieron con el Omnibus. La
-    información estaba repartida entre EUR-Lex, la Comisión, las guías MDCG y docenas de
-    resúmenes en inglés, casi nunca con fuente ni fecha. El Radar es mi forma de ordenarla, en
-    español y verificable dato a dato.
-  </p>
-
-  <h2>Cómo está hecho</h2>
-  <ul class="como">
-    <li>
-      <strong>Datos antes que artículos.</strong> Cada plazo, obligación y organismo es un
-      registro JSON validado con un esquema (Astro + Zod). Si falta la fuente o la fecha de
-      verificación, la web no compila.
-    </li>
-    <li>
-      <strong>Integridad del dato (ALCOA+).</strong> Nada se sobrescribe sin rastro: cada cambio
-      guarda el valor anterior, el motivo y la fuente. Así salen el <a href="/cambios">registro de
-      cambios</a> y la <a href="/erratas">fe de erratas</a> en formato CAPA.
-    </li>
-    <li>
-      <strong>PMS de la propia web.</strong> Un robot en GitHub Actions y Python revisa cada día
-      8 fuentes oficiales, detecta cambios y abre una incidencia con el diff. Opcionalmente, la
-      API de Claude redacta un borrador de alerta que reviso antes de publicar.
-    </li>
-    <li>
-      <strong>Accesible.</strong> Diseñado para cumplir WCAG 2.1 AA: contraste, navegación por
-      teclado y estructura semántica.
-    </li>
-    <li>
-      <strong>Abierto.</strong> Código MIT y datos CC BY 4.0. Hay calendario, RSS y API JSON para
-      que cualquiera pueda reutilizarlos citando la fuente.
-    </li>
-  </ul>
-
-  <h2>Qué no es</h2>
-  <p>
-    No es una consultora ni da asesoramiento sobre casos concretos. Es un observatorio divulgativo
-    y una forma pública de aprender. Si trabajas en regulatorio o calidad y quieres contarme cómo
-    vigilas hoy los cambios normativos, me ayudarías mucho: <a href={`mailto:${SITIO.email}?subject=${encodeURIComponent('Charla sobre vigilancia regulatoria')}`}>escríbeme</a>.
-  </p>
 </Base>
 
 <style>
-  .perfil { border: 1px solid var(--borde); border-radius: 10px; padding: 1rem 1.5rem; background: var(--fondo-alt); max-width: 46rem; }
-  .nombre { font-size: 1.3rem; font-weight: 700; margin: 0; }
-  .rol { margin: 0.25rem 0 0.75rem; }
-  .enlaces { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-  p, .como li { max-width: 46rem; }
-  .como li { margin-bottom: 0.6rem; }
+  .sobre { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 2.5rem; align-items: start; }
+  @media (max-width: 52rem) { .sobre { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
+  .antetitulo { margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.85rem; color: var(--acento); }
+  .principal h1 { margin: 0.25rem 0 0.5rem; font-size: 2.2rem; }
+  .entradilla { font-size: 1.15rem; color: var(--texto); margin-top: 0; }
+  .ficha {
+    position: sticky; top: 1rem; border: 1px solid var(--borde); border-radius: 10px;
+    padding: 1rem 1.25rem; background: var(--fondo-alt); margin-top: 1rem;
+  }
+  @media (max-width: 52rem) { .ficha { position: static; } }
+  .ficha h2 { font-size: 1rem; margin: 0 0 0.5rem; }
+  .ficha h2 + ul { margin-bottom: 1rem; }
+  .ficha ul { list-style: none; padding: 0; margin: 0; }
+  .ficha li { margin: 0.25rem 0; }
+  .cifras strong { font-size: 1.2rem; }
+  .contacto { word-break: break-word; }
+  .tabla th[scope='row'] { min-width: 10rem; }
+  .cta { margin-top: 2rem; max-width: none; border-color: var(--acento); background: #f3f7fe; }
+  .botones { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0; }
+  .cita { background: var(--fondo-alt); border-left: 4px solid var(--borde); padding: 0.6rem 0.9rem; }
 </style>

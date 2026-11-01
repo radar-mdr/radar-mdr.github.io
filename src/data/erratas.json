@@ -3,7 +3,9 @@
     "id": "E-004",
     "fecha_deteccion": "2026-10-17",
     "fecha_correccion": "2026-10-17",
-    "paginas": ["/ia-clinica"],
+    "paginas": [
+      "/ia-clinica"
+    ],
     "dato_erroneo": "Escalera del lunar: «medir» clase I o IIa, «avisar de cambios» IIa y «sospechoso o no sospechoso» IIb.",
     "correccion": "Según la MDCG 2019-11 rev.1, la subregla 11a cubre casi todo el software médico, y el melanoma es una situación crítica. Con la tabla de su anexo III: medir, IIa (informa el manejo); avisar de cambios, IIb (impulsa el manejo); sospechoso o no sospechoso, III (diagnostica). La propia guía clasifica como III el software de análisis de imagen de melanoma.",
     "causa_raiz": "Se aplicó el texto de la Regla 11 sin la tabla del anexo III ni los ejemplos del anexo IV de la MDCG 2019-11, y se infravaloró la gravedad de la situación clínica.",
@@ -15,7 +17,11 @@
     "id": "E-001",
     "fecha_deteccion": "2026-10-14",
     "fecha_correccion": "2026-10-14",
-    "paginas": ["/", "/ia-clinica", "/glosario"],
+    "paginas": [
+      "/",
+      "/ia-clinica",
+      "/glosario"
+    ],
     "dato_erroneo": "«Los sistemas comercializados antes de las fechas evitan las obligaciones de alto riesgo salvo modificación sustancial».",
     "correccion": "El art. 111(2) del AI Act habla de «cambios significativos en su diseño». La «modificación sustancial» (art. 3(23)) es otro concepto: obliga a repetir la evaluación de la conformidad (art. 43(4)). Además, el periodo de gracia se aplica por tipo y modelo: si una unidad se comercializó antes de la fecha, las demás unidades del mismo modelo también están cubiertas.",
     "causa_raiz": "El texto venía del plan inicial y no se contrastó con el artículo. Los dos conceptos se confunden en muchos resúmenes secundarios, que fueron la base del primer borrador.",
@@ -27,7 +33,9 @@
     "id": "E-002",
     "fecha_deteccion": "2026-10-14",
     "fecha_correccion": "2026-10-14",
-    "paginas": ["/"],
+    "paginas": [
+      "/"
+    ],
     "dato_erroneo": "«La Comisión podrá desactivar duplicidades con la normativa de productos sanitarios vía actos de ejecución».",
     "correccion": "El instrumento son actos delegados (nuevo art. 2(13) del AI Act, introducido por el Reg. (UE) 2026/1744), con fecha límite del 2-8-2027. Pueden limitar requisitos de los arts. 9 a 15 y 17 a 25 cuando el MDR/IVDR ya ofrezca una protección equivalente o mayor.",
     "causa_raiz": "Se redactó con resúmenes del acuerdo político, antes de que el texto final saliera en el DOUE.",
@@ -39,7 +47,10 @@
     "id": "E-003",
     "fecha_deteccion": "2026-10-14",
     "fecha_correccion": "2026-10-14",
-    "paginas": ["/ia-clinica", "/"],
+    "paginas": [
+      "/ia-clinica",
+      "/"
+    ],
     "dato_erroneo": "«Alto riesgo cuando requiere organismo notificado: clases IIa, IIb y III (MDR) y B, C y D (IVDR)».",
     "correccion": "Según la Tabla 1 de la MDCG 2025-6 también cumplen la condición la clase I estéril, de medición o quirúrgica reutilizable, la IVD A estéril y la mayoría de productos del anexo XVI. Quedan fuera la clase I sin organismo notificado, la IVD A no estéril y los productos fabricados en el propio centro sanitario (art. 5.5).",
     "causa_raiz": "Se resumió «requiere organismo notificado» pensando solo en las clases altas, sin consultar la tabla de la propia guía.",

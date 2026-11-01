@@ -1,13 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
-import { DIAS_VERIFICACION_CADUCADA } from '../config';
+import { DIAS_VERIFICACION_CADUCADA, SITIO } from '../config';
 ---
 
 <Base
-  title="Metodología: cómo verificamos cada dato"
-  description="El manual de calidad del Radar: jerarquía de fuentes, cuándo un plazo pasa de pendiente a vigente, reverificación cada 90 días, control de cambios ALCOA+ y fe de erratas."
+  title="Metodología: cómo se verifica cada dato"
+  description="El manual de calidad del Radar: jerarquía de fuentes, cuándo un plazo pasa de pendiente a vigente, reverificación cada 90 días, control de cambios ALCOA+, fe de erratas y uso de IA."
 >
-  <h1>Metodología: cómo verificamos cada dato</h1>
+  <h1>Metodología: cómo se verifica cada dato</h1>
   <p class="intro">
     Este es el manual de calidad del Radar. Si un dato no cumple estas reglas, no se publica o se
     publica marcado como pendiente.
@@ -53,7 +53,7 @@ import { DIAS_VERIFICACION_CADUCADA } from '../config';
         <tr>
           <th scope="row">En tramitación</th>
           <td>Propuesta legislativa aún no adoptada.</td>
-          <td>Sin cuenta atrás y fuera del calendario. Va a <a href="/en-tramitacion">En tramitación</a>.</td>
+          <td>Sin cuenta atrás y fuera del calendario. Va a <a href="/en-tramitacion/">En tramitación</a>.</td>
         </tr>
         <tr>
           <th scope="row">Aplazado</th>
@@ -67,7 +67,7 @@ import { DIAS_VERIFICACION_CADUCADA } from '../config';
     <strong>Ejemplo real.</strong> El registro de productos legacy en EUDAMED estuvo «pendiente»
     porque unas fuentes decían 27 y otras 28 de noviembre de 2026. Pasó a «vigente» el 14-10-2026
     cuando lo confirmó una autoridad competente (HPRA, nivel 2) y una segunda fuente
-    independiente. El cambio quedó en el <a href="/cambios#2026-11-27-eudamed-registro-legacy">historial</a>.
+    independiente. El cambio quedó en el <a href="/cambios/#2026-11-27-eudamed-registro-legacy">historial</a>.
   </p>
 
   <h2>3. Reverificación periódica</h2>
@@ -77,9 +77,10 @@ import { DIAS_VERIFICACION_CADUCADA } from '../config';
       se marca en amarillo como «pendiente de reverificar» hasta que se vuelve a comprobar.
     </li>
     <li>
-      Un robot revisa cada mañana 8 fuentes clave (índice MDCG, EUDAMED, AI Office, AEMPS, AESIA,
-      Team-NB, FDA y MedTech Europe). Cuando detecta un cambio, abre una incidencia con el
-      diff para revisarla a mano. Es el seguimiento poscomercialización de la propia web.
+      Un robot revisa cada mañana 8 fuentes clave: índice MDCG, EUDAMED, AI Office, AEMPS, AESIA y
+      FDA (oficiales), y Team-NB y MedTech Europe (sector, nivel 3). Cuando detecta un cambio,
+      abre una incidencia con el diff para revisarla a mano. Es el seguimiento poscomercialización
+      de la propia web. Lista completa en <a href="/fuentes/">fuentes</a>.
     </li>
     <li>
       Cuando una norma pasa de acuerdo político a publicación oficial, se revisan todos los
@@ -90,34 +91,58 @@ import { DIAS_VERIFICACION_CADUCADA } from '../config';
   <h2>4. Control de cambios (ALCOA+)</h2>
   <p>
     Una corrección nunca borra el dato original. Cada plazo guarda un <strong>historial</strong>
-    con la fecha, el campo, el valor anterior, el nuevo, el motivo y la fuente. De ahí salen el
-    <a href="/cambios">registro de cambios</a> y el <a href="/rss.xml">RSS</a>. Los datos están
-    en un repositorio con control de versiones, así que también queda la traza técnica.
+    con la fecha, el campo, el valor anterior, el nuevo, el motivo y la fuente; sin fuente, la web
+    no compila. De ahí salen el <a href="/cambios/">registro de cambios</a> y el
+    <a href="/rss.xml">RSS</a>. Los datos están en un repositorio con control de versiones, así
+    que también queda la traza técnica.
+  </p>
+  <p>
+    Las correcciones solo ortotipográficas (por ejemplo, «Omnibus» por «Ómnibus») no generan
+    entrada de historial, porque no cambian el dato. Los valores ya registrados en el historial no
+    se retocan, ni siquiera para corregir su ortografía.
   </p>
 
   <h2>5. Errores: fe de erratas con CAPA</h2>
   <p>
-    Cuando nos equivocamos al interpretar algo, lo publicamos en la <a href="/erratas">fe de
-    erratas</a> con la corrección, la causa raíz y la acción correctiva que evita repetirlo.
-    Las reglas que salen de ahí se incorporan a esta metodología:
+    Cuando el Radar se equivoca al interpretar algo, el error se publica en la
+    <a href="/erratas/">fe de erratas</a> con la corrección, la causa raíz y la acción correctiva
+    que evita repetirlo. Las reglas que salen de ahí se incorporan a esta metodología:
   </p>
   <ul>
     <li>Todo término jurídico entre comillas se contrasta con su artículo antes de publicarse (E-001).</li>
     <li>Los datos derivados de un acuerdo político se revisan al publicarse el texto oficial (E-002).</li>
-    <li>Si una guía tiene una tabla, la reproducimos con enlace en lugar de resumirla de memoria (E-003).</li>
+    <li>Si una guía tiene una tabla, se reproduce con enlace en lugar de resumirla de memoria (E-003).</li>
     <li>Todo ejemplo de clasificación cita la categoría IMDRF y el ejemplo oficial más próximo (E-004).</li>
   </ul>
 
-  <h2>6. Lo que no hacemos</h2>
+  <h2 id="uso-de-ia">6. Uso de IA</h2>
   <ul>
-    <li>No copiamos textos íntegros: resumimos y enlazamos. Las normas ISO e IEC se citan, no se reproducen.</li>
-    <li>No damos asesoramiento legal ni regulatorio sobre casos concretos.</li>
-    <li>No aceptamos pagos por aparecer en el comparador. Cada fila necesita dos fuentes independientes.</li>
+    <li>
+      Los textos y el código del Radar se preparan con ayuda de un asistente de IA (Claude, de
+      Anthropic). La IA no fija ningún dato: cada fecha, estado y artículo se contrasta con su
+      fuente primaria antes de publicarse.
+    </li>
+    <li>
+      Si está activado, el robot de vigilancia pide a Claude un borrador de alerta en español
+      para cada cambio detectado. Ese borrador nunca se publica tal cual.
+    </li>
+    <li>
+      Nada se publica sin revisión humana, y la responsabilidad editorial es de {SITIO.autor}.
+      Es la condición que el art. 50(4) del AI Act pone para que un texto generado con IA no
+      necesite etiquetarse como tal.
+    </li>
   </ul>
+
+  <h2>7. Lo que no hace el Radar</h2>
+  <ul>
+    <li>No copia textos íntegros: resume y enlaza. Las normas ISO e IEC se citan, no se reproducen.</li>
+    <li>No da asesoramiento legal ni regulatorio sobre casos concretos.</li>
+    <li>No acepta pagos por aparecer en el comparador. Cada fila necesita dos fuentes independientes.</li>
+  </ul>
+  <p class="fuente-dato">Página revisada el 1 de noviembre de 2026.</p>
 </Base>
 
 <style>
-  .intro { max-width: 46rem; }
-  .niveles li, ul li { margin-bottom: 0.5rem; max-width: 46rem; }
+  .niveles li, ul li { margin-bottom: 0.5rem; }
   .ejemplo { margin-top: 1rem; }
 </style>

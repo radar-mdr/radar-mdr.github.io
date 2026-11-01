@@ -73,7 +73,7 @@ const matices = [
     titulo: 'Registro aunque te autoexcluyas',
     ref: 'AI Act arts. 6(3) y 49(2)',
     texto:
-      'Si concluyes que tu sistema del anexo III no es de alto riesgo, debes registrarlo igualmente en la base de datos de la UE. El Omnibus simplifica el contenido del registro, pero lo mantiene.',
+      'Si concluyes que tu sistema del anexo III no es de alto riesgo, debes registrarlo igualmente en la base de datos de la UE. El Ómnibus simplifica el contenido del registro, pero lo mantiene.',
   },
   {
     titulo: 'Nueva categoría SMC',
@@ -85,7 +85,7 @@ const matices = [
     titulo: 'La MDCG 2025-6 se ha quedado atrás',
     ref: 'Reg. (UE) 2026/1744',
     texto:
-      'La guía de referencia sobre IA y productos sanitarios da el 2-8-2027 para el alto riesgo. Tras el Omnibus la fecha es el 2-8-2028. Su criterio de clasificación sigue valiendo.',
+      'La guía de referencia sobre IA y productos sanitarios da el 2-8-2027 para el alto riesgo. Tras el Ómnibus la fecha es el 2-8-2028. Su criterio de clasificación sigue valiendo.',
   },
   {
     titulo: 'Vigilancia y PMS de EUDAMED, todavía fuera',
@@ -129,7 +129,7 @@ const matices = [
     </div>
     <p class="estado-datos">
       {plazos.length} plazos · última verificación: {fmt(ultimaVerificacion)} ·
-      <a href="/metodologia">cómo verificamos</a> · <a href="/cambios">qué ha cambiado</a>
+      <a href="/metodologia/">cómo se verifica</a> · <a href="/cambios/">qué ha cambiado</a>
     </p>
   </section>
 
@@ -217,7 +217,7 @@ const matices = [
               · <span class="verificado" data-verificado={p.data.fecha_verificacion}>Verificado el {fmt(p.data.fecha_verificacion)}</span>
               {p.data.historial.length > 1 && (
                 <>
-                  {' '}· <a href={`/cambios#${p.data.id}`}>{p.data.historial.length} cambios registrados</a>
+                  {' '}· <a href={`/cambios/#${p.data.id}`}>{p.data.historial.length} cambios registrados</a>
                 </>
               )}
             </p>
@@ -242,7 +242,7 @@ const matices = [
               Hoy sigue valiendo lo vigente.{' '}
             </>
           ))}
-          <a href="/en-tramitacion">Ver la comparativa vigente frente a propuesta</a>.
+          <a href="/en-tramitacion/">Ver la comparativa vigente frente a propuesta</a>.
         </p>
       </aside>
     )
@@ -259,7 +259,7 @@ const matices = [
             {m.ref}
             {m.errata && (
               <>
-                {' '}· <a href={`/erratas#${m.errata}`}>corregido ({m.errata})</a>
+                {' '}· <a href={`/erratas/#${m.errata}`}>corregido ({m.errata})</a>
               </>
             )}
           </p>
@@ -272,7 +272,7 @@ const matices = [
     <h2>Radar quincenal</h2>
     <p>
       Cada dos semanas, los cambios verificados y las fechas que entran en la ventana de 90 y 30
-      días. <a href="/newsletter">Suscríbete a la newsletter</a> o sigue el
+      días. <a href="/newsletter/">Suscríbete a la newsletter</a> o sigue el
       <a href="/rss.xml">RSS de cambios</a>.
     </p>
   </aside>

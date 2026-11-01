@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async () => {
-  const fuentes = (await getCollection('fuentes')).map((f) => f.data);
+  const fuentes = (await getCollection('fuentes')).map(({ data: { nota_interna, ...publico } }) => publico);
 
   return new Response(
     JSON.stringify(

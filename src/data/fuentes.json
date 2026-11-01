@@ -7,7 +7,8 @@
     "idioma": "ES/EN (multilingüe)",
     "frecuencia_actualizacion": "Puntual (consolidaciones)",
     "tiene_rss": false,
-    "notas": "Columna vertebral de plazos y clases. Usar alertas de EUR-Lex."
+    "nota_publica": "Columna vertebral de plazos y clases.",
+    "nota_interna": "Usar alertas de EUR-Lex."
   },
   {
     "id": "eur-lex-ivdr",
@@ -26,7 +27,7 @@
     "idioma": "ES/EN (multilingüe)",
     "frecuencia_actualizacion": "Puntual (consolidaciones)",
     "tiene_rss": false,
-    "notas": "Añadir el Reglamento Omnibus en cuanto se publique en el DOUE (en vigor a los 3 días)."
+    "nota_publica": "Texto base del AI Act. Sus fechas de alto riesgo las reprograma el Reg. (UE) 2026/1744."
   },
   {
     "id": "eur-lex-reg-2023-607",
@@ -36,7 +37,7 @@
     "idioma": "ES/EN (multilingüe)",
     "frecuencia_actualizacion": "Estático",
     "tiene_rss": false,
-    "notas": "Fechas legacy por clase de producto."
+    "nota_publica": "Fechas legacy por clase de producto."
   },
   {
     "id": "boe-rd-192-2023",
@@ -46,7 +47,7 @@
     "idioma": "ES",
     "frecuencia_actualizacion": "Puntual (consolidaciones)",
     "tiene_rss": false,
-    "notas": "Transposición nacional: autoridad competente, garantías sanitarias, requisitos lingüísticos, reprocesado."
+    "nota_publica": "Transposición nacional: autoridad competente, garantías sanitarias, requisitos lingüísticos, reprocesado."
   },
   {
     "id": "fda-qmsr",
@@ -56,7 +57,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Estático (norma final)",
     "tiene_rss": false,
-    "notas": "Comparativa UE-EE. UU.: contenido diferencial. En vigor desde el 2-feb-2026."
+    "nota_publica": "En vigor desde el 2-2-2026. Sirve para comparar los requisitos de la UE y de EE. UU."
   },
   {
     "id": "mdcg-indice-guias",
@@ -66,7 +67,8 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Mensual (aprox.)",
     "tiene_rss": false,
-    "notas": "La madre de la sección de fichas. Revisar en la pasada de vigilancia de los lunes."
+    "nota_publica": "Índice oficial del que salen las fichas de guías del Radar.",
+    "nota_interna": "Revisar en la pasada de vigilancia de los lunes."
   },
   {
     "id": "mdcg-2025-6-y-2025-4",
@@ -76,7 +78,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Estático (guías puntuales)",
     "tiene_rss": false,
-    "notas": "Documentos estrella de las secciones IA clínica y fichas. Añadir MDCG 2025-10 (PMS, dic-2025)."
+    "nota_publica": "Base de las páginas de IA clínica y de sus fichas en español."
   },
   {
     "id": "ai-office",
@@ -86,7 +88,8 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Semanal",
     "tiene_rss": false,
-    "notas": "Actos de ejecución y guidelines: seguir los actos que desactivan duplicidades con la normativa sectorial."
+    "nota_publica": "Actos delegados, actos de ejecución y directrices del AI Act.",
+    "nota_interna": "Seguir los actos delegados del art. 2(13) que limitan duplicidades con el MDR/IVDR."
   },
   {
     "id": "eudamed",
@@ -96,7 +99,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Mensual",
     "tiene_rss": false,
-    "notas": "4 módulos obligatorios desde el 28-may-2026; legacy antes de fin de nov-2026; carga de certificados por ONs antes del 28-may-2027."
+    "nota_publica": "4 módulos obligatorios desde el 28-5-2026; registro de productos legacy hasta el 28-11-2026; certificados de los ON hasta el 28-5-2027."
   },
   {
     "id": "nando",
@@ -106,7 +109,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Continua",
     "tiene_rss": false,
-    "notas": "Base de la sección Directorio de ONs: designados MDR/IVDR y, cuando llegue, AI Act."
+    "nota_publica": "Base del directorio de organismos notificados (MDR, IVDR y, cuando los haya, AI Act)."
   },
   {
     "id": "team-nb",
@@ -116,7 +119,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Mensual",
     "tiene_rss": false,
-    "notas": "Position papers y encuestas de capacidad de ONs."
+    "nota_publica": "Position papers y encuestas de capacidad de ONs."
   },
   {
     "id": "normas-armonizadas",
@@ -135,7 +138,7 @@
     "idioma": "ES",
     "frecuencia_actualizacion": "Semanal",
     "tiene_rss": true,
-    "notas": "Comunicaciones de comercialización, licencia previa de funcionamiento, notas informativas."
+    "nota_publica": "Comunicaciones de comercialización, licencia previa de funcionamiento, notas informativas."
   },
   {
     "id": "aesia",
@@ -145,7 +148,7 @@
     "idioma": "ES",
     "frecuencia_actualizacion": "Mensual",
     "tiene_rss": false,
-    "notas": "Comunicaciones y régimen sancionador nacional del AI Act."
+    "nota_publica": "Comunicaciones y régimen sancionador nacional del AI Act."
   },
   {
     "id": "boe-alertas",
@@ -155,7 +158,8 @@
     "idioma": "ES",
     "frecuencia_actualizacion": "Diaria",
     "tiene_rss": true,
-    "notas": "Suscripción gratuita a alertas por materia."
+    "nota_publica": "Alertas del BOE por materia.",
+    "nota_interna": "Suscripción gratuita a alertas por materia."
   },
   {
     "id": "iso-une-catalogo",
@@ -165,7 +169,7 @@
     "idioma": "EN (fichas), ES (UNE)",
     "frecuencia_actualizacion": "Puntual (revisiones de norma)",
     "tiene_rss": false,
-    "notas": "Se citan, no se copian: son de pago. Fichas de catálogo únicamente."
+    "nota_publica": "Normas de pago: se citan, no se copian."
   },
   {
     "id": "medtech-europe",
@@ -175,7 +179,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Semanal",
     "tiene_rss": false,
-    "notas": "Posiciones y encuestas de capacidad de organismos notificados."
+    "nota_publica": "Posiciones y encuestas de capacidad de organismos notificados."
   },
   {
     "id": "cocir",
@@ -185,7 +189,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Mensual",
     "tiene_rss": false,
-    "notas": "IA en imagen médica y salud digital."
+    "nota_publica": "IA en imagen médica y salud digital."
   },
   {
     "id": "raps-regulatory-focus",
@@ -195,7 +199,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Diaria",
     "tiene_rss": true,
-    "notas": "Noticias regulatorias diarias."
+    "nota_publica": "Noticias regulatorias diarias."
   },
   {
     "id": "imdrf",
@@ -205,7 +209,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Trimestral",
     "tiene_rss": false,
-    "notas": "Documentos marco de SaMD."
+    "nota_publica": "Documentos marco de SaMD."
   },
   {
     "id": "fda-dhcoe",
@@ -215,7 +219,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Mensual",
     "tiene_rss": false,
-    "notas": "IA/ML en dispositivos, PCCP."
+    "nota_publica": "IA y aprendizaje automático en productos sanitarios; PCCP."
   },
   {
     "id": "openregulatory",
@@ -225,17 +229,18 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Semanal",
     "tiene_rss": true,
-    "notas": "Plantillas open source; candidato al comparador eQMS. Complementar con blogs de BSI y TÜV SÜD como alerta temprana de interpretación."
+    "nota_publica": "Plantillas de código abierto para SGC y documentación técnica. Su empresa ofrece un eQMS (Formwork): en el comparador puede ser una fuente, nunca el árbitro.",
+    "nota_interna": "Complementar con blogs de BSI y TÜV SÜD como alerta temprana de interpretación."
   },
   {
     "id": "eur-lex-omnibus-ia",
-    "nombre": "Reglamento (UE) 2026/1744 (Digital Omnibus sobre IA)",
+    "nombre": "Reglamento (UE) 2026/1744 (Ómnibus digital sobre IA)",
     "tipo": "legal",
     "url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
     "idioma": "ES/EN (multilingüe)",
     "frecuencia_actualizacion": "Estático",
     "tiene_rss": false,
-    "notas": "DOUE de 24-7-2026, en vigor el 27-7-2026. Reprograma el alto riesgo: 2-12-2027 (anexo III) y 2-8-2028 (anexo I)."
+    "nota_publica": "DOUE de 24-7-2026, en vigor el 27-7-2026. Reprograma el alto riesgo: 2-12-2027 (anexo III) y 2-8-2028 (anexo I)."
   },
   {
     "id": "eur-lex-reg-2024-1860",
@@ -254,7 +259,7 @@
     "idioma": "ES/EN (multilingüe)",
     "frecuencia_actualizacion": "Estático",
     "tiene_rss": false,
-    "notas": "DOUE de 27-11-2025: uso obligatorio desde el 28-5-2026."
+    "nota_publica": "DOUE de 27-11-2025: uso obligatorio desde el 28-5-2026."
   },
   {
     "id": "eur-lex-ehds",
@@ -264,7 +269,7 @@
     "idioma": "ES/EN (multilingüe)",
     "frecuencia_actualizacion": "Estático",
     "tiene_rss": false,
-    "notas": "Aplicación escalonada: 2027, 2029, 2031 y 2035 (art. 105)."
+    "nota_publica": "Aplicación escalonada: 2027, 2029, 2031 y 2035 (art. 105)."
   },
   {
     "id": "boe-rd-942-2025",
@@ -274,7 +279,7 @@
     "idioma": "ES",
     "frecuencia_actualizacion": "Puntual (consolidaciones)",
     "tiene_rss": false,
-    "notas": "BOE de 23-10-2025, en vigor el 24-10-2025. Deroga el RD 1662/2000."
+    "nota_publica": "BOE de 23-10-2025, en vigor el 24-10-2025. Deroga el RD 1662/2000."
   },
   {
     "id": "propuesta-revision-mdr-ivdr",
@@ -284,7 +289,7 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Seguir la tramitación",
     "tiene_rss": false,
-    "notas": "En tramitación: no es derecho aplicable."
+    "nota_publica": "En tramitación: no es derecho aplicable."
   },
   {
     "id": "hpra",
@@ -294,6 +299,6 @@
     "idioma": "EN",
     "frecuencia_actualizacion": "Semanal",
     "tiene_rss": false,
-    "notas": "Confirma fechas de EUDAMED y transitorios MDR/IVDR con más claridad que muchas fuentes secundarias."
+    "nota_publica": "Confirma fechas de EUDAMED y transitorios MDR/IVDR con más claridad que muchas fuentes secundarias."
   }
 ]

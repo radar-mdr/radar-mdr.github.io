@@ -42,7 +42,7 @@ const grupos = orden
               <a href={f.data.url} rel="external noopener">{f.data.nombre}</a>
               <span class="chip">{f.data.idioma}</span>
               {f.data.tiene_rss && <span class="chip">RSS</span>}
-              {f.data.notas && <p class="fuente-nota">{f.data.notas}</p>}
+              {f.data.nota_publica && <p class="fuente-nota">{f.data.nota_publica}</p>}
             </li>
           ))}
         </ul>

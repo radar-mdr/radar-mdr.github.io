@@ -105,11 +105,15 @@ Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARC
 - [ ] GoatCounter (sin cookies) → `goatcounterCodigo` en `src/config.ts`.
 - [x] Correo propio del proyecto (radar.mdr.aiact@gmail.com) y LinkedIn correcto.
 - [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro).
+- [ ] Confirmar que la declaración de independencia de «Sobre mí» es exacta (sin pagos de fabricantes, consultoras, ON ni proveedores de eQMS).
+- [ ] Conectar el repo con Zenodo (zenodo.org → GitHub) para que cada versión publicada tenga DOI, y añadirlo a «Cómo citar».
 - [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).
 - [x] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (17-10-2026).
 
 ## Historial de versiones
 
+- **v0.4 (1-11-2026):** filtros reparados, revisión de precisión (fuentes, Ómnibus, historial con fuente obligatoria),
+  «Sobre mí» con independencia, cifras y CTA, Metodología con uso de IA, menú agrupado y móvil, enlaces con barra final.
 - **v0.3.1 (17-10-2026):** cuatro fichas MDCG nuevas leídas de los PDF oficiales, tabla
   IMDRF de la MDCG 2019-11 en IA clínica, escalera del lunar corregida (errata E-004),
   `robots.txt` generado desde `config.ts` y guía de puesta en marcha.

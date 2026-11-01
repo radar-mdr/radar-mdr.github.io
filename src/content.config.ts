@@ -18,7 +18,8 @@ const entradaHistorial = z.object({
   valor_anterior: z.string(),
   valor_nuevo: z.string(),
   motivo: z.string(),
-  fuente_url: url.optional(),
+  // Obligatoria: un cambio sin fuente no cumple ALCOA+
+  fuente_url: url,
 });
 
 const plazos = defineCollection({
@@ -140,7 +141,9 @@ const fuentes = defineCollection({
     idioma: z.string(),
     frecuencia_actualizacion: z.string(),
     tiene_rss: z.boolean(),
-    notas: z.string().optional(),
+    nota_publica: z.string().optional(),
+    // Recordatorio de trabajo: no se muestra en la web ni sale en la API
+    nota_interna: z.string().optional(),
   }),
 });
 

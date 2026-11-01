@@ -18,10 +18,10 @@ const fmt = (iso: string) =>
 >
   <h1>Fe de erratas</h1>
   <p class="intro">
-    Cuando nos equivocamos, lo contamos como se haría en un sistema de calidad: qué estaba mal,
-    cómo se ha corregido, por qué pasó y qué hemos cambiado para que no vuelva a pasar. Las
+    Cuando el Radar se equivoca, el error se cuenta como en un sistema de calidad: qué estaba mal,
+    cómo se ha corregido, por qué pasó y qué ha cambiado para que no vuelva a pasar. Las
     correcciones de fechas por cambios normativos no son erratas y van al
-    <a href="/cambios">registro de cambios</a>.
+    <a href="/cambios/">registro de cambios</a>.
   </p>
 
   {
@@ -39,7 +39,7 @@ const fmt = (iso: string) =>
           {e.paginas.map((p, i) => (
             <>
               {i > 0 && ', '}
-              <a href={p}>{p}</a>
+              <a href={p.endsWith("/") ? p : `${p}/`}>{p}</a>
             </>
           ))}
         </p>

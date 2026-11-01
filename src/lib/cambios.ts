@@ -43,7 +43,7 @@ export async function eventosDeCambio(): Promise<EventoCambio[]> {
         valor_anterior: h.valor_anterior,
         valor_nuevo: h.valor_nuevo,
         motivo: h.motivo,
-        fuente_url: h.fuente_url ?? p.fuente_url,
+        fuente_url: h.fuente_url,
       }))
     )
     .sort((a, b) => b.fecha.localeCompare(a.fecha) || a.plazoFecha.localeCompare(b.plazoFecha));

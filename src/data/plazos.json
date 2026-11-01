@@ -25,7 +25,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial del Radar."
+        "motivo": "Carga inicial del Radar.",
+        "fuente_url": "https://www.federalregister.gov/documents/2024/02/02/2024-01709/medical-devices-quality-system-regulation-amendments"
       },
       {
         "fecha": "2026-10-14",
@@ -63,14 +64,16 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial del Radar."
+        "motivo": "Carga inicial del Radar.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj"
       },
       {
         "fecha": "2026-10-14",
         "campo": "fecha_verificacion",
         "valor_anterior": "2026-07-05",
         "valor_nuevo": "2026-10-14",
-        "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la página de transitorios MDR de la HPRA."
+        "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la página de transitorios MDR de la HPRA.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj"
       }
     ]
   },
@@ -105,7 +108,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial del Radar."
+        "motivo": "Carga inicial del Radar.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
       },
       {
         "fecha": "2026-10-14",
@@ -120,16 +124,17 @@
         "campo": "fuente_url",
         "valor_anterior": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
         "valor_nuevo": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj",
-        "motivo": "La fecha del 28-5-2026 se deriva de la Decisión publicada el 27-11-2025; se enlaza como fuente principal."
+        "motivo": "La fecha del 28-5-2026 se deriva de la Decisión publicada el 27-11-2025; se enlaza como fuente principal.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj"
       }
     ]
   },
   {
     "id": "2026-07-27-ai-act-omnibus-en-vigor",
     "norma": "AI Act",
-    "referencia_legal": "Reg. (UE) 2026/1744 (Digital Omnibus sobre IA), art. 4",
+    "referencia_legal": "Reg. (UE) 2026/1744 (Ómnibus digital sobre IA), art. 4",
     "fecha": "2026-07-27",
-    "titulo": "Entra en vigor el Omnibus de IA (Reg. 2026/1744)",
+    "titulo": "Entra en vigor el Ómnibus de IA (Reg. 2026/1744)",
     "tipo": "aplicacion",
     "roles_afectados": [
       "proveedor de IA",
@@ -139,7 +144,7 @@
     "clases_producto": [
       "SaMD / IA"
     ],
-    "descripcion_corta": "Entra en vigor el Omnibus de IA (DOUE de 24-7-2026): reprograma las obligaciones de alto riesgo del AI Act y estrecha la definición de componente de seguridad.",
+    "descripcion_corta": "Entra en vigor el Ómnibus de IA (DOUE de 24-7-2026): reprograma las obligaciones de alto riesgo del AI Act y estrecha la definición de componente de seguridad.",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
     "fecha_verificacion": "2026-10-14",
@@ -168,21 +173,22 @@
     "clases_producto": [
       "SaMD / IA"
     ],
-    "descripcion_corta": "Obligaciones de transparencia del art. 50 del AI Act para IA generativa e interactiva. No fueron aplazadas por el Omnibus (salvo el art. 50(2) para sistemas ya comercializados).",
+    "descripcion_corta": "Obligaciones de transparencia del art. 50 del AI Act para IA generativa e interactiva. No fueron aplazadas por el Ómnibus (salvo el art. 50(2) para sistemas ya comercializados).",
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
     "fuentes_adicionales": [
       "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
     ],
     "fecha_verificacion": "2026-10-14",
-    "nota_cambio": "Ojo: muchos resúmenes asumen que el Omnibus aplazó el art. 50 entero. No es así: solo el 50(2) para sistemas comercializados antes del 2-8-2026 (art. 111(4)).",
+    "nota_cambio": "Ojo: muchos resúmenes asumen que el Ómnibus aplazó el art. 50 entero. No es así: solo el 50(2) para sistemas comercializados antes del 2-8-2026 (art. 111(4)).",
     "historial": [
       {
         "fecha": "2026-07-05",
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial del Radar."
+        "motivo": "Carga inicial del Radar.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
       },
       {
         "fecha": "2026-10-14",
@@ -253,7 +259,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido como pendiente de confirmación",
-        "motivo": "Las fuentes secundarias citaban el 27 y el 28 de noviembre."
+        "motivo": "Las fuentes secundarias citaban el 27 y el 28 de noviembre.",
+        "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
       },
       {
         "fecha": "2026-10-14",
@@ -268,7 +275,8 @@
         "campo": "estado",
         "valor_anterior": "pendiente_confirmacion",
         "valor_nuevo": "vigente",
-        "motivo": "Cumple la regla de la metodología: confirmación en fuente oficial de nivel 2 más una fuente independiente."
+        "motivo": "Cumple la regla de la metodología: confirmación en fuente oficial de nivel 2 más una fuente independiente.",
+        "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
       }
     ]
   },
@@ -297,7 +305,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+        "motivo": "Carga inicial con el acuerdo político del Omnibus.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
       },
       {
         "fecha": "2026-10-14",
@@ -397,7 +406,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial del Radar."
+        "motivo": "Carga inicial del Radar.",
+        "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
       },
       {
         "fecha": "2026-10-14",
@@ -437,7 +447,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+        "motivo": "Carga inicial con el acuerdo político del Omnibus.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
       },
       {
         "fecha": "2026-10-14",
@@ -476,7 +487,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
       }
     ]
   },
@@ -531,14 +543,15 @@
     "estado": "vigente",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
     "fecha_verificacion": "2026-10-14",
-    "nota_cambio": "Antes del Omnibus la fecha era el 2-8-2026. Publicado en el DOUE como Reg. (UE) 2026/1744.",
+    "nota_cambio": "Antes del Ómnibus la fecha era el 2-8-2026. Publicado en el DOUE como Reg. (UE) 2026/1744.",
     "historial": [
       {
         "fecha": "2026-07-05",
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+        "motivo": "Carga inicial con el acuerdo político del Omnibus.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
       },
       {
         "fecha": "2026-10-14",
@@ -576,7 +589,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
       }
     ]
   },
@@ -607,14 +621,16 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial del Radar."
+        "motivo": "Carga inicial del Radar.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj"
       },
       {
         "fecha": "2026-10-14",
         "campo": "fecha_verificacion",
         "valor_anterior": "2026-07-05",
         "valor_nuevo": "2026-10-14",
-        "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la HPRA."
+        "motivo": "Reverificado contra el Reg. (UE) 2023/607 y la HPRA.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj"
       }
     ]
   },
@@ -648,14 +664,15 @@
       "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en"
     ],
     "fecha_verificacion": "2026-10-14",
-    "nota_cambio": "La fecha clave para MedTech con IA. Antes del Omnibus era el 2-8-2027 (la MDCG 2025-6, de junio de 2025, aún cita esa fecha).",
+    "nota_cambio": "La fecha clave para MedTech con IA. Antes del Ómnibus era el 2-8-2027 (la MDCG 2025-6, de junio de 2025, aún cita esa fecha).",
     "historial": [
       {
         "fecha": "2026-07-05",
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial con el acuerdo político del Omnibus."
+        "motivo": "Carga inicial con el acuerdo político del Omnibus.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
       },
       {
         "fecha": "2026-10-14",
@@ -701,7 +718,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
       }
     ]
   },
@@ -733,14 +751,16 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Carga inicial del Radar."
+        "motivo": "Carga inicial del Radar.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj"
       },
       {
         "fecha": "2026-10-14",
         "campo": "clases_producto",
         "valor_anterior": "IIb, IIa, I estéril, I con función de medición, I quirúrgico reutilizable",
         "valor_nuevo": "IIb, IIa, Is/Im/Ir",
-        "motivo": "Se unifica el vocabulario de clases para que el filtro por clase funcione igual en toda la cronología."
+        "motivo": "Se unifica el vocabulario de clases para que el filtro por clase funcione igual en toda la cronología.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2023/607/oj"
       }
     ]
   },
@@ -771,7 +791,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Calendario escalonado del EHDS."
+        "motivo": "Calendario escalonado del EHDS.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2025/327/oj"
       }
     ]
   },
@@ -802,7 +823,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860."
+        "motivo": "Transitorios IVDR del Reg. (UE) 2024/1860.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
       }
     ]
   },
@@ -833,7 +855,8 @@
         "campo": "alta",
         "valor_anterior": "—",
         "valor_nuevo": "Plazo añadido a la cronología",
-        "motivo": "Calendario escalonado del EHDS."
+        "motivo": "Calendario escalonado del EHDS.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2025/327/oj"
       }
     ]
   }

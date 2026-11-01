@@ -6,28 +6,38 @@ interface Props {
   description?: string;
   /** Ruta de la imagen de vista previa (1200×627) dentro de /public */
   imagen?: string;
+  /** Texto alternativo de esa imagen */
+  imagenAlt?: string;
 }
 
 const {
   title,
   description = 'Plazos MDR, IVDR y AI Act en español, con fuente oficial y fecha de verificación en cada dato. Filtra por tu rol y tu clase de producto.',
   imagen = '/og-radar.png',
+  imagenAlt = 'Radar MDR × AI Act: cronología de plazos regulatorios con fuente y fecha de verificación',
 } = Astro.props;
 
-const nav = [
+const principal = [
   { href: '/', label: 'Cronología' },
-  { href: '/obligaciones', label: 'Obligaciones' },
-  { href: '/ia-clinica', label: 'IA clínica' },
-  { href: '/en-tramitacion', label: 'En tramitación' },
-  { href: '/guias', label: 'Guías MDCG' },
-  { href: '/organismos-notificados', label: 'Organismos notificados' },
-  { href: '/comparador-eqms', label: 'eQMS' },
-  { href: '/espana', label: 'España' },
-  { href: '/glosario', label: 'Glosario' },
-  { href: '/sobre-mi', label: 'Sobre mí' },
+  { href: '/obligaciones/', label: 'Obligaciones' },
+  { href: '/ia-clinica/', label: 'IA clínica' },
+  { href: '/en-tramitacion/', label: 'En tramitación' },
 ];
+const recursos = [
+  { href: '/guias/', label: 'Guías MDCG en español' },
+  { href: '/organismos-notificados/', label: 'Organismos notificados' },
+  { href: '/comparador-eqms/', label: 'Comparador eQMS' },
+  { href: '/espana/', label: 'España' },
+  { href: '/glosario/', label: 'Glosario ES/EN' },
+  { href: '/iso-14971/', label: 'ISO 14971 en 5 minutos' },
+  { href: '/fuentes/', label: 'Fuentes vigiladas' },
+];
+const sobreMi = { href: '/sobre-mi/', label: 'Sobre mí' };
 
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const sinBarra = (ruta: string) => ruta.replace(/\/$/, '') || '/';
+const actual = sinBarra(Astro.url.pathname);
+const esActual = (href: string): 'page' | undefined => (actual === sinBarra(href) ? 'page' : undefined);
+const enRecursos = recursos.some((r) => esActual(r.href));
 const base = Astro.site ?? new URL(SITIO.dominio);
 const canonical = new URL(Astro.url.pathname, base).href;
 const imagenAbsoluta = new URL(imagen, base).href;
@@ -58,7 +68,7 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
     <meta property="og:image" content={imagenAbsoluta} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="627" />
-    <meta property="og:image:alt" content="Radar MDR × AI Act: cronología de plazos regulatorios con fuente y fecha de verificación" />
+    <meta property="og:image:alt" content={imagenAlt} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <slot name="head" />
@@ -79,18 +89,41 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
     <header class="cabecera">
       <div class="contenedor cabecera-inner">
         <a class="logo" href="/">Radar <span aria-hidden="true">MDR × AI Act</span><span class="visually-hidden">MDR por AI Act</span></a>
-        <nav aria-label="Navegación principal">
+        <nav aria-label="Navegación principal" class="nav-escritorio">
           <ul class="nav-lista">
-            {nav.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  aria-current={currentPath === item.href ? 'page' : undefined}
-                >{item.label}</a>
-              </li>
+            {principal.map((item) => (
+              <li><a href={item.href} aria-current={esActual(item.href)}>{item.label}</a></li>
             ))}
+            <li>
+              <details class="desplegable">
+                <summary class:list={[{ activo: enRecursos }]}>Recursos</summary>
+                <ul class="submenu">
+                  {recursos.map((item) => (
+                    <li><a href={item.href} aria-current={esActual(item.href)}>{item.label}</a></li>
+                  ))}
+                </ul>
+              </details>
+            </li>
           </ul>
         </nav>
+        <a class="nav-sobre-mi" href={sobreMi.href} aria-current={esActual(sobreMi.href)}>{sobreMi.label}</a>
+
+        <details class="menu-movil">
+          <summary>Menú</summary>
+          <nav aria-label="Navegación principal">
+            <ul>
+              {[...principal, sobreMi].map((item) => (
+                <li><a href={item.href} aria-current={esActual(item.href)}>{item.label}</a></li>
+              ))}
+            </ul>
+            <p class="menu-movil-titulo">Recursos</p>
+            <ul>
+              {recursos.map((item) => (
+                <li><a href={item.href} aria-current={esActual(item.href)}>{item.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </details>
       </div>
     </header>
     <main id="contenido" class="contenedor" data-pagefind-body>
@@ -108,7 +141,7 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
             <p class="pie-titulo">Recibe los plazos</p>
             <ul>
               <li><a href="/calendario.ics">Calendario de plazos (.ics)</a></li>
-              <li><a href="/newsletter">Radar quincenal por email</a></li>
+              <li><a href="/newsletter/">Radar quincenal por email</a></li>
               <li><a href="/rss.xml">RSS de cambios</a></li>
               <li><a href="/api/plazos.json">API JSON</a></li>
             </ul>
@@ -116,24 +149,24 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
           <div>
             <p class="pie-titulo">Recursos</p>
             <ul>
-              <li><a href="/iso-14971">ISO 14971 en 5 minutos</a></li>
-              <li><a href="/fuentes">Fuentes vigiladas</a></li>
-              <li><a href="/buscar">Buscar</a></li>
-              <li><a href="/pro">Radar Pro (2027)</a></li>
+              <li><a href="/iso-14971/">ISO 14971 en 5 minutos</a></li>
+              <li><a href="/fuentes/">Fuentes vigiladas</a></li>
+              <li><a href="/buscar/">Buscar</a></li>
+              <li><a href="/pro/">Radar Pro (2027)</a></li>
             </ul>
           </div>
           <div>
             <p class="pie-titulo">Calidad del dato</p>
             <ul>
-              <li><a href="/metodologia">Metodología</a></li>
-              <li><a href="/cambios">Registro de cambios</a></li>
-              <li><a href="/erratas">Fe de erratas</a></li>
-              <li><a href="/privacidad">Privacidad</a></li>
+              <li><a href="/metodologia/">Metodología</a></li>
+              <li><a href="/cambios/">Registro de cambios</a></li>
+              <li><a href="/erratas/">Fe de erratas</a></li>
+              <li><a href="/privacidad/">Privacidad</a></li>
             </ul>
           </div>
         </nav>
         <p>
-          © 2026 <a href="/sobre-mi">{SITIO.autor}</a> · Datos y contenido bajo
+          © 2026 <a href="/sobre-mi/">{SITIO.autor}</a> · Datos y contenido bajo
           <a href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="external noopener">CC BY 4.0</a>
           (cítalos con enlace) · Código MIT{SITIO.repositorio && (
             <> · <a href={SITIO.repositorio} rel="external noopener">Repositorio</a></>
@@ -141,6 +174,16 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
         </p>
       </div>
     </footer>
+    <script is:inline>
+      // Cierra el desplegable «Recursos» al hacer clic fuera o pulsar Escape (sin JS sigue funcionando al pulsarlo).
+      document.addEventListener('click', (e) => {
+        document.querySelectorAll('details.desplegable[open]').forEach((d) => { if (!d.contains(e.target)) d.removeAttribute('open'); });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('details.desplegable[open]').forEach((d) => { d.removeAttribute('open'); d.querySelector('summary').focus(); });
+      });
+    </script>
   </body>
 </html>
 
@@ -197,12 +240,52 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
     outline: 3px solid var(--acento); outline-offset: 2px;
   }
 
-  .cabecera { border-bottom: 2px solid var(--borde); background: var(--fondo-alt); }
-  .cabecera-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.5rem; padding-top: 0.75rem; padding-bottom: 0.75rem; }
-  .logo { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--texto); }
-  .nav-lista { list-style: none; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0; padding: 0; }
-  .nav-lista a { text-decoration: none; color: var(--texto-suave); padding: 0.25rem 0; }
-  .nav-lista a:hover, .nav-lista a[aria-current='page'] { color: var(--acento); text-decoration: underline; text-underline-offset: 4px; }
+  .cabecera { border-bottom: 2px solid var(--borde); background: var(--fondo-alt); position: relative; z-index: 5; }
+  .cabecera-inner { display: flex; align-items: center; gap: 0.5rem 1.5rem; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+  .logo { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--texto); white-space: nowrap; }
+  .nav-lista { list-style: none; display: flex; align-items: center; gap: 0.25rem 1.1rem; margin: 0; padding: 0; }
+  .nav-lista a, .nav-sobre-mi, .desplegable summary { text-decoration: none; color: var(--texto-suave); padding: 0.25rem 0; }
+  .nav-lista a:hover, .nav-lista a[aria-current='page'], .nav-sobre-mi:hover, .nav-sobre-mi[aria-current='page'],
+  .desplegable summary:hover, .desplegable summary.activo {
+    color: var(--acento); text-decoration: underline; text-underline-offset: 4px;
+  }
+  .nav-sobre-mi { margin-left: auto; white-space: nowrap; }
+
+  .desplegable { position: relative; }
+  .desplegable summary { cursor: pointer; list-style: none; }
+  .desplegable summary::-webkit-details-marker { display: none; }
+  .desplegable summary::after { content: ' ▾'; font-size: 0.8em; }
+  .submenu {
+    position: absolute; top: calc(100% + 0.5rem); left: 0; min-width: 15rem; list-style: none; margin: 0;
+    padding: 0.4rem 0; background: #fff; border: 1px solid var(--borde); border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(31, 36, 48, 0.12);
+  }
+  .submenu a { display: block; padding: 0.4rem 1rem; }
+  .submenu a:hover, .submenu a[aria-current='page'] { background: var(--fondo-alt); }
+
+  .menu-movil { display: none; margin-left: auto; }
+  .menu-movil summary {
+    cursor: pointer; list-style: none; font-weight: 600; color: var(--acento);
+    border: 1px solid var(--acento); border-radius: 6px; padding: 0.25rem 0.75rem;
+  }
+  .menu-movil summary::-webkit-details-marker { display: none; }
+  .menu-movil[open] summary { background: var(--acento); color: #fff; }
+  .menu-movil nav {
+    position: absolute; left: 0; right: 0; top: 100%; background: var(--fondo-alt);
+    border-bottom: 2px solid var(--borde); padding: 0.5rem 1rem 1rem;
+  }
+  .menu-movil ul { list-style: none; margin: 0; padding: 0; }
+  .menu-movil a { display: block; padding: 0.45rem 0; color: var(--texto); text-decoration: none; }
+  .menu-movil a[aria-current='page'] { color: var(--acento); font-weight: 700; }
+  .menu-movil-titulo { margin: 0.75rem 0 0.25rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--texto-suave); }
+
+  @media (max-width: 52rem) {
+    .nav-escritorio, .nav-sobre-mi { display: none; }
+    .menu-movil { display: block; }
+  }
+
+  /* Líneas de lectura cómodas (60-75 caracteres); las clases de cada página pueden ajustarlo */
+  main :where(p, li, dd) { max-width: 68ch; }
 
   main { padding: 2rem 1rem 3rem; }
 

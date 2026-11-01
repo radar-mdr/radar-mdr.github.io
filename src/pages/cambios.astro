@@ -27,9 +27,9 @@ const fechasConCambios = [...new Set(eventos.map((e) => e.fecha))];
 >
   <h1>Registro de cambios</h1>
   <p class="intro">
-    Cuando un dato cambia, no se sobrescribe sin dejar rastro: guardamos el valor anterior, el
+    Cuando un dato cambia, no se sobrescribe sin dejar rastro: se guardan el valor anterior, el
     nuevo, el motivo y la fuente, como pide ALCOA+ para cualquier registro de calidad. Los
-    errores de interpretación, con su causa raíz, van a la <a href="/erratas">fe de erratas</a>.
+    errores de interpretación, con su causa raíz, van a la <a href="/erratas/">fe de erratas</a>.
   </p>
 
   <h2>Cronológico</h2>
@@ -87,13 +87,7 @@ const fechasConCambios = [...new Set(eventos.map((e) => e.fecha))];
                   <td>{h.valor_anterior}</td>
                   <td>{h.valor_nuevo}</td>
                   <td>
-                    {h.motivo}
-                    {h.fuente_url && (
-                      <>
-                        {' '}
-                        <a href={h.fuente_url} rel="external noopener">Fuente</a>
-                      </>
-                    )}
+                    {h.motivo} <a href={h.fuente_url} rel="external noopener">Fuente</a>
                   </td>
                 </tr>
               ))}
@@ -107,7 +101,7 @@ const fechasConCambios = [...new Set(eventos.map((e) => e.fecha))];
   <p>
     <a href="/rss.xml">Suscríbete por RSS</a> ·
     <a href="/calendario.ics">Añade los plazos a tu calendario</a> ·
-    <a href="/newsletter">Radar quincenal por email</a>
+    <a href="/newsletter/">Radar quincenal por email</a>
   </p>
 </Base>
 

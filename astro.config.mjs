@@ -7,5 +7,7 @@ import { SITIO } from './src/config.ts';
 export default defineConfig({
   // El dominio se cambia en src/config.ts (SITIO.dominio).
   site: SITIO.dominio,
+  // Todas las páginas con barra final: evita la redirección 301 en cada clic interno.
+  trailingSlash: 'always',
   integrations: [sitemap()],
 });
