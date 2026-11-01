@@ -8,10 +8,9 @@ authors:
 abstract: >-
   Observatorio en español de plazos y obligaciones regulatorias para tecnología médica
   e IA clínica (MDR, IVDR, AI Act, EHDS y FDA QMSR). Cada dato lleva fuente oficial,
-  fecha de verificación e historial de cambios.
-license:
-  - MIT
-  - CC-BY-4.0
+  fecha de verificación e historial de cambios. Datos y contenido bajo CC BY 4.0;
+  el código del sitio, bajo licencia MIT.
+license: CC-BY-4.0
 url: "https://radar-mdr.github.io"
 repository-code: "https://github.com/radar-mdr/radar-mdr.github.io"
 keywords:
@@ -21,5 +20,5 @@ keywords:
   - productos sanitarios
   - regulatory affairs
   - EUDAMED
-version: "0.4"
+version: "0.4.1"
 date-released: "2026-11-01"
