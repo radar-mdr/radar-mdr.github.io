@@ -267,8 +267,8 @@
   {
     "id": "2026-11-27-eudamed-registro-legacy",
     "norma": "MDR/IVDR",
-    "referencia_legal": "Reg. (UE) 2024/1860 (transitorio de 12 meses tras el uso obligatorio)",
-    "fecha": "2026-11-28",
+    "referencia_legal": "Art. 123(3)(e) MDR, según el Reg. (UE) 2024/1860 (12 meses desde el aviso del 27-11-2025)",
+    "fecha": "2026-11-27",
     "titulo": "EUDAMED: registro de productos legacy",
     "tipo": "registro",
     "roles_afectados": [
@@ -279,13 +279,14 @@
     ],
     "descripcion_corta": "Fecha límite para registrar en EUDAMED los productos legacy y los productos MDR/IVDR comercializados antes del 28-5-2026 que sigan en el mercado.",
     "estado": "vigente",
-    "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
     "fuentes_adicionales": [
-      "https://www.osborneclarke.com/insights/eu-triggers-mandatory-eudamed-use-diagnostics-and-medtech-may-2026",
-      "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+      "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
+      "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf",
+      "https://www.osborneclarke.com/insights/eu-triggers-mandatory-eudamed-use-diagnostics-and-medtech-may-2026"
     ],
-    "fecha_verificacion": "2026-10-14",
-    "nota_cambio": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide. Aun así, el art. 123(3)(e) MDR da «a más tardar 12 meses» desde la publicación del aviso (DOUE del 27-11-2025) y la MDCG 2026-4 rev.1 aplica ese cómputo a los certificados (27 y no 28 de mayo de 2027): por prudencia, registra antes del 27-11-2026.",
+    "fecha_verificacion": "2026-11-01",
+    "nota_cambio": "Último día: 27-11-2026. La HPRA rotula «Deadline: 28 November 2026», pero en la misma página pide registrar «before 28 November 2026». Ver la errata E-005.",
     "historial": [
       {
         "fecha": "2026-07-05",
@@ -318,6 +319,46 @@
         "valor_nuevo": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide. Aun así, el art. 123(3)(e) MDR da «a más tardar 12 meses» desde la publicación del aviso (DOUE del 27-11-2025) y la MDCG 2026-4 rev.1 aplica ese cómputo a los certificados (27 y no 28 de mayo de 2027): por prudencia, registra antes del 27-11-2026.",
         "motivo": "La MDCG 2026-4 rev.1 cuenta los plazos del Reg. (UE) 2024/1860 terminando el día 27; se recomienda la fecha más temprana sin cambiar la de la HPRA.",
         "fuente_url": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "fecha",
+        "valor_anterior": "2026-11-28",
+        "valor_nuevo": "2026-11-27",
+        "motivo": "Errata E-005: plazo de 12 meses desde la publicación del aviso (DOUE del 27-11-2025); según el art. 3 del Reg. 1182/71, termina al acabar el día 27.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/1971/1182/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "referencia_legal",
+        "valor_anterior": "Reg. (UE) 2024/1860 (transitorio de 12 meses tras el uso obligatorio)",
+        "valor_nuevo": "Art. 123(3)(e) MDR, según el Reg. (UE) 2024/1860 (12 meses desde el aviso del 27-11-2025)",
+        "motivo": "Errata E-005: el plazo cuenta desde la publicación del aviso, no desde el uso obligatorio.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "fuente_url",
+        "valor_anterior": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
+        "valor_nuevo": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
+        "motivo": "Errata E-005: la fuente principal pasa a ser el texto legal (nivel 1); la HPRA queda como adicional.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "nota_cambio",
+        "valor_anterior": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide. Aun así, el art. 123(3)(e) MDR da «a más tardar 12 meses» desde la publicación del aviso (DOUE del 27-11-2025) y la MDCG 2026-4 rev.1 aplica ese cómputo a los certificados (27 y no 28 de mayo de 2027): por prudencia, registra antes del 27-11-2026.",
+        "valor_nuevo": "Último día: 27-11-2026. La HPRA rotula «Deadline: 28 November 2026», pero en la misma página pide registrar «before 28 November 2026». Ver la errata E-005.",
+        "motivo": "Errata E-005: sustituye la nota de prudencia por la fecha corregida.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/1971/1182/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "fecha_verificacion",
+        "valor_anterior": "2026-10-14",
+        "valor_nuevo": "2026-11-01",
+        "motivo": "Reverificado con el Reg. (UE) 2024/1860, el Reg. 1182/71 y la HPRA.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
       }
     ]
   },
@@ -460,8 +501,8 @@
   {
     "id": "2027-05-28-eudamed-carga-certificados-on",
     "norma": "MDR/IVDR",
-    "referencia_legal": "Reg. (UE) 2024/1860 (transitorio de 18 meses para certificados)",
-    "fecha": "2027-05-28",
+    "referencia_legal": "Art. 123(3)(e bis) MDR, según el Reg. (UE) 2024/1860 (18 meses desde el aviso del 27-11-2025)",
+    "fecha": "2027-05-27",
     "titulo": "EUDAMED: los ON registran los certificados anteriores",
     "tipo": "registro",
     "roles_afectados": [
@@ -472,10 +513,10 @@
     ],
     "descripcion_corta": "Fecha límite para que los organismos notificados registren en EUDAMED los certificados MDR e IVDR emitidos antes del 28-5-2026.",
     "estado": "vigente",
-    "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
     "fuentes_adicionales": [
-      "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
-      "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf"
+      "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf",
+      "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
     ],
     "fecha_verificacion": "2026-11-01",
     "historial": [
@@ -510,9 +551,41 @@
         "valor_nuevo": "2026-11-01",
         "motivo": "Reverificado con el Reg. (UE) 2024/1860 y la MDCG 2026-4 rev.1.",
         "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "fecha",
+        "valor_anterior": "2027-05-28",
+        "valor_nuevo": "2027-05-27",
+        "motivo": "Errata E-005: plazo de 18 meses desde la publicación del aviso (DOUE del 27-11-2025); según el art. 3 del Reg. 1182/71, termina al acabar el día 27. Coincide con la MDCG 2026-4 rev.1.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/1971/1182/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "referencia_legal",
+        "valor_anterior": "Reg. (UE) 2024/1860 (transitorio de 18 meses para certificados)",
+        "valor_nuevo": "Art. 123(3)(e bis) MDR, según el Reg. (UE) 2024/1860 (18 meses desde el aviso del 27-11-2025)",
+        "motivo": "Errata E-005: se cita la letra exacta del artículo.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "fuente_url",
+        "valor_anterior": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
+        "valor_nuevo": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
+        "motivo": "Errata E-005: la fuente principal pasa a ser el texto legal (nivel 1); la HPRA queda como adicional.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "nota_cambio",
+        "valor_anterior": "La MDCG 2026-4 rev.1 sitúa el final el 27-5-2027 y la HPRA, el 28-5-2027. El art. 123(3)(e bis) MDR da «a más tardar 18 meses» desde la publicación del aviso (DOUE del 27-11-2025): por prudencia, toma como límite el 27-5-2027.",
+        "valor_nuevo": "Último día: 27-5-2027, como dice la MDCG 2026-4 rev.1. La HPRA rotula «Deadline: 28 May 2027». Ver la errata E-005.",
+        "motivo": "Errata E-005: sustituye la nota de prudencia por la fecha corregida.",
+        "fuente_url": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf"
       }
     ],
-    "nota_cambio": "La MDCG 2026-4 rev.1 sitúa el final el 27-5-2027 y la HPRA, el 28-5-2027. El art. 123(3)(e bis) MDR da «a más tardar 18 meses» desde la publicación del aviso (DOUE del 27-11-2025): por prudencia, toma como límite el 27-5-2027."
+    "nota_cambio": "Último día: 27-5-2027, como dice la MDCG 2026-4 rev.1. La HPRA rotula «Deadline: 28 May 2027». Ver la errata E-005."
   },
   {
     "id": "2027-08-02-ai-act-sandboxes-anexo-i-gpai",

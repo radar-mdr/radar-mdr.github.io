@@ -57,5 +57,20 @@
     "accion_correctiva": "La página de IA clínica reproduce ahora la tabla de la guía con su enlace. El plazo del 2-8-2028 incluye todas las clases afectadas y comparte vocabulario con el filtro de clases.",
     "fuente_url": "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en",
     "estado": "cerrada"
+  },
+  {
+    "id": "E-005",
+    "fecha_deteccion": "2026-11-01",
+    "fecha_correccion": "2026-11-01",
+    "paginas": [
+      "/",
+      "/metodologia"
+    ],
+    "dato_erroneo": "Registro de productos legacy en EUDAMED hasta el 28-11-2026 y registro de los certificados anteriores por los organismos notificados hasta el 28-5-2027.",
+    "correccion": "El último día es el 27-11-2026 y el 27-5-2027. Son plazos de 12 y 18 meses desde la publicación del aviso en el DOUE (27-11-2025) y, según el art. 3 del Reg. 1182/71, el día del aviso no cuenta y el plazo termina al acabar el día con la misma fecha. Por eso los módulos son obligatorios desde el 28-5-2026, y la MDCG 2026-4 rev.1 cierra el periodo de los certificados el 27-5-2027.",
+    "causa_raiz": "Se tomó como último día la «Deadline» de la tabla de la HPRA sin calcular el plazo con el Reg. 1182/71, aunque la misma página pide registrar «before 28 November 2026». La coincidencia de una fuente secundaria se dio por confirmación independiente.",
+    "accion_correctiva": "Fechas corregidas al día 27 con su historial; la fuente principal pasa a ser el Reg. (UE) 2024/1860. Preventiva: los plazos «a más tardar N meses desde» un acto se calculan con el Reg. 1182/71 y se publica el último día válido; si una fuente dice «antes del día D», el último día es el anterior.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/1971/1182/oj",
+    "estado": "cerrada"
   }
 ]
