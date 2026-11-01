@@ -1,5 +1,7 @@
 # Radar MDR × AI Act
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23860211.svg)](https://doi.org/10.5281/zenodo.23860211)
+
 > **EN** — A Spanish-language regulatory observatory for medical technology and clinical AI:
 > live compliance timeline for the EU MDR, IVDR, AI Act (post-Omnibus, Reg. (EU) 2026/1744), EHDS
 > and FDA QMSR, built as a structured, verifiable database. Every data point carries an official
@@ -106,7 +108,7 @@ Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARC
 - [x] Correo propio del proyecto (radar.mdr.aiact@gmail.com) y LinkedIn correcto.
 - [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro).
 - [ ] Confirmar que la declaración de independencia de «Sobre mí» es exacta (sin pagos de fabricantes, consultoras, ON ni proveedores de eQMS).
-- [x] Zenodo conectado (noviembre de 2026). Falta publicar un release en GitHub para obtener el DOI y ponerlo en `doi` de `src/config.ts`.
+- [x] Archivado en Zenodo: DOI de todas las versiones 10.5281/zenodo.23860211 (release v0.4.1).
 - [x] GoatCounter activo (`alo04`).
 - [x] Formulario de Tally (`KpzMZM`) activo en /pro, con carga solo al pulsar el botón.
 - [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).

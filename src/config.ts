@@ -27,7 +27,7 @@ export const SITIO = {
   tallyFormId: 'KpzMZM',
   // DOI de Zenodo («Cite all versions», el que no cambia entre versiones), p. ej.
   // '10.5281/zenodo.1234567' (vacío = la cita sale sin DOI).
-  doi: '',
+  doi: '10.5281/zenodo.23860211',
 };
 
 export const dominioConfigurado = !SITIO.dominio.includes('example.com');
