@@ -12,7 +12,7 @@ export const SITIO = {
   autor: 'Alfonso Obreja',
   // Pasa a contacto@<tu-dominio> en cuanto tengas dominio con correo.
   email: 'radar.mdr.aiact@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/alfonsoobreja-eastman',
+  linkedin: 'https://www.linkedin.com/in/alfonso-obreja-eastman-663ab034a/',
   // URL pública del repositorio (vacío = no se enlaza).
   repositorio: 'https://github.com/alfonsoyewu-sketch/alfonsoyewu-sketch.github.io',
 
