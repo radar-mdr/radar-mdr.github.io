@@ -117,14 +117,14 @@ const matices = [
         </p>
       </div>
       <div class="cta-botones">
-        {icsWebcal && <a class="boton" href={icsWebcal}>Suscribirme al calendario</a>}
+        {icsWebcal && <a class="boton" href={icsWebcal} data-goatcounter-click="calendario-suscribir">Suscribirme al calendario</a>}
         {icsHttps && (
-          <a class="boton-sec" href={`https://calendar.google.com/calendar/render?cid=${encodeURIComponent(icsWebcal!)}`} rel="external noopener">Añadir a Google Calendar</a>
+          <a class="boton-sec" href={`https://calendar.google.com/calendar/render?cid=${encodeURIComponent(icsWebcal!)}`} rel="external noopener" data-goatcounter-click="calendario-google">Añadir a Google Calendar</a>
         )}
         {icsHttps && (
-          <a class="boton-sec" href={`https://outlook.live.com/calendar/0/addfromweb?url=${encodeURIComponent(icsHttps)}&name=${encodeURIComponent('Radar MDR × AI Act')}`} rel="external noopener">Añadir a Outlook</a>
+          <a class="boton-sec" href={`https://outlook.live.com/calendar/0/addfromweb?url=${encodeURIComponent(icsHttps)}&name=${encodeURIComponent('Radar MDR × AI Act')}`} rel="external noopener" data-goatcounter-click="calendario-outlook">Añadir a Outlook</a>
         )}
-        <a class={icsWebcal ? 'boton-sec' : 'boton'} href="/calendario.ics" download="radar-plazos.ics">Descargar .ics</a>
+        <a class={icsWebcal ? 'boton-sec' : 'boton'} href="/calendario.ics" download="radar-plazos.ics" data-goatcounter-click="calendario-descargar">Descargar .ics</a>
       </div>
     </div>
     <p class="estado-datos">

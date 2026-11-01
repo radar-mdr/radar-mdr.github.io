@@ -20,7 +20,11 @@ export const SITIO = {
   buttondownUsuario: '',
   // Código de GoatCounter, p. ej. "radar-mdr" para radar-mdr.goatcounter.com
   // (vacío = sin analítica). GoatCounter no usa cookies.
-  goatcounterCodigo: '',
+  goatcounterCodigo: 'alo04',
+  // ID del formulario de Tally de la lista de espera de Radar Pro: lo que va tras
+  // tally.so/r/ en el enlace para compartir, p. ej. "mRoDv3" (vacío = alta por correo).
+  // El formulario no se carga al abrir /pro: solo cuando la persona pulsa el botón.
+  tallyFormId: '',
 };
 
 export const dominioConfigurado = !SITIO.dominio.includes('example.com');

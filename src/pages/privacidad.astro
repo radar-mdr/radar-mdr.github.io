@@ -4,12 +4,16 @@ import { SITIO } from '../config';
 
 const conButtondown = Boolean(SITIO.buttondownUsuario);
 const conAnalitica = Boolean(SITIO.goatcounterCodigo);
+const conTally = Boolean(SITIO.tallyFormId);
+
+// Cambia esta fecha cada vez que cambie el texto visible (por ejemplo, al activar Tally).
+const ultimaActualizacion = '1 de noviembre de 2026';
 ---
 
 <Base title="Privacidad" description="Qué datos trata el Radar MDR × AI Act, para qué, con qué base jurídica y cómo ejercer tus derechos (RGPD).">
   <h1>Privacidad</h1>
   <p class="intro">
-    Versión breve: solo trato tu email si te suscribes a la newsletter, y no uso cookies
+    Versión breve: solo trato tu email si te suscribes a la newsletter{conTally && ' o te apuntas a la lista de espera de Radar Pro'}, y no uso cookies
     de seguimiento.
   </p>
 
@@ -19,16 +23,23 @@ const conAnalitica = Boolean(SITIO.goatcounterCodigo);
 
     <dt>Qué datos</dt>
     <dd>
-      Tu dirección de email, solo si te suscribes al Radar quincenal o me escribes. No pido
-      ningún otro dato.
+      Tu dirección de email, solo si te suscribes al Radar quincenal o me escribes.
+      {conTally
+        ? ' Si te apuntas a la lista de espera de Radar Pro, además: tu email de trabajo, el nombre de tu empresa si lo indicas y tus respuestas sobre tu rol, tus productos y cómo vigiláis hoy los cambios normativos.'
+        : ' No pido ningún otro dato.'}
     </dd>
 
     <dt>Para qué</dt>
-    <dd>Enviarte la newsletter y, si me escribes, contestarte.</dd>
+    <dd>
+      Enviarte la newsletter y, si me escribes, contestarte.
+      {conTally && ' Con las respuestas de la lista de espera te aviso cuando abra la beta, te propongo una llamada si la pides y decido, con los datos agregados, qué construir y a qué precio.'}
+    </dd>
 
     <dt>Base jurídica</dt>
     <dd>
-      Tu consentimiento (art. 6.1.a del RGPD). Puedes retirarlo cuando quieras
+      Tu consentimiento (art. 6.1.a del RGPD).
+      {conTally && ' En la lista de espera lo das con la casilla del formulario; el boletín va en una casilla aparte y opcional.'}
+      {' '}Puedes retirarlo cuando quieras
       {conButtondown
         ? ' con el enlace de baja que incluye cada envío.'
         : ' respondiendo «BAJA» a cualquier envío o escribiendo al contacto de arriba.'}
@@ -40,12 +51,16 @@ const conAnalitica = Boolean(SITIO.goatcounterCodigo);
       {conButtondown
         ? ' Buttondown, que gestiona el envío de la newsletter,'
         : ' el proveedor del correo con el que gestiono las altas,'}
+      {conTally && ' Tally (Tally BV, Bélgica), que aloja el formulario de la lista de espera y guarda las respuestas en la UE,'}
       {' '}y el alojamiento de la web, que registra datos técnicos de acceso (como la IP) por seguridad.
       No cedo ni vendo datos.
     </dd>
 
     <dt>Cuánto tiempo</dt>
-    <dd>Hasta que te des de baja. Después borro tu email de la lista.</dd>
+    <dd>
+      Hasta que te des de baja. Después borro tu email de la lista.
+      {conTally && ' Las respuestas de la lista de espera se guardan hasta 12 meses después del lanzamiento de Radar Pro, o menos si me pides antes que las borre; después las borro también de Tally.'}
+    </dd>
 
     <dt>Tus derechos</dt>
     <dd>
@@ -57,11 +72,12 @@ const conAnalitica = Boolean(SITIO.goatcounterCodigo);
     <dt>Cookies y analítica</dt>
     <dd>
       {conAnalitica
-        ? 'Uso GoatCounter, una analítica que no usa cookies ni identifica a las personas: solo cuenta visitas agregadas (página, país, origen).'
+        ? 'Uso GoatCounter, una analítica que no usa cookies ni identifica a las personas: solo cuenta visitas agregadas (página, país, origen) y los clics en los botones principales.'
         : 'No uso cookies ni analítica de terceros.'}
+      {conTally && ' El formulario de Radar Pro no se carga al abrir la página, solo cuando pulsas «Apuntarme a la lista de espera»; desde ese momento lo sirve Tally.'}
     </dd>
   </dl>
-  <p class="fuente-dato">Última actualización: 14 de octubre de 2026.</p>
+  <p class="fuente-dato">Última actualización: {ultimaActualizacion}.</p>
 </Base>
 
 <style>
