@@ -108,7 +108,7 @@ Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARC
 - [ ] Confirmar que la declaración de independencia de «Sobre mí» es exacta (sin pagos de fabricantes, consultoras, ON ni proveedores de eQMS).
 - [x] Zenodo conectado (noviembre de 2026). Falta publicar un release en GitHub para obtener el DOI y ponerlo en `doi` de `src/config.ts`.
 - [x] GoatCounter activo (`alo04`).
-- [ ] Publicar el formulario de Tally (`KpzMZM`) y ponerlo en `tallyFormId` de `src/config.ts`.
+- [x] Formulario de Tally (`KpzMZM`) activo en /pro, con carga solo al pulsar el botón.
 - [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).
 - [x] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (17-10-2026).
 

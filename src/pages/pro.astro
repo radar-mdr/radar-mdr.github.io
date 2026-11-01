@@ -60,7 +60,7 @@ const mailtoPro = `mailto:${SITIO.email}?subject=${encodeURIComponent('RADAR PRO
     <h2 id="titulo-alta">Lista de espera</h2>
     {tallyId ? (
       <>
-        <p>
+        <p class="intro-alta">
           Dos minutos y casi todo es marcar. Tus respuestas deciden qué se construye primero y
           cuánto costará.
         </p>
@@ -110,6 +110,8 @@ const mailtoPro = `mailto:${SITIO.email}?subject=${encodeURIComponent('RADAR PRO
         iframe.width = '100%';
         iframe.height = '640';
         boton.replaceWith(iframe);
+        // El formulario ya trae esta misma presentación: se quita la de la página para no repetirla.
+        document.querySelector('.intro-alta')?.remove();
         const cargar = () => {
           // Si el script no llega (bloqueador, proxy corporativo), el formulario se carga
           // igual, solo que sin altura automática.
