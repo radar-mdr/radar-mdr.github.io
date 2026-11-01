@@ -36,17 +36,17 @@ Documentación: [puesta en marcha](docs/PUESTA-EN-MARCHA.md) · [plan](docs/PLAN
 El valor está en los datos estructurados, no en los artículos. Colecciones en `src/data/*.json`,
 con esquemas en [src/content.config.ts](src/content.config.ts):
 
-| Entidad | Archivo | Estado (17-10-2026) |
+| Entidad | Archivo | Estado (1-11-2026) |
 |---|---|---|
-| Plazo | `plazos.json` | ✅ 23 plazos (MDR, IVDR, AI Act, EHDS, QMSR), todos reverificados, con historial |
+| Plazo | `plazos.json` | ✅ 25 plazos (MDR, IVDR, AI Act, EHDS, QMSR), todos reverificados, con historial |
 | Obligación | `obligaciones.json` | ✅ Matrices MDR e IVDR por clase + 4 fichas por agente económico |
 | Organismo notificado | `organismos.json` | ✅ 53 organismos (52 MDR, 19 IVDR) verificados en NANDO |
 | Glosario | `glosario.json` | ✅ 92 términos ES/EN |
 | Propuesta en tramitación | `propuestas.json` | ✅ Revisión MDR/IVDR, COM(2025) 1023 |
 | Fe de erratas | `erratas.json` | ✅ 4 erratas cerradas con CAPA |
 | Requisitos eQMS | `requisitos-eqms.json` | ✅ 15 requisitos (ISO 13485, Part 11, MDR) |
-| Guía (MDCG) | `guias.json` | ✅ 5 fichas publicadas: MDCG 2025-6, 2019-11 rev.1, 2020-1, 2025-4 y 2025-10 |
-| Fuente | `fuentes.json` | ✅ 30 fuentes |
+| Guía (MDCG) | `guias.json` | ✅ 6 fichas publicadas: MDCG 2025-6, 2019-11 rev.1, 2020-1, 2025-4, 2025-10 y 2026-4 rev.1 |
+| Fuente | `fuentes.json` | ✅ 31 fuentes |
 | Herramienta eQMS | `herramientas.json` | ⬜ vacía hasta tener 2 fuentes por fila (plantilla: `herramientas.ejemplo.json`) |
 
 **Reglas de los datos** (resumen de la [metodología](src/pages/metodologia.astro)):

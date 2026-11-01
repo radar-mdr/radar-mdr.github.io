@@ -300,5 +300,14 @@
     "frecuencia_actualizacion": "Semanal",
     "tiene_rss": false,
     "nota_publica": "Confirma fechas de EUDAMED y transitorios MDR/IVDR con más claridad que muchas fuentes secundarias."
+  },
+  {
+    "id": "eur-lex-dec-impl-2026-2274",
+    "nombre": "Decisión de Ejecución (UE) 2026/2274: normas armonizadas del AI Act (EN 18286)",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/dec_impl/2026/2274/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Puntual (se modificará al citar nuevas normas)",
+    "tiene_rss": false
   }
 ]

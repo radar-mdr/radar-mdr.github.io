@@ -177,6 +177,7 @@
       "III": "Obligatorio (salvo productos a medida o en investigación)."
     },
     "evidencia_requerida": "SSCP validado por el organismo notificado.",
+    "guia_relacionada": "mdcg-2026-4",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_32",
     "fecha_verificacion": "2026-10-14"
   },
@@ -380,6 +381,7 @@
       "D": "Obligatorio (salvo productos para estudios del funcionamiento)."
     },
     "evidencia_requerida": "SSP validado por el organismo notificado.",
+    "guia_relacionada": "mdcg-2026-4",
     "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj/spa#art_29",
     "fecha_verificacion": "2026-10-14"
   },

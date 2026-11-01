@@ -232,6 +232,39 @@
     ]
   },
   {
+    "id": "2026-10-14-ai-act-norma-armonizada-en-18286",
+    "norma": "AI Act",
+    "referencia_legal": "Decisión de Ejecución (UE) 2026/2274 (EN 18286:2026)",
+    "fecha": "2026-10-14",
+    "titulo": "Primera norma armonizada del AI Act: EN 18286 (gestión de calidad)",
+    "tipo": "aplicacion",
+    "roles_afectados": [
+      "proveedor de IA",
+      "fabricante"
+    ],
+    "clases_producto": [
+      "SaMD / IA"
+    ],
+    "descripcion_corta": "Se publica en el DOUE la primera norma armonizada del AI Act, la EN 18286:2026, sobre el sistema de gestión de la calidad (art. 17). Desde el 14-10-2026, aplicarla da presunción de conformidad con los requisitos que cubre.",
+    "estado": "vigente",
+    "fuente_url": "https://eur-lex.europa.eu/eli/dec_impl/2026/2274/oj",
+    "fuentes_adicionales": [
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+    ],
+    "fecha_verificacion": "2026-11-01",
+    "nota_cambio": "Para MedTech: el art. 17(3) permite integrar el sistema de gestión de la calidad del AI Act en el que ya exige el MDR/IVDR. Las obligaciones de alto riesgo para productos sanitarios con IA siguen siendo del 2-8-2028.",
+    "historial": [
+      {
+        "fecha": "2026-11-01",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido a la cronología",
+        "motivo": "Incidencia #9 de la vigilancia (30-10-2026): la página de la AI Office enlaza la noticia del 19-10-2026 sobre la primera norma armonizada del AI Act, citada en el DOUE por la Decisión de Ejecución (UE) 2026/2274, en vigor el 14-10-2026.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/dec_impl/2026/2274/oj"
+      }
+    ]
+  },
+  {
     "id": "2026-11-27-eudamed-registro-legacy",
     "norma": "MDR/IVDR",
     "referencia_legal": "Reg. (UE) 2024/1860 (transitorio de 12 meses tras el uso obligatorio)",
@@ -252,7 +285,7 @@
       "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
     ],
     "fecha_verificacion": "2026-10-14",
-    "nota_cambio": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide.",
+    "nota_cambio": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide. Aun así, el art. 123(3)(e) MDR da «a más tardar 12 meses» desde la publicación del aviso (DOUE del 27-11-2025) y la MDCG 2026-4 rev.1 aplica ese cómputo a los certificados (27 y no 28 de mayo de 2027): por prudencia, registra antes del 27-11-2026.",
     "historial": [
       {
         "fecha": "2026-07-05",
@@ -277,6 +310,14 @@
         "valor_nuevo": "vigente",
         "motivo": "Cumple la regla de la metodología: confirmación en fuente oficial de nivel 2 más una fuente independiente.",
         "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "nota_cambio",
+        "valor_anterior": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide.",
+        "valor_nuevo": "Resuelta la discrepancia 27/28 de noviembre: la HPRA (autoridad competente irlandesa) fija el 28-11-2026 y Osborne Clarke coincide. Aun así, el art. 123(3)(e) MDR da «a más tardar 12 meses» desde la publicación del aviso (DOUE del 27-11-2025) y la MDCG 2026-4 rev.1 aplica ese cómputo a los certificados (27 y no 28 de mayo de 2027): por prudencia, registra antes del 27-11-2026.",
+        "motivo": "La MDCG 2026-4 rev.1 cuenta los plazos del Reg. (UE) 2024/1860 terminando el día 27; se recomienda la fecha más temprana sin cambiar la de la HPRA.",
+        "fuente_url": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf"
       }
     ]
   },
@@ -315,6 +356,42 @@
         "valor_nuevo": "AI Act arts. 111(4) y 5(1)(ba)-(bb), según Reg. (UE) 2026/1744",
         "motivo": "Publicación del Omnibus en el DOUE; se cita el artículo exacto.",
         "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj"
+      }
+    ]
+  },
+  {
+    "id": "2027-03-27-eudamed-sscp-productos-anteriores",
+    "norma": "MDR/IVDR",
+    "referencia_legal": "MDCG 2026-4 rev.1 (octubre de 2026), sección 4",
+    "fecha": "2027-03-27",
+    "titulo": "EUDAMED: el fabricante sube el SS(C)P de productos anteriores",
+    "tipo": "registro",
+    "roles_afectados": [
+      "fabricante"
+    ],
+    "clases_producto": [
+      "IIa implantable",
+      "IIb implantable",
+      "III",
+      "IVD C",
+      "IVD D"
+    ],
+    "descripcion_corta": "Fecha que fija el MDCG para que el fabricante suba a EUDAMED el SSCP (o el SSP de los IVD) de los productos comercializados antes del 28-5-2026: implantables (IIa y IIb) y clase III del MDR, clases C y D del IVDR. Es una posición del MDCG, no un plazo del reglamento.",
+    "estado": "pendiente_confirmacion",
+    "fuente_url": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf",
+    "fuentes_adicionales": [
+      "https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en"
+    ],
+    "fecha_verificacion": "2026-11-01",
+    "nota_cambio": "Según la propia MDCG, la función de carga para fabricantes llega a producción en diciembre de 2026, así que el margen real es de unos tres meses. Queda pendiente hasta que la confirme una segunda fuente independiente.",
+    "historial": [
+      {
+        "fecha": "2026-11-01",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Plazo añadido como pendiente de confirmación",
+        "motivo": "Incidencia #10 de la vigilancia (índice MDCG, 31-10-2026): la MDCG 2026-4 rev.1, de octubre de 2026, fija el 27-3-2027. Solo hay una fuente de nivel 2.",
+        "fuente_url": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf"
       }
     ]
   },
@@ -397,9 +474,10 @@
     "estado": "vigente",
     "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices",
     "fuentes_adicionales": [
-      "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+      "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
+      "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf"
     ],
-    "fecha_verificacion": "2026-10-14",
+    "fecha_verificacion": "2026-11-01",
     "historial": [
       {
         "fecha": "2026-07-05",
@@ -416,8 +494,25 @@
         "valor_nuevo": "2026-10-14",
         "motivo": "Reverificado con la HPRA.",
         "fuente_url": "https://www.hpra.ie/news-events/news/article/mandatory-use-of-eudamed-modules-for-medical-devices"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "nota_cambio",
+        "valor_anterior": "—",
+        "valor_nuevo": "La MDCG 2026-4 rev.1 sitúa el final el 27-5-2027 y la HPRA, el 28-5-2027. El art. 123(3)(e bis) MDR da «a más tardar 18 meses» desde la publicación del aviso (DOUE del 27-11-2025): por prudencia, toma como límite el 27-5-2027.",
+        "motivo": "La MDCG 2026-4 rev.1 da el 27-5-2027 como final del periodo de 12 meses de los organismos notificados; con el cómputo del Reg. 1182/71 sobre el aviso del 27-11-2025 sale el mismo día.",
+        "fuente_url": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf"
+      },
+      {
+        "fecha": "2026-11-01",
+        "campo": "fecha_verificacion",
+        "valor_anterior": "2026-10-14",
+        "valor_nuevo": "2026-11-01",
+        "motivo": "Reverificado con el Reg. (UE) 2024/1860 y la MDCG 2026-4 rev.1.",
+        "fuente_url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
       }
-    ]
+    ],
+    "nota_cambio": "La MDCG 2026-4 rev.1 sitúa el final el 27-5-2027 y la HPRA, el 28-5-2027. El art. 123(3)(e bis) MDR da «a más tardar 18 meses» desde la publicación del aviso (DOUE del 27-11-2025): por prudencia, toma como límite el 27-5-2027."
   },
   {
     "id": "2027-08-02-ai-act-sandboxes-anexo-i-gpai",

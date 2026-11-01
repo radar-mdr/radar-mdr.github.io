@@ -95,5 +95,25 @@
     "enlace_oficial": "https://health.ec.europa.eu/document/download/a9ad86b7-1b8e-4bae-beb4-48b2b3ed2f05_en?filename=mdcg_2025-10_en.pdf",
     "estado_ficha": "publicada",
     "fecha_verificacion": "2026-10-17"
+  },
+  {
+    "id": "mdcg-2026-4",
+    "codigo": "MDCG 2026-4 rev.1",
+    "titulo": "Gestión del SS(C)P en EUDAMED tras el uso obligatorio",
+    "emisor": "MDCG (Medical Device Coordination Group)",
+    "fecha": "Octubre de 2026 (rev.1)",
+    "temas": [
+      "EUDAMED",
+      "SSCP",
+      "SSP",
+      "MDR",
+      "IVDR",
+      "organismos notificados"
+    ],
+    "resumen_es": "**Qué es.** Una posición del MDCG sobre cómo se gestionan en EUDAMED el resumen sobre seguridad y funcionamiento clínico (SSCP, art. 32 MDR) y el resumen sobre seguridad y funcionamiento (SSP, art. 29 IVDR) desde que los cuatro primeros módulos son obligatorios, el 28-5-2026.\n\n**Ahora (transitorio).** Hasta que la nueva función esté en producción, el organismo notificado sube el SS(C)P «maestro» cuando registra o actualiza un certificado. Las traducciones no se suben: las gestiona el fabricante según la MDCG 2021-1 rev.1 y la MDCG 2022-12.\n\n**Después.** El fabricante sube a EUDAMED el SS(C)P maestro y sus traducciones. El organismo notificado marca, por cada Basic UDI-DI, qué SS(C)P o qué partes ha validado. Es responsabilidad del fabricante que el documento subido sea exactamente el validado.\n\n**Fechas.**\n\n- Función de carga para fabricantes: prevista en Playground en julio de 2026 y en producción en diciembre de 2026.\n- Productos comercializados antes del 28-5-2026: el fabricante debe subir su SS(C)P cuanto antes y como tarde el **27-3-2027**.\n- Certificados anteriores: el periodo de 12 meses para que los organismos notificados los registren termina, según el MDCG, el 27-5-2027 (la HPRA da el 28-5-2027: ver la cronología).\n\n**Ojo.** El MDCG avisa de que, para el SS(C)P, el transitorio de 6 meses para registrar los productos ya comercializados queda en la práctica muy recortado. Y la MDCG 2019-9 rev.1, sobre el contenido del SSCP, se está revisando para pasar la carga al fabricante.\n\n**Para qué te sirve.** Si fabricas implantables o clase III, o IVD de clases C o D, apunta el 27-3-2027 y ten listas las traducciones del SS(C)P antes de que llegue la función de carga.",
+    "relevancia_ia": 1,
+    "enlace_oficial": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf",
+    "estado_ficha": "publicada",
+    "fecha_verificacion": "2026-11-01"
   }
 ]
