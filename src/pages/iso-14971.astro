@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="ISO 14971 en 5 minutos"
+  description="Gestión de riesgos de productos sanitarios explicada en cinco minutos: peligro, situación peligrosa y daño, probabilidad por severidad, orden de prioridad de los controles y riesgo residual."
+>
+  <h1>ISO 14971 en 5 minutos</h1>
+  <p class="intro">
+    La ISO 14971 es la norma de gestión de riesgos de los productos sanitarios y la base del
+    anexo I del MDR. Aquí tienes la lógica, no el texto: la norma es de pago y se cita, no se copia.
+    Versión de referencia: EN ISO 14971:2019 (+A11:2021), con la guía de aplicación ISO/TR 24971.
+  </p>
+
+  <h2>1. La cadena: del peligro al daño</h2>
+  <ol class="cadena" aria-label="Cadena de riesgo">
+    <li><strong>Peligro</strong><span>Fuente potencial de daño. Ejemplo: un algoritmo que clasifica mal una lesión.</span></li>
+    <li><strong>Secuencia de sucesos</strong><span>Lo que tiene que pasar. Ejemplo: el usuario confía en el «no sospechoso» y no consulta.</span></li>
+    <li><strong>Situación peligrosa</strong><span>La persona queda expuesta. Ejemplo: un melanoma sin diagnosticar.</span></li>
+    <li><strong>Daño</strong><span>La lesión o el perjuicio. Ejemplo: diagnóstico tardío con peor pronóstico.</span></li>
+  </ol>
+  <p>
+    Un peligro no es un riesgo. El riesgo aparece cuando existe una situación peligrosa que puede
+    acabar en daño.
+  </p>
+
+  <h2>2. Estimar: probabilidad × severidad</h2>
+  <p>
+    <strong>Riesgo = probabilidad de que ocurra el daño × severidad de ese daño.</strong> La
+    probabilidad suele separarse en dos: que se produzca la situación peligrosa (P1) y que esa
+    situación acabe en daño (P2). Con eso se construye una matriz que cada fabricante define en
+    su plan de gestión de riesgos, con sus propios criterios de aceptabilidad.
+  </p>
+  <div class="tabla-scroll">
+    <table class="tabla matriz-riesgo">
+      <caption>Ejemplo de matriz de 3 × 3 (los criterios reales los fija tu plan)</caption>
+      <thead>
+        <tr><th scope="col">Probabilidad \ Severidad</th><th scope="col">Leve</th><th scope="col">Grave</th><th scope="col">Catastrófica</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Frecuente</th><td class="medio">Revisar</td><td class="alto">Inaceptable</td><td class="alto">Inaceptable</td></tr>
+        <tr><th scope="row">Ocasional</th><td class="bajo">Aceptable</td><td class="medio">Revisar</td><td class="alto">Inaceptable</td></tr>
+        <tr><th scope="row">Remota</th><td class="bajo">Aceptable</td><td class="bajo">Aceptable</td><td class="medio">Revisar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. Controlar, en este orden</h2>
+  <ol class="prioridad">
+    <li><strong>Seguridad inherente por diseño.</strong> Eliminar o reducir el riesgo en el propio diseño. Ejemplo: el algoritmo no da «no sospechoso» por debajo de cierta calidad de imagen.</li>
+    <li><strong>Medidas de protección</strong> en el producto o en su fabricación: alarmas, bloqueos, comprobaciones automáticas.</li>
+    <li><strong>Información para la seguridad</strong>: advertencias, instrucciones y formación. Es el último recurso, no el primero.</li>
+  </ol>
+  <p>
+    El MDR exige este mismo orden (anexo I, sección 4) y que los riesgos se reduzcan (sección 2)
+    <strong>«tanto como sea posible»</strong> sin empeorar la relación beneficio-riesgo. Por eso
+    no vale decir que el riesgo «ya es aceptable» si existe una medida razonable más.
+  </p>
+
+  <h2>4. Riesgo residual y beneficio-riesgo</h2>
+  <ul>
+    <li>Tras cada control, se <strong>verifica</strong> que se ha implantado y que es eficaz, y se reevalúa el riesgo.</li>
+    <li>Se comprueba que el control no introduce <strong>riesgos nuevos</strong>.</li>
+    <li>Al final se evalúa el <strong>riesgo residual global</strong> frente a los beneficios clínicos y se informa al usuario de los riesgos residuales relevantes.</li>
+  </ul>
+
+  <h2>5. No termina al comercializar</h2>
+  <p>
+    La información de producción y poscomercialización (reclamaciones, incidentes, PMCF,
+    literatura) vuelve al análisis de riesgos. Esto conecta la ISO 14971 con el PMS del MDR
+    (arts. 83-86) y, en IA, con el seguimiento poscomercialización del art. 72 del AI Act.
+  </p>
+
+  <aside class="caja">
+    <h2>Chuleta de documentos</h2>
+    <p>
+      Plan de gestión de riesgos → análisis de riesgos (p. ej., AMFE o análisis de peligros) →
+      evaluación y controles con su verificación → evaluación del riesgo residual global →
+      informe de gestión de riesgos → revisión con datos de PMS.
+    </p>
+    <p class="fuente-dato">
+      Términos: <a href="/glosario#peligro">peligro</a>, <a href="/glosario#situacion-peligrosa">situación peligrosa</a>,
+      <a href="/glosario#riesgo-residual">riesgo residual</a>, <a href="/glosario#control-riesgo">medida de control</a>.
+      Ficha de la norma: <a href="https://www.iso.org/standard/72704.html" rel="external noopener">ISO 14971:2019 en iso.org</a>.
+    </p>
+  </aside>
+</Base>
+
+<style>
+  .intro { max-width: 46rem; }
+  .cadena { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.75rem; counter-reset: paso; }
+  .cadena li {
+    border: 1px solid var(--borde); border-top: 4px solid var(--acento); border-radius: 6px;
+    padding: 0.75rem 1rem; background: var(--fondo-alt);
+  }
+  .cadena li span { display: block; font-size: 0.92rem; color: var(--texto-suave); margin-top: 0.25rem; }
+  caption { text-align: left; font-weight: 600; padding-bottom: 0.4rem; }
+  .matriz-riesgo { max-width: 36rem; }
+  .matriz-riesgo td { text-align: center; font-weight: 600; }
+  .bajo { background: var(--ok-fondo); color: var(--ok-texto); }
+  .medio { background: var(--aviso-fondo); color: var(--aviso-texto); }
+  .alto { background: var(--urgente-fondo); color: var(--urgente-texto); }
+  .prioridad li, ul li { margin-bottom: 0.5rem; max-width: 46rem; }
+</style>

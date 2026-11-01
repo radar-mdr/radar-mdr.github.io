@@ -1,21 +1,199 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+
+const todas = await getCollection('obligaciones');
+const porNorma = (norma: string, ambito: string) =>
+  todas.map((o) => o.data).filter((o) => o.norma === norma && o.ambito === ambito);
+
+const filasMdr = porNorma('MDR', 'clase');
+const filasIvdr = porNorma('IVDR', 'clase');
+const actores = porNorma('MDR', 'actor');
+const columnasMdr = ['I', 'Is/Im/Ir', 'IIa', 'IIb', 'III'];
+const columnasIvdr = ['A', 'A estéril', 'B', 'C', 'D'];
+
+const MDR_ELI = 'https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa';
+const capitulos = [
+  ['I', 'Ámbito de aplicación y definiciones', '1-4'],
+  ['II', 'Comercialización, obligaciones de los agentes económicos, reprocesamiento, marcado CE y libre circulación', '5-24'],
+  ['III', 'Identificación y trazabilidad, registro, SSCP y EUDAMED', '25-34'],
+  ['IV', 'Organismos notificados', '35-50'],
+  ['V', 'Clasificación y evaluación de la conformidad', '51-60'],
+  ['VI', 'Evaluación clínica e investigaciones clínicas', '61-82'],
+  ['VII', 'Seguimiento poscomercialización, vigilancia y control del mercado', '83-100'],
+  ['VIII', 'Cooperación entre Estados miembros, MDCG, laboratorios, paneles de expertos y registros', '101-108'],
+  ['IX', 'Confidencialidad, protección de datos, financiación y sanciones', '109-113'],
+  ['X', 'Disposiciones finales (incluidos los transitorios del art. 120)', '114-123'],
+];
+const anexos = [
+  ['I', 'Requisitos generales de seguridad y funcionamiento (GSPR)'],
+  ['II', 'Documentación técnica'],
+  ['III', 'Documentación técnica sobre seguimiento poscomercialización'],
+  ['IV', 'Declaración UE de conformidad'],
+  ['V', 'Marcado CE'],
+  ['VI', 'Información para el registro, UDI-DI básico y sistema UDI'],
+  ['VII', 'Requisitos de los organismos notificados'],
+  ['VIII', 'Reglas de clasificación (incluida la Regla 11 del software)'],
+  ['IX', 'Evaluación basada en el SGC y en la documentación técnica'],
+  ['X', 'Examen de tipo'],
+  ['XI', 'Verificación de la conformidad del producto'],
+  ['XII', 'Certificados de los organismos notificados'],
+  ['XIII', 'Productos a medida'],
+  ['XIV', 'Evaluación clínica y PMCF'],
+  ['XV', 'Investigaciones clínicas'],
+  ['XVI', 'Productos sin finalidad médica (art. 1.2)'],
+  ['XVII', 'Tabla de correspondencias con las directivas'],
+];
 ---
 
 <Base
   title="Obligaciones por clase de producto"
-  description="Matrices MDR e IVDR: qué requisitos aplican a cada clase de producto sanitario."
+  description="Qué te exige el MDR y el IVDR según tu clase: ruta de conformidad, PMS, PSUR, SSCP, UDI, PRRC y plazos de vigilancia. Con artículo y enlace a EUR-Lex."
 >
   <h1>Obligaciones por clase de producto</h1>
-  <p>
-    Matrices MDR (I, Is/Im, IIa, IIb, III) e IVDR (A-D) cruzadas con los requisitos que de verdad
-    condicionan tu plan: evaluación clínica, organismo notificado, UDI/EUDAMED, PMS/PMCF y PSUR.
+  <p class="intro">
+    Qué cambia de una clase a otra en el MDR y el IVDR, fila a fila. Cada celda resume el
+    artículo; la fuente es el texto oficial en EUR-Lex. Lo que la
+    <a href="/en-tramitacion">propuesta de revisión</a> quiere cambiar no aparece aquí:
+    esta página recoge solo derecho vigente.
   </p>
-  <div class="proximamente">
-    <h2>Próximamente</h2>
-    <p>
-      Esta sección está en construcción (agosto de 2026). Mientras tanto, la
-      <a href="/">cronología de plazos</a> ya incluye las clases afectadas por cada fecha.
+  <nav class="indice" aria-label="En esta página">
+    <a href="#matriz-mdr">Matriz MDR</a> · <a href="#vigilancia">Plazos de vigilancia</a> ·
+    <a href="#matriz-ivdr">Matriz IVDR</a> · <a href="#actores">Fichas por agente</a> ·
+    <a href="#mapa">Mapa del MDR</a>
+  </nav>
+
+  <h2 id="matriz-mdr">Matriz MDR por clase</h2>
+  <p class="fuente-dato">
+    Is/Im/Ir: clase I estéril, con función de medición o instrumento quirúrgico reutilizable.
+    Verificado contra EUR-Lex el 14-10-2026.
+  </p>
+  <div class="tabla-scroll">
+    <table class="tabla matriz">
+      <caption class="visually-hidden">Obligaciones del MDR por clase de producto</caption>
+      <thead>
+        <tr>
+          <th scope="col">Obligación</th>
+          {columnasMdr.map((c) => <th scope="col">Clase {c}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {filasMdr.map((o) => (
+          <tr>
+            <th scope="row">
+              {o.obligacion}
+              <span class="ref"><a href={o.fuente_url} rel="external noopener">{o.articulo}</a></span>
+            </th>
+            {columnasMdr.map((c) => (
+              <td class={o.por_clase?.[c]?.startsWith('No aplica') ? 'na' : undefined}>{o.por_clase?.[c] ?? '—'}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <section id="vigilancia" class="caja vigilancia">
+    <h2>Plazos de notificación de incidentes graves (vigentes)</h2>
+    <ul class="plazos-vigilancia">
+      <li><strong>15 días</strong> como máximo desde que el fabricante tiene conocimiento del incidente grave (regla general).</li>
+      <li><strong>10 días</strong> en caso de muerte o deterioro grave imprevisto del estado de salud.</li>
+      <li><strong>2 días</strong> si hay una amenaza grave para la salud pública.</li>
+    </ul>
+    <p class="fuente-dato">
+      MDR art. 87.3-87.5 e IVDR art. 82 · <a href={`${MDR_ELI}#art_87`} rel="external noopener">texto oficial</a>.
+      La propuesta de revisión plantea 30 días para la regla general, pero
+      <strong>hoy, y en el examen, valen 15</strong>.
     </p>
+  </section>
+
+  <h2 id="matriz-ivdr">Matriz IVDR por clase</h2>
+  <div class="tabla-scroll">
+    <table class="tabla matriz">
+      <caption class="visually-hidden">Obligaciones del IVDR por clase de producto</caption>
+      <thead>
+        <tr>
+          <th scope="col">Obligación</th>
+          {columnasIvdr.map((c) => <th scope="col">Clase {c}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {filasIvdr.map((o) => (
+          <tr>
+            <th scope="row">
+              {o.obligacion}
+              <span class="ref"><a href={o.fuente_url} rel="external noopener">{o.articulo}</a></span>
+            </th>
+            {columnasIvdr.map((c) => (
+              <td class={o.por_clase?.[c]?.startsWith('No aplica') ? 'na' : undefined}>{o.por_clase?.[c] ?? '—'}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="fuente-dato">
+    Los transitorios IVDR por clase (D hasta el 31-12-2027, C hasta el 31-12-2028, B y A estéril
+    hasta el 31-12-2029) están en la <a href="/?norma=IVDR">cronología filtrada por IVDR</a>.
+  </p>
+
+  <h2 id="actores">Fichas por agente económico</h2>
+  <div class="fichas">
+    {actores.map((a) => (
+      <article class="ficha">
+        <h3>{a.tema}</h3>
+        <p>{a.obligacion}</p>
+        <p class="ficha-evidencia"><strong>Evidencia típica:</strong> {a.evidencia_requerida}</p>
+        <p class="ref"><a href={a.fuente_url} rel="external noopener">MDR {a.articulo}</a></p>
+      </article>
+    ))}
+  </div>
+
+  <h2 id="mapa">Mapa del MDR: 10 capítulos y 17 anexos</h2>
+  <p>Cada enlace abre el texto oficial en español en el punto exacto de EUR-Lex.</p>
+  <div class="mapa">
+    <div>
+      <h3>Capítulos</h3>
+      <ol class="lista-mapa">
+        {capitulos.map(([n, titulo, arts]) => (
+          <li>
+            <a href={`${MDR_ELI}#cpt_${n}`} rel="external noopener"><strong>Cap. {n}</strong> {titulo}</a>
+            <span class="arts">arts. {arts}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <div>
+      <h3>Anexos</h3>
+      <ol class="lista-mapa">
+        {anexos.map(([n, titulo]) => (
+          <li>
+            <a href={`${MDR_ELI}#anx_${n}`} rel="external noopener"><strong>Anexo {n}</strong> {titulo}</a>
+          </li>
+        ))}
+      </ol>
+    </div>
   </div>
 </Base>
+
+<style>
+  .intro { max-width: 46rem; }
+  .indice { font-size: 0.95rem; margin: 1rem 0; }
+  .matriz th[scope='row'] { min-width: 13rem; }
+  .matriz td { min-width: 9rem; }
+  .matriz td.na { color: var(--texto-suave); background: #fafbfc; }
+  .ref { display: block; font-weight: 400; font-size: 0.82rem; margin-top: 0.25rem; }
+  .vigilancia { margin-top: 2rem; }
+  .plazos-vigilancia { padding-left: 1.2rem; }
+  .plazos-vigilancia li { margin: 0.3rem 0; }
+  .fichas { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; }
+  .ficha { border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.25rem; }
+  .ficha h3 { margin-top: 0; }
+  .ficha-evidencia { font-size: 0.92rem; color: var(--texto-suave); }
+  .mapa { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1.5rem; }
+  .lista-mapa { list-style: none; padding: 0; margin: 0; }
+  .lista-mapa li { padding: 0.35rem 0; border-bottom: 1px solid var(--borde); }
+  .lista-mapa a { text-decoration: none; }
+  .lista-mapa a:hover { text-decoration: underline; }
+  .arts { display: block; font-size: 0.82rem; color: var(--texto-suave); }
+</style>

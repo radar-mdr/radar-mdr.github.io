@@ -2,8 +2,10 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
-const guias = (await getCollection('guias')).sort((a, b) =>
-  b.data.relevancia_ia - a.data.relevancia_ia
+const guias = (await getCollection('guias')).sort(
+  (a, b) =>
+    Number(b.data.estado_ficha === 'publicada') - Number(a.data.estado_ficha === 'publicada') ||
+    b.data.relevancia_ia - a.data.relevancia_ia
 );
 ---
 
@@ -25,30 +27,29 @@ const guias = (await getCollection('guias')).sort((a, b) =>
           <h2>{g.data.codigo}</h2>
           <p class="guia-titulo">{g.data.titulo}</p>
           <p class="guia-meta">
-            <span class="chip">Relevancia para IA: {'●'.repeat(g.data.relevancia_ia)}{'○'.repeat(5 - g.data.relevancia_ia)} ({g.data.relevancia_ia}/5)</span>
+            <span class="chip">Relevancia para IA: <span aria-hidden="true">{'●'.repeat(g.data.relevancia_ia)}{'○'.repeat(5 - g.data.relevancia_ia)}</span> {g.data.relevancia_ia}/5</span>
             {g.data.temas.map((t) => (
               <span class="chip">{t}</span>
             ))}
           </p>
           {g.data.estado_ficha === 'proximamente' ? (
-            <p class="guia-estado">Ficha en preparación (julio-agosto 2026).</p>
+            <p class="guia-estado">Ficha en español en preparación. Mientras tanto, enlazamos el original.</p>
           ) : (
             <p><a href={`/guias/${g.data.id}/`}>Leer la ficha en español →</a></p>
           )}
           <p>
             <a href={g.data.enlace_oficial} rel="external noopener">Documento oficial (Comisión Europea)</a>
+            {g.data.fecha_verificacion && <span class="fuente-dato"> · verificado el {g.data.fecha_verificacion}</span>}
           </p>
         </li>
       ))
     }
   </ul>
 
-  <div class="proximamente">
-    <p>
-      Objetivo del verano: 5 fichas completas en español. ¿Echas de menos una guía concreta?
-      <a href="/newsletter">Dímelo por aquí</a>.
-    </p>
-  </div>
+  <p class="pie-guias">
+    ¿Qué guía te gustaría ver resumida en español?
+    <a href="/sobre-mi">Escríbeme</a> y la priorizo.
+  </p>
 </Base>
 
 <style>

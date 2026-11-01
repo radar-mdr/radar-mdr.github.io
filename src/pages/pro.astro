@@ -1,35 +1,59 @@
 ---
 // Página "fantasma": mide intención de pago real ANTES de construir nada.
 // No promete lo que no existe: dice claramente "lanzamiento 2027, acceso
-// anticipado". Los clics + registros del formulario son la métrica de corte.
-// TODO(S7): crear el formulario en tally.so (tamaño de empresa · clase de
-// producto · "¿qué precio mensual te parecería justo?") y descomentar el
-// iframe de abajo sustituyendo TALLY_ID.
+// anticipado". Lo de pago no puede ser lo mismo que lo gratis (CC BY): el valor
+// está en filtrar por la cartera del cliente y en la evidencia auditable.
+// TODO: crear el formulario en tally.so (tamaño de empresa · clases · horas/mes
+// que dedica hoy · alternativa actual · precio justo) y descomentar el iframe.
 import Base from '../layouts/Base.astro';
+import { SITIO } from '../config';
+
+const filas = [
+  ['Cronología completa con fuente y fecha de verificación', 'Sí', 'Sí'],
+  ['Filtros por rol y clase, y enlace para compartirlos', 'Sí', 'Sí'],
+  ['Calendario general de plazos (.ics) con aviso a 30 días', 'Sí', 'Sí'],
+  ['RSS, API pública y matrices de obligaciones', 'Sí (CC BY)', 'Sí'],
+  ['Cartera de productos: solo las alertas de tus productos, clases y mercados', '—', 'Sí'],
+  ['Avisos a 90, 30 y 7 días por email o Teams, con el impacto en tu expediente', '—', 'Sí'],
+  ['Calendario privado con los hitos de tu expediente (certificados, PSUR, EUDAMED)', '—', 'Sí'],
+  ['Histórico de cambios exportable como evidencia de vigilancia regulatoria para auditorías ISO 13485 y del organismo notificado', '—', 'Sí'],
+  ['API privada con webhooks hacia tu eQMS, Jira o Notion', '—', 'Sí'],
+];
 ---
 
 <Base
-  title="Radar Pro — alertas personalizadas (acceso anticipado)"
-  description="Alertas regulatorias personalizadas por clase de producto, calendario privado y API. Lanzamiento 2027 — apúntate al acceso anticipado."
+  title="Radar Pro: alertas para tu cartera de productos (2027)"
+  description="Alertas regulatorias filtradas por tu cartera de productos, calendario privado e histórico auditable. Lanzamiento en 2027: apúntate al acceso anticipado."
 >
   <h1>Radar Pro: que los plazos te encuentren a ti</h1>
-  <p>
-    El Radar público te da la cronología completa. Radar Pro vigilará por ti lo que afecta a
-    <strong>tu</strong> producto:
+  <p class="intro">
+    El Radar público seguirá siendo gratuito y abierto. Radar Pro hará lo que una web pública no
+    puede: vigilar <strong>tu</strong> cartera de productos y dejarte la evidencia lista para la
+    auditoría.
   </p>
-  <ul>
-    <li><strong>Alertas por clase de producto</strong> a 90, 30 y 7 días (email), solo de las normas que te aplican.</li>
-    <li><strong>Calendario privado</strong> con los hitos de tu expediente (transitorios, EUDAMED, AI Act).</li>
-    <li><strong>Acceso API</strong> para integrar los plazos en tu QMS o tu Notion/Jira.</li>
-  </ul>
+
+  <div class="tabla-scroll">
+    <table class="tabla">
+      <caption class="visually-hidden">Qué es gratuito y qué será de pago</caption>
+      <thead>
+        <tr><th scope="col">Funcionalidad</th><th scope="col">Radar (gratis)</th><th scope="col">Radar Pro</th></tr>
+      </thead>
+      <tbody>
+        {filas.map(([f, g, p]) => (
+          <tr><td>{f}</td><td>{g}</td><td>{p}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
   <p>
-    <em>Lanzamiento previsto: 2027. Precio orientativo de salida: 49-99 €/mes según tamaño de
-    empresa.</em> Los primeros registros tendrán precio de fundador y acceso anticipado gratuito
-    durante la beta.
+    <em>Lanzamiento previsto: 2027. Precio orientativo: 49-99 €/mes según el tamaño de la
+    empresa.</em> Hoy no se cobra nada. Los primeros de la lista tendrán acceso anticipado
+    gratuito durante la beta y precio de fundador.
   </p>
 
   <!--
-    Formulario Tally (S7): descomentar y sustituir TALLY_ID cuando exista.
+    Formulario Tally: descomentar y sustituir TALLY_ID cuando exista.
     <iframe
       data-tally-src="https://tally.so/embed/TALLY_ID?alignLeft=1&hideTitle=1&transparentBackground=1"
       loading="lazy" width="100%" height="380" frameborder="0"
@@ -40,17 +64,22 @@ import Base from '../layouts/Base.astro';
     <h2>Lista de espera</h2>
     <p>
       Escribe a
-      <a href="mailto:radar.mdr.aiact@gmail.com?subject=RADAR%20PRO%20%E2%80%94%20acceso%20anticipado">radar.mdr.aiact@gmail.com</a>
-      con el asunto «RADAR PRO» contándome qué producto tienes y qué alerta te ahorraría más
-      tiempo. Formulario propio en camino.
+      <a href={`mailto:${SITIO.email}?subject=${encodeURIComponent('RADAR PRO: acceso anticipado')}`}>{SITIO.email}</a>
+      con el asunto «RADAR PRO» y cuéntame tres cosas:
     </p>
+    <ol>
+      <li>Qué productos tienes (clase y mercado).</li>
+      <li>Cuántas horas al mes dedicáis hoy a vigilar cambios regulatorios.</li>
+      <li>Qué haríais si el Radar no existiera: hacerlo a mano, pagar a una consultora u otra herramienta.</li>
+    </ol>
   </div>
 
-  <p><small>Sin spam: solo el boletín quincenal y el aviso de apertura de la beta.</small></p>
+  <p><small>Sin spam: solo el boletín quincenal y el aviso de apertura de la beta. <a href="/privacidad">Privacidad</a>.</small></p>
 </Base>
 
 <style>
-  ul li { margin-bottom: 0.5rem; max-width: 46rem; }
-  .alta { border: 2px solid var(--acento); border-radius: 8px; padding: 1rem 1.5rem; max-width: 40rem; }
+  .intro { max-width: 46rem; }
+  .tabla td:nth-child(2), .tabla td:nth-child(3) { text-align: center; white-space: nowrap; }
+  .alta { border: 2px solid var(--acento); border-radius: 8px; padding: 1rem 1.5rem; max-width: 40rem; margin-top: 1rem; }
   .alta h2 { margin-top: 0; }
 </style>

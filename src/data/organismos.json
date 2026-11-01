@@ -1,1 +1,606 @@
-[]
+[
+  {
+    "id": "nb-0044",
+    "numero_nando": "0044",
+    "nombre": "TÜV NORD CERT GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0050",
+    "numero_nando": "0050",
+    "nombre": "National Standards Authority of Ireland (NSAI)",
+    "pais": "Irlanda",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0051",
+    "numero_nando": "0051",
+    "nombre": "IMQ ISTITUTO ITALIANO DEL MARCHIO DI QUALITÀ S.P.A.",
+    "pais": "Italia",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0068",
+    "numero_nando": "0068",
+    "nombre": "MTIC InterCert S.r.l.",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0123",
+    "numero_nando": "0123",
+    "nombre": "TÜV SÜD Product Service GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0124",
+    "numero_nando": "0124",
+    "nombre": "DEKRA Certification GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0197",
+    "numero_nando": "0197",
+    "nombre": "TÜV Rheinland LGA Products GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0297",
+    "numero_nando": "0297",
+    "nombre": "DQS Medizinprodukte GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0318",
+    "numero_nando": "0318",
+    "nombre": "Centro Nacional de Certificación de Productos Sanitarios (CNCps)",
+    "pais": "España",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14",
+    "notas": "Organismo notificado español, integrado en la AEMPS. Designado también para IVDR."
+  },
+  {
+    "id": "nb-0333",
+    "numero_nando": "0333",
+    "nombre": "AFNOR Certification",
+    "pais": "Francia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0344",
+    "numero_nando": "0344",
+    "nombre": "DEKRA Certification B.V.",
+    "pais": "Países Bajos",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0373",
+    "numero_nando": "0373",
+    "nombre": "ISTITUTO SUPERIORE DI SANITA'",
+    "pais": "Italia",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14",
+    "notas": "Instituto público italiano de salud."
+  },
+  {
+    "id": "nb-0425",
+    "numero_nando": "0425",
+    "nombre": "ICIM S.P.A.",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0426",
+    "numero_nando": "0426",
+    "nombre": "ITALCERT SRL",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0459",
+    "numero_nando": "0459",
+    "nombre": "GMED SAS",
+    "pais": "Francia",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0476",
+    "numero_nando": "0476",
+    "nombre": "KIWA CERMET ITALIA S.P.A.",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0477",
+    "numero_nando": "0477",
+    "nombre": "Eurofins Product Testing Italy S.r.l.",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0482",
+    "numero_nando": "0482",
+    "nombre": "DNV MEDCERT GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0483",
+    "numero_nando": "0483",
+    "nombre": "mdc medical device certification GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0494",
+    "numero_nando": "0494",
+    "nombre": "SLG PRÜF UND ZERTIFIZIERUNGS GMBH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0537",
+    "numero_nando": "0537",
+    "nombre": "Eurofins Electric & Electronics Finland Oy",
+    "pais": "Finlandia",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0546",
+    "numero_nando": "0546",
+    "nombre": "CERTIQUALITY S.r.l.",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0598",
+    "numero_nando": "0598",
+    "nombre": "SGS FIMKO OY",
+    "pais": "Finlandia",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-0633",
+    "numero_nando": "0633",
+    "nombre": "Berlin Cert GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1011",
+    "numero_nando": "1011",
+    "nombre": "NEOEMKI Nemzeti Orvostechnikai Eszköz Megfelelőségértékelő és Tanúsító Kft. (NEOEMKI LLC)",
+    "pais": "Hungría",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1023",
+    "numero_nando": "1023",
+    "nombre": "INSTITUT PRO TESTOVÁNI A CERTIFIKACI, a. s. (INSTITUTE FOR TESTING AND CERTIFICATION)",
+    "pais": "Chequia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14",
+    "notas": "Ha absorbido al antiguo organismo 1390 (según NANDO)."
+  },
+  {
+    "id": "nb-1282",
+    "numero_nando": "1282",
+    "nombre": "ENTE CERTIFICAZIONE MACCHINE SRL",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1304",
+    "numero_nando": "1304",
+    "nombre": "SLOVENIAN INSTITUTE OF QUALITY AND METROLOGY - SIQ",
+    "pais": "Eslovenia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1370",
+    "numero_nando": "1370",
+    "nombre": "BUREAU VERITAS ITALIA S.P.A.",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1383",
+    "numero_nando": "1383",
+    "nombre": "CESKY METROLOGICKY INSTITUT",
+    "pais": "Chequia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1434",
+    "numero_nando": "1434",
+    "nombre": "POLSKIE CENTRUM BADAN I CERTYFIKACJI S.A.",
+    "pais": "Polonia",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1639",
+    "numero_nando": "1639",
+    "nombre": "SGS Belgium NV",
+    "pais": "Bélgica",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1912",
+    "numero_nando": "1912",
+    "nombre": "Kiwa Assurance B.V.",
+    "pais": "Países Bajos",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1936",
+    "numero_nando": "1936",
+    "nombre": "TUV Rheinland Italia SRL",
+    "pais": "Italia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-1984",
+    "numero_nando": "1984",
+    "nombre": "Kiwa Belgelendirme Hizmetleri A.Ş.",
+    "pais": "Turquía",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2265",
+    "numero_nando": "2265",
+    "nombre": "3EC International a.s.",
+    "pais": "Eslovaquia",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2274",
+    "numero_nando": "2274",
+    "nombre": "TUV NORD Polska Sp. z o.o",
+    "pais": "Polonia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2292",
+    "numero_nando": "2292",
+    "nombre": "UDEM Uluslararasi Belgelendirme Denetim Egitim Merkezi San. ve Tic. A.Ş.",
+    "pais": "Turquía",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2409",
+    "numero_nando": "2409",
+    "nombre": "CE Certiso Orvos- és Kórháztechnikai Ellenőrző és Tanúsító Kft.",
+    "pais": "Hungría",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2443",
+    "numero_nando": "2443",
+    "nombre": "TÜV SÜD Danmark",
+    "pais": "Dinamarca",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2460",
+    "numero_nando": "2460",
+    "nombre": "DNV Product Assurance AS",
+    "pais": "Noruega",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2696",
+    "numero_nando": "2696",
+    "nombre": "UDEM Adriatic d.o.o.",
+    "pais": "Croacia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2764",
+    "numero_nando": "2764",
+    "nombre": "Notice Belgelendirme, Muayene ve Denetim Hizmetleri Anonim Şirketi",
+    "pais": "Turquía",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2797",
+    "numero_nando": "2797",
+    "nombre": "BSI Group The Netherlands B.V.",
+    "pais": "Países Bajos",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2803",
+    "numero_nando": "2803",
+    "nombre": "HTCert (Health Technology Certification Ltd)",
+    "pais": "Chipre",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2862",
+    "numero_nando": "2862",
+    "nombre": "Intertek Medical Notified Body AB",
+    "pais": "Suecia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2962",
+    "numero_nando": "2962",
+    "nombre": "QMD Services GmbH",
+    "pais": "Austria",
+    "ambito": [
+      "MDR",
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-2975",
+    "numero_nando": "2975",
+    "nombre": "SZUTEST Konformitätsbewertungsstelle GmbH",
+    "pais": "Alemania",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-3018",
+    "numero_nando": "3018",
+    "nombre": "Kiwa Sertio Oy",
+    "pais": "Finlandia",
+    "ambito": [
+      "IVDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:35,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-3022",
+    "numero_nando": "3022",
+    "nombre": "Scarlet NB B.V.",
+    "pais": "Países Bajos",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-3033",
+    "numero_nando": "3033",
+    "nombre": "TÜV NORD Scandinavia Medical Notified Body AB",
+    "pais": "Suecia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-3121",
+    "numero_nando": "3121",
+    "nombre": "NOTICE, storitve ugotavljanja skladnosti, d.o.o.",
+    "pais": "Eslovenia",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "nb-3132",
+    "numero_nando": "3132",
+    "nombre": "Malta Conformity Assessment Ltd.",
+    "pais": "Malta",
+    "ambito": [
+      "MDR"
+    ],
+    "fuente_url": "https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1",
+    "fecha_verificacion": "2026-10-14"
+  }
+]

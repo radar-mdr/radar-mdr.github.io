@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITIO } from '../config';
+
+const conButtondown = Boolean(SITIO.buttondownUsuario);
+const conAnalitica = Boolean(SITIO.goatcounterCodigo);
+---
+
+<Base title="Privacidad" description="Qué datos trata el Radar MDR × AI Act, para qué, con qué base jurídica y cómo ejercer tus derechos (RGPD).">
+  <h1>Privacidad</h1>
+  <p class="intro">
+    Versión breve: solo tratamos tu email si te suscribes a la newsletter, y no usamos cookies
+    de seguimiento.
+  </p>
+
+  <dl class="rgpd">
+    <dt>Responsable</dt>
+    <dd>{SITIO.autor}. Contacto: <a href={`mailto:${SITIO.email}`}>{SITIO.email}</a>.</dd>
+
+    <dt>Qué datos</dt>
+    <dd>
+      Tu dirección de email, solo si te suscribes al Radar quincenal o me escribes. No pedimos
+      ningún otro dato.
+    </dd>
+
+    <dt>Para qué</dt>
+    <dd>Enviarte la newsletter y, si me escribes, contestarte.</dd>
+
+    <dt>Base jurídica</dt>
+    <dd>
+      Tu consentimiento (art. 6.1.a del RGPD). Puedes retirarlo cuando quieras
+      {conButtondown
+        ? ' con el enlace de baja que incluye cada envío.'
+        : ' respondiendo «BAJA» a cualquier envío o escribiendo al contacto de arriba.'}
+    </dd>
+
+    <dt>Quién más los ve</dt>
+    <dd>
+      Nadie más, salvo los proveedores técnicos que actúan como encargados del tratamiento:
+      {conButtondown
+        ? ' Buttondown, que gestiona el envío de la newsletter,'
+        : ' el proveedor del correo con el que gestiono las altas,'}
+      {' '}y el alojamiento de la web, que registra datos técnicos de acceso (como la IP) por seguridad.
+      No cedemos ni vendemos datos.
+    </dd>
+
+    <dt>Cuánto tiempo</dt>
+    <dd>Hasta que te des de baja. Después borramos tu email de la lista.</dd>
+
+    <dt>Tus derechos</dt>
+    <dd>
+      Acceso, rectificación, supresión, oposición, limitación y portabilidad: escribe al contacto
+      de arriba. Si crees que no se han respetado, puedes reclamar ante la
+      <a href="https://www.aepd.es/" rel="external noopener">Agencia Española de Protección de Datos</a>.
+    </dd>
+
+    <dt>Cookies y analítica</dt>
+    <dd>
+      {conAnalitica
+        ? 'Usamos GoatCounter, una analítica que no usa cookies ni identifica a las personas: solo cuenta visitas agregadas (página, país, origen).'
+        : 'No usamos cookies ni analítica de terceros.'}
+    </dd>
+  </dl>
+  <p class="fuente-dato">Última actualización: 14 de octubre de 2026.</p>
+</Base>
+
+<style>
+  .intro { max-width: 46rem; font-size: 1.05rem; }
+  .rgpd { display: grid; grid-template-columns: 11rem 1fr; gap: 0.75rem 1.25rem; max-width: 52rem; }
+  .rgpd dt { font-weight: 700; }
+  .rgpd dd { margin: 0; }
+  @media (max-width: 40rem) { .rgpd { grid-template-columns: 1fr; } .rgpd dd { margin-bottom: 0.5rem; } }
+</style>

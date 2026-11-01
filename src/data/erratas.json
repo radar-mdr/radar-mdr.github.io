@@ -1,0 +1,38 @@
+[
+  {
+    "id": "E-001",
+    "fecha_deteccion": "2026-10-14",
+    "fecha_correccion": "2026-10-14",
+    "paginas": ["/", "/ia-clinica", "/glosario"],
+    "dato_erroneo": "«Los sistemas comercializados antes de las fechas evitan las obligaciones de alto riesgo salvo modificación sustancial».",
+    "correccion": "El art. 111(2) del AI Act habla de «cambios significativos en su diseño». La «modificación sustancial» (art. 3(23)) es otro concepto: obliga a repetir la evaluación de la conformidad (art. 43(4)). Además, el periodo de gracia se aplica por tipo y modelo: si una unidad se comercializó antes de la fecha, las demás unidades del mismo modelo también están cubiertas.",
+    "causa_raiz": "El texto venía del plan inicial y no se contrastó con el artículo. Los dos conceptos se confunden en muchos resúmenes secundarios, que fueron la base del primer borrador.",
+    "accion_correctiva": "Cada matiz de la portada cita ahora su artículo. La metodología exige contrastar con el texto legal cualquier término jurídico entre comillas antes de publicarlo.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
+    "estado": "cerrada"
+  },
+  {
+    "id": "E-002",
+    "fecha_deteccion": "2026-10-14",
+    "fecha_correccion": "2026-10-14",
+    "paginas": ["/"],
+    "dato_erroneo": "«La Comisión podrá desactivar duplicidades con la normativa de productos sanitarios vía actos de ejecución».",
+    "correccion": "El instrumento son actos delegados (nuevo art. 2(13) del AI Act, introducido por el Reg. (UE) 2026/1744), con fecha límite del 2-8-2027. Pueden limitar requisitos de los arts. 9 a 15 y 17 a 25 cuando el MDR/IVDR ya ofrezca una protección equivalente o mayor.",
+    "causa_raiz": "Se redactó con resúmenes del acuerdo político, antes de que el texto final saliera en el DOUE.",
+    "accion_correctiva": "Cuando una norma pasa de acuerdo político a publicación en el DOUE, se revisan todos los datos que dependían de ella. Hasta entonces llevan una nota de cambio visible. El paso queda escrito en la metodología.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
+    "estado": "cerrada"
+  },
+  {
+    "id": "E-003",
+    "fecha_deteccion": "2026-10-14",
+    "fecha_correccion": "2026-10-14",
+    "paginas": ["/ia-clinica", "/"],
+    "dato_erroneo": "«Alto riesgo cuando requiere organismo notificado: clases IIa, IIb y III (MDR) y B, C y D (IVDR)».",
+    "correccion": "Según la Tabla 1 de la MDCG 2025-6 también cumplen la condición la clase I estéril, de medición o quirúrgica reutilizable, la IVD A estéril y la mayoría de productos del anexo XVI. Quedan fuera la clase I sin organismo notificado, la IVD A no estéril y los productos fabricados en el propio centro sanitario (art. 5.5).",
+    "causa_raiz": "Se resumió «requiere organismo notificado» pensando solo en las clases altas, sin consultar la tabla de la propia guía.",
+    "accion_correctiva": "La página de IA clínica reproduce ahora la tabla de la guía con su enlace. El plazo del 2-8-2028 incluye todas las clases afectadas y comparte vocabulario con el filtro de clases.",
+    "fuente_url": "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en",
+    "estado": "cerrada"
+  }
+]

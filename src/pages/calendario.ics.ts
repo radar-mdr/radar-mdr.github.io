@@ -4,6 +4,7 @@
 // "suscríbete al calendario de plazos" convierte mejor que cualquier PDF.
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { SITIO } from '../config';
 
 function esc(t: unknown): string {
   return String(t ?? '')
@@ -29,12 +30,14 @@ export const GET: APIRoute = async () => {
   const plazos = await getCollection('plazos');
   const ahora = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
-  const eventos = plazos.map(({ data: p }) => {
+  // Lo que está en tramitación no es una fecha: no entra en el calendario.
+  const eventos = plazos.filter(({ data: p }) => p.estado !== 'en_tramitacion').map(({ data: p }) => {
     const pendiente = p.estado === 'pendiente_confirmacion' ? ' (fecha por confirmar)' : '';
     return [
       'BEGIN:VEVENT',
       `UID:${p.id}@radar-mdr-aiact`,
       `DTSTAMP:${ahora}`,
+      `URL:${new URL(`/#${p.id}`, SITIO.dominio).href}`,
       `DTSTART;VALUE=DATE:${fechaICS(p.fecha)}`,
       `DTEND;VALUE=DATE:${diaSiguiente(p.fecha)}`,
       `SUMMARY:${esc(`[${p.norma}] ${p.descripcion_corta}${pendiente}`)}`,

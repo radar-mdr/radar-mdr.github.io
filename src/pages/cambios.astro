@@ -1,47 +1,109 @@
 ---
-// Registro de cambios autogenerado desde nota_cambio + fecha_verificacion.
-// Doble uso: transparencia pública + borrador de la newsletter quincenal
-// (copia las entradas desde el último envío y ya tienes el boletín).
+// Registro de cambios generado desde el `historial` de cada plazo.
+// Doble uso: control de cambios público (ALCOA+: nada se borra) y borrador de
+// la newsletter (las entradas desde el último envío son el boletín).
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { eventosDeCambio, etiquetaCampo } from '../lib/cambios';
 
-const cambios = (await getCollection('plazos'))
+const eventos = await eventosDeCambio();
+const plazos = (await getCollection('plazos'))
   .map((p) => p.data)
-  .filter((p) => p.nota_cambio)
-  .sort((a, b) => (a.fecha_verificacion < b.fecha_verificacion ? 1 : -1));
+  .sort((a, b) => a.fecha.localeCompare(b.fecha));
 
 const formatoFecha = new Intl.DateTimeFormat('es-ES', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
 });
+const fmt = (iso: string) => formatoFecha.format(new Date(iso + 'T00:00:00'));
+
+const fechasConCambios = [...new Set(eventos.map((e) => e.fecha))];
 ---
 
 <Base
-  title="Qué ha cambiado"
-  description="Registro de cambios verificados en plazos regulatorios MDR, IVDR, AI Act y FDA QMSR, con fuente oficial y fecha de verificación."
+  title="Registro de cambios"
+  description="Control de cambios público del Radar: cada corrección de un plazo regulatorio con valor anterior, valor nuevo, motivo y fuente."
 >
-  <h1>Qué ha cambiado</h1>
-  <p>
-    Cada entrada sale de los campos <code>nota_cambio</code> y <code>fecha_verificacion</code> de
-    la base de datos del Radar. Si un dato no tiene fuente oficial y fecha de verificación, no se
-    publica.
+  <h1>Registro de cambios</h1>
+  <p class="intro">
+    Cuando un dato cambia, no se sobrescribe sin dejar rastro: guardamos el valor anterior, el
+    nuevo, el motivo y la fuente, como pide ALCOA+ para cualquier registro de calidad. Los
+    errores de interpretación, con su causa raíz, van a la <a href="/erratas">fe de erratas</a>.
   </p>
-  <ul class="lista-cambios">
-    {
-      cambios.map((p) => (
-        <li id={p.id}>
-          <p class="cambio-fecha">
-            <strong>{formatoFecha.format(new Date(p.fecha_verificacion + 'T00:00:00'))}</strong> ·
-            [{p.norma}] {p.descripcion_corta}
-          </p>
-          <p class="cambio-nota">
-            {p.nota_cambio} — <a href={p.fuente_url} rel="external noopener">fuente oficial</a>
-          </p>
-        </li>
-      ))
-    }
-  </ul>
+
+  <h2>Cronológico</h2>
+  {
+    fechasConCambios.map((dia) => (
+      <section class="dia">
+        <h3>{fmt(dia)}</h3>
+        <ul class="lista-cambios">
+          {eventos
+            .filter((e) => e.fecha === dia)
+            .map((e) => (
+              <li>
+                <span class="chip">{etiquetaCampo[e.campo] ?? e.campo}</span>{' '}
+                <a href={`/#${e.plazoId}`}>[{e.norma}] {fmt(e.plazoFecha)}</a>:{' '}
+                {e.campo === 'alta' ? (
+                  e.descripcion
+                ) : (
+                  <>
+                    <del>{e.valor_anterior}</del> → <strong>{e.valor_nuevo}</strong>
+                  </>
+                )}
+                <span class="motivo">
+                  {e.motivo} <a href={e.fuente_url} rel="external noopener">Fuente</a>
+                </span>
+              </li>
+            ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <h2>Historial por plazo</h2>
+  {
+    plazos.map((p) => (
+      <section class="plazo-historial" id={p.id}>
+        <h3>
+          {fmt(p.fecha)} · [{p.norma}] <span class="desc">{p.descripcion_corta}</span>
+        </h3>
+        <div class="tabla-scroll">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th scope="col">Fecha del cambio</th>
+                <th scope="col">Campo</th>
+                <th scope="col">Antes</th>
+                <th scope="col">Después</th>
+                <th scope="col">Motivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {p.historial.map((h) => (
+                <tr>
+                  <td>{h.fecha}</td>
+                  <td>{etiquetaCampo[h.campo] ?? h.campo}</td>
+                  <td>{h.valor_anterior}</td>
+                  <td>{h.valor_nuevo}</td>
+                  <td>
+                    {h.motivo}
+                    {h.fuente_url && (
+                      <>
+                        {' '}
+                        <a href={h.fuente_url} rel="external noopener">Fuente</a>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))
+  }
+
   <p>
     <a href="/rss.xml">Suscríbete por RSS</a> ·
     <a href="/calendario.ics">Añade los plazos a tu calendario</a> ·
@@ -50,8 +112,12 @@ const formatoFecha = new Intl.DateTimeFormat('es-ES', {
 </Base>
 
 <style>
-  .lista-cambios { list-style: none; padding: 0; display: grid; gap: 1rem; }
-  .lista-cambios li { border-bottom: 1px solid var(--borde); padding-bottom: 1rem; }
-  .cambio-fecha { margin: 0 0 0.25rem; }
-  .cambio-nota { margin: 0; color: var(--texto-suave); max-width: 46rem; }
+  .intro { max-width: 46rem; }
+  .lista-cambios { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+  .lista-cambios li { border-bottom: 1px solid var(--borde); padding-bottom: 0.75rem; }
+  .motivo { display: block; color: var(--texto-suave); font-size: 0.9rem; margin-top: 0.2rem; max-width: 46rem; }
+  del { color: var(--urgente-texto); }
+  .plazo-historial h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+  .plazo-historial .desc { font-weight: 400; }
+  .plazo-historial:target { background: #f3f7fe; }
 </style>

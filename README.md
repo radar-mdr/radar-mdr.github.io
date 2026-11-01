@@ -1,16 +1,15 @@
 # Radar MDR × AI Act
 
 > **EN** — A Spanish-language regulatory observatory for medical technology and clinical AI:
-> live compliance timeline for the EU MDR, IVDR, AI Act (post-Omnibus) and FDA QMSR, built as a
-> structured, verifiable database (every data point carries an official source and a
-> verification date). Static site built with Astro; data as schema-validated JSON collections;
-> automated daily source monitoring via GitHub Actions. Code: MIT. Data & content: CC BY 4.0.
+> live compliance timeline for the EU MDR, IVDR, AI Act (post-Omnibus, Reg. (EU) 2026/1744), EHDS
+> and FDA QMSR, built as a structured, verifiable database. Every data point carries an official
+> source, a verification date and an ALCOA+ change history; corrections are published as CAPA-style
+> errata. Static site built with Astro; data as schema-validated JSON collections; automated daily
+> source monitoring via GitHub Actions + Python. Code: MIT. Data & content: CC BY 4.0.
 
 Observatorio en español de plazos y obligaciones regulatorias para tecnología médica e IA
-clínica: **MDR, IVDR, AI Act y FDA QMSR**. Cronología viva post-Omnibus con fuente oficial y
-fecha de verificación en cada dato.
-
-**Web:** https://alfonsoyewu-sketch.github.io
+clínica: **MDR, IVDR, AI Act, EHDS y FDA QMSR**. Cada dato lleva fuente oficial, fecha de
+verificación e historial de cambios.
 
 > Información divulgativa; no constituye asesoramiento legal ni regulatorio.
 
@@ -23,88 +22,90 @@ npm run build    # valida esquemas Zod, genera el sitio en dist/ e indexa Pagefi
 npm run preview  # sirve dist/ (necesario para probar /buscar)
 ```
 
-Stack: [Astro](https://astro.build) (contenido en colecciones JSON validadas con Zod) + GitHub
-Pages ([.github/workflows/deploy.yml](.github/workflows/deploy.yml): publica en cada push y cada
-mañana, para que las cuentas atrás estén al día).
-El plan completo está en [docs/PLAN.md](docs/PLAN.md) y el guion del día de congelación en
-[docs/DIA-FINAL.md](docs/DIA-FINAL.md).
+Los ajustes del sitio (dominio, email, LinkedIn, repositorio, Buttondown, GoatCounter) están en
+[src/config.ts](src/config.ts). Si un campo está vacío, la función correspondiente se desactiva
+en lugar de mostrar un enlace roto.
+
+Documentación: [plan](docs/PLAN.md) · [distribución y UTM](docs/DISTRIBUCION.md) ·
+[guion de entrevistas v2](docs/ENTREVISTAS.md) · [día de congelación](docs/DIA-FINAL.md).
 
 ## Datos
 
-El valor del sitio está en los datos estructurados, no en los artículos. Seis entidades en
-`src/data/*.json`, con esquemas en [src/content.config.ts](src/content.config.ts):
+El valor está en los datos estructurados, no en los artículos. Colecciones en `src/data/*.json`,
+con esquemas en [src/content.config.ts](src/content.config.ts):
 
-| Entidad | Archivo | Estado |
+| Entidad | Archivo | Estado (14-10-2026) |
 |---|---|---|
-| Plazo | `plazos.json` | ✅ 14 plazos post-Omnibus (6 confirmados el 14-10-2026, 3 pendientes) |
-| Fuente | `fuentes.json` | ✅ 23 fuentes cargadas |
-| Guía (MDCG) | `guias.json` | 🔶 3 fichas en preparación |
-| Obligación | `obligaciones.json` | ⬜ espera a las entrevistas |
-| Organismo notificado | `organismos.json` | ⬜ espera a las entrevistas |
-| Herramienta eQMS | `herramientas.json` | ⬜ espera a las entrevistas (plantilla: `herramientas.ejemplo.json`) |
+| Plazo | `plazos.json` | ✅ 23 plazos (MDR, IVDR, AI Act, EHDS, QMSR), todos reverificados, con historial |
+| Obligación | `obligaciones.json` | ✅ Matrices MDR e IVDR por clase + 4 fichas por agente económico |
+| Organismo notificado | `organismos.json` | ✅ 53 organismos (52 MDR, 19 IVDR) verificados en NANDO |
+| Glosario | `glosario.json` | ✅ 92 términos ES/EN |
+| Propuesta en tramitación | `propuestas.json` | ✅ Revisión MDR/IVDR, COM(2025) 1023 |
+| Fe de erratas | `erratas.json` | ✅ 3 erratas cerradas con CAPA |
+| Requisitos eQMS | `requisitos-eqms.json` | ✅ 15 requisitos (ISO 13485, Part 11, MDR) |
+| Guía (MDCG) | `guias.json` | 🔶 1 ficha publicada (MDCG 2025-6), 4 en preparación |
+| Fuente | `fuentes.json` | ✅ 30 fuentes |
+| Herramienta eQMS | `herramientas.json` | ⬜ vacía hasta tener 2 fuentes por fila (plantilla: `herramientas.ejemplo.json`) |
 
-**Reglas de los datos** (el foso es la confiabilidad):
+**Reglas de los datos** (resumen de la [metodología](src/pages/metodologia.astro)):
 
-- Todo dato lleva `fuente_url` oficial y `fecha_verificacion`.
-- `estado: pendiente_confirmacion` cuando las fuentes discrepan (p. ej., el registro legacy de
-  EUDAMED: 27 vs. 28 de noviembre de 2026).
-- `nota_cambio` documenta qué movió el Omnibus (en vigor desde el 27 de julio de 2026) y qué
-  queda por confirmar.
-- Comparador eQMS: cada fila exige ≥2 fuentes independientes; las estimaciones se etiquetan
-  (regla codificada en `TablaEQMS.astro`).
-- Copyright: resumir y enlazar, jamás republicar textos íntegros; las normas ISO/IEC se citan,
-  no se copian.
+- Todo dato lleva `fuente_url` y `fecha_verificacion`. A los 90 días sin reverificar se marca en amarillo.
+- Estados: `vigente`, `pendiente_confirmacion`, `en_tramitacion` (fuera del calendario) y `aplazado`.
+- **Nunca se sobrescribe sin rastro**: cada cambio añade una entrada a `historial` con valor
+  anterior, valor nuevo, motivo y fuente (ALCOA+). De ahí salen `/cambios` y `/rss.xml`.
+- Los errores de interpretación van a `erratas.json` con corrección, causa raíz y acción correctiva.
+- Comparador eQMS: cada fila exige al menos 2 fuentes independientes.
+- Copyright: resumir y enlazar; las normas ISO/IEC se citan, no se copian.
+
+### Cómo corregir un plazo
+
+1. Cambia el campo en `plazos.json`.
+2. Añade una entrada a su `historial`: `fecha`, `campo`, `valor_anterior`, `valor_nuevo`, `motivo` y `fuente_url`.
+3. Actualiza `fecha_verificacion`.
+4. Si era un error de interpretación (no un cambio normativo), añade también una errata a `erratas.json`.
 
 ## Distribución automática (sale de los mismos JSON)
 
 | URL | Qué es |
 |---|---|
-| `/calendario.ics` | Calendario suscribible con todos los plazos + alarma a 30 días |
-| `/api/plazos.json` · `/api/fuentes.json` | API pública de solo lectura (CC BY 4.0) |
-| `/rss.xml` | Feed de cambios verificados (`nota_cambio` + `fecha_verificacion`) |
-| `/cambios/` | Changelog público — borrador natural de cada newsletter |
+| `/calendario.ics` | Calendario con todos los plazos vigentes y alarma a 30 días |
+| `/?rol=…&clase=…` | Cronología filtrada y compartible |
+| `/api/plazos.json` · `/api/fuentes.json` · `/api/organismos.json` | API pública de solo lectura (CC BY 4.0) |
+| `/rss.xml` | Feed de cambios desde el historial de cada plazo |
+| `/cambios/` | Registro de cambios público: el borrador natural de cada newsletter |
 | `/buscar/` | Buscador Pagefind (solo funciona sobre el build) |
-| `/pro/` | Página fantasma del Pro 2027 (mide intención de pago) |
 
 ## Vigilancia automática
 
 `.github/workflows/vigilancia.yml` corre a diario en GitHub Actions:
 [scripts/vigilancia.py](scripts/vigilancia.py) descarga 8 fuentes clave, extrae el texto
-principal y lo compara con la copia del día anterior; si algo cambió, **abre un issue con el
-diff** (backlog que se escribe solo) y, con el secreto `ANTHROPIC_API_KEY`, añade un borrador
-de alerta en español ([scripts/resumen_ia.py](scripts/resumen_ia.py) — siempre con revisión
-humana antes de publicar). Las copias de las páginas se guardan en la caché de GitHub Actions,
-no en el repo, para no republicar el texto íntegro de webs ajenas. Primera ejecución: lanzar a
-mano desde la pestaña Actions (guarda las copias iniciales).
+principal y lo compara con los snapshots del repo. Si algo cambió, **abre un issue con el
+diff**. Con el secreto `ANTHROPIC_API_KEY` añade un borrador de alerta en español
+([scripts/resumen_ia.py](scripts/resumen_ia.py)), siempre con revisión humana antes de publicar.
+El secreto opcional `VERCEL_DEPLOY_HOOK` redespliega el sitio cada mañana.
 
-## La regla de congelación
+## Pendiente (solo lo puede hacer el autor)
 
-Desde el 7 de julio de 2026, cada tarea pendiente del verano es **datos o personas, nunca código**:
+- [ ] Comprar el dominio y ponerlo en `src/config.ts` (`dominio`) y en `public/robots.txt`.
+      Hasta entonces, el `og:url` y los enlaces de suscripción al calendario no son correctos.
+- [ ] Crear el repo en GitHub, `git push`, conectar Vercel y lanzar a mano la primera vigilancia.
+- [ ] Probar la vista previa en el Post Inspector de LinkedIn (ver [DISTRIBUCION.md](docs/DISTRIBUCION.md)).
+- [ ] Buttondown con correo del dominio → `buttondownUsuario` y `email` en `src/config.ts`.
+- [ ] GoatCounter (sin cookies) → `goatcounterCodigo` en `src/config.ts`.
+- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro) y añadir `repositorio`.
+- [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).
+- [ ] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (`guias.json`).
 
-| Tarea S2-S8 | Ahora es… |
-|---|---|
-| 5 fichas MDCG | escribir en `src/data/guias.json` (el campo `resumen_es` admite Markdown) |
-| Comparador eQMS | rellenar `herramientas.json` (≥2 fuentes por fila) |
-| Newsletter nº 1-3 | copiar `/cambios/` desde el último envío → Buttondown |
-| Alertas de cambios | revisar los issues que abre el bot |
-| Página Pro | ya existe; solo mirar las respuestas del formulario |
-| 10 entrevistas | LinkedIn + calendario, cero código |
+## Historial de versiones
 
-Si un viernes dudas entre una feature y dos mensajes a RA managers, **ganan los mensajes** — el
-sitio es la excusa; las entrevistas son el producto.
-
-## Hoja de ruta (8 semanas)
-
-- [x] **S1 (6-12 jul):** repo + esquema de datos + cronología online + fuentes + code freeze
-- [x] **Publicación (14 oct):** web en GitHub Pages, https://alfonsoyewu-sketch.github.io
-- [ ] **S2 (13-19 jul):** Buttondown + primer post: «El Omnibus ha movido tus fechas»
-- [ ] **S3-S4 (20 jul-2 ago):** 5 fichas MDCG en `guias.json` + arranque de entrevistas
-- [ ] **S5-S6 (3-16 ago):** 5 entrevistas + rellenar `herramientas.json` (5 filas)
-- [ ] **S7-S8 (17-30 ago):** 5 entrevistas más + newsletters nº 2-3 + formulario Tally en /pro
-- [ ] **31 ago:** revisión contra criterios de corte (30-50 suscriptores · 10 entrevistas · 3-5 «pagaría por X»)
+- **v0.3 (octubre de 2026):** se levanta la congelación de julio para incorporar el temario y la
+  revisión externa: datos reverificados, IVDR y EHDS, matrices de obligaciones, directorio NANDO,
+  IA clínica completa, «En tramitación», metodología, historial ALCOA+, fe de erratas, Open Graph y «Sobre mí».
+- **v0.2 (7-7-2026):** calendario, API, RSS, changelog, buscador y vigilancia automática.
+- **v0.1 (5-7-2026):** esquema de datos y cronología post-Omnibus.
 
 ## Licencia
 
 Código bajo [MIT](LICENSE). Datos regulatorios y contenido en español bajo
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es): reutilízalos y cítalos **con
-enlace** — que consultores citen la cronología es distribución gratis.
+enlace**.

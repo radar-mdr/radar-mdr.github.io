@@ -1,0 +1,65 @@
+[
+  {
+    "id": "revision-mdr-ivdr-2025",
+    "titulo": "Revisión focalizada del MDR y del IVDR",
+    "referencia": "COM(2025) 1023 final, propuesta de la Comisión de 16-12-2025",
+    "norma": "MDR/IVDR",
+    "fecha_propuesta": "2025-12-16",
+    "estado_tramite": "En el Parlamento Europeo, en comisión SANT (ponente: Oliver Schenk, PPE). El Consejo negocia en paralelo. Nada de esto es aplicable todavía.",
+    "hitos": [
+      { "fecha": "16-12-2025", "hito": "La Comisión presenta la propuesta", "hecho": true },
+      { "fecha": "7-1-2026 a 19-3-2026", "hito": "Periodo de comentarios públicos", "hecho": true },
+      { "fecha": "Finales de junio / 1-7-2026", "hito": "Proyecto de informe del ponente (PE787.987), con más de 130 enmiendas", "hecho": true },
+      { "fecha": "14-7-2026", "hito": "Presentación en la comisión SANT; plazo de enmiendas hasta el 20-7-2026", "hecho": true },
+      { "fecha": "3-12-2026 (previsto)", "hito": "Votación en la comisión SANT (una sola fuente; por confirmar)", "hecho": false },
+      { "fecha": "Finales de 2026 (previsto)", "hito": "Orientación general del Consejo bajo la presidencia irlandesa", "hecho": false },
+      { "fecha": "Principios de 2027 (previsto)", "hito": "Posición del Parlamento en el pleno; después, trílogos", "hecho": false }
+    ],
+    "cambios": [
+      {
+        "tema": "Plazo de notificación de incidentes graves",
+        "vigente": "15 días como máximo; 10 si hay muerte o deterioro grave imprevisto; 2 si hay amenaza grave para la salud pública (MDR art. 87).",
+        "propuesta_comision": "El plazo general pasa de 15 a 30 días.",
+        "nota": "Las fuentes consultadas no detallan si cambian los plazos de 10 y 2 días."
+      },
+      {
+        "tema": "Frecuencia del PSUR",
+        "vigente": "Clases IIb y III: al menos anual. Clase IIa: al menos cada 2 años (MDR art. 86).",
+        "propuesta_comision": "IIb y III: bienal tras el primer año. IIa: cuando sea necesario, según los datos."
+      },
+      {
+        "tema": "Validez de los certificados",
+        "vigente": "5 años como máximo, renovables (MDR art. 56.2).",
+        "propuesta_comision": "Sin caducidad, con revisiones periódicas del organismo notificado basadas en el riesgo.",
+        "nota": "El proyecto de informe del Parlamento propone limitar a 5 años la certificación inicial."
+      },
+      {
+        "tema": "Clasificación del software",
+        "vigente": "Regla 11: la mayoría del software que informa decisiones diagnósticas o terapéuticas es IIa o superior.",
+        "propuesta_comision": "Se ajustan las reglas para que más software pueda ser clase I (autocertificación sin organismo notificado)."
+      },
+      {
+        "tema": "Auditorías del organismo notificado",
+        "vigente": "Auditoría de vigilancia anual y auditorías no anunciadas al menos cada 5 años (MDR anexo IX).",
+        "propuesta_comision": "Auditorías más basadas en el riesgo y en remoto; auditorías no anunciadas solo cuando haya causa. Diálogo estructurado con el fabricante antes y después de la solicitud."
+      },
+      {
+        "tema": "PRRC en pymes",
+        "vigente": "Las micro y pequeñas empresas deben tener una PRRC a su disposición de forma permanente y continua (MDR art. 15.2).",
+        "propuesta_comision": "Las pymes con PRRC externa ya no necesitarían disponibilidad permanente: basta con que esté disponible."
+      },
+      {
+        "tema": "Otras novedades",
+        "vigente": "—",
+        "propuesta_comision": "Más uso de la equivalencia, vías adaptativas para productos innovadores y huérfanos, sandbox regulatorio para software e IA, condiciones más flexibles para productos fabricados en centros sanitarios, y declaración UE de conformidad digital."
+      }
+    ],
+    "fuente_url": "https://health.ec.europa.eu/document/download/25e7ea7c-cab3-40cf-86d9-d11f5e7744d8_en?filename=md_com_2025-1023_act_en.pdf",
+    "fuentes_adicionales": [
+      "https://www.cuatrecasas.com/es/spain/farmaceutico-sanitario/art/mdr-ivdr-simplificacion",
+      "https://dsv-europa.de/en/news/2026/07/mdr-ivdr.html",
+      "https://www.legal500.com/intelligence/afghanistan/consumer-protection/how-will-the-eu-parliament-shape-the-mdrivdr-revision-draft-report-indicates-how-parliament-may-seek-to-amend-commissions-proposals"
+    ],
+    "fecha_verificacion": "2026-10-14"
+  }
+]

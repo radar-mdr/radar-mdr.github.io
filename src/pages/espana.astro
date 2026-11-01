@@ -1,24 +1,126 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const RD192 = 'https://www.boe.es/buscar/act.php?id=BOE-A-2023-7416';
+const RD942 = 'https://www.boe.es/eli/es/rd/2025/10/21/942';
+
+const bloques = [
+  {
+    titulo: 'Quién manda: AEMPS',
+    texto:
+      'La Agencia Española de Medicamentos y Productos Sanitarios es la autoridad competente para productos sanitarios y para IVD. Decide sobre clasificación y cualificación de productos dudosos y recibe las notificaciones de vigilancia mientras el módulo de vigilancia de EUDAMED no sea obligatorio.',
+    ref: 'RD 192/2023 art. 4 · RD 942/2025 art. 4',
+    url: RD192,
+  },
+  {
+    titulo: 'El organismo notificado español: CNCps (0318)',
+    texto:
+      'El Centro Nacional de Certificación de Productos Sanitarios está integrado en la AEMPS y tiene notificación activa para MDR e IVDR. Es una de las opciones, no la única: puedes trabajar con cualquier organismo notificado de la UE.',
+    ref: 'NANDO, consulta del 14-10-2026',
+    url: '/organismos-notificados',
+  },
+  {
+    titulo: 'Licencia previa de funcionamiento',
+    texto:
+      'La necesitan quienes fabrican, importan, agrupan o esterilizan productos sanitarios en España, y sus instalaciones. La concede la AEMPS y dura 5 años como máximo, renovables. Los fabricantes de productos a medida la piden a su comunidad autónoma. Para IVD rige el RD 942/2025 (fabricantes, importadores y esterilizadores; la AEMPS resuelve en 3 meses).',
+    ref: 'RD 192/2023 arts. 7 y 10.1 · RD 942/2025 arts. 7-8',
+    url: RD192,
+  },
+  {
+    titulo: 'Registro de comercialización',
+    texto:
+      'Todo agente económico que comercialice en España productos que no sean a medida debe inscribirse en el registro de la AEMPS antes de empezar (con el UDI-DI y la fecha de inicio) y actualizarlo cada año. Quedan fuera los puntos de venta exclusiva al público. En IVD, la obligación espera a que el registro esté plenamente operativo.',
+    ref: 'RD 192/2023 art. 18 · RD 942/2025 arts. 9 y 15, DT 5.ª',
+    url: RD192,
+  },
+  {
+    titulo: 'Distribución',
+    texto:
+      'Los distribuidores comunican el inicio de su actividad a la autoridad sanitaria de la comunidad autónoma de su domicilio social, y también a la del almacén si está en otra. Las oficinas de farmacia están exentas, salvo excepciones.',
+    ref: 'RD 192/2023 art. 24.3',
+    url: RD192,
+  },
+  {
+    titulo: 'Etiquetado e instrucciones en castellano',
+    texto:
+      'La información del anexo I del MDR (apartado 23: etiqueta e instrucciones de uso) debe figurar al menos en castellano para comercializar en España. Importadores y distribuidores deben comprobarlo. En IVD, lo mismo para el apartado 20 del anexo I del IVDR.',
+    ref: 'RD 192/2023 arts. 5.2 y 23.2 · RD 942/2025 art. 5.2',
+    url: RD192,
+  },
+  {
+    titulo: 'Tarjeta de implante',
+    texto:
+      'El fabricante la suministra con el producto; el centro sanitario la cumplimenta con los datos del paciente y del centro y se la entrega al paciente, con la información al menos en castellano.',
+    ref: 'RD 192/2023 art. 36',
+    url: RD192,
+  },
+  {
+    titulo: 'Venta a distancia',
+    texto:
+      'Prohibida la venta al público por correspondencia o por internet de productos sujetos a prescripción, salvo los que requieren adaptación individual y entregas sucesivas (por ejemplo, lentes de contacto), con condiciones.',
+    ref: 'RD 192/2023 art. 24.5',
+    url: RD192,
+  },
+  {
+    titulo: 'Investigación clínica: CEIm + AEMPS',
+    texto:
+      'Hace falta el dictamen favorable de un Comité de Ética de la Investigación con medicamentos (CEIm) y la conformidad del centro. En los estudios multicéntricos basta un único dictamen, vinculante. Además, el promotor solicita la autorización de la AEMPS. Para los estudios del funcionamiento de IVD: CEIm, autorización de la AEMPS en los estudios de riesgo y seguro con una garantía mínima de 250.000 € por persona.',
+    ref: 'RD 192/2023 arts. 30-31 · RD 942/2025 arts. 24-29',
+    url: RD192,
+  },
+  {
+    titulo: 'IA: AESIA… y la AEMPS',
+    texto:
+      'La AESIA (A Coruña) es la agencia española de supervisión de la IA. Pero para la IA dentro de productos sanitarios, el AI Act encarga la vigilancia del mercado a la autoridad que ya vigila esos productos (art. 74.3), salvo que el Estado designe otra. En la práctica, tu interlocutor sobre IA en un producto sanitario será probablemente la AEMPS.',
+    ref: 'AI Act art. 74.3 · aesia.digital.gob.es',
+    url: 'https://aesia.digital.gob.es/',
+  },
+];
 ---
 
 <Base
-  title="España: AEMPS, AESIA y particularidades nacionales"
-  description="Requisitos nacionales españoles para productos sanitarios e IA: AEMPS, AESIA, tasas y comunicaciones."
+  title="España: lo que el reglamento europeo no te cuenta"
+  description="Requisitos nacionales para productos sanitarios e IVD en España: AEMPS, CNCps, licencia previa, registro de comercialización, castellano, CEIm, RD 192/2023, RD 942/2025 y AESIA."
 >
-  <h1>España: AEMPS, AESIA y particularidades nacionales</h1>
-  <p>
-    Lo que el reglamento europeo no te cuenta: licencia previa de funcionamiento, comunicaciones
-    de comercialización a la AEMPS, el papel de AESIA en la supervisión de la IA, tasas y otras
-    particularidades del mercado español.
+  <h1>España: lo que el reglamento europeo no te cuenta</h1>
+  <p class="intro">
+    El MDR y el IVDR dejan a cada Estado algunas decisiones: idioma, licencias, registros
+    nacionales y ética de la investigación. En España las regulan dos reales decretos:
   </p>
-  <div class="proximamente">
-    <h2>Próximamente</h2>
-    <p>
-      En construcción. Fuentes oficiales mientras tanto:
-      <a href="https://www.aemps.gob.es/productos-sanitarios/" rel="external noopener">AEMPS — productos sanitarios</a> ·
-      <a href="https://aesia.digital.gob.es/" rel="external noopener">AESIA</a> ·
-      <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2023-7416" rel="external noopener">RD 192/2023 (BOE)</a>.
-    </p>
+  <ul class="normas">
+    <li>
+      <a href={RD192} rel="external noopener"><strong>RD 192/2023</strong></a>, de productos
+      sanitarios (BOE de 22-3-2023).
+    </li>
+    <li>
+      <a href={RD942} rel="external noopener"><strong>RD 942/2025</strong></a>, de productos para
+      diagnóstico in vitro (BOE de 23-10-2025, en vigor desde el 24-10-2025). Deroga el RD 1662/2000.
+    </li>
+  </ul>
+
+  <div class="bloques">
+    {bloques.map((b) => (
+      <section class="bloque">
+        <h2>{b.titulo}</h2>
+        <p>{b.texto}</p>
+        <p class="fuente-dato">
+          <a href={b.url} rel={b.url.startsWith('http') ? 'external noopener' : undefined}>{b.ref}</a>
+        </p>
+      </section>
+    ))}
   </div>
+  <p class="fuente-dato">
+    Verificado contra el texto del BOE el 14-10-2026. Antes de actuar, consulta la versión
+    consolidada y las instrucciones de la AEMPS: los procedimientos y las tasas cambian por
+    resolución.
+  </p>
 </Base>
+
+<style>
+  .intro { max-width: 46rem; }
+  .normas li { margin: 0.25rem 0; }
+  .bloques { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .bloque { border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.25rem; }
+  .bloque h2 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+  .bloque p { margin: 0 0 0.5rem; }
+</style>

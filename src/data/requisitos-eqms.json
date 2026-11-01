@@ -1,0 +1,107 @@
+[
+  {
+    "id": "documentos",
+    "area": "Documentos y registros",
+    "requisito": "Control de documentos: aprobación, versiones, distribución controlada y retirada de obsoletos.",
+    "referencia": "ISO 13485 4.2.4",
+    "que_pedir": "Flujos de aprobación configurables, historial de versiones y bloqueo de documentos obsoletos."
+  },
+  {
+    "id": "registros-alcoa",
+    "area": "Documentos y registros",
+    "requisito": "Control de registros con integridad ALCOA+: atribuible, legible, contemporáneo, original y exacto, además de completo, coherente, duradero y disponible.",
+    "referencia": "ISO 13485 4.2.5",
+    "que_pedir": "Registro de auditoría (audit trail) que no se pueda editar, sello de tiempo y conservación al menos durante la vida útil del producto."
+  },
+  {
+    "id": "part-11",
+    "area": "Documentos y registros",
+    "requisito": "Registros y firmas electrónicas válidos para la FDA.",
+    "referencia": "21 CFR Part 11 (con la QMSR)",
+    "que_pedir": "Firma electrónica con significado de la firma, vinculación firma-registro y controles de acceso."
+  },
+  {
+    "id": "validacion-software-sgc",
+    "area": "Documentos y registros",
+    "requisito": "Validar el software que se usa en el propio SGC, incluido el eQMS.",
+    "referencia": "ISO 13485 4.1.6",
+    "que_pedir": "Paquete de validación del proveedor y enfoque basado en riesgo para cada actualización (ver ISO/TR 80002-2)."
+  },
+  {
+    "id": "capa",
+    "area": "Mejora",
+    "requisito": "CAPA: análisis de causa raíz, acciones correctivas y preventivas y verificación de su eficacia.",
+    "referencia": "ISO 13485 8.5.2 y 8.5.3",
+    "que_pedir": "Que la CAPA no se pueda cerrar sin verificar la eficacia, y que enlace con no conformidades, reclamaciones y auditorías."
+  },
+  {
+    "id": "no-conformidades",
+    "area": "Mejora",
+    "requisito": "Producto no conforme, desviaciones y concesiones.",
+    "referencia": "ISO 13485 8.3",
+    "que_pedir": "Registro, disposición (reprocesar, desechar o conceder), autorización de concesiones y paso a CAPA."
+  },
+  {
+    "id": "reclamaciones",
+    "area": "Poscomercialización",
+    "requisito": "Tratamiento de reclamaciones y decisión sobre si deben notificarse a la autoridad.",
+    "referencia": "ISO 13485 8.2.2 y 8.2.3 · MDR art. 87",
+    "que_pedir": "Árbol de decisión de reportabilidad con los plazos de 15, 10 y 2 días y su vínculo con el informe de vigilancia."
+  },
+  {
+    "id": "pms",
+    "area": "Poscomercialización",
+    "requisito": "Retroalimentación y PMS: plan, informe de PMS o PSUR, PMCF y tendencias.",
+    "referencia": "ISO 13485 8.2.1 · MDR arts. 83-88",
+    "que_pedir": "Plantillas de PSUR por clase, recordatorios de periodicidad y agregación de datos de reclamaciones y tendencias."
+  },
+  {
+    "id": "riesgos",
+    "area": "Diseño y riesgos",
+    "requisito": "Gestión de riesgos durante todo el ciclo de vida.",
+    "referencia": "ISO 13485 7.1 · ISO 14971",
+    "que_pedir": "Trazabilidad peligro → situación peligrosa → control → verificación, y revisión del riesgo con datos de PMS."
+  },
+  {
+    "id": "diseno",
+    "area": "Diseño y riesgos",
+    "requisito": "Control del diseño: entradas, salidas, revisiones, verificación, validación, transferencia y cambios.",
+    "referencia": "ISO 13485 7.3",
+    "que_pedir": "Matriz de trazabilidad requisitos → verificación → validación y expediente del diseño (DHF) generado desde la herramienta."
+  },
+  {
+    "id": "software-62304",
+    "area": "Diseño y riesgos",
+    "requisito": "Ciclo de vida del software de producto sanitario (si fabricas SaMD).",
+    "referencia": "IEC 62304",
+    "que_pedir": "Clasificación de seguridad del software, gestión de SOUP, problemas y configuración, e integración con Git o Jira."
+  },
+  {
+    "id": "formacion",
+    "area": "Personas",
+    "requisito": "Competencia, formación y eficacia de la formación.",
+    "referencia": "ISO 13485 6.2",
+    "que_pedir": "Matriz de formación por puesto, formación automática al cambiar un documento y evidencia de eficacia."
+  },
+  {
+    "id": "proveedores",
+    "area": "Proveedores",
+    "requisito": "Evaluación, selección, seguimiento y reevaluación de proveedores según su riesgo.",
+    "referencia": "ISO 13485 7.4",
+    "que_pedir": "Lista de proveedores aprobados, acuerdos de calidad y seguimiento del desempeño."
+  },
+  {
+    "id": "auditorias",
+    "area": "Mejora",
+    "requisito": "Auditorías internas y revisión por la dirección.",
+    "referencia": "ISO 13485 8.2.4 y 5.6",
+    "que_pedir": "Programa de auditorías, hallazgos enlazados a CAPA y entradas de la revisión por la dirección generadas automáticamente."
+  },
+  {
+    "id": "trazabilidad-udi",
+    "area": "Producción",
+    "requisito": "Identificación y trazabilidad, incluido el UDI.",
+    "referencia": "ISO 13485 7.5.8 y 7.5.9 · MDR art. 27",
+    "que_pedir": "Gestión de UDI-DI y UDI-DI básico y exportación de datos para EUDAMED."
+  }
+]

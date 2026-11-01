@@ -5,14 +5,23 @@
 // independientes y fecha de verificación; sin eso, muestra ⚠.
 interface Props {
   filas: any[];
+  /** Número de requisitos de requisitos-eqms.json, para calcular la cobertura */
+  totalRequisitos: number;
 }
-const { filas } = Astro.props;
+const { filas, totalRequisitos } = Astro.props;
+const cobertura = (h: any) => {
+  const puntos = Object.values(h.puntuacion ?? {}) as number[];
+  if (puntos.length === 0) return 'Sin puntuar';
+  const suma = puntos.reduce((a, b) => a + b, 0);
+  return `${Math.round((suma / (2 * totalRequisitos)) * 100)} % (${puntos.length}/${totalRequisitos} requisitos evaluados)`;
+};
 ---
 
 <table>
   <thead>
     <tr>
       <th scope="col">Herramienta</th>
+      <th scope="col">Cobertura del checklist</th>
       <th scope="col">Precio desde</th>
       <th scope="col">Público</th>
       <th scope="col">Módulos</th>
@@ -27,6 +36,7 @@ const { filas } = Astro.props;
           <a href={h.web} rel="external noopener">{h.nombre}</a>
           {h.estimacion && <sup title="Estimación pendiente de confirmar con el fabricante"> est.</sup>}
         </td>
+        <td>{cobertura(h)}</td>
         <td>{h.precio_desde}</td>
         <td>{(h.publico ?? []).join(', ')}</td>
         <td>{(h.modulos ?? []).join(', ')}</td>
@@ -47,14 +57,7 @@ const { filas } = Astro.props;
   </tbody>
 </table>
 
-<p>
-  <small>
-    <strong>Regla de neutralidad:</strong> cada fila exige al menos dos fuentes independientes
-    (página oficial de precios + G2/Capterra o consulta directa al fabricante). «est.» marca
-    estimaciones pendientes de confirmación. El blog de un fabricante que participa en la
-    comparación puede ser una fuente, nunca el árbitro.
-  </small>
-</p>
+<p><small>«est.» marca estimaciones pendientes de confirmar con el fabricante.</small></p>
 
 <style>
   table { border-collapse: collapse; width: 100%; margin-top: 1rem; }

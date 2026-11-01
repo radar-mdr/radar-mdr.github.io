@@ -1,25 +1,37 @@
 ---
+import { SITIO } from '../config';
+
 interface Props {
   title: string;
   description?: string;
+  /** Ruta de la imagen de vista previa (1200×627) dentro de /public */
+  imagen?: string;
 }
 
-const { title, description = 'Observatorio en español de plazos y obligaciones regulatorias para tecnología médica e IA clínica: MDR, IVDR, AI Act y FDA QMSR.' } = Astro.props;
+const {
+  title,
+  description = 'Plazos MDR, IVDR y AI Act en español, con fuente oficial y fecha de verificación en cada dato. Filtra por tu rol y tu clase de producto.',
+  imagen = '/og-radar.png',
+} = Astro.props;
 
 const nav = [
   { href: '/', label: 'Cronología' },
-  { href: '/ia-clinica', label: 'IA clínica' },
-  { href: '/guias', label: 'Guías MDCG' },
   { href: '/obligaciones', label: 'Obligaciones' },
+  { href: '/ia-clinica', label: 'IA clínica' },
+  { href: '/en-tramitacion', label: 'En tramitación' },
+  { href: '/guias', label: 'Guías MDCG' },
   { href: '/organismos-notificados', label: 'Organismos notificados' },
-  { href: '/comparador-eqms', label: 'Comparador eQMS' },
+  { href: '/comparador-eqms', label: 'eQMS' },
   { href: '/espana', label: 'España' },
   { href: '/glosario', label: 'Glosario' },
-  { href: '/fuentes', label: 'Fuentes' },
-  { href: '/newsletter', label: 'Newsletter' },
+  { href: '/sobre-mi', label: 'Sobre mí' },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const base = Astro.site ?? new URL(SITIO.dominio);
+const canonical = new URL(Astro.url.pathname, base).href;
+const imagenAbsoluta = new URL(imagen, base).href;
+const tituloCompleto = `${title} · ${SITIO.nombre}`;
 ---
 
 <!doctype html>
@@ -27,8 +39,38 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
     <meta name="description" content={description} />
-    <title>{title} · Radar MDR × AI Act</title>
+    <meta name="author" content={SITIO.autor} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0b57d0" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={SITIO.nombre} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imagenAbsoluta} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
+    <meta property="og:image:alt" content="Radar MDR × AI Act: cronología de plazos regulatorios con fuente y fecha de verificación" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="alternate" type="application/rss+xml" title={`${SITIO.nombre}: cambios verificados`} href="/rss.xml" />
+
+    {SITIO.goatcounterCodigo && (
+      <script
+        is:inline
+        data-goatcounter={`https://${SITIO.goatcounterCodigo}.goatcounter.com/count`}
+        async
+        src="https://gc.zgo.at/count.js"
+      ></script>
+    )}
   </head>
   <body>
     <a class="salto" href="#contenido">Saltar al contenido principal</a>
@@ -59,16 +101,41 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
           asesoramiento legal ni regulatorio. Verifica siempre las fechas en la fuente oficial
           enlazada en cada dato.
         </p>
+        <nav aria-label="Enlaces del pie" class="pie-columnas">
+          <div>
+            <p class="pie-titulo">Recibe los plazos</p>
+            <ul>
+              <li><a href="/calendario.ics">Calendario de plazos (.ics)</a></li>
+              <li><a href="/newsletter">Radar quincenal por email</a></li>
+              <li><a href="/rss.xml">RSS de cambios</a></li>
+              <li><a href="/api/plazos.json">API JSON</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="pie-titulo">Recursos</p>
+            <ul>
+              <li><a href="/iso-14971">ISO 14971 en 5 minutos</a></li>
+              <li><a href="/fuentes">Fuentes vigiladas</a></li>
+              <li><a href="/buscar">Buscar</a></li>
+              <li><a href="/pro">Radar Pro (2027)</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="pie-titulo">Calidad del dato</p>
+            <ul>
+              <li><a href="/metodologia">Metodología</a></li>
+              <li><a href="/cambios">Registro de cambios</a></li>
+              <li><a href="/erratas">Fe de erratas</a></li>
+              <li><a href="/privacidad">Privacidad</a></li>
+            </ul>
+          </div>
+        </nav>
         <p>
-          <a href="/cambios">Qué ha cambiado</a> · <a href="/rss.xml">RSS</a> ·
-          <a href="/calendario.ics">Calendario de plazos (.ics)</a> ·
-          <a href="/api/plazos.json">API JSON</a> · <a href="/buscar">Buscar</a> ·
-          <a href="/pro">Radar Pro (2027)</a>
-        </p>
-        <p>
-          © 2026 Radar MDR × AI Act · Datos y contenido bajo
+          © 2026 <a href="/sobre-mi">{SITIO.autor}</a> · Datos y contenido bajo
           <a href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="external noopener">CC BY 4.0</a>
-          (cítalos con enlace) · Código MIT · <a href="/newsletter">Suscríbete al Radar quincenal</a>
+          (cítalos con enlace) · Código MIT{SITIO.repositorio && (
+            <> · <a href={SITIO.repositorio} rel="external noopener">Repositorio</a></>
+          )}
         </p>
       </div>
     </footer>
@@ -88,10 +155,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     --mdr-ivdr: #37474f;
     --ai-act: #6a1b9a;
     --qmsr: #b3261e;
+    --ehds: #8a4b00;
     --aviso-fondo: #fdf3d7;
     --aviso-texto: #6a4a00;
     --urgente-fondo: #fbe4e2;
     --urgente-texto: #8c1d18;
+    --ok-fondo: #e3f2e8;
+    --ok-texto: #1d5c32;
   }
 
   * { box-sizing: border-box; }
@@ -118,7 +188,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   .salto:focus { left: 0; }
 
   a { color: var(--acento); }
-  a:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--acento); outline-offset: 2px;
+  }
 
   .cabecera { border-bottom: 2px solid var(--borde); background: var(--fondo-alt); }
   .cabecera-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.5rem; padding-top: 0.75rem; padding-bottom: 0.75rem; }
@@ -134,6 +206,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
   .pie { border-top: 2px solid var(--borde); background: var(--fondo-alt); padding: 1.5rem 0; font-size: 0.9rem; color: var(--texto-suave); }
   .disclaimer { max-width: 48rem; }
+  .pie-columnas { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .pie-columnas ul { list-style: none; margin: 0; padding: 0; }
+  .pie-columnas li { margin: 0.2rem 0; }
+  .pie-titulo { font-weight: 700; color: var(--texto); margin: 0 0 0.25rem; }
 
   .badge {
     display: inline-block; color: #fff; font-size: 0.75rem; font-weight: 700;
@@ -144,15 +220,46 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   .badge-mdr-ivdr { background: var(--mdr-ivdr); }
   .badge-ai-act { background: var(--ai-act); }
   .badge-qmsr { background: var(--qmsr); }
+  .badge-ehds { background: var(--ehds); }
 
   .chip {
     display: inline-block; background: var(--fondo-alt); border: 1px solid var(--borde);
     border-radius: 999px; padding: 0.05rem 0.6rem; font-size: 0.8rem; color: var(--texto-suave);
   }
+  .chip-aviso { background: var(--aviso-fondo); color: var(--aviso-texto); border-color: var(--aviso-texto); font-weight: 600; }
+  .chip-ok { background: var(--ok-fondo); color: var(--ok-texto); border-color: var(--ok-texto); font-weight: 600; }
 
   .proximamente {
     border: 2px dashed var(--borde); border-radius: 8px; padding: 1.25rem 1.5rem;
     background: var(--fondo-alt); color: var(--texto-suave); margin-top: 1.5rem;
   }
   .proximamente h2 { margin-top: 0; }
+
+  .nota {
+    background: var(--aviso-fondo); color: var(--aviso-texto);
+    border-left: 4px solid var(--aviso-texto); border-radius: 0 6px 6px 0;
+    padding: 0.6rem 0.9rem; max-width: 46rem;
+  }
+  .caja {
+    border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.25rem;
+    background: var(--fondo-alt); max-width: 46rem;
+  }
+  .caja h2, .caja h3 { margin-top: 0; }
+  .fuente-dato { font-size: 0.85rem; color: var(--texto-suave); }
+
+  .tabla-scroll { overflow-x: auto; margin: 1rem 0; }
+  table.tabla { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  .tabla th, .tabla td { text-align: left; border: 1px solid var(--borde); padding: 0.5rem 0.65rem; vertical-align: top; }
+  .tabla thead th { background: var(--fondo-alt); }
+  .tabla tbody th { background: #fafbfc; font-weight: 600; }
+
+  .boton {
+    display: inline-block; background: var(--acento); color: #fff; font-weight: 700;
+    padding: 0.6rem 1rem; border-radius: 8px; text-decoration: none; border: 2px solid var(--acento);
+  }
+  .boton:hover { background: #0842a0; }
+  .boton-sec {
+    display: inline-block; color: var(--acento); font-weight: 600; background: #fff;
+    padding: 0.55rem 0.9rem; border-radius: 8px; text-decoration: none; border: 2px solid var(--acento);
+  }
 </style>

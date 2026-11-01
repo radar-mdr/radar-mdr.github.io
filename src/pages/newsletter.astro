@@ -1,46 +1,71 @@
 ---
 import Base from '../layouts/Base.astro';
+import { SITIO } from '../config';
+
+const buttondown = SITIO.buttondownUsuario;
+const mailtoAlta = `mailto:${SITIO.email}?subject=${encodeURIComponent('ALTA Radar quincenal')}`;
 ---
 
 <Base
-  title="Radar quincenal — newsletter"
+  title="Radar quincenal: newsletter"
   description="Newsletter quincenal en español sobre plazos y cambios regulatorios en MedTech e IA clínica: MDR, IVDR, AI Act y QMSR."
 >
   <h1>Radar quincenal</h1>
   <p>Cada dos semanas, directo al grano y en español:</p>
   <ul>
-    <li>Cambios normativos y guías MDCG nuevas de la quincena.</li>
-    <li>Fechas de la cronología que entran en la ventana de 90 y 30 días.</li>
-    <li>Un matiz que el resto de los resúmenes se ha saltado.</li>
+    <li>Los cambios verificados de la quincena, con su fuente (sale del <a href="/cambios">registro de cambios</a>).</li>
+    <li>Las fechas de la cronología que entran en la ventana de 90 y 30 días.</li>
+    <li>Un matiz que el resto de resúmenes se ha saltado.</li>
   </ul>
 
-  <!--
-    TODO(S2): sustituir por el formulario embebido de Buttondown/Beehiiv cuando la cuenta
-    esté creada. Mientras tanto, alta manual por correo.
-  -->
   <div class="alta">
     <h2>Apúntate</h2>
-    <p>
-      El formulario de suscripción llega en unos días. Mientras tanto, escribe a
-      <a href="mailto:radar.mdr.aiact@gmail.com?subject=ALTA%20Radar%20quincenal">radar.mdr.aiact@gmail.com</a>
-      con el asunto «ALTA» y te añado a la lista fundacional.
-    </p>
+    {
+      buttondown ? (
+        <form
+          action={`https://buttondown.com/api/emails/embed-subscribe/${buttondown}`}
+          method="post"
+          class="form-alta"
+        >
+          <label for="bd-email">Tu email</label>
+          <input type="email" name="email" id="bd-email" autocomplete="email" required />
+          <label class="consentimiento">
+            <input type="checkbox" required />
+            Acepto recibir el Radar quincenal y he leído la <a href="/privacidad">política de privacidad</a>.
+          </label>
+          <button type="submit" class="boton">Suscribirme</button>
+          <p class="aviso">Cada envío incluye un enlace para darte de baja.</p>
+        </form>
+      ) : (
+        <>
+          <p>
+            Escribe a <a href={mailtoAlta}>{SITIO.email}</a> con el asunto «ALTA» y te añado a la
+            lista fundacional. Para darte de baja, responde «BAJA» a cualquier envío y te borro.
+          </p>
+          <p class="aviso">
+            Al escribirme aceptas que use tu email solo para enviarte la newsletter. Detalles en
+            <a href="/privacidad">privacidad</a>.
+          </p>
+        </>
+      )
+    }
   </div>
 
   <p>
-    ¿Prefieres el calendario? <a href="/calendario.ics">Suscríbete al calendario de plazos
-    (.ics)</a>: cada fecha en tu Outlook o Google Calendar, con recordatorio a 30 días. Y todos
+    ¿Prefieres que te avise tu calendario? <a href="/calendario.ics">Suscríbete al calendario de
+    plazos</a>: cada fecha en tu Outlook o Google Calendar, con recordatorio a 30 días. Y todos
     los cambios verificados, <a href="/rss.xml">por RSS</a>.
-  </p>
-
-  <p class="privacidad">
-    Solo usaremos tu correo para enviarte la newsletter. Baja con un clic en cualquier número.
   </p>
 </Base>
 
 <style>
   .alta { border: 2px solid var(--acento); border-radius: 8px; padding: 1rem 1.5rem; max-width: 40rem; }
   .alta h2 { margin-top: 0; }
-  .privacidad { color: var(--texto-suave); font-size: 0.9rem; }
+  .form-alta { display: grid; gap: 0.5rem; }
+  .form-alta label { font-weight: 600; }
+  .form-alta input[type='email'] { font: inherit; padding: 0.5rem; border: 1px solid var(--texto-suave); border-radius: 6px; }
+  .form-alta .consentimiento { font-weight: 400; display: flex; gap: 0.5rem; align-items: start; }
+  .form-alta button { justify-self: start; cursor: pointer; font: inherit; }
+  .aviso { color: var(--texto-suave); font-size: 0.9rem; margin: 0.25rem 0 0; }
   ul li { margin-bottom: 0.5rem; }
 </style>

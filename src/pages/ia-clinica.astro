@@ -1,61 +1,241 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const MDR_ELI = 'https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa';
+const AIA_ELI = 'https://eur-lex.europa.eu/eli/reg/2024/1689/oj/spa';
+const MDCG_2025_6 = 'https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en';
+
+const tabla1 = [
+  ['MDR clase I (no estéril, sin medición, no quirúrgica reutilizable)', 'No', 'No'],
+  ['MDR clase I estéril, de medición o quirúrgica reutilizable', 'Sí', 'Sí'],
+  ['MDR clases IIa, IIb y III', 'Sí', 'Sí'],
+  ['MDR anexo XVI (salvo los no invasivos de clase I)', 'Sí', 'Sí'],
+  ['IVDR clase A no estéril', 'No', 'No'],
+  ['IVDR clase A estéril', 'Sí', 'Sí'],
+  ['IVDR clases B, C y D', 'Sí', 'Sí'],
+  ['Producto fabricado en el propio centro sanitario (art. 5.5)', 'No', 'No'],
+];
+
+const escalera = [
+  {
+    paso: '1. Guardar fotos del lunar',
+    funcion: 'Diario fotográfico con fecha, sin análisis.',
+    ps: 'No: sin finalidad médica, es almacenamiento.',
+    clase: '—',
+    aia: 'No es alto riesgo. Si usa IA generativa o conversa con el usuario, transparencia (art. 50).',
+  },
+  {
+    paso: '2. Medir',
+    funcion: 'Calcula diámetro, asimetría o color del lunar.',
+    ps: 'Sí, si la medida tiene finalidad médica (seguimiento de una lesión).',
+    clase: 'I si solo mide sin informar decisiones («resto del software»); IIa si la medida se usa para decidir.',
+    aia: 'Alto riesgo solo si llega a IIa (interviene el organismo notificado).',
+  },
+  {
+    paso: '3. Avisar de cambios',
+    funcion: 'Compara fotos y avisa si el lunar crece o cambia.',
+    ps: 'Sí.',
+    clase: 'IIa como mínimo: da información para decidir con fines diagnósticos.',
+    aia: 'Alto riesgo (si la función usa IA).',
+  },
+  {
+    paso: '4. Sospechoso o no sospechoso',
+    funcion: 'Clasifica la lesión para orientar si hay que consultar.',
+    ps: 'Sí.',
+    clase: 'IIb: un falso negativo puede retrasar el diagnóstico y causar un deterioro grave.',
+    aia: 'Alto riesgo. Pesan más los datos y sesgos (fototipos) y la supervisión humana.',
+  },
+  {
+    paso: '5. Probabilidad y derivación urgente',
+    funcion: 'Da la probabilidad de melanoma y recomienda derivación urgente.',
+    ps: 'Sí.',
+    clase: 'III: la decisión puede causar la muerte o un deterioro irreversible si falla.',
+    aia: 'Alto riesgo, con investigación clínica en principio obligatoria (MDR art. 61.4).',
+  },
+];
+
+const requisitos = [
+  ['Gestión de riesgos', 'Art. 9', 'Riesgos propios de la IA (deriva de datos, sesgo, uso indebido previsible) integrados en el proceso ISO 14971 del MDR.'],
+  ['Datos y gobernanza de datos', 'Art. 10', 'Conjuntos de entrenamiento, validación y prueba pertinentes y representativos; examen y mitigación de sesgos.'],
+  ['Documentación técnica', 'Art. 11 y anexo IV', 'Una sola documentación técnica que integra la del anexo II del MDR y la del anexo IV del AI Act.'],
+  ['Registros automáticos (logs)', 'Art. 12', 'Registro de eventos durante el uso para la trazabilidad y el seguimiento poscomercialización.'],
+  ['Transparencia e instrucciones', 'Art. 13', 'Instrucciones para el responsable del despliegue: precisión esperada, limitaciones y condiciones de uso.'],
+  ['Supervisión humana', 'Art. 14', 'Diseño que permite al profesional entender, vigilar, ignorar o detener la salida del sistema.'],
+  ['Precisión, robustez y ciberseguridad', 'Art. 15', 'Métricas de precisión declaradas, resistencia a errores y ataques; encaja con el anexo I, sección 17, del MDR.'],
+  ['Sistema de gestión de la calidad', 'Art. 17', 'Se integra en el SGC ISO 13485 que ya exige el MDR.'],
+  ['Seguimiento poscomercialización', 'Art. 72', 'Dentro del sistema de PMS del MDR; añade el seguimiento del rendimiento del modelo.'],
+  ['Notificación de incidentes', 'Art. 73(10)', 'Para productos sanitarios, el AI Act solo exige notificar incidentes que vulneren derechos fundamentales. Los daños a la salud siguen la vigilancia del MDR.'],
+];
 ---
 
 <Base
-  title="IA clínica: intersección MDR × AI Act"
-  description="Cuándo un SaMD con IA es alto riesgo según el AI Act: el criterio doble de la MDCG 2025-6 explicado en español."
+  title="IA clínica: cuándo tu SaMD es alto riesgo"
+  description="Regla 11, criterio doble de la MDCG 2025-6, la escalera del lunar y los requisitos de alto riesgo del AI Act para software sanitario con IA. Fechas tras el Omnibus."
 >
   <h1>IA clínica: la intersección MDR × AI Act</h1>
-  <p>
-    Si desarrollas o comercializas software de producto sanitario (SaMD) con IA, te aplican
-    <em>dos</em> marcos a la vez. Esta página resume cuándo tu sistema es «alto riesgo» para el
-    AI Act y qué implica la doble evaluación de conformidad.
+  <p class="intro">
+    Si desarrollas software sanitario con IA, te aplican dos reglamentos a la vez. Esta página
+    sigue el orden en que se decide: primero el MDR (¿es producto sanitario?, ¿qué clase?) y
+    después el AI Act, porque <strong>la clase MDR decide si la IA es de alto riesgo</strong>,
+    nunca al revés.
+  </p>
+  <p class="nota">
+    Fechas tras el Omnibus (Reg. (UE) 2026/1744): las obligaciones de alto riesgo para productos
+    sanitarios con IA se aplican desde el <strong>2-8-2028</strong>. La MDCG 2025-6 aún cita el
+    2-8-2027 porque es de junio de 2025. <a href="/?norma=AI+Act">Ver todos los plazos del AI Act</a>.
   </p>
 
-  <h2>El criterio doble (MDCG 2025-6)</h2>
-  <p>Un sistema de IA en el ámbito sanitario es de alto riesgo bajo el Anexo I del AI Act cuando cumple <strong>las dos</strong> condiciones:</p>
+  <h2>Paso 1. ¿Es producto sanitario?</h2>
+  <p>
+    Lo decide la <a href="/glosario#finalidad-prevista">finalidad prevista</a> que declaras, no la
+    tecnología. Un software es producto sanitario si tiene finalidad médica propia (diagnosticar,
+    vigilar, predecir, tratar…). El árbol de decisión oficial está en la
+    <a href="/guias">MDCG 2019-11 rev.1</a> (junio de 2025).
+  </p>
+
+  <h2>Paso 2. Regla 11: la clase del software</h2>
+  <div class="tabla-scroll">
+    <table class="tabla">
+      <caption class="visually-hidden">Regla 11 del anexo VIII del MDR</caption>
+      <thead>
+        <tr><th scope="col">Si el software…</th><th scope="col">Clase</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Da información para tomar decisiones diagnósticas o terapéuticas</td><td><strong>IIa</strong></td></tr>
+        <tr><td>…y esas decisiones pueden causar un deterioro grave de la salud o una intervención quirúrgica</td><td><strong>IIb</strong></td></tr>
+        <tr><td>…y esas decisiones pueden causar la muerte o un deterioro irreversible</td><td><strong>III</strong></td></tr>
+        <tr><td>Vigila procesos fisiológicos</td><td><strong>IIa</strong></td></tr>
+        <tr><td>Vigila parámetros fisiológicos vitales cuyas variaciones pueden suponer un peligro inmediato</td><td><strong>IIb</strong></td></tr>
+        <tr><td>Cualquier otro software</td><td><strong>I</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fuente-dato">
+    MDR anexo VIII, Regla 11 · <a href={`${MDR_ELI}#anx_VIII`} rel="external noopener">texto oficial</a>.
+    La <a href="/en-tramitacion">propuesta de revisión</a> quiere que más software pueda ser clase I; hoy no aplica.
+  </p>
+
+  <h2>Paso 3. ¿Es alto riesgo en el AI Act?</h2>
+  <p>Según la MDCG 2025-6 (pregunta 2), deben cumplirse <strong>las dos</strong> condiciones:</p>
   <ol class="criterio">
     <li>
-      <strong>Es un producto sanitario o un componente de seguridad</strong> de un producto
-      regulado por MDR/IVDR. Ojo al matiz post-Omnibus: la IA que solo asiste al usuario u
-      optimiza rendimiento sin crear riesgo para la salud o la seguridad queda fuera de la
-      definición de componente de seguridad.
+      La IA es el propio producto sanitario o un <strong>componente de seguridad</strong> suyo. Desde
+      el Omnibus no lo es la IA que solo sirve para asistir al usuario, optimizar el rendimiento o dar
+      comodidad sin función de seguridad, pero sí lo es si su fallo pone en peligro la salud
+      (art. 6(1a)-(1b)).
     </li>
-    <li>
-      <strong>Requiere la intervención de un organismo notificado</strong> en su evaluación de
-      conformidad: clases IIa, IIb y III en MDR, y clases B, C y D en IVDR. Un SaMD de clase I
-      sin intervención de ON no entra en el alto riesgo por esta vía.
-    </li>
+    <li>El producto pasa por un <strong>organismo notificado</strong> en su evaluación de la conformidad.</li>
   </ol>
-
-  <h2>Principios que conviene tener a mano</h2>
-  <ul>
-    <li>
-      <strong>No escalamiento recíproco de riesgos:</strong> que un sistema sea alto riesgo para
-      el AI Act no eleva su clase MDR, ni al revés. Cada marco clasifica con sus propios criterios.
-    </li>
-    <li>
-      <strong>Grandfathering:</strong> los sistemas comercializados antes de las fechas de
-      aplicación evitan las obligaciones de alto riesgo salvo «modificación sustancial».
-    </li>
-    <li>
-      <strong>Fecha clave para MedTech con IA:</strong> 2 de agosto de 2028 — obligaciones de
-      alto riesgo para la IA embebida en productos del Anexo I (re-basada por el Omnibus).
-      Consulta la <a href="/">cronología completa</a>.
-    </li>
-  </ul>
-
-  <div class="proximamente">
-    <h2>En construcción (julio-agosto 2026)</h2>
-    <p>
-      Próximamente: flujos de doble evaluación de conformidad paso a paso, y las fichas en español
-      de las guías estrella — <a href="/guias">MDCG 2025-6 y MDCG 2025-4</a>.
-    </p>
+  <div class="tabla-scroll">
+    <table class="tabla">
+      <caption>Tabla 1 de la MDCG 2025-6 (lista no exhaustiva)</caption>
+      <thead>
+        <tr><th scope="col">Clase</th><th scope="col">¿Interviene un ON?</th><th scope="col">¿Alto riesgo (art. 6(1))?</th></tr>
+      </thead>
+      <tbody>
+        {tabla1.map(([clase, on, ar]) => (
+          <tr><td>{clase}</td><td>{on}</td><td class={ar === 'Sí' ? 'si' : 'no'}>{ar}</td></tr>
+        ))}
+      </tbody>
+    </table>
   </div>
+  <p class="fuente-dato">
+    <a href={MDCG_2025_6} rel="external noopener">MDCG 2025-6 / AIB 2025-1</a>, preguntas 2, 4 y 35.
+    Ser alto riesgo no sube la clase MDR. Las prácticas prohibidas (art. 5) y la transparencia
+    (art. 50) se aplican sea cual sea la clase. Corregido el 14-10-2026: <a href="/erratas#E-003">errata E-003</a>.
+  </p>
+
+  <h2>La escalera del lunar</h2>
+  <p>
+    Una misma app de dermatología cambia de clase MDR, y de obligaciones del AI Act, con cada
+    función que añades. Ejemplo didáctico: la clase real depende de cómo redactes la finalidad
+    prevista.
+  </p>
+  <div class="tabla-scroll">
+    <table class="tabla escalera">
+      <caption class="visually-hidden">Escalera del lunar: clase MDR y AI Act por función</caption>
+      <thead>
+        <tr>
+          <th scope="col">Función</th>
+          <th scope="col">¿Producto sanitario?</th>
+          <th scope="col">Clase MDR orientativa (Regla 11)</th>
+          <th scope="col">AI Act (si la función usa IA)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {escalera.map((e, i) => (
+          <tr class={`nivel-${i}`}>
+            <th scope="row">{e.paso}<span class="funcion">{e.funcion}</span></th>
+            <td>{e.ps}</td>
+            <td>{e.clase}</td>
+            <td>{e.aia}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Qué exige el alto riesgo</h2>
+  <p>
+    Requisitos del capítulo III del AI Act y cómo encajan con lo que ya pide el MDR. El organismo
+    notificado los comprueba en <strong>una sola evaluación de la conformidad</strong>, con las
+    mismas reglas de muestreo del MDR/IVDR (MDCG 2025-6, preguntas 13, 27 y 28).
+  </p>
+  <div class="tabla-scroll">
+    <table class="tabla">
+      <caption class="visually-hidden">Requisitos de alto riesgo del AI Act para productos sanitarios con IA</caption>
+      <thead>
+        <tr><th scope="col">Requisito</th><th scope="col">AI Act</th><th scope="col">En la práctica, para un producto sanitario con IA</th></tr>
+      </thead>
+      <tbody>
+        {requisitos.map(([req, art, texto]) => (
+          <tr><th scope="row">{req}</th><td>{art}</td><td>{texto}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="fuente-dato"><a href={AIA_ELI} rel="external noopener">AI Act en EUR-Lex</a> · <a href={MDCG_2025_6} rel="external noopener">MDCG 2025-6</a></p>
+
+  <aside class="caja pccp">
+    <h2>Modelos que aprenden: el PCCP</h2>
+    <p>
+      <strong>EE. UU.</strong> La FDA permite autorizar por adelantado los cambios futuros de un
+      modelo con un <em>Predetermined Change Control Plan</em> (PCCP): qué cambiará, cómo se
+      validará y qué impacto tendrá. Base legal: sección 515C de la FD&C Act. Guía final de
+      diciembre de 2024 para software con IA.
+    </p>
+    <p>
+      <strong>UE.</strong> No hay una figura con ese nombre, pero el efecto es parecido. Los
+      cambios predeterminados que se evaluaron en la evaluación inicial y constan en la
+      documentación técnica (anexo IV, punto 2(f)) <strong>no son modificación sustancial</strong>
+      (MDCG 2025-6, pregunta 30). La guía europea específica está pendiente; partirá del trabajo del IMDRF.
+    </p>
+    <p class="fuente-dato">
+      <a href="https://www.fda.gov/medical-devices/cdrh-new-news-and-updates/webinar-final-guidance-marketing-submission-recommendations-predetermined-change-control-plan" rel="external noopener">FDA, guía final sobre PCCP</a> ·
+      <a href={MDCG_2025_6} rel="external noopener">MDCG 2025-6</a>
+    </p>
+  </aside>
+
+  <p>
+    Ficha completa en español: <a href="/guias/mdcg-2025-6/">MDCG 2025-6 resumida</a>.
+    Términos clave: <a href="/glosario#componente-seguridad">componente de seguridad</a>,
+    <a href="/glosario#modificacion-sustancial">modificación sustancial</a>,
+    <a href="/glosario#responsable-despliegue">responsable del despliegue</a>.
+  </p>
 </Base>
 
 <style>
-  .criterio li { margin-bottom: 0.75rem; max-width: 46rem; }
-  ul li { margin-bottom: 0.75rem; max-width: 46rem; }
+  .intro { max-width: 46rem; }
+  .criterio li { margin-bottom: 0.6rem; max-width: 46rem; }
+  caption { text-align: left; font-weight: 600; padding-bottom: 0.4rem; }
+  td.si { font-weight: 700; color: var(--urgente-texto); }
+  td.no { color: var(--texto-suave); }
+  .escalera th[scope='row'] { min-width: 12rem; }
+  .escalera .funcion { display: block; font-weight: 400; font-size: 0.85rem; color: var(--texto-suave); }
+  .escalera tr.nivel-0 th { border-left: 6px solid #c9d4e5; }
+  .escalera tr.nivel-1 th { border-left: 6px solid #9fb6dc; }
+  .escalera tr.nivel-2 th { border-left: 6px solid #6f93cf; }
+  .escalera tr.nivel-3 th { border-left: 6px solid #3d6fc4; }
+  .escalera tr.nivel-4 th { border-left: 6px solid #0b3f9e; }
+  .pccp { margin-top: 2rem; max-width: none; }
 </style>

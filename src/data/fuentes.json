@@ -226,5 +226,74 @@
     "frecuencia_actualizacion": "Semanal",
     "tiene_rss": true,
     "notas": "Plantillas open source; candidato al comparador eQMS. Complementar con blogs de BSI y TÜV SÜD como alerta temprana de interpretación."
+  },
+  {
+    "id": "eur-lex-omnibus-ia",
+    "nombre": "Reglamento (UE) 2026/1744 (Digital Omnibus sobre IA)",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Estático",
+    "tiene_rss": false,
+    "notas": "DOUE de 24-7-2026, en vigor el 27-7-2026. Reprograma el alto riesgo: 2-12-2027 (anexo III) y 2-8-2028 (anexo I)."
+  },
+  {
+    "id": "eur-lex-reg-2024-1860",
+    "nombre": "Reglamento (UE) 2024/1860 (EUDAMED escalonado y transitorios IVDR)",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Estático",
+    "tiene_rss": false
+  },
+  {
+    "id": "eur-lex-dec-2025-2371",
+    "nombre": "Decisión (UE) 2025/2371 (funcionalidad de 4 módulos de EUDAMED)",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Estático",
+    "tiene_rss": false,
+    "notas": "DOUE de 27-11-2025: uso obligatorio desde el 28-5-2026."
+  },
+  {
+    "id": "eur-lex-ehds",
+    "nombre": "Reglamento (UE) 2025/327 (Espacio Europeo de Datos Sanitarios)",
+    "tipo": "legal",
+    "url": "https://eur-lex.europa.eu/eli/reg/2025/327/oj",
+    "idioma": "ES/EN (multilingüe)",
+    "frecuencia_actualizacion": "Estático",
+    "tiene_rss": false,
+    "notas": "Aplicación escalonada: 2027, 2029, 2031 y 2035 (art. 105)."
+  },
+  {
+    "id": "boe-rd-942-2025",
+    "nombre": "RD 942/2025 de productos sanitarios para diagnóstico in vitro (España)",
+    "tipo": "legal",
+    "url": "https://www.boe.es/eli/es/rd/2025/10/21/942",
+    "idioma": "ES",
+    "frecuencia_actualizacion": "Puntual (consolidaciones)",
+    "tiene_rss": false,
+    "notas": "BOE de 23-10-2025, en vigor el 24-10-2025. Deroga el RD 1662/2000."
+  },
+  {
+    "id": "propuesta-revision-mdr-ivdr",
+    "nombre": "Propuesta de revisión del MDR/IVDR, COM(2025) 1023",
+    "tipo": "legal",
+    "url": "https://health.ec.europa.eu/document/download/25e7ea7c-cab3-40cf-86d9-d11f5e7744d8_en?filename=md_com_2025-1023_act_en.pdf",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Seguir la tramitación",
+    "tiene_rss": false,
+    "notas": "En tramitación: no es derecho aplicable."
+  },
+  {
+    "id": "hpra",
+    "nombre": "HPRA, autoridad competente irlandesa (productos sanitarios)",
+    "tipo": "agencia",
+    "url": "https://www.hpra.ie/regulation/medical-devices",
+    "idioma": "EN",
+    "frecuencia_actualizacion": "Semanal",
+    "tiene_rss": false,
+    "notas": "Confirma fechas de EUDAMED y transitorios MDR/IVDR con más claridad que muchas fuentes secundarias."
   }
 ]

@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITIO } from '../config';
+
+const erratas = (await getCollection('erratas'))
+  .map((e) => e.data)
+  .sort((a, b) => b.id.localeCompare(a.id));
+const fmt = (iso: string) =>
+  new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso + 'T00:00:00')
+  );
+---
+
+<Base
+  title="Fe de erratas"
+  description="Errores de interpretación detectados en el Radar, con la corrección, la causa raíz y la acción correctiva aplicada (formato CAPA)."
+>
+  <h1>Fe de erratas</h1>
+  <p class="intro">
+    Cuando nos equivocamos, lo contamos como se haría en un sistema de calidad: qué estaba mal,
+    cómo se ha corregido, por qué pasó y qué hemos cambiado para que no vuelva a pasar. Las
+    correcciones de fechas por cambios normativos no son erratas y van al
+    <a href="/cambios">registro de cambios</a>.
+  </p>
+
+  {
+    erratas.map((e) => (
+      <article class="errata" id={e.id}>
+        <h2>
+          {e.id}{' '}
+          <span class={`chip ${e.estado === 'cerrada' ? 'chip-ok' : 'chip-aviso'}`}>
+            {e.estado === 'cerrada' ? 'Cerrada' : 'Abierta'}
+          </span>
+        </h2>
+        <p class="meta">
+          Detectada el {fmt(e.fecha_deteccion)}
+          {e.fecha_correccion && <> · corregida el {fmt(e.fecha_correccion)}</>} · afecta a{' '}
+          {e.paginas.map((p, i) => (
+            <>
+              {i > 0 && ', '}
+              <a href={p}>{p}</a>
+            </>
+          ))}
+        </p>
+        <dl class="capa">
+          <dt>Qué decíamos</dt>
+          <dd>{e.dato_erroneo}</dd>
+          <dt>Corrección</dt>
+          <dd>{e.correccion}</dd>
+          <dt>Causa raíz</dt>
+          <dd>{e.causa_raiz}</dd>
+          <dt>Acción correctiva</dt>
+          <dd>{e.accion_correctiva}</dd>
+        </dl>
+        <p class="fuente-dato">
+          <a href={e.fuente_url} rel="external noopener">Fuente que lo demuestra</a>
+        </p>
+      </article>
+    ))
+  }
+
+  <aside class="caja">
+    <h2>¿Has visto un error?</h2>
+    <p>
+      Escríbeme a <a href={`mailto:${SITIO.email}?subject=${encodeURIComponent('Errata Radar MDR × AI Act')}`}>{SITIO.email}</a>
+      con el dato, la página y, si puedes, la fuente. Si se confirma, aparecerá aquí con su CAPA.
+    </p>
+  </aside>
+</Base>
+
+<style>
+  .intro { max-width: 46rem; }
+  .errata { border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1.5rem; }
+  .errata:target { border-color: var(--acento); box-shadow: 0 0 0 3px #d6e4fb; }
+  .errata h2 { margin: 0 0 0.25rem; display: flex; gap: 0.5rem; align-items: center; }
+  .meta { color: var(--texto-suave); font-size: 0.9rem; margin-top: 0; }
+  .capa { display: grid; grid-template-columns: 11rem 1fr; gap: 0.5rem 1rem; margin: 0.75rem 0; }
+  .capa dt { font-weight: 700; }
+  .capa dd { margin: 0; max-width: 44rem; }
+  @media (max-width: 40rem) { .capa { grid-template-columns: 1fr; } .capa dd { margin-bottom: 0.5rem; } }
+  aside { margin-top: 2rem; }
+</style>

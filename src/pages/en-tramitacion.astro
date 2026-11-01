@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const propuestas = (await getCollection('propuestas')).map((p) => p.data);
+const fmt = (iso: string) =>
+  new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso + 'T00:00:00')
+  );
+---
+
+<Base
+  title="En tramitación: lo que puede cambiar"
+  description="La revisión del MDR y el IVDR propuesta en diciembre de 2025: qué dice hoy la norma y qué propone la Comisión, con el estado de la tramitación en el Parlamento y el Consejo."
+>
+  <h1>En tramitación: lo que puede cambiar</h1>
+  <p class="intro">
+    Propuestas legislativas que todavía <strong>no son derecho aplicable</strong>. Las
+    seguimos porque cambiarán tus obligaciones, pero la cronología y las matrices de obligaciones
+    recogen solo lo vigente.
+  </p>
+  <p class="nota">
+    <strong>Hoy, y en cualquier examen o auditoría, vale la columna «Vigente»</strong>: 15 días
+    para notificar un incidente grave, PSUR anual en IIb y III y bienal en IIa, y certificados de
+    5 años como máximo.
+  </p>
+
+  {
+    propuestas.map((p) => (
+      <article class="propuesta" id={p.id}>
+        <h2>{p.titulo}</h2>
+        <p class="meta">
+          <span class="chip chip-aviso">En tramitación</span> {p.referencia}
+        </p>
+        <p>{p.estado_tramite}</p>
+
+        <h3>Vigente frente a propuesta</h3>
+        <div class="tabla-scroll">
+          <table class="tabla">
+            <caption class="visually-hidden">Comparativa entre la norma vigente y la propuesta de la Comisión</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tema</th>
+                <th scope="col">Vigente (lo que aplica hoy)</th>
+                <th scope="col">Propuesta de la Comisión</th>
+              </tr>
+            </thead>
+            <tbody>
+              {p.cambios.map((c) => (
+                <tr>
+                  <th scope="row">{c.tema}</th>
+                  <td>{c.vigente}</td>
+                  <td>
+                    {c.propuesta_comision}
+                    {c.nota && <span class="nota-celda">{c.nota}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Tramitación</h3>
+        <ol class="hitos">
+          {p.hitos.map((h) => (
+            <li class={h.hecho ? 'hecho' : 'previsto'}>
+              <span class="hito-fecha">{h.fecha}</span>
+              <span>{h.hito}</span>
+              <span class="visually-hidden">{h.hecho ? '(completado)' : '(previsto)'}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="fuente-dato">
+          <a href={p.fuente_url} rel="external noopener">Propuesta oficial (COM)</a>
+          {p.fuentes_adicionales.map((u, i) => (
+            <>
+              {' '}· <a href={u} rel="external noopener">fuente secundaria {i + 1}</a>
+            </>
+          ))}{' '}
+          · Verificado el {fmt(p.fecha_verificacion)}. Las fechas previstas vienen de fuentes
+          secundarias y pueden cambiar.
+        </p>
+      </article>
+    ))
+  }
+
+  <section class="caja ya-adoptado">
+    <h2>Ya adoptado, con aplicación escalonada</h2>
+    <p>
+      <strong>Espacio Europeo de Datos Sanitarios (EHDS), Reg. (UE) 2025/327.</strong> Ya es
+      ley y no está en tramitación, pero se aplica por fases: aplicación general el 26-3-2027,
+      historia clínica resumida, receta electrónica y la mayoría del uso secundario el 26-3-2029,
+      e imagen médica, resultados de pruebas e informes de alta el 26-3-2031.
+      <a href="/?norma=EHDS">Ver en la cronología</a>.
+    </p>
+    <p>
+      <strong>Omnibus de IA, Reg. (UE) 2026/1744.</strong> Publicado en el DOUE el 24-7-2026: ya
+      no está en tramitación. Sus fechas están en la <a href="/?norma=AI+Act">cronología</a>.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .intro { max-width: 46rem; }
+  .propuesta { margin-top: 2rem; }
+  .meta { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; color: var(--texto-suave); }
+  .tabla th[scope='row'] { min-width: 10rem; }
+  .nota-celda { display: block; margin-top: 0.4rem; font-size: 0.85rem; color: var(--aviso-texto); }
+  .hitos { list-style: none; padding: 0; border-left: 3px solid var(--borde); margin-left: 0.5rem; }
+  .hitos li { position: relative; padding: 0.35rem 0 0.35rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0 0.75rem; }
+  .hitos li::before {
+    content: ''; position: absolute; left: -0.5rem; top: 0.75rem; width: 0.75rem; height: 0.75rem;
+    border-radius: 50%; background: var(--acento); border: 2px solid #fff;
+  }
+  .hitos li.previsto::before { background: #fff; border: 2px solid var(--acento); }
+  .hitos li.previsto { color: var(--texto-suave); }
+  .hito-fecha { font-weight: 600; min-width: 13rem; }
+  .ya-adoptado { margin-top: 2.5rem; max-width: none; }
+</style>

@@ -1,21 +1,146 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+
+const organismos = (await getCollection('organismos'))
+  .map((o) => o.data)
+  .sort((a, b) => a.pais.localeCompare(b.pais, 'es') || a.numero_nando.localeCompare(b.numero_nando));
+const paises = [...new Set(organismos.map((o) => o.pais))].sort((a, b) => a.localeCompare(b, 'es'));
+const nMdr = organismos.filter((o) => o.ambito.includes('MDR')).length;
+const nIvdr = organismos.filter((o) => o.ambito.includes('IVDR')).length;
+const nAia = organismos.filter((o) => o.ambito.includes('AI Act')).length;
+const verificado = organismos.map((o) => o.fecha_verificacion).sort().at(-1)!;
+const fmt = (iso: string) =>
+  new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso + 'T00:00:00')
+  );
 ---
 
 <Base
-  title="Directorio de organismos notificados"
-  description="Organismos notificados designados bajo MDR e IVDR (base NANDO), con ámbito y país."
+  title="Organismos notificados MDR e IVDR"
+  description={`Directorio de los ${nMdr} organismos notificados activos bajo el MDR y ${nIvdr} bajo el IVDR, con número NANDO y país, verificado en la base oficial de la Comisión.`}
 >
-  <h1>Directorio de organismos notificados</h1>
-  <p>
-    Designados MDR/IVDR según la base NANDO, con ámbito de designación, país y — cuando llegue —
-    la designación bajo el AI Act.
+  <h1>Organismos notificados MDR e IVDR</h1>
+  <p class="intro">
+    Todos los organismos con notificación <strong>activa</strong> según NANDO, la base oficial de
+    la Comisión, a {fmt(verificado)}. El número de cuatro cifras es el que acompaña al marcado CE.
   </p>
-  <div class="proximamente">
-    <h2>Próximamente</h2>
-    <p>
-      En construcción. Mientras tanto puedes consultar la base oficial:
-      <a href="https://ec.europa.eu/growth/tools-databases/nando/" rel="external noopener">NANDO (Comisión Europea)</a>.
+  <ul class="cifras">
+    <li><strong>{nMdr}</strong> activos bajo el MDR</li>
+    <li><strong>{nIvdr}</strong> activos bajo el IVDR</li>
+    <li><strong>{nAia}</strong> notificados todavía bajo el AI Act</li>
+  </ul>
+  {nAia === 0 && (
+    <p class="nota">
+      Ningún organismo figura aún en NANDO como notificado bajo el AI Act (consulta del {fmt(verificado)}).
+      Para productos sanitarios con IA bastará con un organismo designado para MDR/IVDR que
+      además se designe para el AI Act. El Omnibus crea una solicitud única para ambas
+      designaciones.
     </p>
+  )}
+
+  <form class="filtros" aria-label="Filtrar organismos">
+    <div class="filtro">
+      <label for="o-pais">País</label>
+      <select id="o-pais">
+        <option value="">Todos</option>
+        {paises.map((p) => <option value={p}>{p}</option>)}
+      </select>
+    </div>
+    <div class="filtro">
+      <label for="o-ambito">Reglamento</label>
+      <select id="o-ambito">
+        <option value="">MDR o IVDR</option>
+        <option value="MDR">MDR</option>
+        <option value="IVDR">IVDR</option>
+        <option value="ambos">MDR e IVDR</option>
+      </select>
+    </div>
+    <div class="filtro">
+      <label for="o-texto">Nombre o número</label>
+      <input id="o-texto" type="search" placeholder="p. ej. TÜV o 0123" />
+    </div>
+  </form>
+  <p id="o-estado" role="status" aria-live="polite" class="estado"></p>
+
+  <div class="tabla-scroll">
+    <table class="tabla" id="tabla-on">
+      <caption class="visually-hidden">Organismos notificados activos</caption>
+      <thead>
+        <tr>
+          <th scope="col">N.º NANDO</th>
+          <th scope="col">Organismo</th>
+          <th scope="col">País</th>
+          <th scope="col">MDR</th>
+          <th scope="col">IVDR</th>
+        </tr>
+      </thead>
+      <tbody>
+        {organismos.map((o) => (
+          <tr
+            data-pais={o.pais}
+            data-ambito={o.ambito.join('|')}
+            data-texto={`${o.numero_nando} ${o.nombre}`.toLowerCase()}
+            class={o.pais === 'España' ? 'es' : undefined}
+          >
+            <td><strong>{o.numero_nando}</strong></td>
+            <td>{o.nombre}{o.notas && <span class="notas">{o.notas}</span>}</td>
+            <td>{o.pais}</td>
+            <td>{o.ambito.includes('MDR') ? 'Sí' : '—'}</td>
+            <td>{o.ambito.includes('IVDR') ? 'Sí' : '—'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
+  <p class="fuente-dato">
+    Fuente: <a href="https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:34,notificationStatusId:1" rel="external noopener">NANDO, Reg. (UE) 2017/745</a> ·
+    <a href="https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notified-body-list?filter=legislationId:35,notificationStatusId:1" rel="external noopener">NANDO, Reg. (UE) 2017/746</a>.
+    Los nombres se reproducen como figuran en NANDO, con mayúsculas normalizadas. Que un organismo
+    esté activo no garantiza que cubra tu tipo de producto: consulta sus códigos de designación
+    en su ficha de NANDO. También en <a href="/api/organismos.json">JSON</a>.
+  </p>
 </Base>
+
+<script>
+  const pais = document.getElementById('o-pais') as HTMLSelectElement;
+  const ambito = document.getElementById('o-ambito') as HTMLSelectElement;
+  const texto = document.getElementById('o-texto') as HTMLInputElement;
+  const estado = document.getElementById('o-estado')!;
+  const filas = [...document.querySelectorAll<HTMLTableRowElement>('#tabla-on tbody tr')];
+
+  function filtrar() {
+    const q = texto.value.trim().toLowerCase();
+    let n = 0;
+    for (const f of filas) {
+      const amb = (f.dataset.ambito || '').split('|');
+      const okPais = !pais.value || f.dataset.pais === pais.value;
+      const okAmb =
+        !ambito.value ||
+        (ambito.value === 'ambos' ? amb.includes('MDR') && amb.includes('IVDR') : amb.includes(ambito.value));
+      const okTexto = !q || (f.dataset.texto || '').includes(q);
+      f.hidden = !(okPais && okAmb && okTexto);
+      if (!f.hidden) n++;
+    }
+    estado.textContent = n === filas.length ? '' : `Mostrando ${n} de ${filas.length} organismos.`;
+  }
+  [pais, ambito].forEach((s) => s.addEventListener('change', filtrar));
+  texto.addEventListener('input', filtrar);
+</script>
+
+<style>
+  .intro { max-width: 46rem; }
+  .cifras { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; list-style: none; padding: 0; font-size: 1.05rem; }
+  .filtros {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; background: var(--fondo-alt);
+    border: 1px solid var(--borde); border-radius: 8px; padding: 1rem; margin-top: 1rem;
+  }
+  .filtro { display: flex; flex-direction: column; gap: 0.25rem; }
+  .filtro label { font-size: 0.85rem; font-weight: 600; }
+  .filtros select, .filtros input {
+    font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--texto-suave); border-radius: 6px; background: #fff;
+  }
+  .estado { min-height: 1.5rem; color: var(--texto-suave); }
+  tr.es td { background: #fff8e6; }
+  .notas { display: block; font-size: 0.82rem; color: var(--texto-suave); }
+</style>

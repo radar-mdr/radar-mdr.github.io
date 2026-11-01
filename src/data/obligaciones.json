@@ -1,1 +1,472 @@
-[]
+[
+  {
+    "id": "mdr-ruta-conformidad",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Evaluación de la conformidad",
+    "articulo": "Art. 52; anexos IX, X y XI",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Ruta para demostrar la conformidad y poner el marcado CE.",
+    "por_clase": {
+      "I": "Autodeclaración: documentación técnica (anexos II y III) y declaración UE de conformidad. Sin organismo notificado (art. 52.7).",
+      "Is/Im/Ir": "Como la clase I, pero el organismo notificado interviene solo en los aspectos de esterilidad, metrología o reutilización (art. 52.7).",
+      "IIa": "Organismo notificado: SGC (anexo IX, caps. I y III) más la documentación técnica de al menos un producto representativo por categoría (art. 52.6).",
+      "IIb": "Organismo notificado: SGC (anexo IX) más la documentación técnica de al menos un producto por grupo genérico. Los IIb implantables, producto a producto salvo exenciones (art. 52.4).",
+      "III": "Organismo notificado: anexo IX completo, o examen de tipo (anexo X) más verificación (anexo XI) (art. 52.3). Consulta de la evaluación clínica a un panel de expertos para implantables III (art. 54)."
+    },
+    "evidencia_requerida": "Documentación técnica, declaración UE de conformidad y, cuando proceda, certificado del organismo notificado.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_52",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-validez-certificados",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Evaluación de la conformidad",
+    "articulo": "Art. 56.2; anexo IX, 3.3 y 3.4",
+    "rol": "fabricante",
+    "clases_producto": [
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Certificados del organismo notificado y auditorías de seguimiento.",
+    "por_clase": {
+      "I": "No aplica.",
+      "Is/Im/Ir": "Certificado de 5 años como máximo, renovable. Auditoría de vigilancia al menos anual y auditorías no anunciadas al menos cada 5 años.",
+      "IIa": "Igual que Is/Im/Ir.",
+      "IIb": "Igual que Is/Im/Ir.",
+      "III": "Igual que Is/Im/Ir."
+    },
+    "evidencia_requerida": "Certificado vigente e informes de auditoría del organismo notificado.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_56",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-documentacion-tecnica",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Documentación",
+    "articulo": "Art. 10.4; anexos II y III",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Elaborar y mantener actualizada la documentación técnica y la documentación técnica de PMS.",
+    "por_clase": {
+      "I": "Obligatoria (anexos II y III).",
+      "Is/Im/Ir": "Obligatoria (anexos II y III).",
+      "IIa": "Obligatoria (anexos II y III).",
+      "IIb": "Obligatoria (anexos II y III).",
+      "III": "Obligatoria (anexos II y III)."
+    },
+    "evidencia_requerida": "Expediente técnico: descripción, GSPR, gestión de riesgos, verificación y validación, evaluación clínica, plan de PMS.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#anx_II",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-evaluacion-clinica",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Evidencia clínica",
+    "articulo": "Art. 61; anexo XIV",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Evaluación clínica a lo largo del ciclo de vida.",
+    "por_clase": {
+      "I": "Evaluación clínica obligatoria (puede basarse en datos de la literatura o de equivalencia).",
+      "Is/Im/Ir": "Igual que la clase I.",
+      "IIa": "Evaluación clínica obligatoria.",
+      "IIb": "Evaluación clínica obligatoria. Investigación clínica obligatoria si es implantable, salvo las excepciones del art. 61.4-61.6.",
+      "III": "Investigación clínica obligatoria, salvo las excepciones del art. 61.4-61.6."
+    },
+    "evidencia_requerida": "Plan e informe de evaluación clínica (CEP/CER).",
+    "guia_relacionada": "mdcg-2020-1",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_61",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-pms-informes",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Seguimiento poscomercialización",
+    "articulo": "Arts. 83-86",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Sistema y plan de PMS para todas las clases; el informe periódico depende de la clase.",
+    "por_clase": {
+      "I": "Informe de PMS (art. 85), actualizado cuando sea necesario. Se entrega a la autoridad si lo pide.",
+      "Is/Im/Ir": "Informe de PMS (art. 85).",
+      "IIa": "PSUR actualizado cuando sea necesario y al menos cada 2 años (art. 86.1).",
+      "IIb": "PSUR al menos una vez al año (art. 86.1). Los implantables lo presentan al ON a través de EUDAMED (art. 86.2).",
+      "III": "PSUR al menos una vez al año, presentado al organismo notificado a través de EUDAMED (art. 86.2)."
+    },
+    "evidencia_requerida": "Plan de PMS, informe de PMS o PSUR dentro de la documentación técnica.",
+    "guia_relacionada": "mdcg-2025-10",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_86",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-pmcf",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Seguimiento poscomercialización",
+    "articulo": "Anexo XIV, parte B",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Seguimiento clínico poscomercialización (PMCF) dentro del plan de PMS.",
+    "por_clase": {
+      "I": "Plan de PMCF, o justificación documentada de por qué no procede.",
+      "Is/Im/Ir": "Plan de PMCF o justificación.",
+      "IIa": "Plan e informe de evaluación del PMCF.",
+      "IIb": "Plan e informe de evaluación del PMCF.",
+      "III": "Plan e informe de evaluación del PMCF; sus resultados alimentan el SSCP y el PSUR."
+    },
+    "evidencia_requerida": "Plan de PMCF e informe de evaluación del PMCF.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#anx_XIV",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-sscp",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Transparencia",
+    "articulo": "Art. 32",
+    "rol": "fabricante",
+    "clases_producto": [
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Resumen sobre seguridad y funcionamiento clínico (SSCP), público en EUDAMED.",
+    "por_clase": {
+      "I": "No aplica.",
+      "Is/Im/Ir": "No aplica.",
+      "IIa": "Solo si el producto es implantable.",
+      "IIb": "Solo si el producto es implantable.",
+      "III": "Obligatorio (salvo productos a medida o en investigación)."
+    },
+    "evidencia_requerida": "SSCP validado por el organismo notificado.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_32",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-udi-eudamed",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Trazabilidad y registro",
+    "articulo": "Arts. 27, 29, 31 y 123(3)(f)-(g)",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Asignar UDI, poner el soporte UDI en la etiqueta y registrar agente (SRN) y productos en EUDAMED.",
+    "por_clase": {
+      "I": "Soporte UDI en la etiqueta desde el 26-5-2025; marcado directo en reutilizables desde el 26-5-2027.",
+      "Is/Im/Ir": "Igual que la clase I.",
+      "IIa": "Soporte UDI en la etiqueta desde el 26-5-2023; marcado directo en reutilizables desde el 26-5-2025.",
+      "IIb": "Igual que IIa (implantables, desde el 26-5-2021).",
+      "III": "Soporte UDI desde el 26-5-2021; marcado directo en reutilizables desde el 26-5-2023."
+    },
+    "evidencia_requerida": "UDI-DI básico y UDI-DI registrados en EUDAMED; SRN del fabricante.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_123",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-tarjeta-implante",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Transparencia",
+    "articulo": "Art. 18",
+    "rol": "fabricante",
+    "clases_producto": [
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Tarjeta de implante e información al paciente.",
+    "por_clase": {
+      "I": "No aplica.",
+      "Is/Im/Ir": "No aplica.",
+      "IIa": "Solo implantables, salvo los exentos del art. 18.3 (suturas, grapas, empastes, aparatos de ortodoncia, coronas dentales, tornillos, cuñas, placas, alambres, clavos, clips y conectores).",
+      "IIb": "Solo implantables, salvo los exentos del art. 18.3.",
+      "III": "Obligatoria si es implantable."
+    },
+    "evidencia_requerida": "Modelo de tarjeta de implante e información al paciente.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_18",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-vigilancia",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Vigilancia",
+    "articulo": "Arts. 87-89",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Notificar incidentes graves y acciones correctivas de seguridad (FSCA).",
+    "por_clase": {
+      "I": "Mismos plazos para todas las clases: 15 días como máximo desde que se tiene conocimiento; 10 días en caso de muerte o deterioro grave imprevisto; 2 días si hay amenaza grave para la salud pública.",
+      "Is/Im/Ir": "Mismos plazos (15 / 10 / 2 días).",
+      "IIa": "Mismos plazos (15 / 10 / 2 días).",
+      "IIb": "Mismos plazos (15 / 10 / 2 días).",
+      "III": "Mismos plazos (15 / 10 / 2 días)."
+    },
+    "evidencia_requerida": "Procedimiento de vigilancia, informes de incidentes (MIR), FSCA y FSN, notificación de tendencias (art. 88).",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_87",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "mdr-prrc",
+    "norma": "MDR",
+    "ambito": "clase",
+    "tema": "Personas y organización",
+    "articulo": "Art. 15",
+    "rol": "fabricante",
+    "clases_producto": [
+      "I",
+      "Is/Im/Ir",
+      "IIa",
+      "IIb",
+      "III"
+    ],
+    "obligacion": "Disponer de al menos una persona responsable del cumplimiento de la normativa (PRRC).",
+    "por_clase": {
+      "I": "Obligatoria. Las microempresas y pequeñas empresas pueden no tenerla en plantilla, pero sí a su disposición de forma permanente y continua (art. 15.2).",
+      "Is/Im/Ir": "Obligatoria (misma excepción para micro y pequeñas empresas).",
+      "IIa": "Obligatoria (misma excepción para micro y pequeñas empresas).",
+      "IIb": "Obligatoria (misma excepción para micro y pequeñas empresas).",
+      "III": "Obligatoria (misma excepción para micro y pequeñas empresas)."
+    },
+    "evidencia_requerida": "Nombramiento y prueba de cualificación: titulación más 1 año de experiencia, o 4 años de experiencia en asuntos regulatorios o SGC.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_15",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "ivdr-ruta-conformidad",
+    "norma": "IVDR",
+    "ambito": "clase",
+    "tema": "Evaluación de la conformidad",
+    "articulo": "Art. 48; anexos IX, X y XI",
+    "rol": "fabricante",
+    "clases_producto": [
+      "IVD A",
+      "IVD A estéril",
+      "IVD B",
+      "IVD C",
+      "IVD D"
+    ],
+    "obligacion": "Ruta para demostrar la conformidad y poner el marcado CE.",
+    "por_clase": {
+      "A": "Autodeclaración: documentación técnica (anexos II y III) y declaración UE de conformidad (art. 48.10).",
+      "A estéril": "Organismo notificado limitado a los aspectos de esterilidad (art. 48.10).",
+      "B": "Organismo notificado: SGC (anexo IX, caps. I y III) más la documentación técnica de un producto representativo por categoría (art. 48.9).",
+      "C": "Organismo notificado: SGC más la documentación técnica de un producto representativo por grupo genérico (art. 48.7). Los diagnósticos complementarios requieren consultar a la autoridad de medicamentos.",
+      "D": "Organismo notificado: anexo IX, caps. I a III, con evaluación de la documentación técnica de cada producto (art. 48.3). Intervienen el laboratorio de referencia de la UE, si está designado, y el panel de expertos."
+    },
+    "evidencia_requerida": "Documentación técnica, declaración UE de conformidad y, cuando proceda, certificado del organismo notificado.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj/spa#art_48",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "ivdr-evaluacion-funcionamiento",
+    "norma": "IVDR",
+    "ambito": "clase",
+    "tema": "Evidencia clínica",
+    "articulo": "Art. 56; anexo XIII",
+    "rol": "fabricante",
+    "clases_producto": [
+      "IVD A",
+      "IVD A estéril",
+      "IVD B",
+      "IVD C",
+      "IVD D"
+    ],
+    "obligacion": "Evaluación del funcionamiento: validez científica, funcionamiento analítico y funcionamiento clínico.",
+    "por_clase": {
+      "A": "Obligatoria, proporcional al riesgo.",
+      "A estéril": "Obligatoria, proporcional al riesgo.",
+      "B": "Obligatoria.",
+      "C": "Obligatoria; el informe se actualiza con los datos del PMPF.",
+      "D": "Obligatoria; el informe se actualiza al menos anualmente con los datos del PMPF."
+    },
+    "evidencia_requerida": "Plan e informe de evaluación del funcionamiento.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj/spa#art_56",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "ivdr-pms-informes",
+    "norma": "IVDR",
+    "ambito": "clase",
+    "tema": "Seguimiento poscomercialización",
+    "articulo": "Arts. 78-81; anexo XIII, parte B",
+    "rol": "fabricante",
+    "clases_producto": [
+      "IVD A",
+      "IVD A estéril",
+      "IVD B",
+      "IVD C",
+      "IVD D"
+    ],
+    "obligacion": "Sistema y plan de PMS, PMPF (seguimiento del funcionamiento poscomercialización) e informe periódico según la clase.",
+    "por_clase": {
+      "A": "Informe de PMS (art. 80) y plan de PMPF o justificación.",
+      "A estéril": "Informe de PMS (art. 80) y plan de PMPF o justificación.",
+      "B": "Informe de PMS (art. 80) y plan de PMPF o justificación.",
+      "C": "PSUR al menos una vez al año (art. 81.1).",
+      "D": "PSUR al menos una vez al año, presentado al organismo notificado por el sistema electrónico (art. 81.2)."
+    },
+    "evidencia_requerida": "Plan de PMS, plan e informe de PMPF, informe de PMS o PSUR.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj/spa#art_81",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "ivdr-ssp",
+    "norma": "IVDR",
+    "ambito": "clase",
+    "tema": "Transparencia",
+    "articulo": "Art. 29",
+    "rol": "fabricante",
+    "clases_producto": [
+      "IVD C",
+      "IVD D"
+    ],
+    "obligacion": "Resumen sobre seguridad y funcionamiento (SSP), público en EUDAMED.",
+    "por_clase": {
+      "A": "No aplica.",
+      "A estéril": "No aplica.",
+      "B": "No aplica.",
+      "C": "Obligatorio (salvo productos para estudios del funcionamiento).",
+      "D": "Obligatorio (salvo productos para estudios del funcionamiento)."
+    },
+    "evidencia_requerida": "SSP validado por el organismo notificado.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj/spa#art_29",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "ivdr-udi-vigilancia-prrc",
+    "norma": "IVDR",
+    "ambito": "clase",
+    "tema": "Trazabilidad, vigilancia y personas",
+    "articulo": "Arts. 15, 24, 26 y 82",
+    "rol": "fabricante",
+    "clases_producto": [
+      "IVD A",
+      "IVD A estéril",
+      "IVD B",
+      "IVD C",
+      "IVD D"
+    ],
+    "obligacion": "UDI y registro en EUDAMED, PRRC y notificación de incidentes graves con los mismos plazos que el MDR.",
+    "por_clase": {
+      "A": "UDI, registro, PRRC y vigilancia (15 / 10 / 2 días).",
+      "A estéril": "UDI, registro, PRRC y vigilancia (15 / 10 / 2 días).",
+      "B": "UDI, registro, PRRC y vigilancia (15 / 10 / 2 días).",
+      "C": "UDI, registro, PRRC y vigilancia (15 / 10 / 2 días).",
+      "D": "UDI, registro, PRRC y vigilancia (15 / 10 / 2 días)."
+    },
+    "evidencia_requerida": "Registro en EUDAMED, nombramiento de la PRRC, procedimiento de vigilancia.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj/spa#art_82",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "actor-fabricante",
+    "norma": "MDR",
+    "ambito": "actor",
+    "tema": "Fabricante",
+    "articulo": "Art. 10",
+    "rol": "fabricante",
+    "clases_producto": [
+      "todas"
+    ],
+    "obligacion": "Diseñar y fabricar conforme al MDR. Mantener un SGC y un sistema de gestión de riesgos, hacer la evaluación clínica y la documentación técnica, firmar la declaración UE de conformidad y poner el marcado CE. También le tocan UDI y registro, PMS, vigilancia, PRRC (art. 15), etiquetado e instrucciones, y cobertura financiera por daños (art. 10.16).",
+    "evidencia_requerida": "SGC (ISO 13485), expediente técnico, declaración UE de conformidad, plan de PMS, registros en EUDAMED.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_10",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "actor-representante-autorizado",
+    "norma": "MDR",
+    "ambito": "actor",
+    "tema": "Representante autorizado",
+    "articulo": "Arts. 11 y 15.6",
+    "rol": "representante autorizado",
+    "clases_producto": [
+      "todas"
+    ],
+    "obligacion": "Obligatorio si el fabricante está fuera de la UE. Actúa mediante mandato escrito: comprueba la declaración UE de conformidad y la documentación técnica, guarda copias a disposición de las autoridades, se registra en EUDAMED, coopera con las autoridades y transmite reclamaciones. Responde solidariamente con el fabricante por productos defectuosos (art. 11.5) y debe tener a su disposición una PRRC (art. 15.6).",
+    "evidencia_requerida": "Mandato escrito firmado, copia de la documentación técnica y de la declaración UE de conformidad.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_11",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "actor-importador",
+    "norma": "MDR",
+    "ambito": "actor",
+    "tema": "Importador",
+    "articulo": "Art. 13",
+    "rol": "importador",
+    "clases_producto": [
+      "todas"
+    ],
+    "obligacion": "Antes de introducir el producto, comprueba el marcado CE y la declaración UE de conformidad, que el fabricante está identificado y tiene representante autorizado, el etiquetado y las instrucciones, y el UDI. Pone su nombre y dirección en el producto, el embalaje o un documento adjunto. Se registra en EUDAMED, vigila el almacenamiento y el transporte y lleva un registro de reclamaciones y retiradas. Si sospecha que el producto no es conforme, no lo comercializa e informa al fabricante.",
+    "evidencia_requerida": "Lista de comprobación de entrada, registro de reclamaciones, SRN de importador.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_13",
+    "fecha_verificacion": "2026-10-14"
+  },
+  {
+    "id": "actor-distribuidor",
+    "norma": "MDR",
+    "ambito": "actor",
+    "tema": "Distribuidor",
+    "articulo": "Arts. 14 y 16",
+    "rol": "distribuidor",
+    "clases_producto": [
+      "todas"
+    ],
+    "obligacion": "Actúa con la diligencia debida. Comprueba, puede que por muestreo representativo, el marcado CE y la declaración, la información del fabricante, los datos del importador y el UDI. Mantiene las condiciones de almacenamiento, transmite las reclamaciones y coopera con las autoridades. Si reetiqueta, traduce o reenvasa, asume obligaciones adicionales (art. 16).",
+    "evidencia_requerida": "Procedimiento de verificación por muestreo, registro de reclamaciones y trazabilidad.",
+    "fuente_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj/spa#art_14",
+    "fecha_verificacion": "2026-10-14"
+  }
+]

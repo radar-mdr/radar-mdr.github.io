@@ -1,16 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { SITIO, dominioConfigurado, DIAS_VERIFICACION_CADUCADA } from '../config';
 
 const plazos = (await getCollection('plazos')).sort((a, b) =>
   a.data.fecha.localeCompare(b.data.fecha)
 );
+const propuestas = await getCollection('propuestas');
 
 const formatoFecha = new Intl.DateTimeFormat('es-ES', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
 });
+const fmt = (iso: string) => formatoFecha.format(new Date(iso + 'T00:00:00'));
 
 const tipoLabel: Record<string, string> = {
   aplicacion: 'Entrada en aplicación',
@@ -25,77 +28,142 @@ const badgeClase: Record<string, string> = {
   'MDR/IVDR': 'badge-mdr-ivdr',
   'AI Act': 'badge-ai-act',
   QMSR: 'badge-qmsr',
+  EHDS: 'badge-ehds',
 };
 
+const ordenClases = [
+  'I', 'Is/Im/Ir', 'IIa', 'IIb', 'IIb implantable', 'III', 'III a medida implantable',
+  'IVD A', 'IVD A estéril', 'IVD B', 'IVD C', 'IVD D', 'SaMD / IA', 'Sistemas de HCE / apps de bienestar',
+];
 const normas = [...new Set(plazos.map((p) => p.data.norma))];
 const roles = [...new Set(plazos.flatMap((p) => p.data.roles_afectados))].sort();
-const clases = [...new Set(plazos.flatMap((p) => p.data.clases_producto))].sort();
+const clasesUsadas = new Set(plazos.flatMap((p) => p.data.clases_producto));
+const clases = [
+  ...ordenClases.filter((c) => clasesUsadas.has(c)),
+  ...[...clasesUsadas].filter((c) => c !== 'todas' && !ordenClases.includes(c)).sort(),
+];
+const ultimaVerificacion = plazos.map((p) => p.data.fecha_verificacion).sort().at(-1)!;
+
+const base = dominioConfigurado ? SITIO.dominio : null;
+const icsHttps = base ? `${base}/calendario.ics` : null;
+const icsWebcal = icsHttps ? icsHttps.replace(/^https?:/, 'webcal:') : null;
 
 const matices = [
   {
-    titulo: 'Definición estrechada de «componente de seguridad»',
+    titulo: '«Componente de seguridad», acotado',
+    ref: 'AI Act art. 6(1a)-(1b)',
     texto:
-      'La IA que solo asiste al usuario u optimiza rendimiento sin crear riesgo para la salud o la seguridad queda fuera del alto riesgo. Crítico para clasificar SaMD.',
+      'La IA usada solo para asistir al usuario, optimizar el rendimiento, automatizar o dar comodidad, sin función de seguridad, deja de ser componente de seguridad. Pero si su fallo pone en peligro la salud, sigue siéndolo. Es la primera pregunta al clasificar un SaMD con IA.',
   },
   {
-    titulo: 'Grandfathering',
+    titulo: 'Periodo de gracia: cambios significativos, no «modificación sustancial»',
+    ref: 'AI Act art. 111(2)',
     texto:
-      'Los sistemas comercializados antes de las fechas clave evitan las obligaciones de alto riesgo salvo «modificación sustancial». Qué cuenta como sustancial es la pregunta del millón.',
+      'Un sistema de alto riesgo ya comercializado antes de la fecha de aplicación solo queda sujeto si sufre cambios significativos en su diseño. La gracia va por tipo y modelo. La «modificación sustancial» (art. 3(23)) es otro concepto: obliga a repetir la evaluación.',
+    errata: 'E-001',
   },
   {
-    titulo: 'Mecanismo AI Act ↔ legislación sectorial',
+    titulo: 'Duplicidades con el MDR/IVDR',
+    ref: 'AI Act art. 2(13)',
     texto:
-      'La Comisión podrá desactivar duplicidades con la normativa de productos sanitarios vía actos de ejecución. Seguir esos actos es una ventaja informativa permanente.',
+      'Antes del 2-8-2027 la Comisión adoptará actos delegados para limitar requisitos de los arts. 9 a 15 y 17 a 25 cuando el MDR/IVDR ya dé una protección equivalente. Quien los siga de cerca tendrá ventaja.',
+    errata: 'E-002',
   },
   {
-    titulo: 'Registro incluso para autoexcluidos',
+    titulo: 'Registro aunque te autoexcluyas',
+    ref: 'AI Act arts. 6(3) y 49(2)',
     texto:
-      'Si un sistema de los usos del anexo III se declara exento del alto riesgo, hay que registrarlo igualmente en la base de datos de la UE. Ojo: esto es del anexo III; los productos sanitarios con IA siguen el anexo I.',
+      'Si concluyes que tu sistema del anexo III no es de alto riesgo, debes registrarlo igualmente en la base de datos de la UE. El Omnibus simplifica el contenido del registro, pero lo mantiene.',
   },
   {
-    titulo: 'Nueva categoría SMC (small mid-caps)',
+    titulo: 'Nueva categoría SMC',
+    ref: 'AI Act arts. 3(14b) y 99(6a)',
     texto:
-      'Las simplificaciones de documentación técnica se extienden más allá de las pymes, a las empresas medianas pequeñas.',
+      'Las pequeñas empresas de mediana capitalización heredan parte de las medidas de las pymes. Por ejemplo, sus multas se calculan con el importe o el porcentaje menor.',
   },
   {
-    titulo: 'Vigilancia y PMS de EUDAMED llegan después',
+    titulo: 'La MDCG 2025-6 se ha quedado atrás',
+    ref: 'Reg. (UE) 2026/1744',
     texto:
-      'Siguen en desarrollo, sin fecha publicada, y no tendrán fase de uso voluntario. Hasta que se declaren funcionales, la notificación de incidentes sigue por las autoridades nacionales.',
+      'La guía de referencia sobre IA y productos sanitarios da el 2-8-2027 para el alto riesgo. Tras el Omnibus la fecha es el 2-8-2028. Su criterio de clasificación sigue valiendo.',
+  },
+  {
+    titulo: 'Vigilancia y PMS de EUDAMED, todavía fuera',
+    ref: 'Decisión (UE) 2025/2371',
+    texto:
+      'Solo 4 módulos son obligatorios desde el 28-5-2026. Hasta que se declaren funcionales los de vigilancia y PMS, los incidentes graves se notifican por la vía nacional (en España, la AEMPS).',
   },
 ];
 ---
 
-<Base title="Cronología viva post-Omnibus">
-  <h1>Cronología viva: MDR, IVDR, AI Act y QMSR después del Omnibus</h1>
-  <p class="intro">
-    El Digital Omnibus sobre IA ha movido las fechas que toda la industria tenía en sus planes.
-    Esta es la cronología completa re-baseada, en español, con fuente oficial y fecha de
-    verificación en cada plazo. Filtra por norma, por tu rol o por clase de producto.
-  </p>
+<Base title="Qué plazo regulatorio te toca, en un minuto">
+  <section class="hero">
+    <h1>Qué plazo MDR, IVDR o AI Act te toca, en un minuto</h1>
+    <p class="pitch">
+      Un observatorio en español para equipos de calidad y regulatorio de pymes medtech que hoy
+      rastrean a mano EUR-Lex, las guías MDCG y la Comisión. Filtra por tu rol y tu clase de
+      producto y ve solo tus fechas, cada una con su <strong>fuente oficial</strong> y su
+      <strong>fecha de verificación</strong>. Sin resúmenes en inglés sin fuente.
+    </p>
 
-  <form class="filtros" aria-label="Filtros de la cronología">
+    <div class="cta-calendario">
+      <div>
+        <h2>Que no se te pase ninguna fecha</h2>
+        <p>
+          {icsWebcal ? 'Suscríbete al calendario de plazos: cada' : 'Añade el calendario de plazos: cada'} fecha
+          aparece en tu Outlook o Google Calendar con un <strong>aviso 30 días antes</strong>{icsWebcal
+            ? ', y se actualiza solo cuando cambia un dato.'
+            : '. Si lo descargas, vuelve a importarlo cuando veas cambios en el registro.'}
+        </p>
+      </div>
+      <div class="cta-botones">
+        {icsWebcal && <a class="boton" href={icsWebcal}>Suscribirme al calendario</a>}
+        {icsHttps && (
+          <a class="boton-sec" href={`https://calendar.google.com/calendar/render?cid=${encodeURIComponent(icsWebcal!)}`} rel="external noopener">Añadir a Google Calendar</a>
+        )}
+        {icsHttps && (
+          <a class="boton-sec" href={`https://outlook.live.com/calendar/0/addfromweb?url=${encodeURIComponent(icsHttps)}&name=${encodeURIComponent('Radar MDR × AI Act')}`} rel="external noopener">Añadir a Outlook</a>
+        )}
+        <a class={icsWebcal ? 'boton-sec' : 'boton'} href="/calendario.ics" download="radar-plazos.ics">Descargar .ics</a>
+      </div>
+    </div>
+    <p class="estado-datos">
+      {plazos.length} plazos · última verificación: {fmt(ultimaVerificacion)} ·
+      <a href="/metodologia">cómo verificamos</a> · <a href="/cambios">qué ha cambiado</a>
+    </p>
+  </section>
+
+  <h2 id="cronologia-titulo">Cronología</h2>
+  <form class="filtros" aria-labelledby="cronologia-titulo">
     <div class="filtro">
       <label for="f-norma">Norma</label>
-      <select id="f-norma">
+      <select id="f-norma" name="norma">
         <option value="">Todas</option>
         {normas.map((n) => <option value={n}>{n}</option>)}
       </select>
     </div>
     <div class="filtro">
-      <label for="f-rol">Rol</label>
-      <select id="f-rol">
+      <label for="f-rol">Tu rol</label>
+      <select id="f-rol" name="rol">
         <option value="">Todos</option>
         {roles.map((r) => <option value={r}>{r}</option>)}
       </select>
     </div>
     <div class="filtro">
       <label for="f-clase">Clase de producto</label>
-      <select id="f-clase">
+      <select id="f-clase" name="clase">
         <option value="">Todas</option>
         {clases.map((c) => <option value={c}>{c}</option>)}
       </select>
     </div>
-    <button type="reset" id="f-reset">Quitar filtros</button>
+    <label class="filtro-check">
+      <input type="checkbox" id="f-pasados" name="pasados" />
+      Ocultar plazos que ya aplican
+    </label>
+    <div class="filtro-acciones">
+      <button type="button" id="f-copiar">Copiar enlace a esta vista</button>
+      <button type="button" id="f-reset">Quitar filtros</button>
+    </div>
   </form>
   <p id="resultado-filtros" role="status" aria-live="polite" class="resultado-filtros"></p>
 
@@ -104,13 +172,15 @@ const matices = [
       plazos.map((p) => (
         <li
           class="plazo"
+          id={p.data.id}
           data-norma={p.data.norma}
           data-roles={p.data.roles_afectados.join('|')}
           data-clases={p.data.clases_producto.join('|')}
+          data-fecha={p.data.fecha}
         >
           <div class="plazo-fecha">
-            <time datetime={p.data.fecha}>{formatoFecha.format(new Date(p.data.fecha + 'T00:00:00'))}</time>
-            <span class="chip-dias" data-fecha={p.data.fecha}></span>
+            <time datetime={p.data.fecha}>{fmt(p.data.fecha)}</time>
+            {p.data.estado !== 'en_tramitacion' && <span class="chip-dias" data-fecha={p.data.fecha} />}
           </div>
           <div class="plazo-cuerpo">
             <p class="plazo-meta">
@@ -120,6 +190,9 @@ const matices = [
                 <span class="chip chip-aviso">Pendiente de confirmación</span>
               )}
               {p.data.estado === 'aplazado' && <span class="chip chip-aviso">Aplazado</span>}
+              {p.data.estado === 'en_tramitacion' && (
+                <span class="chip chip-aviso">En tramitación: aún no aplica</span>
+              )}
             </p>
             <p class="plazo-desc">{p.data.descripcion_corta}</p>
             <p class="plazo-chips">
@@ -127,14 +200,25 @@ const matices = [
                 <span class="chip">{r}</span>
               ))}
               {p.data.clases_producto.map((c) => (
-                <span class="chip chip-clase">Clase: {c}</span>
+                <span class="chip chip-clase">{c === 'todas' ? 'Todas las clases' : `Clase: ${c}`}</span>
               ))}
             </p>
             {p.data.nota_cambio && <p class="plazo-nota">{p.data.nota_cambio}</p>}
             <p class="plazo-fuente">
               {p.data.referencia_legal} ·{' '}
-              <a href={p.data.fuente_url} rel="external noopener">Fuente oficial</a> · Verificado el{' '}
-              {formatoFecha.format(new Date(p.data.fecha_verificacion + 'T00:00:00'))}
+              <a href={p.data.fuente_url} rel="external noopener">Fuente oficial</a>
+              {p.data.fuentes_adicionales.length > 0 && (
+                <>
+                  {' '}(+{p.data.fuentes_adicionales.length}{' '}
+                  {p.data.fuentes_adicionales.length === 1 ? 'fuente adicional' : 'fuentes adicionales'})
+                </>
+              )}{' '}
+              · <span class="verificado" data-verificado={p.data.fecha_verificacion}>Verificado el {fmt(p.data.fecha_verificacion)}</span>
+              {p.data.historial.length > 1 && (
+                <>
+                  {' '}· <a href={`/cambios#${p.data.id}`}>{p.data.historial.length} cambios registrados</a>
+                </>
+              )}
             </p>
           </div>
         </li>
@@ -145,35 +229,61 @@ const matices = [
     Ningún plazo coincide con esos filtros. <button type="button" id="f-reset-2">Quitar filtros</button>
   </p>
 
-  <h2>Seis claves que el 90 % de los resúmenes se salta</h2>
+  {
+    propuestas.length > 0 && (
+      <aside class="caja tramitacion">
+        <h2>En tramitación: lo que puede cambiar</h2>
+        <p>
+          {propuestas.map((pr) => (
+            <>
+              <strong>{pr.data.titulo}</strong> ({pr.data.referencia}). Propone, entre otras cosas,
+              pasar de 15 a 30 días el plazo para notificar incidentes graves y espaciar los PSUR.
+              Hoy sigue valiendo lo vigente.{' '}
+            </>
+          ))}
+          <a href="/en-tramitacion">Ver la comparativa vigente frente a propuesta</a>.
+        </p>
+      </aside>
+    )
+  }
+
+  <h2>Siete claves que la mayoría de resúmenes se salta</h2>
   <div class="matices">
     {
       matices.map((m) => (
         <article class="matiz">
           <h3>{m.titulo}</h3>
           <p>{m.texto}</p>
+          <p class="matiz-ref">
+            {m.ref}
+            {m.errata && (
+              <>
+                {' '}· <a href={`/erratas#${m.errata}`}>corregido ({m.errata})</a>
+              </>
+            )}
+          </p>
         </article>
       ))
     }
   </div>
 
   <aside class="cta">
-    <h2>Que los plazos te encuentren a ti</h2>
+    <h2>Radar quincenal</h2>
     <p>
-      <strong><a href="/calendario.ics">Suscríbete al calendario de plazos (.ics)</a></strong> —
-      cada fecha llega a tu Outlook o Google Calendar con recordatorio a 30 días. También hay
-      <a href="/rss.xml">RSS de cambios verificados</a> y el
-      <a href="/newsletter">Radar quincenal por email</a>.
+      Cada dos semanas, los cambios verificados y las fechas que entran en la ventana de 90 y 30
+      días. <a href="/newsletter">Suscríbete a la newsletter</a> o sigue el
+      <a href="/rss.xml">RSS de cambios</a>.
     </p>
   </aside>
 </Base>
 
-<script>
+<script define:vars={{ DIAS_CADUCADA: DIAS_VERIFICACION_CADUCADA }}>
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
-  document.querySelectorAll<HTMLElement>('.chip-dias').forEach((chip) => {
-    const fecha = new Date(chip.dataset.fecha + 'T00:00:00');
-    const dias = Math.round((fecha.getTime() - hoy.getTime()) / 86400000);
+  const diasHasta = (iso) => Math.round((new Date(iso + 'T00:00:00').getTime() - hoy.getTime()) / 86400000);
+
+  document.querySelectorAll('.chip-dias').forEach((chip) => {
+    const dias = diasHasta(chip.dataset.fecha);
     if (dias < 0) {
       chip.textContent = 'Ya aplica';
       chip.classList.add('dias-pasado');
@@ -187,56 +297,107 @@ const matices = [
     }
   });
 
-  const selNorma = document.getElementById('f-norma') as HTMLSelectElement;
-  const selRol = document.getElementById('f-rol') as HTMLSelectElement;
-  const selClase = document.getElementById('f-clase') as HTMLSelectElement;
-  const estado = document.getElementById('resultado-filtros')!;
-  const sinResultados = document.getElementById('sin-resultados')!;
-  const plazos = [...document.querySelectorAll<HTMLElement>('.plazo')];
+  document.querySelectorAll('.verificado').forEach((el) => {
+    const hace = -diasHasta(el.dataset.verificado);
+    if (hace > DIAS_CADUCADA) {
+      el.classList.add('verificacion-caducada');
+      el.insertAdjacentText('beforeend', ` (hace ${hace} días: pendiente de reverificar)`);
+    }
+  });
+
+  const selNorma = document.getElementById('f-norma');
+  const selRol = document.getElementById('f-rol');
+  const selClase = document.getElementById('f-clase');
+  const chkPasados = document.getElementById('f-pasados');
+  const estado = document.getElementById('resultado-filtros');
+  const sinResultados = document.getElementById('sin-resultados');
+  const plazos = [...document.querySelectorAll('.plazo')];
+  const selects = { norma: selNorma, rol: selRol, clase: selClase };
+
+  function leerURL() {
+    const params = new URLSearchParams(location.search);
+    for (const [clave, sel] of Object.entries(selects)) {
+      const v = params.get(clave);
+      if (v && [...sel.options].some((o) => o.value === v)) sel.value = v;
+    }
+    chkPasados.checked = params.get('pasados') === 'no';
+  }
+
+  function escribirURL() {
+    const params = new URLSearchParams();
+    for (const [clave, sel] of Object.entries(selects)) if (sel.value) params.set(clave, sel.value);
+    if (chkPasados.checked) params.set('pasados', 'no');
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+  }
 
   function filtrar() {
     let visibles = 0;
     for (const p of plazos) {
+      const clasesP = (p.dataset.clases || '').split('|');
       const okNorma = !selNorma.value || p.dataset.norma === selNorma.value;
       const okRol = !selRol.value || (p.dataset.roles || '').split('|').includes(selRol.value);
-      const okClase =
-        !selClase.value || (p.dataset.clases || '').split('|').includes(selClase.value);
-      const visible = okNorma && okRol && okClase;
+      const okClase = !selClase.value || clasesP.includes('todas') || clasesP.includes(selClase.value);
+      const okFecha = !chkPasados.checked || diasHasta(p.dataset.fecha) >= 0;
+      const visible = okNorma && okRol && okClase && okFecha;
       p.hidden = !visible;
       if (visible) visibles++;
     }
-    const hayFiltros = Boolean(selNorma.value || selRol.value || selClase.value);
-    estado.textContent = hayFiltros
-      ? `Mostrando ${visibles} de ${plazos.length} plazos.`
-      : '';
+    const hayFiltros = Boolean(selNorma.value || selRol.value || selClase.value || chkPasados.checked);
+    estado.textContent = hayFiltros ? `Mostrando ${visibles} de ${plazos.length} plazos.` : '';
     sinResultados.hidden = visibles > 0;
   }
 
-  function reset() {
-    selNorma.value = '';
-    selRol.value = '';
-    selClase.value = '';
+  function actualizar() {
     filtrar();
+    escribirURL();
   }
 
-  [selNorma, selRol, selClase].forEach((s) => s.addEventListener('change', filtrar));
-  document.getElementById('f-reset')!.addEventListener('click', (e) => {
-    e.preventDefault();
-    reset();
+  function reset() {
+    Object.values(selects).forEach((s) => (s.value = ''));
+    chkPasados.checked = false;
+    actualizar();
+  }
+
+  [selNorma, selRol, selClase, chkPasados].forEach((s) => s.addEventListener('change', actualizar));
+  document.getElementById('f-reset').addEventListener('click', reset);
+  document.getElementById('f-reset-2').addEventListener('click', reset);
+  document.getElementById('f-copiar').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      estado.textContent = 'Enlace copiado: compártelo y verán estos mismos filtros.';
+    } catch {
+      estado.textContent = `Copia este enlace: ${location.href}`;
+    }
   });
-  document.getElementById('f-reset-2')!.addEventListener('click', reset);
+
+  leerURL();
+  filtrar();
 </script>
 
 <style>
-  .intro { max-width: 46rem; font-size: 1.05rem; }
+  .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  .pitch { max-width: 46rem; font-size: 1.1rem; }
+
+  .cta-calendario {
+    display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between;
+    border: 2px solid var(--acento); border-radius: 10px; padding: 1rem 1.5rem; margin: 1.5rem 0 0.75rem;
+    background: #f3f7fe;
+  }
+  .cta-calendario h2 { margin: 0 0 0.25rem; font-size: 1.25rem; }
+  .cta-calendario p { margin: 0; max-width: 32rem; }
+  .cta-botones { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .estado-datos { font-size: 0.9rem; color: var(--texto-suave); }
 
   .filtros {
     display: flex; flex-wrap: wrap; gap: 1rem; align-items: end;
     background: var(--fondo-alt); border: 1px solid var(--borde);
-    border-radius: 8px; padding: 1rem; margin-top: 1.5rem;
+    border-radius: 8px; padding: 1rem; margin-top: 1rem;
   }
   .filtro { display: flex; flex-direction: column; gap: 0.25rem; }
   .filtro label { font-size: 0.85rem; font-weight: 600; }
+  .filtro-check { display: flex; gap: 0.4rem; align-items: center; font-size: 0.9rem; }
+  .filtro-acciones { display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .filtros select, .filtros button {
     font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--texto-suave);
     border-radius: 6px; background: #fff; color: var(--texto);
@@ -249,6 +410,7 @@ const matices = [
     display: grid; grid-template-columns: 11rem 1fr; gap: 1rem;
     border-bottom: 1px solid var(--borde); padding: 1.25rem 0;
   }
+  .plazo:target { background: #f3f7fe; }
   @media (max-width: 40rem) { .plazo { grid-template-columns: 1fr; gap: 0.25rem; } }
 
   .plazo-fecha time { display: block; font-weight: 700; font-size: 1.05rem; }
@@ -260,10 +422,8 @@ const matices = [
   .chip-dias:empty { display: none; }
   .dias-pronto { background: var(--aviso-fondo); color: var(--aviso-texto); border-color: var(--aviso-texto); }
   .dias-urgente { background: var(--urgente-fondo); color: var(--urgente-texto); border-color: var(--urgente-texto); }
-  .dias-pasado { background: var(--fondo-alt); }
 
   .plazo-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: 0 0 0.4rem; }
-  .chip-aviso { background: var(--aviso-fondo); color: var(--aviso-texto); border-color: var(--aviso-texto); font-weight: 600; }
   .plazo-desc { margin: 0 0 0.5rem; max-width: 44rem; }
   .plazo-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.5rem; }
   .chip-clase { background: #eef3fc; }
@@ -273,12 +433,19 @@ const matices = [
     padding: 0.5rem 0.75rem; font-size: 0.9rem; max-width: 44rem; margin: 0 0 0.5rem;
   }
   .plazo-fuente { font-size: 0.85rem; color: var(--texto-suave); margin: 0; }
+  .verificacion-caducada {
+    background: var(--aviso-fondo); color: var(--aviso-texto); font-weight: 600;
+    padding: 0 0.3rem; border-radius: 4px;
+  }
+
+  .tramitacion { margin-top: 2rem; max-width: none; }
 
   .matices { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
   .matiz { border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.25rem; background: var(--fondo-alt); }
   .matiz h3 { margin: 0 0 0.5rem; font-size: 1rem; }
   .matiz p { margin: 0; font-size: 0.95rem; }
+  .matiz .matiz-ref { margin-top: 0.5rem; font-size: 0.82rem; color: var(--texto-suave); }
 
-  .cta { border: 2px solid var(--acento); border-radius: 8px; padding: 1rem 1.5rem; margin-top: 2.5rem; }
+  .cta { border: 2px solid var(--borde); border-radius: 8px; padding: 1rem 1.5rem; margin-top: 2.5rem; }
   .cta h2 { margin-top: 0; }
 </style>

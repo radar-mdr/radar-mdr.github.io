@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import { DIAS_VERIFICACION_CADUCADA } from '../config';
+---
+
+<Base
+  title="Metodología: cómo verificamos cada dato"
+  description="El manual de calidad del Radar: jerarquía de fuentes, cuándo un plazo pasa de pendiente a vigente, reverificación cada 90 días, control de cambios ALCOA+ y fe de erratas."
+>
+  <h1>Metodología: cómo verificamos cada dato</h1>
+  <p class="intro">
+    Este es el manual de calidad del Radar. Si un dato no cumple estas reglas, no se publica o se
+    publica marcado como pendiente.
+  </p>
+
+  <h2>1. Jerarquía de fuentes</h2>
+  <ol class="niveles">
+    <li>
+      <strong>Nivel 1. Texto legal publicado:</strong> DOUE (EUR-Lex), BOE, Federal Register y eCFR.
+      Manda sobre todo lo demás.
+    </li>
+    <li>
+      <strong>Nivel 2. Fuentes oficiales de aplicación:</strong> Comisión Europea (decisiones,
+      preguntas y respuestas, NANDO), guías MDCG y del Comité Europeo de IA, autoridades
+      competentes (AEMPS, HPRA…) y la FDA.
+    </li>
+    <li>
+      <strong>Nivel 3. Organismos notificados y asociaciones del sector:</strong> Team-NB,
+      MedTech Europe, COCIR. Sirven de alerta temprana.
+    </li>
+    <li>
+      <strong>Nivel 4. Despachos, consultoras y prensa especializada:</strong> orientan, pero
+      nunca bastan solos para publicar un dato como vigente.
+    </li>
+  </ol>
+
+  <h2>2. Estados de un dato</h2>
+  <div class="tabla-scroll">
+    <table class="tabla">
+      <caption class="visually-hidden">Estados posibles de un plazo</caption>
+      <thead><tr><th scope="col">Estado</th><th scope="col">Cuándo se usa</th><th scope="col">Cómo se ve</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row">Vigente</th>
+          <td>Confirmado en una fuente de nivel 1, o en una de nivel 2 más otra fuente independiente.</td>
+          <td>Normal, con cuenta atrás.</td>
+        </tr>
+        <tr>
+          <th scope="row">Pendiente de confirmación</th>
+          <td>Las fuentes discrepan, o solo hay fuentes de nivel 3 o 4.</td>
+          <td>Etiqueta amarilla y «fecha por confirmar» en el calendario.</td>
+        </tr>
+        <tr>
+          <th scope="row">En tramitación</th>
+          <td>Propuesta legislativa aún no adoptada.</td>
+          <td>Sin cuenta atrás y fuera del calendario. Va a <a href="/en-tramitacion">En tramitación</a>.</td>
+        </tr>
+        <tr>
+          <th scope="row">Aplazado</th>
+          <td>Un acto ya adoptado ha movido la fecha.</td>
+          <td>Etiqueta y la fecha anterior en el historial.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caja ejemplo">
+    <strong>Ejemplo real.</strong> El registro de productos legacy en EUDAMED estuvo «pendiente»
+    porque unas fuentes decían 27 y otras 28 de noviembre de 2026. Pasó a «vigente» el 14-10-2026
+    cuando lo confirmó una autoridad competente (HPRA, nivel 2) y una segunda fuente
+    independiente. El cambio quedó en el <a href="/cambios#2026-11-27-eudamed-registro-legacy">historial</a>.
+  </p>
+
+  <h2>3. Reverificación periódica</h2>
+  <ul>
+    <li>
+      Cada dato lleva su fecha de verificación. A los <strong>{DIAS_VERIFICACION_CADUCADA} días</strong>
+      se marca en amarillo como «pendiente de reverificar» hasta que se vuelve a comprobar.
+    </li>
+    <li>
+      Un robot revisa cada mañana 8 fuentes clave (índice MDCG, EUDAMED, AI Office, AEMPS, AESIA,
+      Team-NB, FDA y MedTech Europe). Cuando detecta un cambio, abre una incidencia con el
+      diff para revisarla a mano. Es el seguimiento poscomercialización de la propia web.
+    </li>
+    <li>
+      Cuando una norma pasa de acuerdo político a publicación oficial, se revisan todos los
+      datos que dependían de ella.
+    </li>
+  </ul>
+
+  <h2>4. Control de cambios (ALCOA+)</h2>
+  <p>
+    Una corrección nunca borra el dato original. Cada plazo guarda un <strong>historial</strong>
+    con la fecha, el campo, el valor anterior, el nuevo, el motivo y la fuente. De ahí salen el
+    <a href="/cambios">registro de cambios</a> y el <a href="/rss.xml">RSS</a>. Los datos están
+    en un repositorio con control de versiones, así que también queda la traza técnica.
+  </p>
+
+  <h2>5. Errores: fe de erratas con CAPA</h2>
+  <p>
+    Cuando nos equivocamos al interpretar algo, lo publicamos en la <a href="/erratas">fe de
+    erratas</a> con la corrección, la causa raíz y la acción correctiva que evita repetirlo.
+    Las reglas que salen de ahí se incorporan a esta metodología:
+  </p>
+  <ul>
+    <li>Todo término jurídico entre comillas se contrasta con su artículo antes de publicarse (E-001).</li>
+    <li>Los datos derivados de un acuerdo político se revisan al publicarse el texto oficial (E-002).</li>
+    <li>Si una guía tiene una tabla, la reproducimos con enlace en lugar de resumirla de memoria (E-003).</li>
+  </ul>
+
+  <h2>6. Lo que no hacemos</h2>
+  <ul>
+    <li>No copiamos textos íntegros: resumimos y enlazamos. Las normas ISO e IEC se citan, no se reproducen.</li>
+    <li>No damos asesoramiento legal ni regulatorio sobre casos concretos.</li>
+    <li>No aceptamos pagos por aparecer en el comparador. Cada fila necesita dos fuentes independientes.</li>
+  </ul>
+</Base>
+
+<style>
+  .intro { max-width: 46rem; }
+  .niveles li, ul li { margin-bottom: 0.5rem; max-width: 46rem; }
+  .ejemplo { margin-top: 1rem; }
+</style>

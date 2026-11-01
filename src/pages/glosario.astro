@@ -1,63 +1,102 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 
-const terminos = [
-  { es: 'Producto sanitario', en: 'Medical device', nota: 'Definido en el art. 2 del MDR.' },
-  { es: 'Software como producto sanitario', en: 'Software as a Medical Device (SaMD)', nota: 'Software con finalidad médica propia.' },
-  { es: 'Organismo notificado (ON)', en: 'Notified body (NB)', nota: 'Entidad designada para evaluar la conformidad.' },
-  { es: 'Evaluación de la conformidad', en: 'Conformity assessment', nota: '' },
-  { es: 'Vigilancia poscomercialización', en: 'Post-market surveillance (PMS)', nota: '' },
-  { es: 'Seguimiento clínico poscomercialización', en: 'Post-market clinical follow-up (PMCF)', nota: '' },
-  { es: 'Informe periódico de seguridad', en: 'Periodic safety update report (PSUR)', nota: '' },
-  { es: 'Identificación única de producto', en: 'Unique Device Identification (UDI)', nota: '' },
-  { es: 'Producto legacy', en: 'Legacy device', nota: 'Comercializado bajo las directivas anteriores y amparado por el transitorio.' },
-  { es: 'Componente de seguridad', en: 'Safety component', nota: 'Clave para el alto riesgo del AI Act; definición estrechada por el Omnibus.' },
-  { es: 'Sistema de IA de alto riesgo', en: 'High-risk AI system (HRAIS)', nota: '' },
-  { es: 'Desplegador', en: 'Deployer', nota: 'Quien utiliza un sistema de IA bajo su autoridad (AI Act).' },
-  { es: 'Modificación sustancial', en: 'Substantial modification', nota: 'Lo que rompe el grandfathering del AI Act.' },
-  { es: 'Sistema de gestión de calidad (SGC)', en: 'Quality management system (QMS)', nota: '' },
-  { es: 'Declaración UE de conformidad', en: 'EU declaration of conformity', nota: '' },
-];
+const terminos = (await getCollection('glosario'))
+  .map((t) => t.data)
+  .sort((a, b) => a.termino_es.localeCompare(b.termino_es, 'es'));
+const categorias = [...new Set(terminos.map((t) => t.categoria))];
 ---
 
 <Base
-  title="Glosario ES/EN"
-  description="Glosario bilingüe español-inglés de términos regulatorios de productos sanitarios e IA."
+  title="Glosario regulatorio español-inglés"
+  description={`${terminos.length} términos de productos sanitarios, calidad, riesgos, IA y FDA en español e inglés, con siglas (CAPA, GSPR, SSCP, PMCF, FSCA, 510(k)…) y referencia legal.`}
 >
-  <h1>Glosario ES/EN</h1>
-  <p>
-    Términos regulatorios bilingües: el material original casi siempre está en inglés y las
-    traducciones oficiales no siempre coinciden con el uso del sector.
+  <h1>Glosario regulatorio español-inglés</h1>
+  <p class="intro">
+    {terminos.length} términos con su equivalente en inglés, la sigla que verás en las guías y el
+    artículo o norma donde se define. Las definiciones son nuestras; el texto oficial manda.
   </p>
-  <table>
-    <caption class="visually-hidden">Términos regulatorios en español e inglés</caption>
-    <thead>
-      <tr>
-        <th scope="col">Español</th>
-        <th scope="col">Inglés</th>
-        <th scope="col">Nota</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        terminos.map((t) => (
-          <tr>
-            <td>{t.es}</td>
-            <td>{t.en}</td>
-            <td>{t.nota}</td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
-  <div class="proximamente">
-    <p>El glosario crece cada semana. ¿Falta un término? <a href="/newsletter">Propónlo</a>.</p>
-  </div>
+
+  <form class="filtros" role="search" aria-label="Buscar en el glosario">
+    <div class="filtro">
+      <label for="g-texto">Buscar término o sigla</label>
+      <input id="g-texto" type="search" placeholder="p. ej. PSUR, riesgo residual, deployer" />
+    </div>
+    <div class="filtro">
+      <label for="g-cat">Categoría</label>
+      <select id="g-cat">
+        <option value="">Todas</option>
+        {categorias.map((c) => <option value={c}>{c}</option>)}
+      </select>
+    </div>
+  </form>
+  <p id="g-estado" role="status" aria-live="polite" class="estado"></p>
+
+  <dl class="glosario">
+    {terminos.map((t) => (
+      <div
+        class="termino"
+        id={t.id}
+        data-cat={t.categoria}
+        data-texto={`${t.termino_es} ${t.termino_en} ${t.sigla ?? ''}`.toLowerCase()}
+      >
+        <dt>
+          <span class="es">{t.termino_es}</span>
+          {t.sigla && <abbr class="sigla">{t.sigla}</abbr>}
+          <span class="en" lang="en">{t.termino_en}</span>
+        </dt>
+        <dd>
+          {t.definicion}
+          <span class="meta">
+            <span class="chip">{t.categoria}</span> {t.referencia}
+          </span>
+        </dd>
+      </div>
+    ))}
+  </dl>
 </Base>
 
+<script>
+  const texto = document.getElementById('g-texto') as HTMLInputElement;
+  const cat = document.getElementById('g-cat') as HTMLSelectElement;
+  const estado = document.getElementById('g-estado')!;
+  const items = [...document.querySelectorAll<HTMLElement>('.termino')];
+  const normalizar = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+  function filtrar() {
+    const q = normalizar(texto.value.trim());
+    let n = 0;
+    for (const it of items) {
+      const ok = (!cat.value || it.dataset.cat === cat.value) && (!q || normalizar(it.dataset.texto || '').includes(q));
+      it.hidden = !ok;
+      if (ok) n++;
+    }
+    estado.textContent = n === items.length ? '' : `${n} de ${items.length} términos.`;
+  }
+  texto.addEventListener('input', filtrar);
+  cat.addEventListener('change', filtrar);
+</script>
+
 <style>
-  table { border-collapse: collapse; width: 100%; margin-top: 1.5rem; }
-  th, td { text-align: left; border-bottom: 1px solid var(--borde); padding: 0.5rem 0.75rem; vertical-align: top; }
-  th { background: var(--fondo-alt); }
-  td:nth-child(3) { color: var(--texto-suave); font-size: 0.9rem; }
+  .intro { max-width: 46rem; }
+  .filtros {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; background: var(--fondo-alt);
+    border: 1px solid var(--borde); border-radius: 8px; padding: 1rem;
+  }
+  .filtro { display: flex; flex-direction: column; gap: 0.25rem; }
+  .filtro label { font-size: 0.85rem; font-weight: 600; }
+  .filtros input, .filtros select {
+    font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--texto-suave); border-radius: 6px; background: #fff; min-width: 16rem;
+  }
+  .estado { min-height: 1.5rem; color: var(--texto-suave); }
+  .glosario { margin: 0; }
+  .termino { border-bottom: 1px solid var(--borde); padding: 0.85rem 0; }
+  .termino:target { background: #f3f7fe; }
+  dt { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; align-items: baseline; }
+  .es { font-weight: 700; font-size: 1.05rem; }
+  .sigla { font-weight: 700; color: var(--acento); text-decoration: none; }
+  .en { color: var(--texto-suave); font-style: italic; }
+  dd { margin: 0.3rem 0 0; max-width: 48rem; }
+  .meta { display: block; margin-top: 0.3rem; font-size: 0.82rem; color: var(--texto-suave); }
 </style>
