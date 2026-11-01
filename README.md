@@ -98,12 +98,13 @@ El modelo se elige con la variable `CLAUDE_MODEL` (por defecto `claude-haiku-5-5
 Paso a paso en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md).
 
 - [ ] Revisar las incidencias abiertas de la vigilancia y cerrar las que no cambien ningún dato.
-- [ ] Leer [/sobre-mi](src/pages/sobre-mi.astro) y confirmar que la declaración de independencia es exacta.
 - [ ] Probar la vista previa en el Post Inspector de LinkedIn antes del primer post.
-- [ ] GoatCounter: activar «no contar mis visitas» en el panel.
-- [ ] Newsletter con Buttondown → `buttondownUsuario` en `src/config.ts`.
-- [ ] Si conservas el proyecto de Vercel, bórralo: la web vive en GitHub Pages.
-- [ ] Opcional: comprar `radar-mdr.es`, configurarlo en Pages y cambiar `dominio` y `email` en `src/config.ts`.
+- [ ] GoatCounter: abrir `https://radar-mdr.github.io/#toggle-goatcounter` en cada navegador propio y verificar el correo de la cuenta.
+- [ ] Newsletter con Buttondown (plan gratuito) → `buttondownUsuario` en `src/config.ts`.
+
+**Decisión (noviembre de 2026):** fase beta con coste cero. Sin dominio propio ni servicios de
+pago: GitHub Pages, Zenodo, GoatCounter, Tally y Buttondown en sus planes gratuitos. Si hay
+tracción, se replantea dominio y suscripciones (ver [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md)).
 
 ## Historial de versiones
 
