@@ -103,7 +103,8 @@ Paso a paso, con los comandos, en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARC
 - [ ] Probar la vista previa en el Post Inspector de LinkedIn (ver [DISTRIBUCION.md](docs/DISTRIBUCION.md)).
 - [ ] Buttondown con correo del dominio → `buttondownUsuario` y `email` en `src/config.ts`.
 - [ ] GoatCounter (sin cookies) → `goatcounterCodigo` en `src/config.ts`.
-- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro) y elegir el correo público.
+- [x] Correo propio del proyecto (radar.mdr.aiact@gmail.com) y LinkedIn correcto.
+- [ ] Revisar el texto de [/sobre-mi](src/pages/sobre-mi.astro).
 - [ ] Formulario Tally en `/pro` (iframe comentado en [pro.astro](src/pages/pro.astro)).
 - [x] Fichas en español de MDCG 2019-11 rev.1, 2025-4, 2020-1 y 2025-10 (17-10-2026).
 
