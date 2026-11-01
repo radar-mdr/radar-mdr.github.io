@@ -88,7 +88,7 @@ El modelo se elige con la variable `CLAUDE_MODEL` (por defecto `claude-haiku-5-5
 ## Publicación
 
 - **GitHub Pages:** `.github/workflows/deploy.yml` publica en cada push a `main` y cada
-  mañana, para que las cuentas atrás estén al día. Web: https://alfonsoyewu-sketch.github.io
+  mañana, para que las cuentas atrás estén al día. Web: https://radar-mdr.github.io
 - **Vercel:** importado desde este mismo repo. Es donde irá el dominio propio cuando exista.
 
 ## Pendiente (solo lo puede hacer el autor)
