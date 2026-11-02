@@ -3,7 +3,7 @@
 // Solo se genera página para las fichas con estado_ficha 'publicada':
 // publicar una ficha nueva = escribir el resumen en guias.json. Cero código.
 import { marked } from 'marked';
-import { getCollection } from 'astro:content';
+import { getCollection } from '../../lib/coleccion';
 import Base from '../../layouts/Base.astro';
 
 export async function getStaticPaths() {

@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { file } from 'astro/loaders';
 
 /**
@@ -10,7 +11,7 @@ import { file } from 'astro/loaders';
 
 const normaEnum = z.enum(['MDR', 'IVDR', 'MDR/IVDR', 'AI Act', 'QMSR', 'EHDS']);
 const fechaISO = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Fecha en formato AAAA-MM-DD');
-const url = z.string().url();
+const url = z.url();
 
 const entradaHistorial = z.object({
   fecha: fechaISO,
@@ -57,7 +58,7 @@ const obligaciones = defineCollection({
     clases_producto: z.array(z.string()).min(1),
     obligacion: z.string(),
     // Detalle por clase para la matriz; la clave es la columna (p. ej. "IIa")
-    por_clase: z.record(z.string()).optional(),
+    por_clase: z.record(z.string(), z.string()).optional(),
     evidencia_requerida: z.string(),
     sancion_asociada: z.string().optional(),
     guia_relacionada: z.string().optional(), // FK → guias.id
@@ -115,7 +116,7 @@ const herramientas = defineCollection({
     estimacion: z.boolean().default(false),
     fecha_verificacion: fechaISO.nullable().optional(),
     // Puntuación contra requisitos-eqms.json: 0 no cubre · 1 parcial · 2 cubre
-    puntuacion: z.record(z.number().int().min(0).max(2)).default({}),
+    puntuacion: z.record(z.string(), z.number().int().min(0).max(2)).default({}),
     notas: z.string().optional(),
   }),
 });

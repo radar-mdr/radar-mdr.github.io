@@ -1,6 +1,6 @@
 // GET /api/organismos.json
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection } from '../../lib/coleccion';
 
 export const GET: APIRoute = async () => {
   const organismos = (await getCollection('organismos')).map((o) => o.data);

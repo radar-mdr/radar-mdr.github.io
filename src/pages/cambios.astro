@@ -2,7 +2,7 @@
 // Registro de cambios generado desde el `historial` de cada plazo.
 // Doble uso: control de cambios público (ALCOA+: nada se borra) y borrador de
 // la newsletter (las entradas desde el último envío son el boletín).
-import { getCollection } from 'astro:content';
+import { getCollection } from '../lib/coleccion';
 import Base from '../layouts/Base.astro';
 import { eventosDeCambio, etiquetaCampo } from '../lib/cambios';
 

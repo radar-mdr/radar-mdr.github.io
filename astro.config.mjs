@@ -9,5 +9,8 @@ export default defineConfig({
   site: SITIO.dominio,
   // Todas las páginas con barra final: evita la redirección 301 en cada clic interno.
   trailingSlash: 'always',
+  // Astro 7 compacta por defecto con las reglas de JSX ('jsx'), que se comen el espacio entre
+  // un texto y un enlace o <strong> en otra línea («bajoCC BY 4.0»). true = como en Astro 5.
+  compressHTML: true,
   integrations: [sitemap()],
 });
