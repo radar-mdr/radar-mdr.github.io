@@ -17,6 +17,8 @@ verificación e historial de cambios.
 
 ## Desarrollo
 
+Hace falta Node 22.23.4 o posterior (lo pide Astro 7).
+
 ```bash
 npm install
 npm run dev      # servidor local en http://localhost:4321
@@ -27,9 +29,6 @@ npm run preview  # sirve dist/ (necesario para probar /buscar)
 Los ajustes del sitio (dominio, email, LinkedIn, repositorio, Buttondown, GoatCounter) están en
 [src/config.ts](src/config.ts). Si un campo está vacío, la función correspondiente se desactiva
 en lugar de mostrar un enlace roto.
-
-Documentación: [puesta en marcha](docs/PUESTA-EN-MARCHA.md) · [plan](docs/PLAN.md) · [distribución y UTM](docs/DISTRIBUCION.md) ·
-[guion de entrevistas v2](docs/ENTREVISTAS.md) · [día de congelación](docs/DIA-FINAL.md).
 
 ## Datos
 
@@ -92,19 +91,22 @@ El modelo se elige con la variable `CLAUDE_MODEL` (por defecto `claude-haiku-5-5
 - **GitHub Pages:** `.github/workflows/deploy.yml` publica en cada push a `main` y cada
   mañana, para que las cuentas atrás estén al día. Web: https://radar-mdr.github.io
 - El dominio propio, cuando exista, se configura en GitHub → Settings → Pages → *Custom domain*.
+- Fase beta con coste cero: GitHub Pages, Zenodo, GoatCounter, Tally y Buttondown en sus
+  planes gratuitos.
 
-## Pendiente (solo lo puede hacer el autor)
+## Seguridad
 
-Paso a paso en [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md).
+Sitio estático: sin servidor, cuentas ni base de datos. Aun así:
 
-- [ ] Revisar las incidencias abiertas de la vigilancia y cerrar las que no cambien ningún dato.
-- [ ] Probar la vista previa en el Post Inspector de LinkedIn antes del primer post.
-- [ ] GoatCounter: abrir `https://radar-mdr.github.io/#toggle-goatcounter` en cada navegador propio y verificar el correo de la cuenta.
-- [ ] Newsletter con Buttondown (plan gratuito) → `buttondownUsuario` en `src/config.ts`.
-
-**Decisión (noviembre de 2026):** fase beta con coste cero. Sin dominio propio ni servicios de
-pago: GitHub Pages, Zenodo, GoatCounter, Tally y Buttondown en sus planes gratuitos. Si hay
-tracción, se replantea dominio y suscripciones (ver [docs/PUESTA-EN-MARCHA.md](docs/PUESTA-EN-MARCHA.md)).
+- **Content-Security-Policy** en cada página (`security.csp` en
+  [astro.config.mjs](astro.config.mjs)). Astro calcula el hash de cada script y estilo, así
+  que los scripts de página no pueden ser `is:inline`. Un servicio externo nuevo se añade ahí
+  o el navegador lo bloquea.
+- Las fichas de guías se escriben en Markdown puro: el HTML se muestra como texto y los
+  enlaces de los datos tienen que empezar por `https://` (si no, el build falla).
+- Los workflows usan permisos mínimos y Actions fijadas por SHA; Dependabot propone las
+  actualizaciones una vez al mes.
+- ¿Has encontrado un fallo de seguridad? Escribe al correo de contacto de la web.
 
 ## Historial de versiones
 

@@ -13,6 +13,8 @@ import Base from '../layouts/Base.astro';
   <h1>Buscar en el Radar</h1>
   <div id="search"></div>
   <script>
+    // PagefindUI lo define /pagefind/pagefind-ui.js, que solo existe tras el build.
+    declare const PagefindUI: new (opciones: object) => unknown;
     window.addEventListener('DOMContentLoaded', () => {
       new PagefindUI({ element: '#search', showSubResults: true, translations: { placeholder: 'Busca un plazo, una guía o un término' } });
     });

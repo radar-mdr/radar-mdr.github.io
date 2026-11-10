@@ -3,7 +3,7 @@
 // posiciona el Radar como infraestructura, no como blog. La versión Pro de
 // 2027 (alertas + API autenticada) nace de aquí.
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection } from '../../lib/coleccion';
 
 export const GET: APIRoute = async () => {
   const plazos = (await getCollection('plazos'))

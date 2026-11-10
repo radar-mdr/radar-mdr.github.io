@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from '../../lib/coleccion';
 import Base from '../../layouts/Base.astro';
 
 const guias = (await getCollection('guias')).sort(

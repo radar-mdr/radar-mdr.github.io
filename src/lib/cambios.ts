@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getCollection } from './coleccion';
 
 export const etiquetaCampo: Record<string, string> = {
   alta: 'Alta',

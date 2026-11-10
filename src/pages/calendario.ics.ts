@@ -3,7 +3,7 @@
 // Los responsables regulatorios viven en Outlook/Google Calendar:
 // "suscríbete al calendario de plazos" convierte mejor que cualquier PDF.
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection } from '../lib/coleccion';
 import { SITIO } from '../config';
 
 function esc(t: unknown): string {

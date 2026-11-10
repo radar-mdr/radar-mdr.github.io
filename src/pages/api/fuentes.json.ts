@@ -1,6 +1,6 @@
 // GET /api/fuentes.json
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection } from '../../lib/coleccion';
 
 export const GET: APIRoute = async () => {
   const fuentes = (await getCollection('fuentes')).map(({ data: { nota_interna, ...publico } }) => publico);

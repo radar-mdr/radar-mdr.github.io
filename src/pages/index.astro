@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from '../lib/coleccion';
 import Base from '../layouts/Base.astro';
 import { SITIO, dominioConfigurado } from '../config';
 
@@ -283,9 +283,9 @@ const matices = [
 
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
-  const diasHasta = (iso) => Math.round((new Date(iso + 'T00:00:00').getTime() - hoy.getTime()) / 86400000);
+  const diasHasta = (iso?: string) => Math.round((new Date(iso + 'T00:00:00').getTime() - hoy.getTime()) / 86400000);
 
-  document.querySelectorAll('.chip-dias').forEach((chip) => {
+  document.querySelectorAll<HTMLElement>('.chip-dias').forEach((chip) => {
     const dias = diasHasta(chip.dataset.fecha);
     if (dias < 0) {
       chip.textContent = 'Ya aplica';
@@ -300,7 +300,7 @@ const matices = [
     }
   });
 
-  document.querySelectorAll('.verificado').forEach((el) => {
+  document.querySelectorAll<HTMLElement>('.verificado').forEach((el) => {
     const hace = -diasHasta(el.dataset.verificado);
     if (hace > DIAS_CADUCADA) {
       el.classList.add('verificacion-caducada');
@@ -308,13 +308,13 @@ const matices = [
     }
   });
 
-  const selNorma = document.getElementById('f-norma');
-  const selRol = document.getElementById('f-rol');
-  const selClase = document.getElementById('f-clase');
-  const chkPasados = document.getElementById('f-pasados');
-  const estado = document.getElementById('resultado-filtros');
-  const sinResultados = document.getElementById('sin-resultados');
-  const plazos = [...document.querySelectorAll('.plazo')];
+  const selNorma = document.getElementById('f-norma') as HTMLSelectElement;
+  const selRol = document.getElementById('f-rol') as HTMLSelectElement;
+  const selClase = document.getElementById('f-clase') as HTMLSelectElement;
+  const chkPasados = document.getElementById('f-pasados') as HTMLInputElement;
+  const estado = document.getElementById('resultado-filtros')!;
+  const sinResultados = document.getElementById('sin-resultados')!;
+  const plazos = [...document.querySelectorAll<HTMLElement>('.plazo')];
   const selects = { norma: selNorma, rol: selRol, clase: selClase };
 
   function leerURL() {
@@ -368,8 +368,8 @@ const matices = [
   }
 
   [selNorma, selRol, selClase, chkPasados].forEach((s) => s.addEventListener('change', actualizar));
-  document.getElementById('f-reset').addEventListener('click', reset);
-  document.getElementById('f-reset-2').addEventListener('click', reset);
+  document.getElementById('f-reset')!.addEventListener('click', reset);
+  document.getElementById('f-reset-2')!.addEventListener('click', reset);
   document.getElementById('f-copiar').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(location.href);
