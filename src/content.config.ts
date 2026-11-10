@@ -10,7 +10,8 @@ import { file } from 'astro/loaders';
 
 const normaEnum = z.enum(['MDR', 'IVDR', 'MDR/IVDR', 'AI Act', 'QMSR', 'EHDS']);
 const fechaISO = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Fecha en formato AAAA-MM-DD');
-const url = z.string().url();
+// Solo https: un enlace javascript: o data: también es una URL válida para z.url().
+const url = z.string().url().regex(/^https:\/\//, 'Enlace con https://');
 
 const entradaHistorial = z.object({
   fecha: fechaISO,

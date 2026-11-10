@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { SITIO, dominioConfigurado, DIAS_VERIFICACION_CADUCADA } from '../config';
+import { SITIO, dominioConfigurado } from '../config';
 
 const plazos = (await getCollection('plazos')).sort((a, b) =>
   a.data.fecha.localeCompare(b.data.fecha)
@@ -278,7 +278,9 @@ const matices = [
   </aside>
 </Base>
 
-<script define:vars={{ DIAS_CADUCADA: DIAS_VERIFICACION_CADUCADA }}>
+<script>
+  import { DIAS_VERIFICACION_CADUCADA as DIAS_CADUCADA } from '../config';
+
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
   const diasHasta = (iso) => Math.round((new Date(iso + 'T00:00:00').getTime() - hoy.getTime()) / 86400000);

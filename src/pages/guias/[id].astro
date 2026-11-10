@@ -2,7 +2,7 @@
 // /guias/mdcg-2025-6/ (por ejemplo). El campo resumen_es admite Markdown.
 // Solo se genera página para las fichas con estado_ficha 'publicada':
 // publicar una ficha nueva = escribir el resumen en guias.json. Cero código.
-import { marked } from 'marked';
+import { Marked } from 'marked';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
@@ -14,7 +14,19 @@ export async function getStaticPaths() {
 }
 
 const { g } = Astro.props;
-const html = marked.parse(g.resumen_es ?? '');
+
+// marked no limpia el HTML: los resúmenes son Markdown puro, así que cualquier etiqueta
+// se pinta como texto y solo se enlaza a http(s), mailto o rutas internas (nunca javascript:).
+const escapar = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const md = new Marked({
+  renderer: {
+    html: ({ text }) => escapar(text),
+    link(token) {
+      return /^(https?:|mailto:|\/|#)/i.test(token.href) ? false : this.parser.parseInline(token.tokens);
+    },
+  },
+});
+const html = md.parse(g.resumen_es ?? '', { async: false });
 ---
 
 <Base title={`${g.codigo} — ${g.titulo}`} description={`Resumen en español de ${g.codigo}: ${g.titulo}. ${g.emisor}, ${g.fecha}.`}>

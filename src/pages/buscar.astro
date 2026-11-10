@@ -12,7 +12,7 @@ import Base from '../layouts/Base.astro';
   </Fragment>
   <h1>Buscar en el Radar</h1>
   <div id="search"></div>
-  <script is:inline>
+  <script>
     window.addEventListener('DOMContentLoaded', () => {
       new PagefindUI({ element: '#search', showSubResults: true, translations: { placeholder: 'Busca un plazo, una guía o un término' } });
     });

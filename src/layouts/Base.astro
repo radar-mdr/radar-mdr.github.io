@@ -174,14 +174,14 @@ const tituloCompleto = `${title} · ${SITIO.nombre}`;
         </p>
       </div>
     </footer>
-    <script is:inline>
+    <script>
       // Cierra el desplegable «Recursos» al hacer clic fuera o pulsar Escape (sin JS sigue funcionando al pulsarlo).
       document.addEventListener('click', (e) => {
-        document.querySelectorAll('details.desplegable[open]').forEach((d) => { if (!d.contains(e.target)) d.removeAttribute('open'); });
+        document.querySelectorAll('details.desplegable[open]').forEach((d) => { if (!d.contains(e.target as Node)) d.removeAttribute('open'); });
       });
       document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
-        document.querySelectorAll('details.desplegable[open]').forEach((d) => { d.removeAttribute('open'); d.querySelector('summary').focus(); });
+        document.querySelectorAll('details.desplegable[open]').forEach((d) => { d.removeAttribute('open'); d.querySelector('summary')?.focus(); });
       });
     </script>
   </body>

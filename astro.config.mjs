@@ -10,4 +10,25 @@ export default defineConfig({
   // Todas las páginas con barra final: evita la redirección 301 en cada clic interno.
   trailingSlash: 'always',
   integrations: [sitemap()],
+  // Content-Security-Policy en <meta> (GitHub Pages no deja poner cabeceras). Astro añade
+  // el hash de sus scripts y estilos; los scripts de página no pueden ser is:inline o se
+  // quedarían fuera. Si añades un servicio externo, ponlo aquí o el navegador lo bloqueará.
+  experimental: {
+    csp: {
+      scriptDirective: {
+        // gc.zgo.at: GoatCounter · tally.so: formulario de /pro
+        // 'wasm-unsafe-eval': el buscador Pagefind funciona con WebAssembly
+        resources: ["'self'", 'https://gc.zgo.at', 'https://tally.so', "'wasm-unsafe-eval'"],
+      },
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data: https://*.goatcounter.com",
+        "connect-src 'self' https://*.goatcounter.com",
+        'frame-src https://tally.so',
+        "form-action 'self' https://buttondown.com",
+        "object-src 'none'",
+        "base-uri 'self'",
+      ],
+    },
+  },
 });

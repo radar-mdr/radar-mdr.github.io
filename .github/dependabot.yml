@@ -1,0 +1,26 @@
+# Avisos y PR de actualización de dependencias, una vez al mes y agrupados
+# para no llenar el repo de PR. Los parches de seguridad llegan en cuanto salen.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      npm:
+        patterns: ['*']
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ['*']
+  - package-ecosystem: pip
+    directory: /scripts
+    schedule:
+      interval: monthly
+    groups:
+      pip:
+        patterns: ['*']

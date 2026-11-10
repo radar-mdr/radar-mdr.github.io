@@ -9,6 +9,8 @@ on:
     - cron: '0 6 * * *' # 06:00 UTC ≈ 08:00 en Madrid en horario de verano
   workflow_dispatch: {} # lanzamiento manual (la primera vez solo guarda las copias iniciales)
 
+# GitHub no acota permisos por paso: el token no se guarda en disco (persist-credentials)
+# y solo lo recibe el paso que abre el issue.
 permissions:
   contents: read
   issues: write
@@ -17,14 +19,16 @@ jobs:
   vigilar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
           python-version: '3.12'
 
       - name: Recuperar las copias del día anterior
-        uses: actions/cache/restore@v6
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: vigilancia/snapshots
           key: snapshots-${{ github.run_id }}
@@ -32,7 +36,7 @@ jobs:
             snapshots-
 
       - name: Instalar dependencias
-        run: pip install requests beautifulsoup4 lxml
+        run: pip install -r scripts/requirements.txt
 
       - name: Detectar cambios en las fuentes
         run: python scripts/vigilancia.py
@@ -55,7 +59,7 @@ jobs:
 
       - name: Guardar las copias de hoy
         if: always()
-        uses: actions/cache/save@v6
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: vigilancia/snapshots
           key: snapshots-${{ github.run_id }}

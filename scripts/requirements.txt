@@ -1,0 +1,4 @@
+# Versiones fijadas para la vigilancia (Dependabot las actualiza).
+requests==2.34.2
+beautifulsoup4==4.15.0
+lxml==6.1.3

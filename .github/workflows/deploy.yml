@@ -10,10 +10,10 @@ on:
   # Lanzamiento manual desde la pestaña Actions
   workflow_dispatch:
 
+# Por defecto, solo lectura. Los permisos de publicar los recibe solo el trabajo que
+# publica: el build ejecuta código de terceros (npm) y no los necesita.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # Evita dos despliegues a la vez
 concurrency:
@@ -24,20 +24,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Las Actions van fijadas por SHA (el comentario dice la versión): una etiqueta se
+      # puede mover, un SHA no. Dependabot las actualiza (.github/dependabot.yml).
       - name: Descargar el repositorio
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Instalar, construir y empaquetar la web
-        uses: withastro/action@v6
+        uses: withastro/action@a8b97df764791eb61fbf3338ef713b0e61ae05c5 # v6
         # Ejecuta tu script "build" de package.json, incluido Pagefind si lo tienes en él.
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Publicar en GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
