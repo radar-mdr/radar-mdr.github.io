@@ -3,7 +3,7 @@
 
 Descarga cada URL, extrae el texto principal (sin menús, scripts ni pies),
 lo compara con el snapshot anterior (vigilancia/snapshots/) y, si hay cambios,
-escribe un resumen con diff en vigilancia/pendiente_issue.md para que el
+escribe lo añadido y lo quitado en vigilancia/pendiente_issue.md para que el
 workflow de GitHub Actions abra un issue automáticamente.
 
 Primera ejecución: solo siembra los snapshots (no abre issue).
@@ -72,14 +72,49 @@ PENDIENTE = RAIZ / "vigilancia" / "pendiente_issue.md"
 UA = {"User-Agent": "Mozilla/5.0 (RadarMDRxAIAct/0.1; vigilancia de fuentes publicas; contacto en el repo)"}
 
 
+# Avisos de cookies y de consentimiento: cambian solos y no son contenido.
+RUIDO = re.compile(r"cookie|consent|gdpr", re.I)
+
+# Tope del resumen de cada fuente y de cada fragmento dentro del issue.
+MAX_RESUMEN = 3000
+MAX_FRAGMENTO = 400
+
+
 def extraer_texto(html: str) -> str:
     """Texto principal de la página, sin ruido de plantilla."""
     soup = BeautifulSoup(html, "lxml")
     for tag in soup(["script", "style", "nav", "footer", "header", "form", "noscript", "svg", "aside"]):
         tag.decompose()
+    for tag in soup.find_all(attrs={"id": RUIDO}) + soup.find_all(attrs={"class": RUIDO}):
+        # Nunca el contenedor de la página: hay webs que marcan <body> con «cookies-enabled».
+        if tag.decomposed or tag.name in ("html", "body", "main") or tag.find("main"):
+            continue
+        tag.decompose()
     principal = soup.find("main") or soup.body or soup
     texto = principal.get_text(" ", strip=True)
     return re.sub(r"\s+", " ", texto)
+
+
+def resumir_cambios(anterior: str, actual: str) -> str:
+    """Solo lo que se ha añadido (+) y quitado (-), con unas palabras de contexto.
+
+    Se compara palabra a palabra: muchas páginas apenas llevan puntos, y un diff por
+    frases enseñaba un bloque enorme que tapaba el cambio real.
+    """
+    a, b = anterior.split(), actual.split()
+    lineas: list[str] = []
+    for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+        if op == "equal":
+            continue
+        contexto = " ".join(a[max(0, i1 - 6):i1])
+        if i2 > i1:
+            lineas.append(f"- …{contexto} [{' '.join(a[i1:i2])[:MAX_FRAGMENTO]}]")
+        if j2 > j1:
+            lineas.append(f"+ …{contexto} [{' '.join(b[j1:j2])[:MAX_FRAGMENTO]}]")
+    resumen = "\n".join(lineas)
+    if len(resumen) > MAX_RESUMEN:
+        resumen = resumen[:MAX_RESUMEN] + f"\n… ({len(lineas)} fragmentos en total; mira la página)"
+    return resumen
 
 
 def main() -> int:
@@ -101,17 +136,7 @@ def main() -> int:
         if anterior is None:
             print(f"[semilla] {f['slug']}: snapshot inicial guardado")
         elif actual != anterior:
-            diff = "\n".join(
-                difflib.unified_diff(
-                    anterior.split(". "),
-                    actual.split(". "),
-                    fromfile="antes",
-                    tofile="ahora",
-                    lineterm="",
-                    n=1,
-                )
-            )
-            novedades.append((f, diff[:3000]))
+            novedades.append((f, resumir_cambios(anterior, actual)))
             print(f"[cambio] {f['slug']}")
         else:
             print(f"[ok] {f['slug']}: sin cambios")

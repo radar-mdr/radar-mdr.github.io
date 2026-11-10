@@ -115,5 +115,25 @@
     "enlace_oficial": "https://health.ec.europa.eu/document/download/a80332cf-e9f0-4d45-8863-3d96e8c2a675_en?filename=mdcg_2026-4_en.pdf",
     "estado_ficha": "publicada",
     "fecha_verificacion": "2026-11-01"
+  },
+  {
+    "id": "mdcg-2026-6",
+    "codigo": "MDCG 2026-6",
+    "titulo": "Evidencia clínica de los IVD huérfanos",
+    "emisor": "MDCG (Medical Device Coordination Group)",
+    "fecha": "Noviembre de 2026",
+    "temas": [
+      "IVDR",
+      "IVD huérfanos",
+      "evidencia clínica",
+      "PMPF",
+      "paneles de expertos",
+      "organismos notificados"
+    ],
+    "resumen_es": "**Qué es.** La guía del MDCG sobre la evidencia clínica de los IVD «huérfanos»: los que se usan en enfermedades o circunstancias raras, donde apenas hay muestras para estudiar. Vale para todas las clases de riesgo y se lee junto con la MDCG 2022-2.\n\n**Cuándo un IVD es huérfano.** Cuando está destinado específicamente a una enfermedad, afección o circunstancia que se presenta en no más de **12 000 personas al año en la UE** y, además, no hay alternativas suficientes o el producto aporta un beneficio clínico esperado frente a ellas. Cuenta la incidencia, no el número de pruebas. No vale recortar el uso a un subgrupo solo para entrar en el umbral, y el estatus no da exclusividad de mercado. Un IVD con usos corrientes puede tener además una «indicación huérfana» y aplicar la guía solo a ella.\n\n**Qué permite.** Llegar al mercado con limitaciones en los datos de funcionamiento clínico previos, si el fabricante justifica que:\n\n- ha evaluado todos los datos disponibles y sabe qué le falta;\n- cumple el anexo I y la relación beneficio-riesgo es aceptable;\n- no es viable ni proporcionado generar más datos antes;\n- sus planes de PMS y PMPF cubrirán esas lagunas a tiempo;\n- el usuario conocerá el estatus huérfano y las limitaciones (etiquetado, instrucciones y, en clases C y D, el SSP).\n\nLos datos no clínicos (validez científica, funcionamiento analítico, modelos, muestras artificiales) pesan más de lo habitual.\n\n**Organismo notificado y paneles de expertos.** El organismo notificado comprueba el estatus cuanto antes y puede emitir certificados con condiciones, como actividades de PMPF con plazo; incumplirlas puede acabar en suspensión o retirada. Fabricante y organismo notificado pueden pedir asesoramiento voluntario a los paneles de expertos, que procuran responder en 60 días sobre el estatus y en 90 si también revisan los datos clínicos.\n\n**Centros sanitarios.** Los principios de evidencia valen también para los IVD huérfanos fabricados en el propio centro (art. 5.5 IVDR); la parte de certificación, no.\n\n**Para qué te sirve.** Si fabricas un IVD para una enfermedad rara, documenta la incidencia y la falta de alternativas en el informe de evaluación del funcionamiento y pide el asesoramiento del panel antes de diseñar el estudio, no después.",
+    "relevancia_ia": 1,
+    "enlace_oficial": "https://health.ec.europa.eu/document/download/3c335d66-18db-4ab2-9fdd-fe552e897200_en?filename=mdcg_2026-6_en.pdf",
+    "estado_ficha": "publicada",
+    "fecha_verificacion": "2026-11-10"
   }
 ]
