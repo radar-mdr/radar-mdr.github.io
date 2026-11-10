@@ -1,0 +1,87 @@
+---
+// Alta en la lista de espera de Radar Pro. La usan /pro y la portada.
+// Formulario: pon el ID de Tally en SITIO.tallyFormId (config.ts); vacío = alta por correo.
+// Privacidad por diseño: el formulario y el script de Tally solo se cargan si la persona
+// pulsa el botón. Sin JavaScript, el botón abre el formulario alojado en tally.so.
+import { SITIO } from '../config';
+
+const tallyId = SITIO.tallyFormId;
+const mailtoPro = `mailto:${SITIO.email}?subject=${encodeURIComponent('RADAR PRO: acceso anticipado')}`;
+---
+
+<div class="lista-espera">
+  {tallyId ? (
+    <>
+      <p class="intro-alta">
+        Dos minutos y casi todo es marcar. Tus respuestas deciden qué se construye primero y
+        cuánto costará.
+      </p>
+      <a class="boton" href={`https://tally.so/r/${tallyId}`} data-tally-id={tallyId}>
+        Apuntarme a la lista de espera
+      </a>
+      <p class="nota-alta">
+        <small>
+          El formulario lo aloja Tally (Bélgica) y solo se carga si pulsas el botón.
+          ¿Prefieres el correo? Escribe a <a href={mailtoPro}>{SITIO.email}</a>.
+        </small>
+      </p>
+    </>
+  ) : (
+    <>
+      <p>
+        Escribe a <a href={mailtoPro}>{SITIO.email}</a> con el asunto «RADAR PRO» y cuéntame
+        tres cosas:
+      </p>
+      <ol>
+        <li>Qué productos tienes (clase y mercado).</li>
+        <li>Cuántas horas al mes dedicáis hoy a vigilar cambios regulatorios.</li>
+        <li>Qué haríais si el Radar no existiera: hacerlo a mano, pagar a una consultora u otra herramienta.</li>
+      </ol>
+    </>
+  )}
+</div>
+
+<script>
+  // Tally y GoatCounter cuelgan sus funciones de window cuando cargan sus scripts.
+  const w = window as Window & {
+    Tally?: { loadEmbeds(): void };
+    goatcounter?: { count?(datos: object): void };
+  };
+  document.querySelectorAll<HTMLAnchorElement>('a[data-tally-id]').forEach((boton) => {
+    boton.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const iframe = document.createElement('iframe');
+      // El script de Tally pasa a los campos ocultos la ruta de esta página (originPage)
+      // y sus parámetros: comparte /pro?ref=linkedin y sabrás de dónde viene cada alta.
+      iframe.dataset.tallySrc = `https://tally.so/embed/${boton.dataset.tallyId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
+      iframe.title = 'Formulario de acceso anticipado a Radar Pro';
+      iframe.width = '100%';
+      iframe.height = '640';
+      // El formulario ya trae esta misma presentación: se quita la de la página para no repetirla.
+      boton.closest('.lista-espera')?.querySelector('.intro-alta')?.remove();
+      boton.replaceWith(iframe);
+      const cargar = () => {
+        // Si el script no llega (bloqueador, proxy corporativo), el formulario se carga
+        // igual, solo que sin altura automática.
+        if (w.Tally) w.Tally.loadEmbeds();
+        else iframe.src = iframe.dataset.tallySrc!;
+        iframe.focus();
+      };
+      const script = document.createElement('script');
+      script.src = 'https://tally.so/widgets/embed.js';
+      script.onload = cargar;
+      script.onerror = cargar;
+      document.body.appendChild(script);
+      // Embudo gratis sin Tally Pro: visitas → aperturas (evento) → altas (Tally).
+      if (w.goatcounter?.count) {
+        w.goatcounter.count({ path: 'pro-abrir-formulario', title: 'Radar Pro: abre el formulario', event: true });
+      }
+    });
+  });
+</script>
+
+<style>
+  .nota-alta { margin: 0.75rem 0 0; color: var(--texto-suave); }
+  /* El iframe se crea con JavaScript, así que no lleva la marca de estilos de Astro. */
+  .lista-espera :global(iframe) { display: block; width: 100%; border: 0; margin-top: 0.5rem; }
+</style>

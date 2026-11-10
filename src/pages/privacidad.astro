@@ -7,7 +7,7 @@ const conAnalitica = Boolean(SITIO.goatcounterCodigo);
 const conTally = Boolean(SITIO.tallyFormId);
 
 // Cambia esta fecha cada vez que cambie el texto visible (por ejemplo, al activar Tally).
-const ultimaActualizacion = '1 de noviembre de 2026';
+const ultimaActualizacion = '10 de noviembre de 2026';
 ---
 
 <Base title="Privacidad" description="Qué datos trata el Radar MDR × AI Act, para qué, con qué base jurídica y cómo ejercer tus derechos (RGPD).">
@@ -75,6 +75,13 @@ const ultimaActualizacion = '1 de noviembre de 2026';
         ? 'Uso GoatCounter, una analítica que no usa cookies ni identifica a las personas: solo cuenta visitas agregadas (página, país, origen) y los clics en los botones principales.'
         : 'No uso cookies ni analítica de terceros.'}
       {conTally && ' El formulario de Radar Pro no se carga al abrir la página, solo cuando pulsas «Apuntarme a la lista de espera»; desde ese momento lo sirve Tally.'}
+    </dd>
+
+    <dt>Asistente «¿Qué me aplica?»</dt>
+    <dd>
+      Funciona entero en tu navegador: tus respuestas no se envían ni se guardan en ningún sitio.
+      Quedan en la dirección de la página, para que puedas copiar el enlace a tu resultado.
+      {conTally && ' Si desde el resultado vas a la lista de espera de Radar Pro, tu perfil (rol, tipo de producto, clase y si lleva IA) viaja en ese enlace, y Tally lo recibe junto con el formulario solo si lo envías.'}
     </dd>
   </dl>
   <p class="fuente-dato">Última actualización: {ultimaActualizacion}.</p>

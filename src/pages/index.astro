@@ -1,6 +1,7 @@
 ---
 import { getCollection } from '../lib/coleccion';
 import Base from '../layouts/Base.astro';
+import ListaEspera from '../components/ListaEspera.astro';
 import { SITIO, dominioConfigurado } from '../config';
 
 const plazos = (await getCollection('plazos')).sort((a, b) =>
@@ -104,6 +105,11 @@ const matices = [
       rastrean a mano EUR-Lex, las guías MDCG y la Comisión. Filtra por tu rol y tu clase de
       producto y ve solo tus fechas, cada una con su <strong>fuente oficial</strong> y su
       <strong>fecha de verificación</strong>. Sin resúmenes en inglés sin fuente.
+    </p>
+    <p class="hero-acciones">
+      <a class="boton boton-grande" href="/que-me-aplica/" data-goatcounter-click="portada-asistente">Ver solo lo que me aplica</a>
+      <a class="boton-sec" href="#cronologia-titulo">Ver la cronología completa</a>
+      <span class="hero-nota">Siete preguntas, sin registro.</span>
     </p>
 
     <div class="cta-calendario">
@@ -268,14 +274,25 @@ const matices = [
     }
   </div>
 
-  <aside class="cta">
-    <h2>Radar quincenal</h2>
-    <p>
-      Cada dos semanas, los cambios verificados y las fechas que entran en la ventana de 90 y 30
-      días. <a href="/newsletter/">Suscríbete a la newsletter</a> o sigue el
-      <a href="/rss.xml">RSS de cambios</a>.
-    </p>
-  </aside>
+  <div class="cierre">
+    <section class="cta cta-pro" aria-labelledby="titulo-pro">
+      <h2 id="titulo-pro">Radar Pro (2027): que los plazos te encuentren a ti</h2>
+      <p>
+        El Radar público seguirá siendo gratuito. Radar Pro vigilará <strong>tu</strong> cartera
+        de productos: avisos solo de lo que te afecta, calendario privado e histórico de cambios
+        listo para la auditoría. <a href="/pro/">Qué incluirá</a>.
+      </p>
+      <ListaEspera />
+    </section>
+    <aside class="cta">
+      <h2>Radar quincenal</h2>
+      <p>
+        Cada dos semanas, los cambios verificados y las fechas que entran en la ventana de 90 y 30
+        días. <a href="/newsletter/">Suscríbete a la newsletter</a> o sigue el
+        <a href="/rss.xml">RSS de cambios</a>.
+      </p>
+    </aside>
+  </div>
 </Base>
 
 <script>
@@ -456,6 +473,12 @@ const matices = [
   .matiz p { margin: 0; font-size: 0.95rem; }
   .matiz .matiz-ref { margin-top: 0.5rem; font-size: 0.82rem; color: var(--texto-suave); }
 
-  .cta { border: 2px solid var(--borde); border-radius: 8px; padding: 1rem 1.5rem; margin-top: 2.5rem; }
-  .cta h2 { margin-top: 0; }
+  .hero-acciones { display: flex; flex-wrap: wrap; gap: 0.6rem 0.75rem; align-items: center; margin: 1.25rem 0 0; }
+  .boton-grande { font-size: 1.1rem; padding: 0.75rem 1.25rem; }
+  .hero-nota { color: var(--texto-suave); font-size: 0.9rem; }
+
+  .cierre { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; margin-top: 2.5rem; align-items: start; }
+  .cta { border: 2px solid var(--borde); border-radius: 8px; padding: 1rem 1.5rem; }
+  .cta h2 { margin-top: 0; font-size: 1.25rem; }
+  .cta-pro { border-color: var(--acento); background: #f3f7fe; }
 </style>

@@ -1,0 +1,540 @@
+---
+// Asistente «¿Qué me aplica?»: hasta siete preguntas y la lista de plazos del perfil, con
+// calendario (.ics), versión para imprimir o guardar en PDF y enlace para compartir.
+// Todo ocurre en el navegador: las respuestas no se envían a ningún sitio.
+// La lógica está en src/lib/asistente.ts (con pruebas en tests/asistente.test.mjs); aquí solo
+// se pintan las preguntas y las tarjetas. Añadir un plazo a plazos.json basta para que salga.
+import { getCollection } from '../lib/coleccion';
+import Base from '../layouts/Base.astro';
+import { CLASES_PS, CLASES_IVD } from '../lib/asistente';
+import { SITIO } from '../config';
+
+const plazos = (await getCollection('plazos'))
+  .map((p) => p.data)
+  .filter((p) => p.estado !== 'en_tramitacion')
+  .sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+const formatoFecha = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const fmt = (iso: string) => formatoFecha.format(new Date(iso + 'T00:00:00'));
+
+const badgeClase: Record<string, string> = {
+  MDR: 'badge-mdr',
+  IVDR: 'badge-ivdr',
+  'MDR/IVDR': 'badge-mdr-ivdr',
+  'AI Act': 'badge-ai-act',
+  QMSR: 'badge-qmsr',
+  EHDS: 'badge-ehds',
+};
+
+const roles = [
+  { valor: 'fabricante', titulo: 'Fabricante', ayuda: 'Diseñas o fabricas el producto, o lo comercializas con tu nombre.' },
+  { valor: 'representante', titulo: 'Representante autorizado', ayuda: 'Representas en la UE a un fabricante de fuera.' },
+  { valor: 'importador', titulo: 'Importador', ayuda: 'Introduces en la UE productos de un tercer país.' },
+  { valor: 'organismo', titulo: 'Organismo notificado', ayuda: 'Evalúas la conformidad y emites certificados.' },
+  { valor: 'sanitario', titulo: 'Centro o prestador sanitario', ayuda: 'Hospital, clínica o laboratorio que usa los productos.' },
+];
+const productos = [
+  { valor: 'ps', titulo: 'Producto sanitario', ayuda: 'Reglamento MDR. Incluye el software con finalidad médica.' },
+  { valor: 'ivd', titulo: 'Diagnóstico in vitro', ayuda: 'Reglamento IVDR: reactivos, analizadores, test.' },
+  { valor: 'hce', titulo: 'Software de historia clínica o bienestar', ayuda: 'No es producto sanitario: le afecta el EHDS.' },
+];
+const nombreClasePS: Record<string, string> = { 'Is/Im/Ir': 'I estéril, de medición o reutilizable (Is/Im/Ir)' };
+const ternas = [
+  { valor: 'si', titulo: 'Sí' },
+  { valor: 'no', titulo: 'No' },
+  { valor: 'nose', titulo: 'No lo sé' },
+];
+---
+
+<Base
+  title="¿Qué me aplica? Tus plazos regulatorios en siete preguntas"
+  description="Responde hasta siete preguntas sobre tu rol y tu producto y obtén tu lista de plazos MDR, IVDR, AI Act, EHDS y QMSR, con calendario y PDF. Orientativo; cada fecha con su fuente oficial."
+>
+  <h1>¿Qué plazos te aplican?</h1>
+  <p class="intro no-imprimir">
+    Responde hasta siete preguntas y verás solo tus fechas, cada una con el motivo por el que te
+    toca y su fuente oficial. Después puedes llevártelas al calendario o guardarlas en PDF.
+    Tus respuestas no se envían ni se guardan: todo ocurre en tu navegador.
+  </p>
+  <p class="nota">
+    <strong>Resultado orientativo.</strong> El asistente cruza tus respuestas con los plazos del
+    Radar; no clasifica tu producto ni sustituye a un asesoramiento regulatorio. Verifica cada
+    fecha en la fuente oficial enlazada.
+  </p>
+
+  <noscript>
+    <p class="caja">
+      El asistente necesita JavaScript. Sin él, puedes filtrar la
+      <a href="/">cronología completa</a> por norma, rol y clase.
+    </p>
+  </noscript>
+
+  <form id="asistente" class="asistente no-imprimir" novalidate hidden>
+    <fieldset data-pregunta="rol">
+      <legend>¿Cuál es tu papel?</legend>
+      <div class="opciones">
+        {roles.map((o) => (
+          <label class="opcion">
+            <input type="radio" name="rol" value={o.valor} />
+            <span><strong>{o.titulo}</strong><small>{o.ayuda}</small></span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset data-pregunta="producto" hidden>
+      <legend>¿Con qué tipo de producto?</legend>
+      <div class="opciones">
+        {productos.map((o) => (
+          <label class="opcion">
+            <input type="radio" name="producto" value={o.valor} />
+            <span><strong>{o.titulo}</strong><small>{o.ayuda}</small></span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset data-pregunta="clase-ps" hidden>
+      <legend>¿De qué clase es?</legend>
+      <div class="opciones cortas">
+        {CLASES_PS.map((c) => (
+          <label class="opcion">
+            <input type="radio" name="clase-ps" value={c} />
+            <span><strong>{nombreClasePS[c] ?? c}</strong></span>
+          </label>
+        ))}
+        <label class="opcion">
+          <input type="radio" name="clase-ps" value="nose" />
+          <span><strong>No lo sé</strong></span>
+        </label>
+      </div>
+      <p class="ayuda">
+        La clase sale de las reglas del anexo VIII del MDR. Si tu producto es software, mira la
+        <a href="/ia-clinica/">guía de IA clínica</a>.
+      </p>
+    </fieldset>
+
+    <fieldset data-pregunta="clase-ivd" hidden>
+      <legend>¿De qué clase es?</legend>
+      <div class="opciones cortas">
+        {CLASES_IVD.map((c) => (
+          <label class="opcion">
+            <input type="radio" name="clase-ivd" value={c} />
+            <span><strong>{c.replace('IVD ', '')}</strong></span>
+          </label>
+        ))}
+        <label class="opcion">
+          <input type="radio" name="clase-ivd" value="nose" />
+          <span><strong>No lo sé</strong></span>
+        </label>
+      </div>
+      <p class="ayuda">La clase sale de las reglas del anexo VIII del IVDR.</p>
+    </fieldset>
+
+    <fieldset data-pregunta="implantable" hidden>
+      <legend>¿Es implantable?</legend>
+      <div class="opciones cortas">
+        <label class="opcion"><input type="radio" name="implantable" value="no" /><span><strong>No</strong></span></label>
+        <label class="opcion"><input type="radio" name="implantable" value="si" /><span><strong>Sí</strong></span></label>
+        <label class="opcion" data-solo-clase="III">
+          <input type="radio" name="implantable" value="medida" /><span><strong>Sí, y hecho a medida</strong></span>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset data-pregunta="ia">
+      <legend data-texto-sanitario="¿Usáis sistemas de IA?">¿Incorpora un sistema de IA?</legend>
+      <div class="opciones cortas">
+        {ternas.map((o) => (
+          <label class="opcion"><input type="radio" name="ia" value={o.valor} /><span><strong>{o.titulo}</strong></span></label>
+        ))}
+      </div>
+      <p class="ayuda">Por ejemplo, un modelo de aprendizaje automático que analiza imágenes, señales o texto clínico.</p>
+    </fieldset>
+
+    <fieldset data-pregunta="legacy" hidden>
+      <legend>¿Sigue en el mercado con un certificado o una declaración de las Directivas antiguas?</legend>
+      <div class="opciones cortas">
+        {ternas.map((o) => (
+          <label class="opcion"><input type="radio" name="legacy" value={o.valor} /><span><strong>{o.titulo}</strong></span></label>
+        ))}
+      </div>
+      <p class="ayuda">
+        Son los productos «legacy»: aún no tienen certificado MDR o IVDR y se venden al amparo de
+        los periodos transitorios.
+      </p>
+    </fieldset>
+
+    <fieldset data-pregunta="eeuu" hidden>
+      <legend>¿Vendes también en Estados Unidos?</legend>
+      <div class="opciones cortas">
+        <label class="opcion"><input type="radio" name="eeuu" value="si" /><span><strong>Sí</strong></span></label>
+        <label class="opcion"><input type="radio" name="eeuu" value="no" /><span><strong>No</strong></span></label>
+      </div>
+    </fieldset>
+
+    <p class="progreso" id="progreso" role="status" aria-live="polite"></p>
+    <p><button type="button" class="boton-sec" id="reiniciar" hidden>Empezar de nuevo</button></p>
+  </form>
+
+  <section id="resultado" class="resultado" aria-labelledby="titulo-resultado" hidden>
+    <h2 id="titulo-resultado" tabindex="-1">Tus plazos</h2>
+    <p class="perfil"><strong>Perfil:</strong> <span id="perfil-resumen"></span></p>
+    <p class="recuento" id="recuento" role="status" aria-live="polite"></p>
+    <p class="solo-impresion">
+      Generado el <span id="fecha-hoy"></span> en {SITIO.dominio.replace(/^https?:\/\//, '')}/que-me-aplica/. Resultado
+      orientativo: no es asesoramiento regulatorio.
+    </p>
+
+    <div class="acciones no-imprimir">
+      <button type="button" class="boton" id="descargar-ics" data-goatcounter-click="asistente-ics">Añadir a mi calendario (.ics)</button>
+      <button type="button" class="boton-sec" id="imprimir" data-goatcounter-click="asistente-pdf">Imprimir o guardar en PDF</button>
+      <button type="button" class="boton-sec" id="copiar-enlace">Copiar enlace a mi resultado</button>
+    </div>
+    <p class="aviso-accion no-imprimir" id="aviso-accion" role="status" aria-live="polite"></p>
+
+    <ol class="tarjetas" id="tarjetas">
+      {
+        plazos.map((p) => (
+          <li
+            class="tarjeta"
+            data-id={p.id}
+            data-norma={p.norma}
+            data-tipo={p.tipo}
+            data-estado={p.estado}
+            data-fecha={p.fecha}
+            data-roles={p.roles_afectados.join('|')}
+            data-clases={p.clases_producto.join('|')}
+            hidden
+          >
+            <div class="tarjeta-fecha">
+              <time datetime={p.fecha}>{fmt(p.fecha)}</time>
+              <span class="chip-dias" />
+            </div>
+            <div class="tarjeta-cuerpo">
+              <p class="tarjeta-meta">
+                <span class={`badge ${badgeClase[p.norma]}`}>{p.norma}</span>
+                {p.estado === 'pendiente_confirmacion' && <span class="chip chip-aviso">Fecha por confirmar</span>}
+                {p.estado === 'aplazado' && <span class="chip chip-aviso">Aplazado</span>}
+              </p>
+              <h3>{p.titulo}</h3>
+              <p class="tarjeta-desc">{p.descripcion_corta}</p>
+              <ul class="motivos" />
+              <p class="tarjeta-fuente">
+                {p.referencia_legal} · <a href={p.fuente_url} rel="external noopener">Fuente oficial</a> ·
+                Verificado el {fmt(p.fecha_verificacion)} · <a class="no-imprimir" href={`/#${p.id}`}>Ver en la cronología</a>
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p id="sin-plazos" class="caja" hidden>
+      Con estas respuestas no hay ningún plazo del Radar que te afecte. Revisa las respuestas o
+      consulta la <a href="/">cronología completa</a>.
+    </p>
+
+    <aside class="caja avisos no-imprimir">
+      <h2>¿Y si cambia una de estas fechas?</h2>
+      <p>
+        Los plazos se mueven: el Ómnibus de IA cambió varios en 2026. <strong>Radar Pro</strong>
+        (2027) te avisará solo de los cambios que afecten a tu perfil. Mientras llega, el Radar
+        quincenal resume los cambios verificados.
+      </p>
+      <p class="acciones">
+        <a class="boton" id="enlace-pro" href="/pro/?ref=asistente" data-goatcounter-click="asistente-pro">Apuntarme a la lista de espera de Pro</a>
+        <a class="boton-sec" href="/newsletter/" data-goatcounter-click="asistente-newsletter">Recibir el Radar quincenal</a>
+      </p>
+    </aside>
+  </section>
+</Base>
+
+<script>
+  import { plazosDePerfil, resumenPerfil, CLASES_IMPLANTABLES, type Perfil, type PlazoPerfil } from '../lib/asistente';
+  import { calendarioICS, type PlazoICS } from '../lib/ics';
+  import { SITIO } from '../config';
+
+  const form = document.getElementById('asistente') as HTMLFormElement;
+  const resultado = document.getElementById('resultado')!;
+  const progreso = document.getElementById('progreso')!;
+  const reiniciar = document.getElementById('reiniciar')!;
+  const aviso = document.getElementById('aviso-accion')!;
+  const tarjetas = [...document.querySelectorAll<HTMLElement>('.tarjeta')];
+  const preguntas = [...form.querySelectorAll<HTMLFieldSetElement>('fieldset[data-pregunta]')];
+  const CAMPOS = ['rol', 'producto', 'clase-ps', 'clase-ivd', 'implantable', 'ia', 'legacy', 'eeuu'];
+
+  const plazos: PlazoPerfil[] = tarjetas.map((t) => ({
+    id: t.dataset.id!,
+    norma: t.dataset.norma!,
+    tipo: t.dataset.tipo!,
+    estado: t.dataset.estado!,
+    fecha: t.dataset.fecha!,
+    roles_afectados: t.dataset.roles!.split('|'),
+    clases_producto: t.dataset.clases!.split('|'),
+  }));
+
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  const diasHasta = (iso: string) => Math.round((new Date(iso + 'T00:00:00').getTime() - hoy.getTime()) / 86400000);
+
+  const valor = (campo: string) => (form.querySelector<HTMLInputElement>(`input[name="${campo}"]:checked`)?.value ?? '');
+
+  /** Qué preguntas tocan según lo ya respondido. */
+  function visibles(): string[] {
+    const rol = valor('rol');
+    const producto = valor('producto');
+    const conProducto = ['fabricante', 'representante', 'importador'].includes(rol);
+    const clase = valor('clase-ps');
+    return [
+      'rol',
+      ...(conProducto ? ['producto'] : []),
+      ...(conProducto && producto === 'ps' ? ['clase-ps'] : []),
+      ...(conProducto && producto === 'ivd' ? ['clase-ivd'] : []),
+      ...(conProducto && producto === 'ps' && CLASES_IMPLANTABLES.includes(clase) ? ['implantable'] : []),
+      ...(rol ? ['ia'] : []),
+      ...(conProducto && (producto === 'ps' || producto === 'ivd') ? ['legacy'] : []),
+      ...(rol === 'fabricante' && producto ? ['eeuu'] : []),
+    ];
+  }
+
+  function perfilActual(): Perfil {
+    const producto = valor('producto');
+    return {
+      rol: valor('rol') as Perfil['rol'],
+      producto: (producto || undefined) as Perfil['producto'],
+      clase: valor(producto === 'ivd' ? 'clase-ivd' : 'clase-ps') || undefined,
+      implantable: (valor('implantable') || undefined) as Perfil['implantable'],
+      ia: (valor('ia') || 'nose') as Perfil['ia'],
+      legacy: (valor('legacy') || undefined) as Perfil['legacy'],
+      eeuu: valor('eeuu') === 'si',
+    };
+  }
+
+  function pintar() {
+    const tocan = visibles();
+    for (const f of preguntas) {
+      const toca = tocan.includes(f.dataset.pregunta!);
+      f.hidden = !toca;
+      // Una respuesta a una pregunta que ya no toca no debe contar.
+      if (!toca) f.querySelectorAll<HTMLInputElement>('input:checked').forEach((i) => (i.checked = false));
+    }
+    // «A medida» solo existe como caso propio en la clase III.
+    const medida = form.querySelector<HTMLElement>('[data-solo-clase]')!;
+    medida.hidden = valor('clase-ps') !== 'III';
+    if (medida.hidden) medida.querySelector('input')!.checked = false;
+    const leyendaIA = form.querySelector<HTMLElement>('fieldset[data-pregunta="ia"] legend')!;
+    leyendaIA.dataset.textoBase ??= leyendaIA.textContent ?? '';
+    leyendaIA.textContent = valor('rol') === 'sanitario' ? leyendaIA.dataset.textoSanitario! : leyendaIA.dataset.textoBase;
+
+    const pendientes = visibles().filter((c) => !valor(c));
+    reiniciar.hidden = !valor('rol');
+    escribirURL();
+
+    if (pendientes.length > 0) {
+      resultado.hidden = true;
+      progreso.textContent = valor('rol')
+        ? pendientes.length === 1 ? 'Te queda 1 pregunta.' : `Te quedan ${pendientes.length} preguntas.`
+        : '';
+      return false;
+    }
+    progreso.textContent = '';
+
+    const perfil = perfilActual();
+    const mios = new Map(plazosDePerfil(perfil, plazos).map((r) => [r.id, r]));
+    let proximos = 0;
+    for (const t of tarjetas) {
+      const r = mios.get(t.dataset.id!);
+      t.hidden = !r;
+      if (!r) continue;
+      const dias = diasHasta(t.dataset.fecha!);
+      const chip = t.querySelector<HTMLElement>('.chip-dias')!;
+      chip.className = 'chip-dias';
+      if (dias < 0) {
+        chip.textContent = 'Ya aplica';
+      } else {
+        proximos++;
+        chip.textContent = dias === 0 ? 'Hoy' : `Quedan ${dias} días`;
+        if (dias <= 30) chip.classList.add('dias-urgente');
+        else if (dias <= 90) chip.classList.add('dias-pronto');
+      }
+      t.classList.toggle('pasado', dias < 0);
+      const lista = t.querySelector('.motivos')!;
+      lista.replaceChildren(
+        ...r.motivos.map((m) => Object.assign(document.createElement('li'), { textContent: m })),
+        ...r.condiciones.map((c) => Object.assign(document.createElement('li'), { textContent: c, className: 'condicion' }))
+      );
+    }
+    document.getElementById('perfil-resumen')!.textContent = resumenPerfil(perfil);
+    document.getElementById('recuento')!.textContent =
+      mios.size === 0 ? '' : `${mios.size} ${mios.size === 1 ? 'plazo' : 'plazos'}: ${proximos} por llegar y ${mios.size - proximos} que ya ${mios.size - proximos === 1 ? 'aplica' : 'aplican'}.`;
+    document.getElementById('sin-plazos')!.hidden = mios.size > 0;
+    document.querySelectorAll<HTMLButtonElement>('#descargar-ics, #imprimir').forEach((b) => (b.disabled = mios.size === 0));
+    // El perfil viaja en el enlace a la lista de espera: Tally lo recibe con la página de origen.
+    (document.getElementById('enlace-pro') as HTMLAnchorElement).href = `/pro/?ref=asistente&${parametros().toString()}`;
+    aviso.textContent = '';
+    const recienMostrado = resultado.hidden;
+    resultado.hidden = false;
+    return recienMostrado;
+  }
+
+  function parametros(): URLSearchParams {
+    const params = new URLSearchParams();
+    for (const campo of CAMPOS) if (valor(campo)) params.set(campo, valor(campo));
+    return params;
+  }
+
+  // Solo toca sus propios parámetros: conserva los utm_* de quien llegó desde un enlace.
+  function escribirURL() {
+    const params = new URLSearchParams(location.search);
+    for (const campo of CAMPOS) {
+      if (valor(campo)) params.set(campo, valor(campo));
+      else params.delete(campo);
+    }
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+  }
+
+  function leerURL() {
+    const params = new URLSearchParams(location.search);
+    for (const campo of CAMPOS) {
+      const v = params.get(campo);
+      const input = v ? form.querySelector<HTMLInputElement>(`input[name="${campo}"][value="${CSS.escape(v)}"]`) : null;
+      if (input) input.checked = true;
+    }
+  }
+
+  form.addEventListener('change', () => {
+    if (pintar()) {
+      resultado.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      const w = window as Window & { goatcounter?: { count?(datos: object): void } };
+      w.goatcounter?.count?.({ path: 'asistente-resultado', title: 'Asistente: muestra el resultado', event: true });
+    }
+  });
+
+  reiniciar.addEventListener('click', () => {
+    form.reset();
+    pintar();
+    form.querySelector<HTMLInputElement>('input[name="rol"]')!.focus();
+  });
+
+  document.getElementById('descargar-ics')!.addEventListener('click', async () => {
+    const mios = new Set(tarjetas.filter((t) => !t.hidden).map((t) => t.dataset.id));
+    try {
+      const respuesta = await fetch('/api/plazos.json');
+      if (!respuesta.ok) throw new Error(String(respuesta.status));
+      const datos: { plazos: PlazoICS[] } = await respuesta.json();
+      const ics = calendarioICS(datos.plazos.filter((p) => mios.has(p.id)), {
+        dominio: SITIO.dominio,
+        nombre: `Mis plazos · ${SITIO.nombre}`,
+      });
+      const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+      const enlace = Object.assign(document.createElement('a'), { href: url, download: 'mis-plazos-radar.ics' });
+      document.body.append(enlace);
+      enlace.click();
+      enlace.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      aviso.textContent = `Calendario descargado con ${mios.size} ${mios.size === 1 ? 'plazo' : 'plazos'} y aviso 30 días antes. Ábrelo para importarlo en Outlook o Google Calendar. No se actualiza solo: si cambia un dato, vuelve a descargarlo.`;
+    } catch {
+      aviso.textContent = 'No se ha podido generar el calendario. Inténtalo de nuevo o descarga el calendario completo desde la portada.';
+    }
+  });
+
+  document.getElementById('imprimir')!.addEventListener('click', () => {
+    document.getElementById('fecha-hoy')!.textContent = new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' }).format(new Date());
+    window.print();
+  });
+
+  document.getElementById('copiar-enlace')!.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      aviso.textContent = 'Enlace copiado. Quien lo abra verá este mismo resultado.';
+    } catch {
+      aviso.textContent = `Copia este enlace: ${location.href}`;
+    }
+  });
+
+  leerURL();
+  form.hidden = false;
+  pintar();
+</script>
+
+<style>
+  .intro { max-width: 46rem; font-size: 1.05rem; }
+
+  .asistente { counter-reset: pregunta; margin-top: 1.5rem; max-width: 52rem; }
+  fieldset { border: 0; margin: 0 0 1.75rem; padding: 0; min-width: 0; }
+  legend { counter-increment: pregunta; font-size: 1.15rem; font-weight: 700; padding: 0; margin-bottom: 0.6rem; line-height: 1.35; }
+  legend::before {
+    content: counter(pregunta); display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem;
+    margin-right: 0.5rem; border-radius: 50%; background: var(--acento); color: #fff; font-size: 0.95rem;
+  }
+
+  .opciones { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.6rem; }
+  .opciones.cortas { display: flex; flex-wrap: wrap; }
+  .opcion {
+    display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer;
+    border: 2px solid var(--borde); border-radius: 10px; padding: 0.7rem 0.9rem; background: #fff;
+  }
+  .opciones.cortas .opcion { align-items: center; padding: 0.5rem 0.9rem; }
+  .opcion:hover { border-color: var(--acento); }
+  .opcion:has(input:checked) { border-color: var(--acento); background: #f3f7fe; box-shadow: inset 0 0 0 1px var(--acento); }
+  .opcion:has(input:focus-visible) { outline: 3px solid var(--acento); outline-offset: 2px; }
+  .opcion input { margin: 0.2rem 0 0; accent-color: var(--acento); flex: none; }
+  .opciones.cortas .opcion input { margin: 0; }
+  .opcion span { display: flex; flex-direction: column; gap: 0.1rem; }
+  .opcion small { color: var(--texto-suave); font-size: 0.85rem; line-height: 1.35; }
+  .ayuda { margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--texto-suave); }
+  .progreso { min-height: 1.5rem; color: var(--texto-suave); font-weight: 600; }
+
+  .resultado { border-top: 2px solid var(--borde); margin-top: 1rem; scroll-margin-top: 1rem; }
+  .resultado h2 { margin-top: 1.5rem; }
+  .perfil { margin: 0; }
+  .recuento { margin: 0.25rem 0 0; color: var(--texto-suave); min-height: 1.5rem; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 0; }
+  .acciones button { font: inherit; cursor: pointer; }
+  .acciones button.boton { font-weight: 700; }
+  .acciones button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .aviso-accion { min-height: 1.5rem; margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--ok-texto); max-width: 46rem; }
+
+  .tarjetas { list-style: none; margin: 1rem 0 0; padding: 0; }
+  .tarjeta {
+    display: grid; grid-template-columns: 11rem 1fr; gap: 1rem;
+    border: 1px solid var(--borde); border-left: 5px solid var(--acento); border-radius: 8px;
+    padding: 1rem 1.25rem; margin-bottom: 0.75rem; background: #fff; break-inside: avoid;
+    max-width: 56rem; /* main limita los <li> a 68ch: aquí la tarjeta lleva dos columnas */
+  }
+  .tarjeta.pasado { border-left-color: var(--borde); background: var(--fondo-alt); }
+  @media (max-width: 40rem) { .tarjeta { grid-template-columns: 1fr; gap: 0.25rem; } }
+  .tarjeta-fecha time { display: block; font-weight: 700; font-size: 1.05rem; }
+  .chip-dias {
+    display: inline-block; margin-top: 0.35rem; font-size: 0.8rem; font-weight: 600;
+    padding: 0.1rem 0.6rem; border-radius: 999px;
+    background: var(--fondo-alt); border: 1px solid var(--borde); color: var(--texto-suave);
+  }
+  .tarjeta.pasado .chip-dias { background: #fff; }
+  .dias-pronto { background: var(--aviso-fondo); color: var(--aviso-texto); border-color: var(--aviso-texto); }
+  .dias-urgente { background: var(--urgente-fondo); color: var(--urgente-texto); border-color: var(--urgente-texto); }
+  .tarjeta-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: 0 0 0.35rem; }
+  .tarjeta h3 { margin: 0 0 0.25rem; font-size: 1.1rem; line-height: 1.35; }
+  .tarjeta-desc { margin: 0 0 0.5rem; }
+  .motivos { list-style: none; margin: 0 0 0.5rem; padding: 0; font-size: 0.92rem; }
+  .motivos :global(li) { max-width: none; }
+  .motivos :global(li)::before { content: '✓ '; color: var(--ok-texto); font-weight: 700; }
+  .motivos :global(li.condicion) {
+    background: var(--aviso-fondo); color: var(--aviso-texto); border-radius: 4px; padding: 0.1rem 0.4rem; margin-top: 0.2rem; width: fit-content;
+  }
+  .motivos :global(li.condicion)::before { content: '⚠ '; color: inherit; }
+  .tarjeta-fuente { font-size: 0.85rem; color: var(--texto-suave); margin: 0; }
+
+  .avisos { margin-top: 2rem; max-width: none; border: 2px solid var(--acento); background: #f3f7fe; }
+  .avisos h2 { margin-top: 0; }
+  .solo-impresion { display: none; }
+
+  @media print {
+    .no-imprimir { display: none !important; }
+    .solo-impresion { display: block; font-size: 0.85rem; }
+    .resultado { border-top: 0; margin-top: 0; }
+    .tarjeta { grid-template-columns: 9rem 1fr; padding: 0.6rem 0.8rem; margin-bottom: 0.5rem; }
+    .chip-dias { border: 0; padding: 0; background: none; }
+  }
+</style>
