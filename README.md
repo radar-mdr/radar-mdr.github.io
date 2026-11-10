@@ -35,14 +35,14 @@ en lugar de mostrar un enlace roto.
 El valor está en los datos estructurados, no en los artículos. Colecciones en `src/data/*.json`,
 con esquemas en [src/content.config.ts](src/content.config.ts):
 
-| Entidad | Archivo | Estado (1-11-2026) |
+| Entidad | Archivo | Estado (10-11-2026) |
 |---|---|---|
 | Plazo | `plazos.json` | ✅ 25 plazos (MDR, IVDR, AI Act, EHDS, QMSR), todos reverificados, con historial |
 | Obligación | `obligaciones.json` | ✅ Matrices MDR e IVDR por clase + 4 fichas por agente económico |
 | Organismo notificado | `organismos.json` | ✅ 53 organismos (52 MDR, 19 IVDR) verificados en NANDO |
 | Glosario | `glosario.json` | ✅ 92 términos ES/EN |
 | Propuesta en tramitación | `propuestas.json` | ✅ Revisión MDR/IVDR, COM(2025) 1023 |
-| Fe de erratas | `erratas.json` | ✅ 4 erratas cerradas con CAPA |
+| Fe de erratas | `erratas.json` | ✅ 5 erratas cerradas con CAPA |
 | Requisitos eQMS | `requisitos-eqms.json` | ✅ 15 requisitos (ISO 13485, Part 11, MDR) |
 | Guía (MDCG) | `guias.json` | ✅ 6 fichas publicadas: MDCG 2025-6, 2019-11 rev.1, 2020-1, 2025-4, 2025-10 y 2026-4 rev.1 |
 | Fuente | `fuentes.json` | ✅ 31 fuentes |
@@ -110,6 +110,9 @@ Sitio estático: sin servidor, cuentas ni base de datos. Aun así:
 
 ## Historial de versiones
 
+- **v0.5 (10-11-2026):** Astro 7 y revisión de seguridad (Content-Security-Policy, fichas de guías sin HTML,
+  enlaces solo `https://`, workflows con permisos mínimos y Dependabot). Ficha de la MDCG 2026-4 rev.1,
+  primera norma armonizada del AI Act (EN 18286) y plazos de EUDAMED corregidos al día 27 (errata E-005).
 - **v0.4 (1-11-2026):** filtros reparados, revisión de precisión (fuentes, Ómnibus, historial con fuente obligatoria),
   «Sobre mí» con independencia, cifras y CTA, Metodología con uso de IA, menú agrupado y móvil, enlaces con barra final.
 - **v0.3.1 (17-10-2026):** cuatro fichas MDCG nuevas leídas de los PDF oficiales, tabla
