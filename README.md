@@ -24,7 +24,11 @@ npm install
 npm run dev      # servidor local en http://localhost:4321
 npm run build    # valida esquemas Zod, genera el sitio en dist/ e indexa Pagefind
 npm run preview  # sirve dist/ (necesario para probar /buscar)
+npm run verificar  # tipos + build + pruebas: pásalo antes de subir cualquier cambio
 ```
+
+Cómo hacer cada tarea habitual: [MANTENIMIENTO.md](MANTENIMIENTO.md). Reglas del proyecto para
+asistentes de IA: [CLAUDE.md](CLAUDE.md).
 
 Los ajustes del sitio (dominio, email, LinkedIn, repositorio, Buttondown, GoatCounter) están en
 [src/config.ts](src/config.ts). Si un campo está vacío, la función correspondiente se desactiva
@@ -71,6 +75,7 @@ con esquemas en [src/content.config.ts](src/content.config.ts):
 |---|---|
 | `/calendario.ics` | Calendario con todos los plazos vigentes y alarma a 30 días |
 | `/?rol=…&clase=…` | Cronología filtrada y compartible |
+| `/que-me-aplica/` | Asistente: siete preguntas y la lista de plazos del perfil, con `.ics` y PDF (orientativo) |
 | `/api/plazos.json` · `/api/fuentes.json` · `/api/organismos.json` | API pública de solo lectura (CC BY 4.0) |
 | `/rss.xml` | Feed de cambios desde el historial de cada plazo |
 | `/cambios/` | Registro de cambios público: el borrador natural de cada newsletter |
