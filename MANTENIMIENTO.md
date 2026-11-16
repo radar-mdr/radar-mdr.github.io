@@ -67,6 +67,26 @@ El asistente no guarda datos propios: cruza las respuestas con `norma`, `tipo`,
 
 El asistente es orientativo y tiene que seguir diciéndolo en la página.
 
+## 4b. Actualizar «En tramitación» (`src/data/propuestas.json`)
+
+La vigilancia vigila la ficha de cada expediente en el Observatorio Legislativo del Parlamento
+(solo la parte del estado, los hitos y los documentos). Cuando avise:
+
+1. Abre la ficha oficial (`ficha_oficial`) y mira qué ha cambiado: un documento nuevo, una
+   votación, una fecha indicativa del pleno que se mueve.
+2. Marca el hito como hecho (`hecho: true` y `fecha_iso`) o añade el nuevo, siempre con su
+   `fuente_url` oficial (`*.europa.eu`). Una fecha que solo da la prensa o una consultora no
+   entra: se queda en «Sin fecha oficial».
+3. Si cambia la etapa (por ejemplo, el Parlamento aprueba su posición), actualiza `etapas`.
+   La prueba de coherencia avisa si el orden no cuadra.
+4. Añade una entrada a `historial` y pon `fecha_verificacion` a hoy.
+5. Si la Comisión, el Parlamento o el Consejo cambian el texto, revisa la tabla `cambios`.
+
+Para añadir un expediente nuevo: copia la forma de uno existente y añade su ficha a `FUENTES`
+en `scripts/vigilancia.py`, con `desde: "Status"` y `hasta: "Transparency"` (hay una prueba que
+lo exige). Cuando se publique en el DOUE, sácalo de `propuestas.json`, pasa sus fechas a
+`plazos.json` y menciónalo en «Ya adoptado» de la página.
+
 ## 5. Añadir un servicio externo
 
 La CSP bloquea todo lo que no esté en la lista. Para añadir un script, un iframe o una API de

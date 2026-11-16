@@ -5,6 +5,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { rolesDe, clasesDe, CLASES_PS, CLASES_IVD } from '../src/lib/asistente.ts';
+import { incoherencias, hitosVencidos } from '../src/lib/tramitacion.ts';
 
 const leer = (nombre) => JSON.parse(readFileSync(new URL(`../src/data/${nombre}.json`, import.meta.url), 'utf8'));
 const COLECCIONES = ['plazos', 'obligaciones', 'guias', 'organismos', 'herramientas', 'requisitos-eqms', 'fuentes', 'glosario', 'propuestas', 'erratas'];
@@ -65,6 +66,44 @@ test('el asistente conoce todos los roles y clases que usan los plazos', () => {
   for (const p of datos.plazos) {
     for (const r of p.roles_afectados) assert.ok(roles.has(r), `${p.id}: rol desconocido «${r}»`);
     for (const c of p.clases_producto) assert.ok(clases.has(c), `${p.id}: clase desconocida «${c}»`);
+  }
+});
+
+test('el rastreador solo usa fuentes oficiales de la UE para el estado de cada propuesta', () => {
+  // Las fechas que circulan en prensa o en consultoras no valen hasta que las da una institución.
+  const oficial = (u) => new URL(u).hostname.endsWith('.europa.eu');
+  for (const p of datos.propuestas) {
+    assert.ok(oficial(p.fuente_url), `${p.id}: la propuesta tiene que enlazar a su texto oficial`);
+    assert.ok(p.ficha_oficial.startsWith('https://oeil.europarl.europa.eu/') && p.ficha_oficial.includes(p.procedimiento), `${p.id}: ficha_oficial tiene que ser la del expediente ${p.procedimiento} en el Observatorio Legislativo`);
+    for (const h of p.hitos) assert.ok(oficial(h.fuente_url), `${p.id}: hito «${h.hito}» con fuente no oficial (${h.fuente_url})`);
+  }
+});
+
+test('los hitos hechos tienen fecha oficial, no futura y en orden', () => {
+  for (const p of datos.propuestas) {
+    const hechos = p.hitos.filter((h) => h.hecho);
+    for (const h of hechos) {
+      assert.ok(h.fecha_iso, `${p.id}: hito hecho sin fecha_iso («${h.hito}»)`);
+      assert.ok(h.fecha_iso <= hoy, `${p.id}: hito hecho con fecha futura («${h.hito}»)`);
+    }
+    const fechas = hechos.map((h) => h.fecha_iso);
+    assert.deepEqual(fechas, [...fechas].sort(), `${p.id}: hitos hechos desordenados`);
+    assert.equal(hechos[0]?.fecha_iso, p.fecha_propuesta, `${p.id}: el primer hito es la propuesta de la Comisión`);
+  }
+});
+
+test('las etapas de cada propuesta son coherentes y tiene historial', () => {
+  for (const p of datos.propuestas) {
+    assert.deepEqual(incoherencias(p.etapas), [], `${p.id}: etapas incoherentes`);
+    assert.ok(p.historial?.length > 0, `${p.id}: sin historial (al menos la entrada de alta)`);
+    assert.ok(p.historial.at(-1).fecha <= p.fecha_verificacion, `${p.id}: hay un cambio posterior a fecha_verificacion`);
+    assert.ok(p.resumen_corto.length <= 200, `${p.id}: resumen_corto demasiado largo para la portada`);
+  }
+});
+
+test('aviso: hitos previstos cuya fecha ya pasó (no hace fallar la prueba)', (t) => {
+  for (const p of datos.propuestas) {
+    for (const h of hitosVencidos(p.hitos, hoy)) t.diagnostic(`${p.id}: «${h.hito}» estaba previsto el ${h.fecha_iso}; comprueba en ${p.ficha_oficial} si ya ocurrió`);
   }
 });
 

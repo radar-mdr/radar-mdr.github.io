@@ -1,43 +1,139 @@
 ---
+// Rastreador legislativo: propuestas que aún no son derecho aplicable, en qué etapa están y
+// cuál es su próximo paso. Cada hito lleva su fuente oficial (sobre todo la ficha del
+// expediente en el Observatorio Legislativo del Parlamento, que vigila la vigilancia diaria).
+// La lógica de etapas y próximos hitos está en src/lib/tramitacion.ts.
 import { getCollection } from '../lib/coleccion';
 import Base from '../layouts/Base.astro';
+import { ETAPAS, faseActual, etapasHechas, proximoHito, proximaFecha, hitosVencidos, type Hito } from '../lib/tramitacion';
 
 const propuestas = (await getCollection('propuestas')).map((p) => p.data);
-const fmt = (iso: string) =>
-  new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(
-    new Date(iso + 'T00:00:00')
-  );
+const hoy = new Date().toISOString().slice(0, 10);
+
+const formatoFecha = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const fmt = (iso: string) => formatoFecha.format(new Date(iso + 'T00:00:00'));
+const diasHasta = (iso: string) => Math.round((new Date(iso + 'T00:00:00').getTime() - new Date(hoy + 'T00:00:00').getTime()) / 86400000);
+
+const ESTADO: Record<string, string> = { hecho: 'Hecho', en_curso: 'En curso', pendiente: 'Pendiente' };
+const badgeClase: Record<string, string> = {
+  MDR: 'badge-mdr',
+  IVDR: 'badge-ivdr',
+  'AI Act': 'badge-ai-act',
+  EHDS: 'badge-ehds',
+};
+const oficial = (u: string) => new URL(u).hostname.endsWith('europa.eu');
+const dominio = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+
+const filas = propuestas.map((p) => ({
+  p,
+  proximo: proximoHito(p.hitos),
+  fecha: proximaFecha(p.hitos, hoy),
+  vencidos: hitosVencidos(p.hitos, hoy),
+}));
+// «18 de enero de 2027 (indicativa)» o «sin fecha oficial»
+const cuando = (h: Hito) => (h.fecha_iso ? `${fmt(h.fecha_iso)}${h.fecha.includes('indicativa') ? ' (indicativa)' : ''}` : 'sin fecha oficial');
+const ultimaVerificacion = propuestas.map((p) => p.fecha_verificacion).sort().at(-1)!;
 ---
 
 <Base
-  title="En tramitación: lo que puede cambiar"
-  description="La revisión del MDR y el IVDR propuesta en diciembre de 2025: qué dice hoy la norma y qué propone la Comisión, con el estado de la tramitación en el Parlamento y el Consejo."
+  title="En tramitación: rastreador de propuestas legislativas"
+  description="Las propuestas que pueden cambiar tus obligaciones (revisión del MDR y el IVDR, Ómnibus digital, Biotech Act): en qué etapa están, su próximo paso y qué cambiarían, con fuente oficial."
 >
   <h1>En tramitación: lo que puede cambiar</h1>
   <p class="intro">
-    Propuestas legislativas que todavía <strong>no son derecho aplicable</strong>. El Radar
-    las sigue porque cambiarán tus obligaciones, pero la cronología y las matrices de obligaciones
-    recogen solo lo vigente.
+    Propuestas legislativas que todavía <strong>no son derecho aplicable</strong>, pero que
+    cambiarán tus obligaciones. Aquí ves en qué etapa está cada una, su próximo paso y qué
+    cambiaría. La cronología y las matrices de obligaciones recogen solo lo vigente.
   </p>
   <p class="nota">
-    <strong>Hoy, y en cualquier examen o auditoría, vale la columna «Vigente»</strong>: 15 días
-    para notificar un incidente grave, PSUR anual en IIb y III y bienal en IIa, y certificados de
+    <strong>Hoy, y en cualquier examen o auditoría, vale lo vigente</strong>: 15 días para
+    notificar un incidente grave, PSUR anual en IIb y III y bienal en IIa, y certificados de
     5 años como máximo.
   </p>
 
+  <div class="tabla-scroll">
+    <table class="tabla resumen">
+      <caption>
+        {propuestas.length} propuestas en seguimiento · verificado el {fmt(ultimaVerificacion)}
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Propuesta</th>
+          <th scope="col">Dónde está</th>
+          <th scope="col">Próximo paso</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filas.map(({ p, proximo, fecha }) => (
+          <tr>
+            <th scope="row">
+              <a href={`#${p.id}`}>{p.titulo}</a>
+              <span class="resumen-normas">{p.normas.join(' · ')}</span>
+            </th>
+            <td>
+              {faseActual(p.etapas)}
+              <span class="progreso" role="img" aria-label={`${etapasHechas(p.etapas)} de ${ETAPAS.length} etapas hechas`}>
+                {ETAPAS.map((e) => <span class={`progreso-paso paso-${p.etapas[e.clave]}`} />)}
+              </span>
+            </td>
+            <td>
+              {proximo ? (
+                <>
+                  {proximo.hito} <span class="resumen-cuando">({cuando(proximo)})</span>
+                  {fecha && fecha !== proximo && (
+                    <span class="resumen-hito">Próxima fecha oficial: {cuando(fecha)}, {fecha.hito.charAt(0).toLowerCase() + fecha.hito.slice(1)}</span>
+                  )}
+                </>
+              ) : (
+                'Sin pasos pendientes'
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
   {
-    propuestas.map((p) => (
+    filas.map(({ p, proximo, fecha, vencidos }) => (
       <article class="propuesta" id={p.id}>
         <h2>{p.titulo}</h2>
         <p class="meta">
-          <span class="chip chip-aviso">En tramitación</span> {p.referencia}
+          <span class="chip chip-aviso">En tramitación</span>
+          {p.normas.map((n) => (badgeClase[n] ? <span class={`badge ${badgeClase[n]}`}>{n}</span> : <span class="chip">{n}</span>))}
         </p>
-        <p>{p.estado_tramite}</p>
+        <p class="meta-ref">
+          {p.referencia} · expediente <a href={p.ficha_oficial} rel="external noopener">{p.procedimiento}</a>
+        </p>
+        <p class="por-que"><strong>Por qué te importa.</strong> {p.por_que_importa}</p>
 
-        <h3>Vigente frente a propuesta</h3>
+        <h3>Dónde está</h3>
+        <ol class="etapas">
+          {ETAPAS.map((e) => (
+            <li class={`etapa etapa-${p.etapas[e.clave]}`}>
+              <span class="etapa-marca" aria-hidden="true" />
+              <span class="etapa-nombre">{e.nombre}</span>
+              <span class="etapa-estado">{ESTADO[p.etapas[e.clave]]}</span>
+            </li>
+          ))}
+        </ol>
+        <p>{p.estado_tramite}</p>
+        {proximo && (
+          <p class="proximo">
+            <strong>Próximo paso:</strong> {proximo.hito} ({cuando(proximo)}).
+            {fecha && (
+              <span class="proximo-fecha">
+                <strong>Próxima fecha oficial:</strong> {cuando(fecha)}, {fecha.hito.charAt(0).toLowerCase() + fecha.hito.slice(1)}
+                {diasHasta(fecha.fecha_iso!) >= 0 && <span class="chip">dentro de {diasHasta(fecha.fecha_iso!)} días</span>}
+              </span>
+            )}
+          </p>
+        )}
+
+        <h3>Qué cambiaría</h3>
         <div class="tabla-scroll">
           <table class="tabla">
-            <caption class="visually-hidden">Comparativa entre la norma vigente y la propuesta de la Comisión</caption>
+            <caption class="visually-hidden">Comparativa entre la norma vigente y la propuesta: {p.titulo}</caption>
             <thead>
               <tr>
                 <th scope="col">Tema</th>
@@ -60,29 +156,57 @@ const fmt = (iso: string) =>
           </table>
         </div>
 
-        <h3>Tramitación</h3>
+        <h3>Tramitación paso a paso</h3>
         <ol class="hitos">
           {p.hitos.map((h) => (
             <li class={h.hecho ? 'hecho' : 'previsto'}>
               <span class="hito-fecha">{h.fecha}</span>
-              <span>{h.hito}</span>
-              <span class="visually-hidden">{h.hecho ? '(completado)' : '(previsto)'}</span>
+              <span class="hito-texto">
+                {h.hito}
+                {vencidos.includes(h) && <span class="chip chip-aviso">Fecha pasada: por comprobar</span>}
+                {' '}<a class="hito-fuente" href={h.fuente_url} rel="external noopener">fuente</a>
+              </span>
+              <span class="visually-hidden">{h.hecho ? '(hecho)' : '(previsto)'}</span>
             </li>
           ))}
         </ol>
         <p class="fuente-dato">
-          <a href={p.fuente_url} rel="external noopener">Propuesta oficial (COM)</a>
-          {p.fuentes_adicionales.map((u, i) => (
+          <a href={p.fuente_url} rel="external noopener">Propuesta oficial</a> ·
+          <a href={p.ficha_oficial} rel="external noopener">ficha del expediente en el Parlamento Europeo</a>
+          {p.fuentes_adicionales.map((u) => (
             <>
-              {' '}· <a href={u} rel="external noopener">fuente secundaria {i + 1}</a>
+              {' '}· <a href={u} rel="external noopener">{dominio(u)}</a>{!oficial(u) && ' (fuente secundaria)'}
             </>
           ))}{' '}
-          · Verificado el {fmt(p.fecha_verificacion)}. Las fechas previstas vienen de fuentes
-          secundarias y pueden cambiar.
+          · Verificado el {fmt(p.fecha_verificacion)}.
         </p>
       </article>
     ))
   }
+
+  <aside class="caja como-leer">
+    <h2>Cómo leer estas fechas</h2>
+    <ul>
+      <li>
+        <strong>Indicativa:</strong> la fecha prevista del pleno que publica el Parlamento. Se mueve
+        a menudo.
+      </li>
+      <li>
+        <strong>Sin fecha oficial:</strong> ninguna fuente oficial la da todavía. Las fechas que
+        circulan en prensa especializada o en consultoras no se recogen aquí hasta que las
+        confirma una institución.
+      </li>
+      <li>
+        <strong>Fecha pasada: por comprobar:</strong> el paso estaba previsto y aún no consta
+        como hecho. Se revisa en la siguiente verificación.
+      </li>
+    </ul>
+    <p>
+      La vigilancia diaria del Radar revisa la ficha oficial de cada expediente y avisa cuando
+      cambia. Puedes seguirla tú en el
+      <a href="https://oeil.europarl.europa.eu/oeil/en" rel="external noopener">Observatorio Legislativo del Parlamento Europeo</a>.
+    </p>
+  </aside>
 
   <section class="caja ya-adoptado">
     <h2>Ya adoptado, con aplicación escalonada</h2>
@@ -102,18 +226,68 @@ const fmt = (iso: string) =>
 
 <style>
   .intro { max-width: 46rem; }
-  .propuesta { margin-top: 2rem; }
-  .meta { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; color: var(--texto-suave); }
+
+  .resumen caption { caption-side: top; text-align: left; color: var(--texto-suave); font-size: 0.9rem; padding-bottom: 0.4rem; }
+  .resumen th[scope='row'] { min-width: 13rem; }
+  .resumen-normas, .resumen-hito { display: block; font-weight: 400; font-size: 0.85rem; color: var(--texto-suave); margin-top: 0.2rem; }
+  .progreso { display: flex; gap: 3px; margin-top: 0.45rem; max-width: 9rem; }
+  .progreso-paso { flex: 1; height: 6px; border-radius: 3px; background: var(--borde); }
+  .progreso-paso.paso-hecho { background: var(--acento); }
+  .progreso-paso.paso-en_curso { background: var(--aviso-texto); }
+
+  .propuesta { margin-top: 3rem; padding-top: 1.5rem; border-top: 2px solid var(--borde); scroll-margin-top: 1rem; }
+  .propuesta h2 { margin-top: 0; }
+  .meta { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.25rem; }
+  .meta-ref { margin-top: 0; color: var(--texto-suave); font-size: 0.92rem; }
+  .por-que { max-width: 46rem; }
+
+  .etapas {
+    list-style: none; padding: 0; margin: 1rem 0; display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.5rem; max-width: 56rem;
+  }
+  .etapa { display: flex; flex-direction: column; gap: 0.15rem; position: relative; padding-top: 1.4rem; font-size: 0.88rem; max-width: none; }
+  .etapa-marca {
+    position: absolute; top: 0; left: 0; width: 1rem; height: 1rem; border-radius: 50%;
+    border: 2px solid var(--borde); background: #fff;
+  }
+  .etapa::after {
+    content: ''; position: absolute; top: 0.45rem; left: 1.15rem; right: -0.35rem; height: 2px; background: var(--borde);
+  }
+  .etapa:last-child::after { display: none; }
+  .etapa-nombre { font-weight: 600; line-height: 1.3; }
+  .etapa-estado { color: var(--texto-suave); }
+  .etapa-hecho .etapa-marca { background: var(--acento); border-color: var(--acento); }
+  .etapa-hecho::after { background: var(--acento); }
+  .etapa-en_curso .etapa-marca { border-color: var(--aviso-texto); background: var(--aviso-fondo); box-shadow: 0 0 0 3px var(--aviso-fondo); }
+  .etapa-en_curso .etapa-estado { color: var(--aviso-texto); font-weight: 700; }
+  .etapa-pendiente .etapa-nombre { color: var(--texto-suave); font-weight: 400; }
+  @media (max-width: 44rem) {
+    .etapas { grid-template-columns: 1fr; gap: 0; }
+    .etapa { padding: 0 0 0.75rem 1.6rem; flex-direction: row; flex-wrap: wrap; gap: 0 0.5rem; }
+    .etapa::after { top: 1.15rem; bottom: 0; left: 0.45rem; right: auto; width: 2px; height: auto; }
+  }
+
+  .proximo { background: var(--fondo-alt); border-left: 4px solid var(--acento); border-radius: 0 6px 6px 0; padding: 0.6rem 0.9rem; max-width: 46rem; }
+  .proximo .chip { margin-left: 0.35rem; }
+  .proximo-fecha { display: block; margin-top: 0.3rem; }
+  .resumen-cuando { color: var(--texto-suave); }
+
   .tabla th[scope='row'] { min-width: 10rem; }
   .nota-celda { display: block; margin-top: 0.4rem; font-size: 0.85rem; color: var(--aviso-texto); }
-  .hitos { list-style: none; padding: 0; border-left: 3px solid var(--borde); margin-left: 0.5rem; }
-  .hitos li { position: relative; padding: 0.35rem 0 0.35rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0 0.75rem; }
+
+  .hitos { list-style: none; padding: 0; border-left: 3px solid var(--borde); margin-left: 0.5rem; max-width: 52rem; }
+  .hitos li { position: relative; padding: 0.4rem 0 0.4rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0 0.75rem; max-width: none; }
   .hitos li::before {
-    content: ''; position: absolute; left: -0.5rem; top: 0.75rem; width: 0.75rem; height: 0.75rem;
+    content: ''; position: absolute; left: -0.5rem; top: 0.8rem; width: 0.75rem; height: 0.75rem;
     border-radius: 50%; background: var(--acento); border: 2px solid #fff;
   }
   .hitos li.previsto::before { background: #fff; border: 2px solid var(--acento); }
-  .hitos li.previsto { color: var(--texto-suave); }
-  .hito-fecha { font-weight: 600; min-width: 13rem; }
-  .ya-adoptado { margin-top: 2.5rem; max-width: none; }
+  .hitos li.previsto .hito-fecha { color: var(--texto-suave); }
+  .hito-fecha { font-weight: 600; min-width: 11rem; }
+  .hito-texto { flex: 1; min-width: 14rem; }
+  .hito-texto .chip { margin-left: 0.35rem; }
+  .hito-fuente { font-size: 0.82rem; }
+
+  .como-leer, .ya-adoptado { margin-top: 2.5rem; max-width: none; }
+  .como-leer ul { padding-left: 1.2rem; }
 </style>

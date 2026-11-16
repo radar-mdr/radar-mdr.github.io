@@ -75,6 +75,7 @@ relajes para que pase: lee el mensaje, que explica qué regla se ha roto.
 | `src/pages/` | Una página por archivo. `index.astro` es la cronología |
 | `src/pages/que-me-aplica.astro` + `src/lib/asistente.ts` | Asistente de plazos por perfil |
 | `src/lib/ics.ts` | Calendario `.ics` (general y del asistente) |
+| `src/pages/en-tramitacion.astro` + `src/lib/tramitacion.ts` | Rastreador de propuestas legislativas |
 | `src/components/ListaEspera.astro` | Alta en la lista de espera de Radar Pro (Tally) |
 | `src/config.ts` | Dominio, correo de contacto, DOI e identificadores de servicios |
 | `scripts/vigilancia.py` | Vigilancia diaria de fuentes; abre un issue si algo cambia |

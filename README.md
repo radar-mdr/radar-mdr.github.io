@@ -45,11 +45,11 @@ con esquemas en [src/content.config.ts](src/content.config.ts):
 | Obligación | `obligaciones.json` | ✅ Matrices MDR e IVDR por clase + 4 fichas por agente económico |
 | Organismo notificado | `organismos.json` | ✅ 53 organismos (52 MDR, 19 IVDR) verificados en NANDO |
 | Glosario | `glosario.json` | ✅ 92 términos ES/EN |
-| Propuesta en tramitación | `propuestas.json` | ✅ Revisión MDR/IVDR, COM(2025) 1023 |
+| Propuesta en tramitación | `propuestas.json` | ✅ 3 expedientes con etapas e hitos de fuente oficial: revisión MDR/IVDR, Ómnibus digital y Biotech Act |
 | Fe de erratas | `erratas.json` | ✅ 5 erratas cerradas con CAPA |
 | Requisitos eQMS | `requisitos-eqms.json` | ✅ 15 requisitos (ISO 13485, Part 11, MDR) |
 | Guía (MDCG) | `guias.json` | ✅ 7 fichas publicadas: MDCG 2025-6, 2019-11 rev.1, 2020-1, 2025-4, 2025-10, 2026-4 rev.1 y 2026-6 |
-| Fuente | `fuentes.json` | ✅ 31 fuentes |
+| Fuente | `fuentes.json` | ✅ 33 fuentes |
 | Herramienta eQMS | `herramientas.json` | ⬜ vacía hasta tener 2 fuentes por fila (plantilla: `herramientas.ejemplo.json`) |
 
 **Reglas de los datos** (resumen de la [metodología](src/pages/metodologia.astro)):

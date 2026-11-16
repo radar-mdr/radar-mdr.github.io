@@ -3,44 +3,91 @@
     "id": "revision-mdr-ivdr-2025",
     "titulo": "Revisión focalizada del MDR y del IVDR",
     "referencia": "COM(2025) 1023 final, propuesta de la Comisión de 16-12-2025",
-    "norma": "MDR/IVDR",
+    "procedimiento": "2025/0404(COD)",
+    "ficha_oficial": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)",
+    "normas": [
+      "MDR",
+      "IVDR",
+      "AI Act"
+    ],
+    "resumen_corto": "Revisión del MDR y el IVDR: 30 días para notificar incidentes graves, PSUR más espaciados, certificados sin caducidad y la IA de los productos sanitarios fuera del régimen general del AI Act.",
+    "por_que_importa": "Cambiaría el día a día de cualquier fabricante con marcado CE: vigilancia, PSUR, certificados y, si el producto lleva IA, qué parte del AI Act le aplica.",
     "fecha_propuesta": "2025-12-16",
-    "estado_tramite": "En el Parlamento Europeo, en comisión SANT (ponente: Oliver Schenk, PPE). El Consejo negocia en paralelo. Nada de esto es aplicable todavía.",
+    "estado_tramite": "En el Parlamento Europeo, a la espera de la votación en la comisión de Salud Pública (SANT; ponente: Oliver Schenk, PPE). El Consejo no ha fijado todavía su posición. Nada de esto es aplicable.",
+    "etapas": {
+      "propuesta": "hecho",
+      "parlamento": "en_curso",
+      "consejo": "pendiente",
+      "acuerdo": "pendiente",
+      "adopcion": "pendiente",
+      "publicacion": "pendiente"
+    },
     "hitos": [
       {
         "fecha": "16-12-2025",
-        "hito": "La Comisión presenta la propuesta",
-        "hecho": true
+        "fecha_iso": "2025-12-16",
+        "hito": "La Comisión presenta la propuesta COM(2025) 1023",
+        "hecho": true,
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1023"
       },
       {
-        "fecha": "7-1-2026 a 19-3-2026",
-        "hito": "Periodo de comentarios públicos",
-        "hecho": true
+        "fecha": "25-3-2026",
+        "fecha_iso": "2026-03-25",
+        "hito": "El Parlamento remite la propuesta a la comisión de Salud Pública (SANT)",
+        "hecho": true,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
       },
       {
-        "fecha": "Finales de junio / 1-7-2026",
-        "hito": "Proyecto de informe del ponente (PE787.987), con más de 130 enmiendas",
-        "hecho": true
+        "fecha": "30-6-2026",
+        "fecha_iso": "2026-06-30",
+        "hito": "Proyecto de informe del ponente (PE787.987)",
+        "hecho": true,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
       },
       {
-        "fecha": "14-7-2026",
-        "hito": "Presentación en la comisión SANT; plazo de enmiendas hasta el 20-7-2026",
-        "hecho": true
+        "fecha": "28-7-2026",
+        "fecha_iso": "2026-07-28",
+        "hito": "Enmiendas presentadas en la comisión SANT (PE791.887, PE791.890 y PE791.891)",
+        "hecho": true,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
       },
       {
-        "fecha": "3-12-2026 (previsto)",
-        "hito": "Votación en la comisión SANT (una sola fuente; por confirmar)",
-        "hecho": false
+        "fecha": "5-11-2026",
+        "fecha_iso": "2026-11-05",
+        "hito": "Opinión de la comisión de Presupuestos (BUDG)",
+        "hecho": true,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
       },
       {
-        "fecha": "Finales de 2026 (previsto)",
-        "hito": "Orientación general del Consejo bajo la presidencia irlandesa",
-        "hecho": false
+        "fecha": "Sin fecha oficial",
+        "hito": "Opinión de la comisión de Mercado Interior (IMCO); ponente nombrada el 15-10-2026",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
       },
       {
-        "fecha": "Principios de 2027 (previsto)",
-        "hito": "Posición del Parlamento en el pleno; después, trílogos",
-        "hecho": false
+        "fecha": "Sin fecha oficial",
+        "hito": "Votación del informe en la comisión SANT",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
+      },
+      {
+        "fecha": "18-1-2027 (indicativa)",
+        "fecha_iso": "2027-01-18",
+        "hito": "Votación en el pleno del Parlamento, primera lectura",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
+      },
+      {
+        "fecha": "Sin fecha oficial",
+        "hito": "Posición del Consejo. No hay ninguna publicada; el próximo Consejo de Sanidad (EPSCO) es el 8-12-2026 y aún no ha publicado su orden del día",
+        "hecho": false,
+        "fuente_url": "https://www.consilium.europa.eu/en/meetings/epsco/2026/12/08/"
+      },
+      {
+        "fecha": "Sin fecha oficial",
+        "hito": "Negociación entre Parlamento, Consejo y Comisión (trílogos)",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
       }
     ],
     "cambios": [
@@ -48,7 +95,7 @@
         "tema": "Plazo de notificación de incidentes graves",
         "vigente": "15 días como máximo; 10 si hay muerte o deterioro grave imprevisto; 2 si hay amenaza grave para la salud pública (MDR art. 87).",
         "propuesta_comision": "El plazo general pasa de 15 a 30 días.",
-        "nota": "Las fuentes consultadas no detallan si cambian los plazos de 10 y 2 días."
+        "nota": "Los plazos de 2 días (amenaza grave para la salud pública) y de 10 días (muerte o deterioro grave) no cambian: la propuesta solo sustituye el apartado 3 del art. 87."
       },
       {
         "tema": "Frecuencia del PSUR",
@@ -62,9 +109,16 @@
         "nota": "El proyecto de informe del Parlamento propone limitar a 5 años la certificación inicial."
       },
       {
+        "tema": "Relación con el AI Act",
+        "vigente": "El MDR y el IVDR están en la sección A del anexo I del AI Act: la IA de un producto sanitario que pasa por organismo notificado puede ser de alto riesgo (art. 6.1) y cumplir el AI Act desde el 2-8-2028.",
+        "propuesta_comision": "Pasan a la sección B: del AI Act solo se aplicarían las disposiciones de su art. 2.2, y la Comisión podría fijar requisitos específicos para la IA con actos de ejecución y delegados del MDR y el IVDR.",
+        "nota": "Es el cambio con más impacto para la IA clínica, y según la propuesta se aplicaría desde su entrada en vigor."
+      },
+      {
         "tema": "Clasificación del software",
         "vigente": "Regla 11: la mayoría del software que informa decisiones diagnósticas o terapéuticas es IIa o superior.",
-        "propuesta_comision": "Se ajustan las reglas para que más software pueda ser clase I (autocertificación sin organismo notificado)."
+        "propuesta_comision": "Se adaptan algunas reglas del anexo VIII para que ciertos productos bajen de clase, entre ellos el software.",
+        "nota": "La exposición de motivos no precisa a qué clase bajaría el software."
       },
       {
         "tema": "Auditorías del organismo notificado",
@@ -79,7 +133,12 @@
       {
         "tema": "Otras novedades",
         "vigente": "—",
-        "propuesta_comision": "Más uso de la equivalencia, vías adaptativas para productos innovadores y huérfanos, sandbox regulatorio para software e IA, condiciones más flexibles para productos fabricados en centros sanitarios, y declaración UE de conformidad digital."
+        "propuesta_comision": "Más margen para la equivalencia y los datos no clínicos, vía prioritaria para productos innovadores y huérfanos, sandboxes regulatorios para tecnologías emergentes, condiciones más flexibles para los productos fabricados en centros sanitarios, declaración UE de conformidad digital y notificación por EUDAMED de las vulnerabilidades de ciberseguridad explotadas."
+      },
+      {
+        "tema": "Cuándo se aplicaría",
+        "vigente": "—",
+        "propuesta_comision": "Con carácter general, seis meses después de su entrada en vigor. Desde la entrada en vigor: el fin de la caducidad de los certificados y el cambio en el AI Act. A los 12 meses, las normas sobre organismos notificados; a los tres años, la notificación de vulnerabilidades de ciberseguridad; a los cinco, el reprocesamiento de productos de un solo uso."
       }
     ],
     "fuente_url": "https://health.ec.europa.eu/document/download/25e7ea7c-cab3-40cf-86d9-d11f5e7744d8_en?filename=md_com_2025-1023_act_en.pdf",
@@ -88,6 +147,247 @@
       "https://dsv-europa.de/en/news/2026/07/mdr-ivdr.html",
       "https://www.legal500.com/intelligence/afghanistan/consumer-protection/how-will-the-eu-parliament-shape-the-mdrivdr-revision-draft-report-indicates-how-parliament-may-seek-to-amend-commissions-proposals"
     ],
-    "fecha_verificacion": "2026-10-14"
+    "fecha_verificacion": "2026-11-16",
+    "historial": [
+      {
+        "fecha": "2026-11-16",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Revisión focalizada del MDR y del IVDR",
+        "motivo": "Alta en el rastreador (la propuesta ya figuraba en la página desde el 14-10-2026).",
+        "fuente_url": "https://health.ec.europa.eu/document/download/25e7ea7c-cab3-40cf-86d9-d11f5e7744d8_en?filename=md_com_2025-1023_act_en.pdf"
+      },
+      {
+        "fecha": "2026-11-16",
+        "campo": "hitos",
+        "valor_anterior": "Proyecto de informe «finales de junio / 1-7-2026»; presentación en SANT el 14-7-2026 con enmiendas hasta el 20-7-2026; votación en SANT el 3-12-2026 (una sola fuente)",
+        "valor_nuevo": "Proyecto de informe el 30-6-2026; enmiendas presentadas el 28-7-2026; votación en SANT sin fecha oficial; pleno indicativo el 18-1-2027",
+        "motivo": "Hitos rehechos con la ficha oficial del expediente en el Observatorio Legislativo. La votación en comisión del 3-12-2026 no figura en ninguna fuente oficial.",
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
+      },
+      {
+        "fecha": "2026-11-16",
+        "campo": "estado_tramite",
+        "valor_anterior": "En el Parlamento Europeo, en comisión SANT (ponente: Oliver Schenk, PPE). El Consejo negocia en paralelo. Nada de esto es aplicable todavía.",
+        "valor_nuevo": "En el Parlamento, a la espera de la votación en SANT. El Consejo no ha fijado todavía su posición.",
+        "motivo": "El Observatorio Legislativo da el expediente como «Awaiting committee decision» y no hay posición del Consejo publicada.",
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)"
+      },
+      {
+        "fecha": "2026-11-16",
+        "campo": "cambios",
+        "valor_anterior": "Se ajustan las reglas para que más software pueda ser clase I (autocertificación sin organismo notificado).",
+        "valor_nuevo": "Se adaptan algunas reglas del anexo VIII para que ciertos productos bajen de clase, entre ellos el software.",
+        "motivo": "La exposición de motivos habla de bajar de clase cierto software sin precisar a cuál; «clase I» venía de una fuente secundaria.",
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1023"
+      },
+      {
+        "fecha": "2026-11-16",
+        "campo": "cambios",
+        "valor_anterior": "Las fuentes consultadas no detallan si cambian los plazos de 10 y 2 días.",
+        "valor_nuevo": "Los plazos de 2 días (amenaza grave para la salud pública) y de 10 días (muerte o deterioro grave) no cambian: la propuesta solo sustituye el apartado 3 del art. 87.",
+        "motivo": "Comprobado en el texto de la propuesta: el punto 68 solo sustituye el apartado 3 del art. 87.",
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1023"
+      },
+      {
+        "fecha": "2026-11-16",
+        "campo": "cambios",
+        "valor_anterior": "Más uso de la equivalencia, vías adaptativas para productos innovadores y huérfanos, sandbox regulatorio para software e IA, condiciones más flexibles para productos fabricados en centros sanitarios, y declaración UE de conformidad digital.",
+        "valor_nuevo": "Más margen para la equivalencia y los datos no clínicos, vía prioritaria para productos innovadores y huérfanos, sandboxes regulatorios para tecnologías emergentes, condiciones más flexibles para los productos fabricados en centros sanitarios, declaración UE de conformidad digital y notificación por EUDAMED de las vulnerabilidades de ciberseguridad explotadas.",
+        "motivo": "Revisado con la exposición de motivos: los sandboxes son para tecnologías emergentes en general.",
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1023"
+      },
+      {
+        "fecha": "2026-11-16",
+        "campo": "cambios",
+        "valor_anterior": "—",
+        "valor_nuevo": "Filas nuevas: relación con el AI Act y cuándo se aplicaría",
+        "motivo": "Leídas en los artículos 4 y 5 y en el considerando 23 de la propuesta.",
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1023"
+      }
+    ]
+  },
+  {
+    "id": "omnibus-digital-2025",
+    "titulo": "Ómnibus digital: RGPD, datos y ciberseguridad",
+    "referencia": "COM(2025) 837 final, propuesta de la Comisión de 19-11-2025",
+    "procedimiento": "2025/0360(COD)",
+    "ficha_oficial": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0360(COD)",
+    "normas": [
+      "RGPD",
+      "ePrivacy",
+      "Data Act",
+      "NIS2"
+    ],
+    "resumen_corto": "Ómnibus digital: cambios en el RGPD para entrenar y usar IA con datos personales y en la notificación de brechas e incidentes.",
+    "por_que_importa": "Afecta a quien entrena o usa IA clínica con datos personales y a quien tiene que notificar brechas de datos o incidentes de ciberseguridad.",
+    "fecha_propuesta": "2025-11-19",
+    "estado_tramite": "El Consejo fijó su posición el 21-10-2026. En el Parlamento, a la espera de la votación conjunta de las comisiones de Industria (ITRE) y Libertades Civiles (LIBE). Nada de esto es aplicable todavía.",
+    "etapas": {
+      "propuesta": "hecho",
+      "parlamento": "en_curso",
+      "consejo": "hecho",
+      "acuerdo": "pendiente",
+      "adopcion": "pendiente",
+      "publicacion": "pendiente"
+    },
+    "hitos": [
+      {
+        "fecha": "19-11-2025",
+        "fecha_iso": "2025-11-19",
+        "hito": "La Comisión presenta la propuesta COM(2025) 837",
+        "hecho": true,
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC0837"
+      },
+      {
+        "fecha": "19-1-2026",
+        "fecha_iso": "2026-01-19",
+        "hito": "El Parlamento la remite a las comisiones ITRE y LIBE (ponentes: Aura Salla, PPE, y Marina Kaljurand, S&D)",
+        "hecho": true,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0360(COD)"
+      },
+      {
+        "fecha": "21-10-2026",
+        "fecha_iso": "2026-10-21",
+        "hito": "El Consejo aprueba su mandato de negociación",
+        "hecho": true,
+        "fuente_url": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/21/digital-rulebook-council-agrees-position-to-simplify-data-protection-privacy-and-cyber-reporting-rules/"
+      },
+      {
+        "fecha": "Sin fecha oficial",
+        "hito": "Votación en las comisiones ITRE y LIBE",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0360(COD)"
+      },
+      {
+        "fecha": "Sin fecha oficial",
+        "hito": "Negociación entre Parlamento, Consejo y Comisión (trílogos)",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0360(COD)"
+      }
+    ],
+    "cambios": [
+      {
+        "tema": "Notificación de brechas de datos personales",
+        "vigente": "Sin dilación indebida y, de ser posible, en 72 horas (RGPD art. 33).",
+        "propuesta_comision": "96 horas, centradas en las brechas de mayor riesgo, con una plantilla común de la UE.",
+        "nota": "El Consejo apoya ampliar el plazo."
+      },
+      {
+        "tema": "Datos personales para desarrollar y usar IA",
+        "vigente": "Las bases jurídicas generales del RGPD (art. 6); los datos de salud son una categoría especial (art. 9).",
+        "propuesta_comision": "Aclara que el interés legítimo puede amparar el desarrollo y el uso de sistemas de IA, con salvaguardas y derecho de oposición. Permite tratar, con medidas técnicas, datos de categoría especial que queden de forma residual en los conjuntos de datos, por ejemplo para detectar y corregir sesgos.",
+        "nota": "El Consejo añade salvaguardas a esta excepción."
+      },
+      {
+        "tema": "Notificación de incidentes de ciberseguridad",
+        "vigente": "Por separado según cada norma (NIS2, RGPD, DORA…).",
+        "propuesta_comision": "Un punto único de notificación en la UE: «notificar una vez, compartir con muchos».",
+        "nota": "El Consejo prefiere un punto de entrada nacional en cada Estado miembro y un punto de información a escala de la UE."
+      }
+    ],
+    "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC0837",
+    "fuentes_adicionales": [
+      "https://www.consilium.europa.eu/en/press/press-releases/2026/10/21/digital-rulebook-council-agrees-position-to-simplify-data-protection-privacy-and-cyber-reporting-rules/",
+      "https://oeil.europarl.europa.eu/oeil/en/document-summary?id=1866785"
+    ],
+    "fecha_verificacion": "2026-11-16",
+    "historial": [
+      {
+        "fecha": "2026-11-16",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Ómnibus digital",
+        "motivo": "Alta en el rastreador: el Consejo ya tiene posición y toca datos que usa la IA clínica.",
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0360(COD)"
+      }
+    ]
+  },
+  {
+    "id": "biotech-act-2025",
+    "titulo": "Ley Europea de Biotecnología (Biotech Act)",
+    "referencia": "COM(2025) 1022 final, propuesta de la Comisión de 16-12-2025",
+    "procedimiento": "2025/0406(COD)",
+    "ficha_oficial": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0406(COD)",
+    "normas": [
+      "Ensayos clínicos (Reg. 536/2014)",
+      "Terapias avanzadas (Reg. 1394/2007)",
+      "SoHO (Reg. 2024/1938)"
+    ],
+    "resumen_corto": "Biotech Act: una sola solicitud para los estudios que combinan un medicamento con un producto sanitario o un IVD.",
+    "por_que_importa": "Si haces estudios que combinan un medicamento con un producto sanitario o un IVD, la revisión del MDR/IVDR prevé una única solicitud con evaluación coordinada, que el Biotech Act incorpora al Reglamento de ensayos clínicos.",
+    "fecha_propuesta": "2025-12-16",
+    "estado_tramite": "En el Parlamento, a la espera de la votación conjunta de las comisiones de Salud Pública (SANT) e Industria (ITRE). El Consejo no ha publicado su posición sobre este reglamento (el 16-6-2026 fijó la de la directiva que lo acompaña, sobre microorganismos modificados genéticamente). Nada de esto es aplicable todavía.",
+    "etapas": {
+      "propuesta": "hecho",
+      "parlamento": "en_curso",
+      "consejo": "pendiente",
+      "acuerdo": "pendiente",
+      "adopcion": "pendiente",
+      "publicacion": "pendiente"
+    },
+    "hitos": [
+      {
+        "fecha": "16-12-2025",
+        "fecha_iso": "2025-12-16",
+        "hito": "La Comisión presenta la propuesta COM(2025) 1022",
+        "hecho": true,
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1022"
+      },
+      {
+        "fecha": "18-5-2026",
+        "fecha_iso": "2026-05-18",
+        "hito": "El Parlamento la remite a las comisiones SANT e ITRE (ponentes: Vytenis Andriukaitis, S&D, y Wouter Beke, PPE)",
+        "hecho": true,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0406(COD)"
+      },
+      {
+        "fecha": "Sin fecha oficial",
+        "hito": "Votación en las comisiones SANT e ITRE",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0406(COD)"
+      },
+      {
+        "fecha": "18-1-2027 (indicativa)",
+        "fecha_iso": "2027-01-18",
+        "hito": "Votación en el pleno del Parlamento, primera lectura",
+        "hecho": false,
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0406(COD)"
+      },
+      {
+        "fecha": "Sin fecha oficial",
+        "hito": "Posición del Consejo sobre el reglamento",
+        "hecho": false,
+        "fuente_url": "https://www.consilium.europa.eu/en/press/press-releases/?keyword=biotech"
+      }
+    ],
+    "cambios": [
+      {
+        "tema": "Estudios combinados (medicamento con producto sanitario o IVD)",
+        "vigente": "No hay una vía única: el ensayo del medicamento y la investigación del producto siguen procedimientos distintos (Reglamento 536/2014 y MDR o IVDR).",
+        "propuesta_comision": "Una sola solicitud que activa una evaluación coordinada según el Reglamento 536/2014 (nuevos art. 79a del MDR y 75a del IVDR, en la revisión del MDR/IVDR)."
+      },
+      {
+        "tema": "IA en la fabricación",
+        "vigente": "—",
+        "propuesta_comision": "Medidas para facilitar el uso de la IA en la fabricación biotecnológica y de tecnologías sanitarias, en línea con el AI Act."
+      }
+    ],
+    "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1022",
+    "fuentes_adicionales": [
+      "https://oeil.europarl.europa.eu/oeil/en/document-summary?id=1880211",
+      "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1023"
+    ],
+    "fecha_verificacion": "2026-11-16",
+    "historial": [
+      {
+        "fecha": "2026-11-16",
+        "campo": "alta",
+        "valor_anterior": "—",
+        "valor_nuevo": "Ley Europea de Biotecnología",
+        "motivo": "Alta en el rastreador: la revisión del MDR/IVDR se apoya en ella para los estudios combinados.",
+        "fuente_url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0406(COD)"
+      }
+    ]
   }
 ]

@@ -3,6 +3,7 @@ import { getCollection } from '../lib/coleccion';
 import Base from '../layouts/Base.astro';
 import ListaEspera from '../components/ListaEspera.astro';
 import { SITIO, dominioConfigurado } from '../config';
+import { faseActual } from '../lib/tramitacion';
 
 const plazos = (await getCollection('plazos')).sort((a, b) =>
   a.data.fecha.localeCompare(b.data.fecha)
@@ -240,15 +241,16 @@ const matices = [
     propuestas.length > 0 && (
       <aside class="caja tramitacion">
         <h2>En tramitación: lo que puede cambiar</h2>
-        <p>
+        <ul class="tramitacion-lista">
           {propuestas.map((pr) => (
-            <>
-              <strong>{pr.data.titulo}</strong> ({pr.data.referencia}). Propone, entre otras cosas,
-              pasar de 15 a 30 días el plazo para notificar incidentes graves y espaciar los PSUR.
-              Hoy sigue valiendo lo vigente.{' '}
-            </>
+            <li>
+              <a href={`/en-tramitacion/#${pr.data.id}`}>{pr.data.resumen_corto}</a>
+              <span class="tramitacion-fase">Ahora: {faseActual(pr.data.etapas).toLowerCase()}</span>
+            </li>
           ))}
-          <a href="/en-tramitacion/">Ver la comparativa vigente frente a propuesta</a>.
+        </ul>
+        <p>
+          Hoy sigue valiendo lo vigente. <a href="/en-tramitacion/">Sigue cada propuesta paso a paso</a>.
         </p>
       </aside>
     )
@@ -466,6 +468,9 @@ const matices = [
   }
 
   .tramitacion { margin-top: 2rem; max-width: none; }
+  .tramitacion-lista { margin: 0 0 0.5rem; padding-left: 1.2rem; }
+  .tramitacion-lista li { margin-bottom: 0.4rem; max-width: none; }
+  .tramitacion-fase { display: block; font-size: 0.85rem; color: var(--texto-suave); }
 
   .matices { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
   .matiz { border: 1px solid var(--borde); border-radius: 8px; padding: 1rem 1.25rem; background: var(--fondo-alt); }

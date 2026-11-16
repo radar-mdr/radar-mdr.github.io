@@ -831,8 +831,8 @@
     "fuentes_adicionales": [
       "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en"
     ],
-    "fecha_verificacion": "2026-10-14",
-    "nota_cambio": "La fecha clave para MedTech con IA. Antes del Ómnibus era el 2-8-2027 (la MDCG 2025-6, de junio de 2025, aún cita esa fecha).",
+    "fecha_verificacion": "2026-11-16",
+    "nota_cambio": "La fecha clave para MedTech con IA. Antes del Ómnibus era el 2-8-2027 (la MDCG 2025-6, de junio de 2025, aún cita esa fecha). La revisión del MDR/IVDR en tramitación propone sacar los productos sanitarios de la sección A del anexo I del AI Act: si se aprueba así, esta fecha dejaría de aplicarles tal cual. Hoy vale.",
     "historial": [
       {
         "fecha": "2026-07-05",
@@ -857,6 +857,14 @@
         "valor_nuevo": "Se añaden Is/Im/Ir e IVD A estéril",
         "motivo": "Errata E-003: la Tabla 1 de la MDCG 2025-6 incluye todas las clases con organismo notificado.",
         "fuente_url": "https://health.ec.europa.eu/document/download/b78a17d7-e3cd-4943-851d-e02a2f22bbb4_en"
+      },
+      {
+        "fecha": "2026-11-16",
+        "campo": "nota_cambio",
+        "valor_anterior": "La fecha clave para MedTech con IA. Antes del Ómnibus era el 2-8-2027 (la MDCG 2025-6, de junio de 2025, aún cita esa fecha).",
+        "valor_nuevo": "La fecha clave para MedTech con IA. Antes del Ómnibus era el 2-8-2027 (la MDCG 2025-6, de junio de 2025, aún cita esa fecha). La revisión del MDR/IVDR en tramitación propone sacar los productos sanitarios de la sección A del anexo I del AI Act: si se aprueba así, esta fecha dejaría de aplicarles tal cual. Hoy vale.",
+        "motivo": "Aviso de la propuesta COM(2025) 1023 (art. 4), en tramitación. La fecha del 2-8-2028 se ha reconfirmado en la página oficial del AI Act de la Comisión.",
+        "fuente_url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52025PC1023"
       }
     ]
   },

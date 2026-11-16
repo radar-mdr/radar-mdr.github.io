@@ -167,17 +167,45 @@ const glosario = defineCollection({
   }),
 });
 
+// Estado de cada etapa del procedimiento legislativo ordinario (ver src/lib/tramitacion.ts).
+const estadoEtapa = z.enum(['hecho', 'en_curso', 'pendiente']);
+
 const propuestas = defineCollection({
   loader: file('src/data/propuestas.json'),
   schema: z.object({
     id: z.string(),
     titulo: z.string(),
     referencia: z.string(),
-    norma: normaEnum,
+    // Número del expediente, p. ej. "2025/0404(COD)". Su ficha en el Observatorio Legislativo
+    // del Parlamento es la fuente del estado de la tramitación (y la vigila la vigilancia diaria).
+    procedimiento: z.string().regex(/^\d{4}\/\d{4}\((COD|NLE|CNS)\)$/, 'Formato AAAA/NNNN(COD)'),
+    ficha_oficial: url,
+    // Normas que cambiaría (texto libre: también las que el Radar no cubre, como el RGPD).
+    normas: z.array(z.string()).min(1),
+    // Una frase para la portada y otra para explicar a quién afecta.
+    resumen_corto: z.string(),
+    por_que_importa: z.string(),
     fecha_propuesta: fechaISO,
     estado_tramite: z.string(),
+    etapas: z.object({
+      propuesta: estadoEtapa,
+      parlamento: estadoEtapa,
+      consejo: estadoEtapa,
+      acuerdo: estadoEtapa,
+      adopcion: estadoEtapa,
+      publicacion: estadoEtapa,
+    }),
     hitos: z.array(
-      z.object({ fecha: z.string(), hito: z.string(), hecho: z.boolean() })
+      z.object({
+        // Texto visible: «16-12-2025», «Sin fecha oficial»…
+        fecha: z.string(),
+        // Solo si la fecha es oficial (aunque sea indicativa): ordena y da la cuenta atrás.
+        fecha_iso: fechaISO.optional(),
+        hito: z.string(),
+        hecho: z.boolean(),
+        // Cada hito, con su fuente oficial (Observatorio Legislativo, EUR-Lex, Consejo…).
+        fuente_url: url,
+      })
     ),
     cambios: z.array(
       z.object({
@@ -190,6 +218,7 @@ const propuestas = defineCollection({
     fuente_url: url,
     fuentes_adicionales: z.array(url).default([]),
     fecha_verificacion: fechaISO,
+    historial: z.array(entradaHistorial).default([]),
   }),
 });
 

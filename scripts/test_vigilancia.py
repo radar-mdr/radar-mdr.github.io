@@ -3,11 +3,13 @@
 
 Ejecución:  python -m unittest discover -s scripts -p "test_*.py"
 """
+import json
 import pathlib
 import sys
 import unittest
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ / "scripts"))
 
 import vigilancia  # noqa: E402
 
@@ -69,6 +71,36 @@ class ResumirCambios(unittest.TestCase):
         resumen = vigilancia.resumir_cambios(antes, ahora)
         self.assertIn("fragmentos en total", resumen)
         self.assertLessEqual(len(resumen), vigilancia.MAX_RESUMEN + 100)
+
+
+class Recortar(unittest.TestCase):
+    FICHA = ("Basic information Status Awaiting committee decision Key events 16/12/2025 "
+             "Legislative proposal published Transparency Meetings 21/10/2026 MedTech Europe")
+
+    def test_deja_solo_el_trozo_entre_las_marcas(self):
+        texto = vigilancia.recortar(self.FICHA, "Status", "Transparency")
+        self.assertTrue(texto.startswith("Status Awaiting"))
+        self.assertIn("Legislative proposal published", texto)
+        self.assertNotIn("MedTech Europe", texto)  # las reuniones con grupos de interés no cuentan
+
+    def test_si_falta_una_marca_no_recorta_ese_lado(self):
+        self.assertEqual(vigilancia.recortar(self.FICHA, "No existe", None), self.FICHA)
+        self.assertTrue(vigilancia.recortar(self.FICHA, "Status", "No existe").endswith("MedTech Europe"))
+
+    def test_sin_marcas_devuelve_el_texto(self):
+        self.assertEqual(vigilancia.recortar(self.FICHA), self.FICHA)
+
+
+class FuentesVigiladas(unittest.TestCase):
+    def test_cada_expediente_del_rastreador_esta_vigilado(self):
+        propuestas = json.loads((RAIZ / "src" / "data" / "propuestas.json").read_text(encoding="utf-8"))
+        urls = [f["url"] for f in vigilancia.FUENTES]
+        for p in propuestas:
+            self.assertIn(p["ficha_oficial"], urls, f"{p['id']}: añade su ficha a FUENTES en vigilancia.py")
+
+    def test_slugs_unicos(self):
+        slugs = [f["slug"] for f in vigilancia.FUENTES]
+        self.assertEqual(len(slugs), len(set(slugs)))
 
 
 if __name__ == "__main__":

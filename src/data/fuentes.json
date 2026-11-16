@@ -309,5 +309,25 @@
     "idioma": "ES/EN (multilingüe)",
     "frecuencia_actualizacion": "Puntual (se modificará al citar nuevas normas)",
     "tiene_rss": false
+  },
+  {
+    "id": "oeil-parlamento",
+    "nombre": "Observatorio Legislativo del Parlamento Europeo (OEIL)",
+    "tipo": "legal",
+    "url": "https://oeil.europarl.europa.eu/oeil/en",
+    "idioma": "EN/FR",
+    "frecuencia_actualizacion": "Continua (cada paso del expediente)",
+    "tiene_rss": false,
+    "nota_publica": "Estado oficial de cada propuesta legislativa: documentos, votaciones y fecha indicativa del pleno. Es la fuente de «En tramitación»."
+  },
+  {
+    "id": "consejo-ue-prensa",
+    "nombre": "Consejo de la UE — comunicados y calendario de reuniones",
+    "tipo": "legal",
+    "url": "https://www.consilium.europa.eu/en/press/press-releases/",
+    "idioma": "EN (multilingüe)",
+    "frecuencia_actualizacion": "Diaria",
+    "tiene_rss": true,
+    "nota_publica": "Posiciones y mandatos del Consejo sobre cada propuesta."
   }
 ]

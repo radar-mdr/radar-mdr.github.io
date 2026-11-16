@@ -19,7 +19,9 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 
-# Fuentes vigiladas. Empieza con estas 8; añade/quita según ruido observado.
+# Fuentes vigiladas: 8 páginas generales y la ficha de cada expediente de «En tramitación».
+# Añade o quita según el ruido observado. Opcional: «desde» y «hasta» limitan la comparación
+# a un trozo de la página (ver recortar).
 # NANDO y el DOUE cambian por diseño casi a diario: vigílalos a mano de momento.
 FUENTES = [
     {
@@ -62,6 +64,30 @@ FUENTES = [
         "nombre": "MedTech Europe — News",
         "url": "https://www.medtecheurope.org/news-and-events/news/",
     },
+    # Expedientes de «En tramitación» (src/data/propuestas.json). De cada ficha del
+    # Observatorio Legislativo solo cuenta del estado a los documentos: la lista de reuniones
+    # con grupos de interés («Transparency») cambia casi a diario y no es un paso del expediente.
+    {
+        "slug": "oeil-revision-mdr-ivdr",
+        "nombre": "Expediente 2025/0404(COD): revisión del MDR y el IVDR",
+        "url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0404(COD)",
+        "desde": "Status",
+        "hasta": "Transparency",
+    },
+    {
+        "slug": "oeil-omnibus-digital",
+        "nombre": "Expediente 2025/0360(COD): Ómnibus digital",
+        "url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0360(COD)",
+        "desde": "Status",
+        "hasta": "Transparency",
+    },
+    {
+        "slug": "oeil-biotech-act",
+        "nombre": "Expediente 2025/0406(COD): Biotech Act",
+        "url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2025/0406(COD)",
+        "desde": "Status",
+        "hasta": "Transparency",
+    },
 ]
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
@@ -93,6 +119,21 @@ def extraer_texto(html: str) -> str:
     principal = soup.find("main") or soup.body or soup
     texto = principal.get_text(" ", strip=True)
     return re.sub(r"\s+", " ", texto)
+
+
+def recortar(texto: str, desde: str | None = None, hasta: str | None = None) -> str:
+    """Solo la parte de la página entre dos marcas (incluida la primera).
+
+    Si una marca no aparece, no se recorta por ese lado: mejor un aviso de más que dejar
+    de vigilar en silencio si la web cambia sus títulos.
+    """
+    inicio = texto.find(desde) if desde else -1
+    if inicio > 0:
+        texto = texto[inicio:]
+    fin = texto.find(hasta, len(desde or "")) if hasta else -1
+    if fin > 0:
+        texto = texto[:fin]
+    return texto.strip()
 
 
 def resumir_cambios(anterior: str, actual: str) -> str:
@@ -128,7 +169,7 @@ def main() -> int:
             print(f"[aviso] {f['slug']}: no se pudo descargar ({e})", file=sys.stderr)
             continue
 
-        actual = extraer_texto(r.text)
+        actual = recortar(extraer_texto(r.text), f.get("desde"), f.get("hasta"))
         ruta = SNAP / f"{f['slug']}.txt"
         anterior = ruta.read_text(encoding="utf-8") if ruta.exists() else None
         ruta.write_text(actual, encoding="utf-8")

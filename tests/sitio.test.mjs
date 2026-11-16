@@ -79,6 +79,17 @@ test('el asistente pinta una tarjeta por plazo, con los datos que necesita su lÃ
   assert.match(html, /orientativo/i, 'el asistente tiene que avisar de que el resultado es orientativo');
 });
 
+test('el rastreador y la portada muestran todas las propuestas, con su ficha oficial', { skip: omitir }, () => {
+  const propuestas = JSON.parse(readFileSync(join(RAIZ, 'src', 'data', 'propuestas.json'), 'utf8'));
+  const rastreador = readFileSync(join(DIST, 'en-tramitacion', 'index.html'), 'utf8');
+  const portada = readFileSync(join(DIST, 'index.html'), 'utf8');
+  for (const p of propuestas) {
+    assert.ok(rastreador.includes(`id="${p.id}"`), `falta ${p.id} en /en-tramitacion/`);
+    assert.ok(rastreador.includes(`href="${p.ficha_oficial.replaceAll('&', '&amp;')}"`), `falta el enlace a la ficha oficial de ${p.id}`);
+    assert.ok(portada.includes(`/en-tramitacion/#${p.id}`), `la portada no enlaza a ${p.id}`);
+  }
+});
+
 test('el Ãºnico correo que aparece en la web es el de contacto del proyecto', { skip: omitir }, () => {
   const config = readFileSync(join(RAIZ, 'src', 'config.ts'), 'utf8');
   const contacto = config.match(/email: '([^']+)'/)[1];
